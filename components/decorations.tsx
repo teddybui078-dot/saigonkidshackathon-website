@@ -139,45 +139,73 @@ const SKY_DEEP = "#a8bfe2";
 
 export function SaigonSkyline({
   className = "",
-  width = 340,
+  width = 470,
   ...rest
 }: {
   className?: string;
   width?: number;
 } & React.SVGProps<SVGSVGElement>) {
-  // flat silhouettes: landmark 81 (tapered spire) + bitexco (helipad) + blocks
+  // textural landmark 81 — stepped shaft cluster with window grids (the
+  // hoover-tower analog) — plus bitexco with its helipad and low blocks
+  const shafts = [
+    { x: 205, w: 44, top: 42, fill: SKY_DEEP },
+    { x: 165, w: 40, top: 86, fill: SKY_LIGHT },
+    { x: 249, w: 40, top: 104, fill: SKY_LIGHT },
+    { x: 127, w: 38, top: 150, fill: SKY_DEEP },
+    { x: 289, w: 38, top: 182, fill: SKY_DEEP },
+    { x: 93, w: 34, top: 228, fill: SKY_LIGHT },
+    { x: 327, w: 34, top: 252, fill: SKY_LIGHT },
+  ];
   return (
     <svg
       className={className}
       width={width}
-      height={width * 0.75}
-      viewBox="0 0 340 255"
+      height={width * 0.851}
+      viewBox="0 0 470 400"
       fill="none"
       aria-hidden="true"
       {...rest}
     >
-      {/* landmark 81 */}
-      <path
-        d="M60 255 L60 120 L70 120 L70 78 L78 78 L78 48 L84 48 L84 26 L88 8 L92 26 L92 48 L98 48 L98 78 L106 78 L106 120 L116 120 L116 255 Z"
-        fill={SKY_DEEP}
-      />
-      <rect x="66" y="140" width="6" height="10" rx="1" fill="#f1f5f9" opacity="0.6" />
-      <rect x="86" y="120" width="6" height="10" rx="1" fill="#f1f5f9" opacity="0.6" />
-      <rect x="104" y="160" width="6" height="10" rx="1" fill="#f1f5f9" opacity="0.6" />
+      {/* spire with pixel beacon */}
+      <path d="M227 44 L227 8" stroke={SKY_DEEP} strokeWidth="5" strokeLinecap="round" />
+      <rect x="224" y="0" width="7" height="7" rx="1.5" fill={YELLOW} />
+      {shafts.map((sh) => (
+        <g key={sh.x}>
+          <rect x={sh.x} y={sh.top} width={sh.w} height={400 - sh.top} fill={sh.fill} />
+          {/* setback ledge */}
+          <rect x={sh.x - 2} y={sh.top} width={sh.w + 4} height={5} rx={2} fill="#8fa9d4" />
+          {/* window grid */}
+          {Array.from({ length: Math.floor((392 - sh.top - 16) / 26) }).flatMap(
+            (_, row) =>
+              [0, 1].map((col) => (
+                <rect
+                  key={`${row}-${col}`}
+                  x={sh.x + 7 + col * (sh.w / 2)}
+                  y={sh.top + 16 + row * 26}
+                  width={5.5}
+                  height={10}
+                  rx={1.5}
+                  fill="#f1f5f9"
+                  opacity={0.55}
+                />
+              ))
+          )}
+        </g>
+      ))}
       {/* bitexco with helipad */}
       <path
-        d="M170 255 L172 128 C172 100 182 84 196 84 C210 84 220 100 220 128 L222 255 Z"
+        d="M370 400 L372 232 C372 200 384 182 400 182 C416 182 428 200 428 232 L430 400 Z"
         fill={SKY_LIGHT}
       />
-      <rect x="148" y="118" width="34" height="8" rx="4" fill={SKY_LIGHT} />
-      <rect x="190" y="100" width="6" height="12" rx="2" fill="#f1f5f9" opacity="0.6" />
+      <rect x="344" y="220" width="40" height="9" rx="4.5" fill={SKY_LIGHT} />
+      <rect x="394" y="200" width="7" height="13" rx="2" fill="#f1f5f9" opacity="0.6" />
+      <rect x="394" y="240" width="7" height="13" rx="2" fill="#f1f5f9" opacity="0.6" />
       {/* low blocks */}
-      <rect x="0" y="190" width="44" height="65" rx="4" fill={SKY_LIGHT} />
-      <rect x="126" y="205" width="36" height="50" rx="4" fill={SKY_DEEP} />
-      <rect x="232" y="182" width="48" height="73" rx="4" fill={SKY_DEEP} />
-      <rect x="290" y="212" width="50" height="43" rx="4" fill={SKY_LIGHT} />
-      <rect x="244" y="196" width="7" height="8" rx="1" fill="#f1f5f9" opacity="0.6" />
-      <rect x="262" y="210" width="7" height="8" rx="1" fill="#f1f5f9" opacity="0.6" />
+      <rect x="30" y="320" width="52" height="80" rx="4" fill={SKY_DEEP} />
+      <rect x="440" y="330" width="30" height="70" rx="4" fill={SKY_DEEP} />
+      <rect x="0" y="352" width="26" height="48" rx="4" fill={SKY_LIGHT} />
+      <rect x="42" y="334" width="8" height="9" rx="1.5" fill="#f1f5f9" opacity="0.6" />
+      <rect x="62" y="348" width="8" height="9" rx="1.5" fill="#f1f5f9" opacity="0.6" />
     </svg>
   );
 }
