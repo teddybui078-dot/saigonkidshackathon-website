@@ -8,15 +8,15 @@ import Faq from "@/components/Faq";
 import Sponsors from "@/components/Sponsors";
 import Footer from "@/components/Footer";
 import ScrollProgress from "@/components/ScrollProgress";
-import PixelBot from "@/components/PixelBot";
 import SceneBackdrop from "@/components/SceneBackdrop";
+import AmbientMotion from "@/components/AmbientMotion";
 
 export default function Home() {
   return (
     <main>
       <SceneBackdrop />
+      <AmbientMotion />
       <ScrollProgress />
-      <PixelBot />
       <Navbar />
       <Hero />
       <Ticker />
