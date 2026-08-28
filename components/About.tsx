@@ -80,7 +80,7 @@ export default function About() {
     <section ref={sectionRef} id="about" className="relative px-4 py-24">
       <div className="mx-auto max-w-5xl">
         <div className="relative">
-          <PixelGrid className="absolute -left-2 -top-10 hidden lg:block" size={36} />
+          <PixelGrid className="ambient-float absolute -left-2 -top-10 hidden lg:block" size={36} />
           <p className="about-line mb-3 text-sm font-semibold text-saigon">
             about the day ✦
           </p>
@@ -101,7 +101,7 @@ export default function About() {
               key={card.title}
               className="about-card relative rounded-3xl bg-white p-7 shadow-[0_2px_16px_rgba(30,41,59,0.06)]"
             >
-              <PixelGrid className="absolute right-5 top-5" size={26} />
+              <PixelGrid className="ambient-float absolute right-5 top-5" data-amp="s" size={26} />
               <div
                 className={`mb-4 h-2 w-12 rounded-full ${
                   i % 2 === 0 ? "bg-energy" : "bg-saigon"
@@ -135,7 +135,7 @@ export default function About() {
           ))}
         </dl>
 
-        <Sparkle className="absolute bottom-10 right-[8%] hidden lg:block" size={26} />
+        <Sparkle className="ambient-twinkle absolute bottom-10 right-[8%] hidden lg:block" size={26} />
       </div>
     </section>
   );

@@ -57,7 +57,7 @@ export default function Faq() {
     <section ref={sectionRef} id="faq" className="px-4 py-24">
       <div className="mx-auto max-w-3xl">
         <div className="relative text-center">
-          <PixelGrid className="absolute -top-8 right-0 hidden md:block" size={32} />
+          <PixelGrid className="ambient-float absolute -top-8 right-0 hidden md:block" size={32} />
           <p className="mb-3 text-sm font-semibold text-saigon">
             good questions ✦
           </p>

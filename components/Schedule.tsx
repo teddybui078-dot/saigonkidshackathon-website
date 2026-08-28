@@ -110,7 +110,7 @@ export default function Schedule() {
           </ol>
 
           <div className="mt-12 flex justify-center">
-            <Sparkle size={28} />
+            <Sparkle className="ambient-twinkle" size={28} />
           </div>
         </div>
       </div>

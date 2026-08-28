@@ -108,7 +108,7 @@ export default function Tracks() {
               key={track.title}
               className="track-card relative w-full shrink-0 rounded-3xl bg-white p-8 shadow-[0_2px_16px_rgba(30,41,59,0.06)] md:w-[24rem]"
             >
-              <PixelGrid className="absolute right-6 top-6" size={30} />
+              <PixelGrid className="ambient-float absolute right-6 top-6" data-amp="s" size={30} />
               <div className="text-5xl" aria-hidden="true">
                 {track.icon}
               </div>
@@ -121,7 +121,7 @@ export default function Tracks() {
           ))}
 
           <div className="hidden shrink-0 flex-col items-center justify-center gap-3 pr-8 md:flex">
-            <Sparkle size={34} />
+            <Sparkle className="ambient-twinkle" size={34} />
             <p className="max-w-[12rem] text-center font-semibold lowercase text-saigon">
               can&apos;t decide? mix them all together
             </p>

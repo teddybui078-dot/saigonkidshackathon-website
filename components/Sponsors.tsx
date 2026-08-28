@@ -43,7 +43,7 @@ export default function Sponsors() {
             >
               <span className="flex items-center gap-2 text-sm font-medium text-ink/40">
                 your logo here
-                <Sparkle size={13} color={i % 2 === 0 ? "#f8ac1a" : "#0145b4"} />
+                <Sparkle className="ambient-twinkle" size={13} color={i % 2 === 0 ? "#f8ac1a" : "#0145b4"} />
               </span>
             </div>
           ))}

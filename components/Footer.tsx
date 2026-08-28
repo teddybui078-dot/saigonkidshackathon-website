@@ -42,7 +42,7 @@ export default function Footer() {
       className="relative mt-12 overflow-hidden rounded-t-[3rem] bg-saigon px-4 pb-10 pt-20 text-white"
     >
       <div className="mx-auto max-w-4xl text-center">
-        <Sparkle className="footer-pop mx-auto mb-6" size={30} />
+        <Sparkle className="footer-pop ambient-twinkle mx-auto mb-6" size={30} />
         <h2 className="footer-pop text-4xl font-bold lowercase leading-tight md:text-6xl">
           see you on{" "}
           <span className="relative inline-block text-energy">
@@ -78,7 +78,7 @@ export default function Footer() {
 
         <div className="footer-pop mt-16 flex flex-col items-center gap-4 border-t border-white/20 pt-8 text-sm font-medium text-white/70 md:flex-row md:justify-between">
           <p>saigon kids hackathon © 2027</p>
-          <CodeMark size={40} chevronColor="#ffffff" className="opacity-80" />
+          <CodeMark size={40} chevronColor="#ffffff" className="ambient-float opacity-80" data-amp="s" />
           <p>
             made with <span className="text-energy">♥</span> in saigon
           </p>
