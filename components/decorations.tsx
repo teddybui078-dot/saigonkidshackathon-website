@@ -376,3 +376,62 @@ export function PixelStack({
     </svg>
   );
 }
+
+export function PixelClock({
+  className = "",
+  size = 300,
+  ...rest
+}: {
+  className?: string;
+  size?: number;
+} & React.SVGProps<SVGSVGElement>) {
+  // a big friendly clock for the schedule — pixel hour marks, hands at 9:00
+  return (
+    <svg
+      className={className}
+      width={size}
+      height={size}
+      viewBox="0 0 200 200"
+      fill="none"
+      aria-hidden="true"
+    >
+      <circle cx="100" cy="100" r="88" fill="white" stroke={BLUE} strokeWidth="10" />
+      <rect x="94" y="22" width="12" height="12" rx="3" fill={YELLOW} />
+      <rect x="166" y="94" width="12" height="12" rx="3" fill={BLUE} />
+      <rect x="94" y="166" width="12" height="12" rx="3" fill={BLUE} />
+      <rect x="22" y="94" width="12" height="12" rx="3" fill={BLUE} />
+      <path d="M100 100 L100 52" stroke={BLUE} strokeWidth="9" strokeLinecap="round" />
+      <path d="M100 100 L58 100" stroke={YELLOW} strokeWidth="9" strokeLinecap="round" />
+      <circle cx="100" cy="100" r="9" fill={YELLOW} stroke={BLUE} strokeWidth="4" />
+    </svg>
+  );
+}
+
+export function PixelHeart({
+  className = "",
+  size = 260,
+  ...rest
+}: {
+  className?: string;
+  size?: number;
+} & React.SVGProps<SVGSVGElement>) {
+  // chunky pixel-block heart — for the people who believe in young builders
+  return (
+    <svg
+      className={className}
+      width={size}
+      height={size * 0.89}
+      viewBox="0 0 180 160"
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M30 40 L50 40 L50 20 L80 20 L80 40 L100 40 L100 20 L130 20 L130 40 L150 40 L150 80 L130 80 L130 100 L110 100 L110 120 L90 120 L90 140 L70 140 L70 120 L50 120 L50 100 L30 100 L30 80 L10 80 L10 40 L30 40 Z"
+        fill={BLUE}
+      />
+      <rect x="40" y="34" width="16" height="16" rx="3" fill={YELLOW} />
+      <rect x="60" y="52" width="12" height="12" rx="3" fill="#f1f5f9" opacity="0.7" />
+      <rect x="118" y="44" width="12" height="12" rx="3" fill={YELLOW} />
+    </svg>
+  );
+}
