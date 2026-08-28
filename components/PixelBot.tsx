@@ -38,13 +38,19 @@ export default function PixelBot() {
           const clampX = (frac: number) =>
             gsap.utils.clamp(16, vw - BOT_W - 16, vw * frac - BOT_W / 2);
 
-          const sectionP = (sel: string, el?: Element | null) => {
-            const node = el ?? document.querySelector(sel);
-            if (!node) return null;
-            const top =
-              (node as HTMLElement).getBoundingClientRect().top + window.scrollY;
-            const h = (node as HTMLElement).offsetHeight;
-            return gsap.utils.clamp(0, 1, (top + h / 2 - vh / 2) / max);
+          // arrive as the section top nears mid-viewport, hold until it leaves —
+          // the bot parks beside a section while you read it and swoops between
+          const band = (sel: string, x: number, y: number) => {
+            const node = document.querySelector(sel) as HTMLElement | null;
+            if (!node) return [];
+            const top = node.getBoundingClientRect().top + window.scrollY;
+            const h = node.offsetHeight;
+            const pIn = gsap.utils.clamp(0, 1, (top - vh * 0.55) / max);
+            const pOut = gsap.utils.clamp(0, 1, (top + h - vh * 0.45) / max);
+            return [
+              { p: pIn, x, y },
+              { p: pOut, x, y },
+            ];
           };
 
           // tracks is pinned: measure its pin-spacer so the hover band is exact
@@ -66,13 +72,13 @@ export default function PixelBot() {
 
           const raw: Array<{ p: number | null; x: number; y: number }> = [
             { p: 0, x: 0.76, y: 0.26 }, // hero perch beside the sign
-            { p: 0.05, x: 0.76, y: 0.26 }, // hold
-            { p: sectionP("#about"), x: 0.07, y: 0.46 },
+            { p: 0.04, x: 0.76, y: 0.26 }, // hold
+            ...band("#about", 0.06, 0.46),
             { p: tracksStart, x: 0.88, y: 0.24 },
             { p: tracksEnd, x: 0.88, y: 0.3 }, // hover while pinned cards stream by
-            { p: sectionP("#schedule"), x: 0.07, y: 0.5 },
-            { p: sectionP("#faq"), x: 0.92, y: 0.44 },
-            { p: sectionP("#sponsors"), x: 0.08, y: 0.4 },
+            ...band("#schedule", 0.06, 0.5),
+            ...band("#faq", 0.92, 0.44),
+            ...band("#sponsors", 0.07, 0.4),
             { p: 1, x: 0.76, y: 0.6 }, // footer landing
           ];
 
