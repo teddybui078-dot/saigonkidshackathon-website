@@ -13,7 +13,6 @@ import {
   FloatingLaptop,
   FlightArc,
   PixelStack,
-  SpeedLines,
 } from "./decorations";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -180,14 +179,6 @@ export default function Hero() {
 
       <div className="hero-content relative flex max-w-4xl flex-col items-center text-center">
         <div className="relative">
-          {/* burst accents beside the sign (the logo's speed lines) */}
-          <div className="ambient-float absolute -left-14 -top-6 hidden sm:block">
-            <SpeedLines size={44} />
-          </div>
-          <div className="ambient-float absolute -right-14 -top-6 hidden -scale-x-100 sm:block">
-            <SpeedLines size={44} color="#f8ac1a" />
-          </div>
-
           {/* the sign */}
           <div className="hero-sign relative rounded-[2rem] border-4 border-saigon bg-white px-8 py-8 shadow-[inset_0_0_0_5px_white,inset_0_0_0_9px_#f8ac1a,0_10px_40px_rgba(1,69,180,0.12)] sm:px-14 sm:py-10">
             {/* spire + golden rings */}
@@ -204,20 +195,18 @@ export default function Hero() {
             </svg>
             {/* bottom stem mirroring the spire */}
             <svg
-              className="absolute -bottom-14 left-1/2 h-14 w-16 -translate-x-1/2"
-              viewBox="0 0 64 56"
+              className="absolute -bottom-12 left-1/2 h-12 w-16 -translate-x-1/2"
+              viewBox="0 0 64 48"
               fill="none"
               aria-hidden="true"
             >
-              <path d="M32 0 L32 44" stroke="#0145b4" strokeWidth="6" strokeLinecap="round" />
-              <circle cx="32" cy="48" r="6" fill="#f8ac1a" stroke="#0145b4" strokeWidth="3" />
-              <ellipse className="hero-spire-ring" cx="32" cy="24" rx="21" ry="6" stroke="#f8ac1a" strokeWidth="3" />
+              <path d="M32 0 L32 36" stroke="#0145b4" strokeWidth="6" strokeLinecap="round" />
+              <circle cx="32" cy="40" r="6" fill="#f8ac1a" stroke="#0145b4" strokeWidth="3" />
+              <ellipse className="hero-spire-ring" cx="32" cy="20" rx="21" ry="6" stroke="#f8ac1a" strokeWidth="3" />
             </svg>
             {/* yellow bolts on the frame */}
             <span className="absolute -left-2.5 top-1/2 h-5 w-5 -translate-y-1/2 rounded-full border-[3px] border-saigon bg-energy" aria-hidden="true" />
             <span className="absolute -right-2.5 top-1/2 h-5 w-5 -translate-y-1/2 rounded-full border-[3px] border-saigon bg-energy" aria-hidden="true" />
-            {/* pixel notch on the frame corner */}
-            <PixelGrid className="absolute -right-5 -top-5" size={38} />
 
             <Image
               src="/logo.png"
@@ -240,7 +229,7 @@ export default function Hero() {
           </div>
         </div>
 
-        <p className="hero-fade mt-10 max-w-xl text-lg font-medium text-ink/80 md:text-xl">
+        <p className="hero-fade mt-16 max-w-xl text-lg font-medium text-ink/80 md:text-xl">
           one big day of building, coding, and playing — for 130 young makers
           aged 8–15.
         </p>
