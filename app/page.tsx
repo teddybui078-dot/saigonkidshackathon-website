@@ -8,11 +8,13 @@ import Faq from "@/components/Faq";
 import Sponsors from "@/components/Sponsors";
 import Footer from "@/components/Footer";
 import ScrollProgress from "@/components/ScrollProgress";
+import PixelBot from "@/components/PixelBot";
 
 export default function Home() {
   return (
     <main>
       <ScrollProgress />
+      <PixelBot />
       <Navbar />
       <Hero />
       <Ticker />
