@@ -276,8 +276,6 @@ export function PixelPlanet({
         strokeWidth="3"
         opacity="0.55"
       />
-      <rect x="6" y="40" width="7" height="7" rx="1.5" fill={YELLOW} />
-      <rect x="86" y="26" width="6" height="6" rx="1.5" fill={BLUE} />
     </svg>
   );
 }
