@@ -5,7 +5,16 @@ import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
-import { PixelGrid, Sparkle, CodeMark, SpeedLines } from "./decorations";
+import {
+  PixelGrid,
+  Sparkle,
+  SpeedLines,
+  SaigonSkyline,
+  PalmSilhouette,
+  PixelPlanet,
+  FloatingLaptop,
+  FlightArc,
+} from "./decorations";
 
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 
@@ -37,17 +46,28 @@ export default function Hero() {
 
       const intro = gsap.timeline({ defaults: { ease: "back.out(1.6)" } });
       intro
-        .from(".hero-letter", {
-          y: 60,
+        .from(".hero-sign", {
+          y: 50,
+          scale: 0.92,
           opacity: 0,
-          rotate: () => gsap.utils.random(-12, 12),
-          duration: 0.7,
-          stagger: 0.035,
+          duration: 0.8,
+          ease: "back.out(1.4)",
         })
+        .from(
+          ".hero-letter",
+          {
+            y: 40,
+            opacity: 0,
+            rotate: () => gsap.utils.random(-12, 12),
+            duration: 0.6,
+            stagger: 0.03,
+          },
+          "-=0.35"
+        )
         .from(
           ".hero-fade",
           { y: 24, opacity: 0, duration: 0.6, stagger: 0.12, ease: "power3.out" },
-          "-=0.4"
+          "-=0.3"
         )
         .from(
           ".hero-orbit-path",
@@ -59,6 +79,18 @@ export default function Hero() {
             stagger: 0.15,
           },
           "<"
+        )
+        .from(
+          ".hero-spire-ring",
+          {
+            scale: 0,
+            opacity: 0,
+            transformOrigin: "50% 50%",
+            duration: 0.5,
+            stagger: 0.1,
+            ease: "back.out(2)",
+          },
+          "-=1"
         )
         .from(".hero-logo", { scale: 0, duration: 0.7, ease: "back.out(2)" }, "-=1");
 
@@ -75,10 +107,10 @@ export default function Hero() {
         delay: 1.4,
       });
 
-      // gentle idle bob for the logo (translate only — never rotate the mark)
-      gsap.to(".hero-logo", {
-        y: -10,
-        duration: 2.2,
+      // the sign gently floats (translate only — the logo inside never rotates)
+      gsap.to(".hero-sign", {
+        y: -8,
+        duration: 2.6,
         yoyo: true,
         repeat: -1,
         ease: "sine.inOut",
@@ -98,13 +130,15 @@ export default function Hero() {
             scrub: 0.8,
           },
         });
-        gsap.to(el, {
-          y: `+=${gsap.utils.random(8, 18)}`,
-          duration: gsap.utils.random(1.8, 3),
-          yoyo: true,
-          repeat: -1,
-          ease: "sine.inOut",
-        });
+        if (speed > 0.5) {
+          gsap.to(el, {
+            y: `+=${gsap.utils.random(8, 18)}`,
+            duration: gsap.utils.random(1.8, 3),
+            yoyo: true,
+            repeat: -1,
+            ease: "sine.inOut",
+          });
+        }
       });
 
       // the whole hero gently recedes as you scroll on
@@ -137,36 +171,69 @@ export default function Hero() {
     <section
       ref={sectionRef}
       id="top"
-      className="relative flex min-h-svh flex-col items-center justify-center overflow-hidden px-4 pt-24 pb-16"
+      className="relative flex min-h-svh flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-mist to-canvas px-4 pt-24 pb-16"
     >
-      {/* floating accents */}
-      <PixelGrid className="hero-float absolute left-[8%] top-[18%]" size={44} data-speed="1.4" />
-      <Sparkle className="hero-float absolute right-[12%] top-[16%]" size={30} data-speed="1.1" />
-      <Sparkle className="hero-float absolute left-[16%] bottom-[22%]" size={20} color="#0145b4" data-speed="0.7" />
-      <PixelGrid className="hero-float absolute right-[7%] bottom-[28%] rotate-180" size={36} data-speed="1.8" />
-      <CodeMark className="hero-float absolute left-[6%] top-[52%] hidden md:block" size={64} data-speed="0.9" />
-      <SpeedLines className="hero-float absolute right-[20%] top-[38%] hidden md:block" data-speed="1.3" />
-      <SpeedLines className="hero-float absolute left-[28%] top-[24%] -scale-x-100 hidden md:block" color="#f8ac1a" data-speed="0.8" />
+      {/* soft swirl strokes across the sky */}
+      <svg
+        className="pointer-events-none absolute inset-0 h-full w-full"
+        viewBox="0 0 1440 900"
+        preserveAspectRatio="xMidYMid slice"
+        fill="none"
+        aria-hidden="true"
+      >
+        <path
+          d="M-60 240 C 320 140 780 150 1500 260"
+          stroke="#c9d7ee"
+          strokeWidth="36"
+          strokeLinecap="round"
+          opacity="0.35"
+        />
+        <path
+          d="M-60 620 C 420 740 980 730 1500 600"
+          stroke="#c9d7ee"
+          strokeWidth="46"
+          strokeLinecap="round"
+          opacity="0.3"
+        />
+        <path
+          d="M-60 430 C 460 380 900 400 1500 430"
+          stroke="#dde6f4"
+          strokeWidth="60"
+          strokeLinecap="round"
+          opacity="0.4"
+        />
+      </svg>
+
+      {/* scene: saigon skyline left, palms right (the hoover-tower analog) */}
+      <SaigonSkyline
+        className="hero-float pointer-events-none absolute -left-6 bottom-0 hidden sm:block md:left-0"
+        width={330}
+        data-speed="0.3"
+      />
+      <PalmSilhouette
+        className="hero-float pointer-events-none absolute -right-4 bottom-0 hidden md:block"
+        width={210}
+        data-speed="0.35"
+      />
+
+      {/* floating scene props */}
+      <PixelPlanet className="hero-float absolute left-[10%] top-[14%]" size={92} data-speed="1.2" />
+      <PixelPlanet className="hero-float absolute right-[26%] bottom-[16%] hidden lg:block" size={64} data-speed="0.8" />
+      <FloatingLaptop className="hero-float absolute right-[9%] top-[15%] hidden md:block" width={92} data-speed="1.4" />
+      <FlightArc className="hero-float absolute right-[13%] top-[30%] hidden lg:block" width={190} data-speed="1.1" />
+      <FlightArc className="hero-float absolute left-[7%] bottom-[30%] -scale-x-100 hidden lg:block" width={150} color="#f8ac1a" data-speed="0.9" />
+      <PixelGrid className="hero-float absolute left-[22%] top-[24%]" size={38} data-speed="1.6" />
+      <Sparkle className="hero-float absolute right-[20%] top-[10%]" size={26} data-speed="1.1" />
+      <Sparkle className="hero-float absolute left-[15%] bottom-[24%]" size={18} color="#0145b4" data-speed="0.7" />
+      <Sparkle className="hero-float absolute right-[6%] bottom-[34%] hidden md:block" size={20} data-speed="1.3" />
+      <SpeedLines className="hero-float absolute left-[30%] top-[16%] -scale-x-100 hidden md:block" color="#f8ac1a" data-speed="0.8" />
 
       <div className="hero-content relative flex max-w-4xl flex-col items-center text-center">
-        <Image
-          src="/logo.png"
-          alt="saigon kids hackathon logo"
-          width={140}
-          height={140}
-          priority
-          className="hero-logo mb-6"
-        />
-
-        <p className="hero-fade mb-4 rounded-full border-2 border-mist bg-white px-5 py-2 text-sm font-medium text-ink">
-          march 6, 2027 · ho chi minh city
-        </p>
-
         <div className="relative">
-          {/* orbit swooshes that draw themselves around the headline */}
+          {/* orbit swooshes wrap the whole sign */}
           <svg
-            className="pointer-events-none absolute -inset-x-10 -inset-y-6 h-[calc(100%+3rem)] w-[calc(100%+5rem)]"
-            viewBox="0 0 700 300"
+            className="pointer-events-none absolute -inset-x-14 -inset-y-8 h-[calc(100%+4rem)] w-[calc(100%+7rem)]"
+            viewBox="0 0 700 420"
             fill="none"
             preserveAspectRatio="none"
             aria-hidden="true"
@@ -174,7 +241,7 @@ export default function Hero() {
             <path
               id="orbit-blue"
               className="hero-orbit-path"
-              d="M 350 20 C 620 20 690 100 690 150 C 690 220 550 280 350 280 C 150 280 10 220 10 150 C 10 100 80 20 350 20"
+              d="M 350 18 C 620 18 692 120 692 210 C 692 310 550 402 350 402 C 150 402 8 310 8 210 C 8 120 80 18 350 18"
               stroke="#0145b4"
               strokeWidth="5"
               strokeLinecap="round"
@@ -183,7 +250,7 @@ export default function Hero() {
             />
             <path
               className="hero-orbit-path"
-              d="M 350 40 C 590 40 660 105 660 150 C 660 210 540 262 350 262 C 160 262 40 210 40 150 C 40 105 110 40 350 40"
+              d="M 350 40 C 590 40 664 128 664 210 C 664 296 540 380 350 380 C 160 380 36 296 36 210 C 36 128 110 40 350 40"
               stroke="#f8ac1a"
               strokeWidth="4"
               strokeLinecap="round"
@@ -203,19 +270,51 @@ export default function Hero() {
             />
           </svg>
 
-          <h1 className="relative text-6xl font-bold lowercase leading-[0.95] sm:text-7xl md:text-8xl">
-            <span className="sr-only">saigon kids hackathon</span>
-            <SplitWord word="saigon kids" className="block text-energy" />
-            <SplitWord word="hackathon" className="block text-saigon" />
-          </h1>
+          {/* the sign */}
+          <div className="hero-sign relative rounded-[2rem] border-4 border-saigon bg-white px-8 py-8 shadow-[0_10px_40px_rgba(1,69,180,0.12)] sm:px-14 sm:py-10">
+            {/* spire + golden rings */}
+            <svg
+              className="absolute -top-[4.4rem] left-1/2 h-20 w-16 -translate-x-1/2"
+              viewBox="0 0 64 80"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path d="M32 80 L32 14" stroke="#0145b4" strokeWidth="6" strokeLinecap="round" />
+              <circle cx="32" cy="10" r="7" fill="#f8ac1a" stroke="#0145b4" strokeWidth="3" />
+              <ellipse className="hero-spire-ring" cx="32" cy="30" rx="26" ry="7" stroke="#f8ac1a" strokeWidth="3.5" />
+              <ellipse className="hero-spire-ring" cx="32" cy="46" rx="19" ry="5.5" stroke="#f8ac1a" strokeWidth="3" />
+            </svg>
+            {/* yellow bolts on the frame */}
+            <span className="absolute -left-2.5 top-1/2 h-5 w-5 -translate-y-1/2 rounded-full border-[3px] border-saigon bg-energy" aria-hidden="true" />
+            <span className="absolute -right-2.5 top-1/2 h-5 w-5 -translate-y-1/2 rounded-full border-[3px] border-saigon bg-energy" aria-hidden="true" />
+
+            <Image
+              src="/logo.png"
+              alt="saigon kids hackathon logo"
+              width={110}
+              height={110}
+              priority
+              className="hero-logo mx-auto mb-4"
+            />
+
+            <h1 className="relative text-5xl font-bold lowercase leading-[0.95] sm:text-6xl md:text-7xl">
+              <span className="sr-only">saigon kids hackathon</span>
+              <SplitWord word="saigon kids" className="block text-energy" />
+              <SplitWord word="hackathon" className="block text-saigon" />
+            </h1>
+
+            <p className="hero-fade mt-5 text-base font-semibold text-ink sm:text-lg">
+              march 6, 2027 · ho chi minh city
+            </p>
+          </div>
         </div>
 
-        <p className="hero-fade mt-8 max-w-xl text-lg font-medium text-ink/80 md:text-xl">
+        <p className="hero-fade mt-10 max-w-xl text-lg font-medium text-ink/80 md:text-xl">
           one big day of building, coding, and playing — for 130 young makers
           aged 8–15.
         </p>
 
-        <div className="hero-fade mt-8 flex flex-wrap items-center justify-center gap-4">
+        <div className="hero-fade mt-7 flex flex-wrap items-center justify-center gap-4">
           <span className="inline-flex items-center gap-2 rounded-full bg-energy px-7 py-3.5 text-base font-semibold text-ink shadow-[0_6px_0_#d18e07]">
             registration opens soon
             <Sparkle size={16} color="#1e293b" />
@@ -231,7 +330,7 @@ export default function Hero() {
                 el?.scrollIntoView({ behavior: "smooth" });
               }
             }}
-            className="rounded-full border-2 border-saigon px-7 py-3 text-base font-semibold text-saigon transition-colors hover:bg-saigon hover:text-white"
+            className="rounded-full border-2 border-saigon bg-white/70 px-7 py-3 text-base font-semibold text-saigon transition-colors hover:bg-saigon hover:text-white"
           >
             what is it?
           </a>
