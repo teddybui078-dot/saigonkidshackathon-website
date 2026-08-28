@@ -102,7 +102,7 @@ export default function Tracks() {
       <div className="pointer-events-none absolute bottom-32 right-12 -z-[1] hidden lg:block">
         <Sparkle className="ambient-twinkle" size={40} />
       </div>
-      <div className="anchor-drift pointer-events-none absolute left-6 top-[62%] -z-[1] hidden lg:block">
+      <div className="anchor-drift pointer-events-none absolute left-[42%] top-16 -z-[1] hidden lg:block">
         <CodeMark className="anchor-wobble" size={130} />
       </div>
       <div className="flex min-h-svh flex-col justify-center py-24 md:py-0">

@@ -79,11 +79,8 @@ export default function About() {
   return (
     <section ref={sectionRef} id="about" className="relative px-4 py-24">
       {/* big hooks alternating around the content */}
-      <div className="anchor-drift pointer-events-none absolute right-16 top-[4%] -z-[1] hidden lg:block">
-        <PixelBulb size={220} />
-      </div>
-      <div className="pointer-events-none absolute left-6 top-[38%] -z-[1] hidden lg:block">
-        <Sparkle className="ambient-twinkle" size={58} />
+      <div className="anchor-drift pointer-events-none absolute left-4 -top-24 -z-[1] hidden lg:block">
+        <PixelBulb size={190} />
       </div>
       <div className="anchor-drift pointer-events-none absolute right-8 top-[44%] -z-[1] hidden lg:block">
         <FloatingLaptop className="anchor-wobble" width={370} />
