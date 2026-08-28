@@ -6,7 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const BOT_W = 90;
+const BOT_W = 136;
 
 /* the pixel bot — a friendly robot built from the logo's pixel language.
    travels the whole page in a smooth zigzag as you scroll (see effect below). */
@@ -38,8 +38,9 @@ export default function PixelBot() {
           const clampX = (frac: number) =>
             gsap.utils.clamp(16, vw - BOT_W - 16, vw * frac - BOT_W / 2);
 
-          // arrive as the section top nears mid-viewport, hold until it leaves —
-          // the bot parks beside a section while you read it and swoops between
+          // arrive as the section top nears mid-viewport, then drift gently
+          // until it leaves — the bot always answers the scroll with a little
+          // motion instead of freezing beside a section
           const band = (sel: string, x: number, y: number) => {
             const node = document.querySelector(sel) as HTMLElement | null;
             if (!node) return [];
@@ -47,9 +48,10 @@ export default function PixelBot() {
             const h = node.offsetHeight;
             const pIn = gsap.utils.clamp(0, 1, (top - vh * 0.55) / max);
             const pOut = gsap.utils.clamp(0, 1, (top + h - vh * 0.45) / max);
+            const dx = x < 0.5 ? -0.02 : 0.02; // drift outward
             return [
               { p: pIn, x, y },
-              { p: pOut, x, y },
+              { p: pOut, x: x + dx, y: y + 0.08 },
             ];
           };
 
@@ -71,14 +73,14 @@ export default function PixelBot() {
           }
 
           const raw: Array<{ p: number | null; x: number; y: number }> = [
-            { p: 0, x: 0.76, y: 0.26 }, // hero perch beside the sign
-            { p: 0.04, x: 0.76, y: 0.26 }, // hold
-            ...band("#about", 0.06, 0.46),
-            { p: tracksStart, x: 0.88, y: 0.24 },
-            { p: tracksEnd, x: 0.88, y: 0.3 }, // hover while pinned cards stream by
-            ...band("#schedule", 0.06, 0.5),
-            ...band("#faq", 0.92, 0.44),
-            ...band("#sponsors", 0.07, 0.4),
+            { p: 0, x: 0.76, y: 0.24 }, // hero perch beside the sign
+            { p: 0.04, x: 0.78, y: 0.3 }, // drifting already
+            ...band("#about", 0.06, 0.44),
+            { p: tracksStart, x: 0.88, y: 0.22 },
+            { p: tracksEnd, x: 0.86, y: 0.34 }, // sinking drift while cards stream by
+            ...band("#schedule", 0.06, 0.48),
+            ...band("#faq", 0.92, 0.42),
+            ...band("#sponsors", 0.07, 0.38),
             { p: 1, x: 0.76, y: 0.6 }, // footer landing
           ];
 
@@ -101,7 +103,7 @@ export default function PixelBot() {
             scrollTrigger: {
               start: 0,
               end: "max",
-              scrub: 1.5,
+              scrub: 0.8,
               invalidateOnRefresh: true,
               refreshPriority: -1,
             },
@@ -117,26 +119,19 @@ export default function PixelBot() {
               stops[i - 1].p
             );
           }
+          // slow treehacks-style tumble, directly tied to the scroll
+          tl.fromTo(
+            inner,
+            { rotation: 0 },
+            { rotation: 720, duration: 1, ease: "none" },
+            0
+          );
           // thruster eases off for the footer landing
           tl.to(".bot-thruster", { opacity: 0.35, duration: 0.06 }, 0.94);
         };
 
         build();
         ScrollTrigger.addEventListener("refresh", build);
-
-        // ——— rotation: lean into the direction of travel ———
-        const rotTo = gsap.quickTo(inner, "rotation", {
-          duration: 0.35,
-          ease: "power2.out",
-        });
-        let prevX = Number(gsap.getProperty(root, "x"));
-        const tick = () => {
-          const x = Number(gsap.getProperty(root, "x"));
-          const vx = (x - prevX) / gsap.ticker.deltaRatio();
-          prevX = x;
-          rotTo(gsap.utils.clamp(-12, 12, vx * 0.35));
-        };
-        gsap.ticker.add(tick);
 
         // ——— idle life ———
         gsap.to(root, { opacity: 1, duration: 0.5, delay: 0.4 });
@@ -178,7 +173,6 @@ export default function PixelBot() {
 
         return () => {
           ScrollTrigger.removeEventListener("refresh", build);
-          gsap.ticker.remove(tick);
           blinkCall?.kill();
           tl?.scrollTrigger?.kill();
           tl?.kill();
