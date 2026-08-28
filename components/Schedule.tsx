@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Sparkle, PixelClock } from "./decorations";
+import { Sparkle, PixelClock, PixelStack, CodeMark, PixelGrid } from "./decorations";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -59,16 +59,28 @@ export default function Schedule() {
 
   return (
     <section ref={sectionRef} id="schedule" className="relative px-4 py-24">
-      {/* big hook: a giant clock keeping the day\u2019s time */}
-      <div className="anchor-drift pointer-events-none absolute left-8 top-1/3 -z-[1] hidden lg:block">
-        <PixelClock size={310} />
+      {/* big hooks alternating down both sides of the day */}
+      <div className="anchor-drift pointer-events-none absolute left-8 top-[22%] -z-[1] hidden lg:block">
+        <PixelClock size={340} />
+      </div>
+      <div className="anchor-drift pointer-events-none absolute right-10 top-[45%] -z-[1] hidden lg:block">
+        <PixelStack width={200} />
+      </div>
+      <div className="anchor-drift pointer-events-none absolute left-14 top-[68%] -z-[1] hidden lg:block">
+        <CodeMark className="anchor-wobble" size={150} />
+      </div>
+      <div className="pointer-events-none absolute right-16 top-[85%] -z-[1] hidden lg:block">
+        <Sparkle className="ambient-twinkle" size={64} />
+      </div>
+      <div className="anchor-drift pointer-events-none absolute right-32 top-[90%] -z-[1] hidden lg:block">
+        <PixelGrid size={80} />
       </div>
       <div className="mx-auto max-w-4xl">
         <div className="text-center">
           <p className="mb-3 text-sm font-semibold text-saigon">
             march 6, 2027 ✦
           </p>
-          <h2 className="text-4xl font-bold lowercase leading-tight md:text-5xl">
+          <h2 className="text-5xl font-bold lowercase leading-tight md:text-7xl">
             one <span className="text-saigon">big</span> day
           </h2>
         </div>
@@ -76,7 +88,7 @@ export default function Schedule() {
         <div className="schedule-list relative mt-16">
           {/* spine */}
           <div
-            className="schedule-spine absolute left-[1.1rem] top-0 h-full w-1.5 rounded-full bg-saigon md:left-1/2 md:-translate-x-1/2"
+            className="schedule-spine absolute left-[1.1rem] top-0 h-full w-2 rounded-full bg-saigon md:left-1/2 md:-translate-x-1/2"
             aria-hidden="true"
           />
 
@@ -91,21 +103,21 @@ export default function Schedule() {
                 }`}
               >
                 <span
-                  className={`absolute left-2 top-1.5 h-5 w-5 rounded-md border-[3px] border-saigon ${
+                  className={`absolute left-2 top-1.5 h-6 w-6 rounded-md border-[3px] border-saigon ${
                     i % 2 === 0
-                      ? "bg-energy md:left-auto md:-right-2.5"
-                      : "bg-white md:-left-2.5"
+                      ? "bg-energy md:left-auto md:-right-3"
+                      : "bg-white md:-left-3"
                   }`}
                   aria-hidden="true"
                 />
-                <div className="rounded-2xl bg-white p-5 shadow-[0_2px_12px_rgba(30,41,59,0.05)]">
-                  <p className="text-sm font-bold text-energy-deep">
+                <div className="rounded-2xl bg-white p-6 shadow-[0_2px_12px_rgba(30,41,59,0.05)]">
+                  <p className="text-base font-bold text-energy-deep">
                     {slot.time}
                   </p>
-                  <h3 className="mt-1 text-lg font-semibold lowercase">
+                  <h3 className="mt-1 text-xl font-semibold lowercase">
                     {slot.title}
                   </h3>
-                  <p className="mt-1 text-sm font-medium text-ink/65">
+                  <p className="mt-1 text-base font-medium text-ink/65">
                     {slot.body}
                   </p>
                 </div>
