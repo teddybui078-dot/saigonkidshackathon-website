@@ -4,7 +4,6 @@ import { useEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 import {
   PixelGrid,
   Sparkle,
@@ -14,9 +13,10 @@ import {
   FloatingLaptop,
   FlightArc,
   PixelStack,
+  SpeedLines,
 } from "./decorations";
 
-gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
+gsap.registerPlugin(ScrollTrigger);
 
 function SplitWord({ word, className }: { word: string; className?: string }) {
   return (
@@ -70,17 +70,6 @@ export default function Hero() {
           "-=0.3"
         )
         .from(
-          ".hero-orbit-path",
-          {
-            strokeDashoffset: (i, el) =>
-              (el as SVGPathElement).getTotalLength(),
-            duration: 1.4,
-            ease: "power2.inOut",
-            stagger: 0.15,
-          },
-          "<"
-        )
-        .from(
           ".hero-spire-ring",
           {
             scale: 0,
@@ -93,19 +82,6 @@ export default function Hero() {
           "-=1"
         )
         .from(".hero-logo", { scale: 0, duration: 0.7, ease: "back.out(2)" }, "-=1");
-
-      // pixel satellite rides the blue orbit forever
-      gsap.to(".hero-satellite", {
-        motionPath: {
-          path: "#orbit-blue",
-          align: "#orbit-blue",
-          alignOrigin: [0.5, 0.5],
-        },
-        duration: 14,
-        repeat: -1,
-        ease: "none",
-        delay: 1.4,
-      });
 
       // the sign gently floats (translate only — the logo inside never rotates)
       gsap.to(".hero-sign", {
@@ -204,39 +180,16 @@ export default function Hero() {
 
       <div className="hero-content relative flex max-w-4xl flex-col items-center text-center">
         <div className="relative">
-          {/* full orbits wrap sign AND spire — the whole lap stays visible */}
-          <svg
-            className="pointer-events-none absolute -inset-x-20 -top-28 -bottom-10 h-[calc(100%+9.5rem)] w-[calc(100%+10rem)]"
-            viewBox="0 0 760 560"
-            fill="none"
-            preserveAspectRatio="none"
-            aria-hidden="true"
-          >
-            <path
-              id="orbit-blue"
-              className="hero-orbit-path"
-              d="M 380 28 C 585 28 752 142 752 286 C 752 428 585 544 380 544 C 175 544 8 428 8 286 C 8 142 175 28 380 28"
-              stroke="#0145b4"
-              strokeWidth="5"
-              strokeLinecap="round"
-              pathLength={1000}
-              strokeDasharray={1000}
-            />
-            <rect
-              className="hero-satellite"
-              x="0"
-              y="0"
-              width="14"
-              height="14"
-              rx="3"
-              fill="#f8ac1a"
-              stroke="#0145b4"
-              strokeWidth="2.5"
-            />
-          </svg>
+          {/* burst accents beside the sign (the logo's speed lines) */}
+          <div className="ambient-float absolute -left-14 -top-6 hidden sm:block">
+            <SpeedLines size={44} />
+          </div>
+          <div className="ambient-float absolute -right-14 -top-6 hidden -scale-x-100 sm:block">
+            <SpeedLines size={44} color="#f8ac1a" />
+          </div>
 
           {/* the sign */}
-          <div className="hero-sign relative rounded-[2rem] border-4 border-saigon bg-white px-8 py-8 shadow-[0_10px_40px_rgba(1,69,180,0.12)] sm:px-14 sm:py-10">
+          <div className="hero-sign relative rounded-[2rem] border-4 border-saigon bg-white px-8 py-8 shadow-[inset_0_0_0_5px_white,inset_0_0_0_9px_#f8ac1a,0_10px_40px_rgba(1,69,180,0.12)] sm:px-14 sm:py-10">
             {/* spire + golden rings */}
             <svg
               className="absolute -top-16 left-1/2 h-20 w-16 -translate-x-1/2"
@@ -249,9 +202,22 @@ export default function Hero() {
               <ellipse className="hero-spire-ring" cx="32" cy="30" rx="26" ry="7" stroke="#f8ac1a" strokeWidth="3.5" />
               <ellipse className="hero-spire-ring" cx="32" cy="46" rx="19" ry="5.5" stroke="#f8ac1a" strokeWidth="3" />
             </svg>
+            {/* bottom stem mirroring the spire */}
+            <svg
+              className="absolute -bottom-14 left-1/2 h-14 w-16 -translate-x-1/2"
+              viewBox="0 0 64 56"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path d="M32 0 L32 44" stroke="#0145b4" strokeWidth="6" strokeLinecap="round" />
+              <circle cx="32" cy="48" r="6" fill="#f8ac1a" stroke="#0145b4" strokeWidth="3" />
+              <ellipse className="hero-spire-ring" cx="32" cy="24" rx="21" ry="6" stroke="#f8ac1a" strokeWidth="3" />
+            </svg>
             {/* yellow bolts on the frame */}
             <span className="absolute -left-2.5 top-1/2 h-5 w-5 -translate-y-1/2 rounded-full border-[3px] border-saigon bg-energy" aria-hidden="true" />
             <span className="absolute -right-2.5 top-1/2 h-5 w-5 -translate-y-1/2 rounded-full border-[3px] border-saigon bg-energy" aria-hidden="true" />
+            {/* pixel notch on the frame corner */}
+            <PixelGrid className="absolute -right-5 -top-5" size={38} />
 
             <Image
               src="/logo.png"
