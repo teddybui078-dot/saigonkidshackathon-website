@@ -171,39 +171,8 @@ export default function Hero() {
     <section
       ref={sectionRef}
       id="top"
-      className="relative flex min-h-svh flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-mist to-canvas px-4 pt-24 pb-16"
+      className="relative flex min-h-svh flex-col items-center justify-center overflow-hidden px-4 pt-24 pb-16"
     >
-      {/* soft swirl strokes across the sky */}
-      <svg
-        className="pointer-events-none absolute inset-0 h-full w-full"
-        viewBox="0 0 1440 900"
-        preserveAspectRatio="xMidYMid slice"
-        fill="none"
-        aria-hidden="true"
-      >
-        <path
-          d="M-60 240 C 320 140 780 150 1500 260"
-          stroke="#c9d7ee"
-          strokeWidth="36"
-          strokeLinecap="round"
-          opacity="0.35"
-        />
-        <path
-          d="M-60 620 C 420 740 980 730 1500 600"
-          stroke="#c9d7ee"
-          strokeWidth="46"
-          strokeLinecap="round"
-          opacity="0.3"
-        />
-        <path
-          d="M-60 430 C 460 380 900 400 1500 430"
-          stroke="#dde6f4"
-          strokeWidth="60"
-          strokeLinecap="round"
-          opacity="0.4"
-        />
-      </svg>
-
       {/* scene: saigon skyline left, palms right (the hoover-tower analog) */}
       <SaigonSkyline
         className="hero-float pointer-events-none absolute -left-10 bottom-0 hidden sm:block md:-left-4"
