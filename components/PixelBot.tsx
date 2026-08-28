@@ -6,7 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const BOT_W = 136;
+const BOT_W = 200;
 
 /* the pixel bot — a friendly robot built from the logo's pixel language.
    travels the whole page in a smooth zigzag as you scroll (see effect below). */
@@ -41,17 +41,17 @@ export default function PixelBot() {
           // arrive as the section top nears mid-viewport, then drift gently
           // until it leaves — the bot always answers the scroll with a little
           // motion instead of freezing beside a section
-          const band = (sel: string, x: number, y: number) => {
+          const band = (sel: string, x: number, y: number, s = 1) => {
             const node = document.querySelector(sel) as HTMLElement | null;
             if (!node) return [];
             const top = node.getBoundingClientRect().top + window.scrollY;
             const h = node.offsetHeight;
-            const pIn = gsap.utils.clamp(0, 1, (top - vh * 0.55) / max);
-            const pOut = gsap.utils.clamp(0, 1, (top + h - vh * 0.45) / max);
-            const dx = x < 0.5 ? -0.02 : 0.02; // drift outward
+            const pIn = gsap.utils.clamp(0, 1, (top - vh * 0.35) / max);
+            const pOut = gsap.utils.clamp(0, 1, (top + h - vh * 0.65) / max);
+            const dx = x < 0.5 ? -0.04 : 0.04; // drift outward
             return [
-              { p: pIn, x, y },
-              { p: pOut, x: x + dx, y: y + 0.08 },
+              { p: pIn, x, y, s },
+              { p: pOut, x: x + dx, y: y + 0.12, s },
             ];
           };
 
@@ -72,38 +72,52 @@ export default function PixelBot() {
             );
           }
 
-          const raw: Array<{ p: number | null; x: number; y: number }> = [
-            { p: 0, x: 0.76, y: 0.24 }, // hero perch beside the sign
-            { p: 0.04, x: 0.78, y: 0.3 }, // drifting already
-            ...band("#about", 0.06, 0.44),
-            { p: tracksStart, x: 0.88, y: 0.22 },
-            { p: tracksEnd, x: 0.86, y: 0.34 }, // sinking drift while cards stream by
-            ...band("#schedule", 0.06, 0.48),
-            ...band("#faq", 0.92, 0.42),
-            ...band("#sponsors", 0.07, 0.38),
-            { p: 1, x: 0.76, y: 0.6 }, // footer landing
+          // s = scale: the bot recedes into the distance to park in narrow
+          // gutters and swells back to full size in open space (depth play)
+          const raw: Array<{
+            p: number | null;
+            x: number;
+            y: number;
+            s?: number;
+          }> = [
+            { p: 0, x: 0.78, y: 0.22, s: 1 }, // hero perch beside the sign
+            { p: 0.04, x: 0.8, y: 0.29, s: 1 }, // drifting already
+            ...band("#about", 0.06, 0.5, 0.62),
+            { p: tracksStart, x: 0.9, y: 0.2, s: 0.9 },
+            { p: tracksEnd, x: 0.87, y: 0.34, s: 0.9 }, // drifting while cards stream by
+            ...band("#schedule", 0.06, 0.48, 0.62),
+            ...band("#faq", 0.94, 0.4, 0.85),
+            ...band("#sponsors", 0.06, 0.36, 0.62),
+            { p: 1, x: 0.78, y: 0.58, s: 0.95 }, // footer landing
           ];
 
           // keep only valid, strictly-increasing progress stops
-          const stops: Array<{ p: number; x: number; y: number }> = [];
-          for (const s of raw) {
-            if (s.p === null) continue;
+          const stops: Array<{
+            p: number;
+            x: number;
+            y: number;
+            s: number;
+          }> = [];
+          for (const st of raw) {
+            if (st.p === null) continue;
             const p =
-              stops.length > 0 ? Math.max(s.p, stops[stops.length - 1].p) : s.p;
+              stops.length > 0
+                ? Math.max(st.p, stops[stops.length - 1].p)
+                : st.p;
             if (stops.length > 0 && p - stops[stops.length - 1].p < 0.005)
               continue;
-            stops.push({ p, x: clampX(s.x), y: vh * s.y });
+            stops.push({ p, x: clampX(st.x), y: vh * st.y, s: st.s ?? 1 });
           }
           if (stops.length < 2) return;
 
-          gsap.set(root, { x: stops[0].x, y: stops[0].y });
+          gsap.set(root, { x: stops[0].x, y: stops[0].y, scale: stops[0].s });
 
           tl = gsap.timeline({
             defaults: { ease: "sine.inOut" },
             scrollTrigger: {
               start: 0,
               end: "max",
-              scrub: 0.8,
+              scrub: 1.1,
               invalidateOnRefresh: true,
               refreshPriority: -1,
             },
@@ -114,6 +128,7 @@ export default function PixelBot() {
               {
                 x: stops[i].x,
                 y: stops[i].y,
+                scale: stops[i].s,
                 duration: stops[i].p - stops[i - 1].p,
               },
               stops[i - 1].p
