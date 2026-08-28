@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { PixelGrid, Sparkle, PixelPlanet } from "./decorations";
+import { PixelGrid, Sparkle, PixelPlanet, FlightArc, CodeMark } from "./decorations";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -86,9 +86,24 @@ export default function Tracks() {
 
   return (
     <section ref={sectionRef} id="tracks" className="relative overflow-hidden">
-      {/* big hook: a giant planet the track cards drift across */}
+      {/* big hooks around the card lane */}
       <div className="anchor-drift pointer-events-none absolute right-10 top-16 -z-[1] hidden lg:block">
         <PixelPlanet className="anchor-wobble" size={290} />
+      </div>
+      <div className="pointer-events-none absolute bottom-14 left-10 -z-[1] hidden lg:block">
+        <Sparkle className="ambient-twinkle" size={64} />
+      </div>
+      <div className="anchor-drift pointer-events-none absolute bottom-6 left-28 -z-[1] hidden lg:block">
+        <PixelGrid size={92} />
+      </div>
+      <div className="anchor-drift pointer-events-none absolute bottom-10 right-16 -z-[1] hidden lg:block">
+        <FlightArc width={300} />
+      </div>
+      <div className="pointer-events-none absolute bottom-32 right-12 -z-[1] hidden lg:block">
+        <Sparkle className="ambient-twinkle" size={40} />
+      </div>
+      <div className="anchor-drift pointer-events-none absolute left-6 top-[62%] -z-[1] hidden lg:block">
+        <CodeMark className="anchor-wobble" size={130} />
       </div>
       <div className="flex min-h-svh flex-col justify-center py-24 md:py-0">
         <div className="px-4 md:px-[max(1rem,calc(50vw-32rem))]">

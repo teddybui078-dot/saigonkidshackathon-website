@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { PixelGrid, Sparkle, FloatingLaptop } from "./decorations";
+import { PixelGrid, Sparkle, FloatingLaptop, PixelBulb, PixelStack, FlightArc } from "./decorations";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -78,9 +78,24 @@ export default function About() {
 
   return (
     <section ref={sectionRef} id="about" className="relative px-4 py-24">
-      {/* big hook: a giant laptop leaning in from the right */}
-      <div className="anchor-drift pointer-events-none absolute right-8 bottom-24 -z-[1] hidden lg:block">
-        <FloatingLaptop className="anchor-wobble" width={380} />
+      {/* big hooks alternating around the content */}
+      <div className="anchor-drift pointer-events-none absolute right-16 top-[4%] -z-[1] hidden lg:block">
+        <PixelBulb size={220} />
+      </div>
+      <div className="pointer-events-none absolute left-6 top-[38%] -z-[1] hidden lg:block">
+        <Sparkle className="ambient-twinkle" size={58} />
+      </div>
+      <div className="anchor-drift pointer-events-none absolute right-8 top-[44%] -z-[1] hidden lg:block">
+        <FloatingLaptop className="anchor-wobble" width={370} />
+      </div>
+      <div className="anchor-drift pointer-events-none absolute left-8 top-[88%] -z-[1] hidden lg:block">
+        <PixelStack width={170} />
+      </div>
+      <div className="anchor-drift pointer-events-none absolute right-24 top-[90%] -z-[1] hidden lg:block">
+        <FlightArc width={220} color="#f8ac1a" />
+      </div>
+      <div className="pointer-events-none absolute right-14 top-[87%] -z-[1] hidden lg:block">
+        <Sparkle className="ambient-twinkle" size={44} />
       </div>
       <div className="mx-auto max-w-5xl">
         <div className="relative">
