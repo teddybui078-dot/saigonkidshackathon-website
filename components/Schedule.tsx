@@ -60,8 +60,8 @@ export default function Schedule() {
   return (
     <section ref={sectionRef} id="schedule" className="relative px-4 py-24">
       {/* big hook: a giant clock keeping the day\u2019s time */}
-      <div className="pointer-events-none absolute -left-24 top-1/3 -z-[1] hidden lg:block">
-        <PixelClock className="ambient-float" data-amp="s" size={310} />
+      <div className="anchor-drift pointer-events-none absolute left-8 top-1/3 -z-[1] hidden lg:block">
+        <PixelClock size={310} />
       </div>
       <div className="mx-auto max-w-4xl">
         <div className="text-center">

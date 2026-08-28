@@ -400,8 +400,8 @@ export function PixelClock({
       <rect x="166" y="94" width="12" height="12" rx="3" fill={BLUE} />
       <rect x="94" y="166" width="12" height="12" rx="3" fill={BLUE} />
       <rect x="22" y="94" width="12" height="12" rx="3" fill={BLUE} />
-      <path d="M100 100 L100 52" stroke={BLUE} strokeWidth="9" strokeLinecap="round" />
-      <path d="M100 100 L58 100" stroke={YELLOW} strokeWidth="9" strokeLinecap="round" />
+      <path className="clock-hand-h" d="M100 100 L100 52" stroke={BLUE} strokeWidth="9" strokeLinecap="round" />
+      <path className="clock-hand-m" d="M100 100 L58 100" stroke={YELLOW} strokeWidth="9" strokeLinecap="round" />
       <circle cx="100" cy="100" r="9" fill={YELLOW} stroke={BLUE} strokeWidth="4" />
     </svg>
   );

@@ -42,11 +42,11 @@ export default function Footer() {
       className="relative mt-12 overflow-hidden rounded-t-[3rem] bg-saigon px-4 pb-10 pt-20 text-white"
     >
       {/* big hooks: brick pile and a ghost planet in the corners */}
-      <div className="pointer-events-none absolute -bottom-8 -left-10 hidden lg:block">
-        <PixelStack className="ambient-float" data-amp="s" width={230} />
+      <div className="anchor-drift pointer-events-none absolute bottom-6 left-6 hidden lg:block">
+        <PixelStack width={230} />
       </div>
-      <div className="pointer-events-none absolute -right-20 -top-14 opacity-25 hidden lg:block">
-        <PixelPlanet className="ambient-float" size={320} />
+      <div className="anchor-drift pointer-events-none absolute right-8 top-10 opacity-25 hidden lg:block">
+        <PixelPlanet className="anchor-wobble" size={320} />
       </div>
       <div className="relative z-10 mx-auto max-w-4xl text-center">
         <Sparkle className="footer-pop ambient-twinkle mx-auto mb-6" size={30} />

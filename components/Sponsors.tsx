@@ -29,8 +29,8 @@ export default function Sponsors() {
   return (
     <section ref={sectionRef} id="sponsors" className="relative px-4 py-24">
       {/* big hook: a giant pixel heart from the people who believe */}
-      <div className="pointer-events-none absolute -left-16 top-1/4 -z-[1] hidden lg:block">
-        <PixelHeart className="ambient-float" data-amp="s" size={280} />
+      <div className="anchor-drift pointer-events-none absolute left-8 top-1/4 -z-[1] hidden lg:block">
+        <PixelHeart className="anchor-beat" size={280} />
       </div>
       <div className="mx-auto max-w-4xl text-center">
         <p className="mb-3 text-sm font-semibold text-saigon">our friends ✦</p>

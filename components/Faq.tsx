@@ -57,7 +57,7 @@ export default function Faq() {
     <section ref={sectionRef} id="faq" className="relative px-4 py-24">
       {/* big hook: a giant question mark leaning in from the right */}
       <span
-        className="ambient-float pointer-events-none absolute -right-8 top-1/4 -z-[1] hidden rotate-12 select-none text-[16rem] font-bold leading-none text-[#c9d7ee] lg:block"
+        className="anchor-wiggle pointer-events-none absolute right-12 top-1/4 -z-[1] hidden rotate-12 select-none text-[16rem] font-bold leading-none text-[#c9d7ee] lg:block"
         aria-hidden="true"
       >
         ?

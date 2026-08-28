@@ -79,8 +79,8 @@ export default function About() {
   return (
     <section ref={sectionRef} id="about" className="relative px-4 py-24">
       {/* big hook: a giant laptop leaning in from the right */}
-      <div className="pointer-events-none absolute -right-24 bottom-16 -z-[1] hidden lg:block">
-        <FloatingLaptop className="ambient-float" data-amp="s" width={380} />
+      <div className="anchor-drift pointer-events-none absolute right-8 bottom-24 -z-[1] hidden lg:block">
+        <FloatingLaptop className="anchor-wobble" width={380} />
       </div>
       <div className="mx-auto max-w-5xl">
         <div className="relative">

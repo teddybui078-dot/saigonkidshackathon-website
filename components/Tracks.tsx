@@ -87,8 +87,8 @@ export default function Tracks() {
   return (
     <section ref={sectionRef} id="tracks" className="relative overflow-hidden">
       {/* big hook: a giant planet the track cards drift across */}
-      <div className="pointer-events-none absolute -bottom-20 -left-28 -z-[1] hidden lg:block">
-        <PixelPlanet className="ambient-float" data-amp="s" size={360} />
+      <div className="anchor-drift pointer-events-none absolute bottom-10 left-8 -z-[1] hidden lg:block">
+        <PixelPlanet className="anchor-wobble" size={360} />
       </div>
       <div className="flex min-h-svh flex-col justify-center py-24 md:py-0">
         <div className="px-4 md:px-[max(1rem,calc(50vw-32rem))]">
