@@ -222,15 +222,6 @@ export default function Hero() {
               pathLength={1000}
               strokeDasharray={1000}
             />
-            <path
-              className="hero-orbit-path"
-              d="M 380 44 C 570 44 724 152 724 282 C 724 410 570 520 380 520 C 190 520 36 410 36 282 C 36 152 190 44 380 44"
-              stroke="#f8ac1a"
-              strokeWidth="4"
-              strokeLinecap="round"
-              pathLength={1000}
-              strokeDasharray={1000}
-            />
             <rect
               className="hero-satellite"
               x="0"
