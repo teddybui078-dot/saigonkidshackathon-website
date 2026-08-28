@@ -163,7 +163,7 @@ export default function Hero() {
     <section
       ref={sectionRef}
       id="top"
-      className="relative flex min-h-svh flex-col items-center justify-center overflow-hidden px-4 pt-24 pb-16"
+      className="relative flex min-h-svh flex-col items-center justify-start overflow-hidden px-4 pt-28 pb-16 md:pt-40"
     >
       {/* scene: saigon skyline left, palms right (the hoover-tower analog) */}
       {/* the three anchors: big tower left, sign center, foliage corner right */}
@@ -204,19 +204,18 @@ export default function Hero() {
 
       <div className="hero-content relative flex max-w-4xl flex-col items-center text-center">
         <div className="relative">
-          {/* orbit swooshes wrap the whole sign */}
+          {/* full orbits wrap sign AND spire — the whole lap stays visible */}
           <svg
-            className="pointer-events-none absolute -inset-x-14 -inset-y-8 h-[calc(100%+4rem)] w-[calc(100%+7rem)]"
-            viewBox="0 0 700 420"
+            className="pointer-events-none absolute -inset-x-20 -top-28 -bottom-10 h-[calc(100%+9.5rem)] w-[calc(100%+10rem)]"
+            viewBox="0 0 760 560"
             fill="none"
             preserveAspectRatio="none"
             aria-hidden="true"
           >
-            {/* top arcs sit behind the sign panel so they never cross the spire */}
             <path
               id="orbit-blue"
               className="hero-orbit-path"
-              d="M 350 75 C 620 75 692 150 692 230 C 692 320 550 408 350 408 C 150 408 8 320 8 230 C 8 150 80 75 350 75"
+              d="M 380 28 C 585 28 752 142 752 286 C 752 428 585 544 380 544 C 175 544 8 428 8 286 C 8 142 175 28 380 28"
               stroke="#0145b4"
               strokeWidth="5"
               strokeLinecap="round"
@@ -225,7 +224,7 @@ export default function Hero() {
             />
             <path
               className="hero-orbit-path"
-              d="M 350 95 C 590 95 664 158 664 230 C 664 306 540 386 350 386 C 160 386 36 306 36 230 C 36 158 110 95 350 95"
+              d="M 380 44 C 570 44 724 152 724 282 C 724 410 570 520 380 520 C 190 520 36 410 36 282 C 36 152 190 44 380 44"
               stroke="#f8ac1a"
               strokeWidth="4"
               strokeLinecap="round"
@@ -249,7 +248,7 @@ export default function Hero() {
           <div className="hero-sign relative rounded-[2rem] border-4 border-saigon bg-white px-8 py-8 shadow-[0_10px_40px_rgba(1,69,180,0.12)] sm:px-14 sm:py-10">
             {/* spire + golden rings */}
             <svg
-              className="absolute -top-[4.4rem] left-1/2 h-20 w-16 -translate-x-1/2"
+              className="absolute -top-16 left-1/2 h-20 w-16 -translate-x-1/2"
               viewBox="0 0 64 80"
               fill="none"
               aria-hidden="true"
