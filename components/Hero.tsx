@@ -206,27 +206,27 @@ export default function Hero() {
 
       {/* scene: saigon skyline left, palms right (the hoover-tower analog) */}
       <SaigonSkyline
-        className="hero-float pointer-events-none absolute -left-6 bottom-0 hidden sm:block md:left-0"
-        width={330}
+        className="hero-float pointer-events-none absolute -left-10 bottom-0 hidden sm:block md:-left-4"
+        width={470}
         data-speed="0.3"
       />
       <PalmSilhouette
-        className="hero-float pointer-events-none absolute -right-4 bottom-0 hidden md:block"
-        width={210}
+        className="hero-float pointer-events-none absolute -right-6 bottom-0 hidden md:block"
+        width={265}
         data-speed="0.35"
       />
 
       {/* floating scene props */}
-      <PixelPlanet className="hero-float absolute left-[10%] top-[14%]" size={92} data-speed="1.2" />
-      <PixelPlanet className="hero-float absolute right-[26%] bottom-[16%] hidden lg:block" size={64} data-speed="0.8" />
-      <FloatingLaptop className="hero-float absolute right-[9%] top-[15%] hidden md:block" width={92} data-speed="1.4" />
-      <FlightArc className="hero-float absolute right-[13%] top-[30%] hidden lg:block" width={190} data-speed="1.1" />
-      <FlightArc className="hero-float absolute left-[7%] bottom-[30%] -scale-x-100 hidden lg:block" width={150} color="#f8ac1a" data-speed="0.9" />
-      <PixelGrid className="hero-float absolute left-[22%] top-[24%]" size={38} data-speed="1.6" />
-      <Sparkle className="hero-float absolute right-[20%] top-[10%]" size={26} data-speed="1.1" />
-      <Sparkle className="hero-float absolute left-[15%] bottom-[24%]" size={18} color="#0145b4" data-speed="0.7" />
-      <Sparkle className="hero-float absolute right-[6%] bottom-[34%] hidden md:block" size={20} data-speed="1.3" />
-      <SpeedLines className="hero-float absolute left-[30%] top-[16%] -scale-x-100 hidden md:block" color="#f8ac1a" data-speed="0.8" />
+      <PixelPlanet className="hero-float absolute left-[7%] top-[12%]" size={124} data-speed="1.2" />
+      <PixelPlanet className="hero-float absolute right-[24%] bottom-[14%] hidden lg:block" size={86} data-speed="0.8" />
+      <FloatingLaptop className="hero-float absolute right-[7%] top-[13%] hidden md:block" width={132} data-speed="1.4" />
+      <FlightArc className="hero-float absolute right-[11%] top-[32%] hidden lg:block" width={245} data-speed="1.1" />
+      <FlightArc className="hero-float absolute left-[6%] bottom-[28%] -scale-x-100 hidden lg:block" width={195} color="#f8ac1a" data-speed="0.9" />
+      <PixelGrid className="hero-float absolute left-[21%] top-[26%]" size={48} data-speed="1.6" />
+      <Sparkle className="hero-float absolute right-[19%] top-[9%]" size={34} data-speed="1.1" />
+      <Sparkle className="hero-float absolute left-[14%] bottom-[22%]" size={24} color="#0145b4" data-speed="0.7" />
+      <Sparkle className="hero-float absolute right-[5%] bottom-[36%] hidden md:block" size={27} data-speed="1.3" />
+      <SpeedLines className="hero-float absolute left-[30%] top-[15%] -scale-x-100 hidden md:block" color="#f8ac1a" size={38} data-speed="0.8" />
 
       <div className="hero-content relative flex max-w-4xl flex-col items-center text-center">
         <div className="relative">
@@ -238,10 +238,11 @@ export default function Hero() {
             preserveAspectRatio="none"
             aria-hidden="true"
           >
+            {/* top arcs sit behind the sign panel so they never cross the spire */}
             <path
               id="orbit-blue"
               className="hero-orbit-path"
-              d="M 350 18 C 620 18 692 120 692 210 C 692 310 550 402 350 402 C 150 402 8 310 8 210 C 8 120 80 18 350 18"
+              d="M 350 75 C 620 75 692 150 692 230 C 692 320 550 408 350 408 C 150 408 8 320 8 230 C 8 150 80 75 350 75"
               stroke="#0145b4"
               strokeWidth="5"
               strokeLinecap="round"
@@ -250,7 +251,7 @@ export default function Hero() {
             />
             <path
               className="hero-orbit-path"
-              d="M 350 40 C 590 40 664 128 664 210 C 664 296 540 380 350 380 C 160 380 36 296 36 210 C 36 128 110 40 350 40"
+              d="M 350 95 C 590 95 664 158 664 230 C 664 306 540 386 350 386 C 160 386 36 306 36 230 C 36 158 110 95 350 95"
               stroke="#f8ac1a"
               strokeWidth="4"
               strokeLinecap="round"
