@@ -14,7 +14,7 @@ const FAQS = [
   },
   {
     q: "do i need to know how to code?",
-    a: "nope! total beginners are welcome. mentors will help you every step of the way, and there are beginner-friendly tools for every track.",
+    a: "nope! total beginners are welcome. mentors will help you every step of the way, and there are beginner-friendly tools for every idea.",
   },
   {
     q: "what should i bring?",

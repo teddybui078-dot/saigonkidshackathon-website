@@ -9,7 +9,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const SLOTS = [
   { time: "8:00", title: "check-in & breakfast", body: "grab a badge, a bánh mì, and find your table." },
-  { time: "9:00", title: "opening ceremony", body: "the countdown, the tracks, and a surprise or two." },
+  { time: "9:00", title: "opening ceremony", body: "the countdown, the mission, and a surprise or two." },
   { time: "9:30", title: "hacking begins!", body: "teams form, laptops open, ideas start flying." },
   { time: "12:00", title: "lunch break", body: "refuel with friends — and sneak a peek at other teams." },
   { time: "14:00", title: "mini workshops", body: "quick, fun sessions: game design, robots, and ai tricks." },
