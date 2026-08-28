@@ -341,3 +341,38 @@ export function FlightArc({
     </svg>
   );
 }
+
+export function PixelStack({
+  className = "",
+  width = 150,
+  ...rest
+}: {
+  className?: string;
+  width?: number;
+} & React.SVGProps<SVGSVGElement>) {
+  // stacked pixel bricks peeking from a corner (the reference's brick pile)
+  return (
+    <svg
+      className={className}
+      width={width}
+      height={width * 0.8}
+      viewBox="0 0 160 128"
+      fill="none"
+      aria-hidden="true"
+    >
+      {/* studs */}
+      <rect x="52" y="24" width="14" height="10" rx="3" fill={BLUE} />
+      <rect x="78" y="24" width="14" height="10" rx="3" fill={BLUE} />
+      <rect x="10" y="66" width="14" height="10" rx="3" fill={YELLOW} />
+      <rect x="120" y="66" width="14" height="10" rx="3" fill={BLUE} />
+      {/* bricks */}
+      <rect x="40" y="32" width="80" height="46" rx="9" fill={BLUE} />
+      <rect x="0" y="74" width="76" height="54" rx="9" fill={YELLOW} />
+      <rect x="84" y="74" width="76" height="54" rx="9" fill={BLUE} />
+      {/* face hints */}
+      <rect x="54" y="46" width="10" height="10" rx="2.5" fill="#f1f5f9" opacity="0.5" />
+      <rect x="96" y="88" width="10" height="10" rx="2.5" fill="#f1f5f9" opacity="0.5" />
+      <rect x="18" y="88" width="10" height="10" rx="2.5" fill="#0145b4" opacity="0.35" />
+    </svg>
+  );
+}

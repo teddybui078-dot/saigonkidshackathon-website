@@ -8,12 +8,12 @@ import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 import {
   PixelGrid,
   Sparkle,
-  SpeedLines,
   SaigonSkyline,
   PalmSilhouette,
   PixelPlanet,
   FloatingLaptop,
   FlightArc,
+  PixelStack,
 } from "./decorations";
 
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
@@ -118,6 +118,7 @@ export default function Hero() {
       });
 
       // floating accents drift at their own parallax speeds
+      // (constant idle motion lives on the inner svg via AmbientMotion)
       gsap.utils.toArray<HTMLElement>(".hero-float").forEach((el) => {
         const speed = Number(el.dataset.speed ?? 1);
         gsap.to(el, {
@@ -130,15 +131,6 @@ export default function Hero() {
             scrub: 0.8,
           },
         });
-        if (speed > 0.5) {
-          gsap.to(el, {
-            y: `+=${gsap.utils.random(8, 18)}`,
-            duration: gsap.utils.random(1.8, 3),
-            yoyo: true,
-            repeat: -1,
-            ease: "sine.inOut",
-          });
-        }
       });
 
       // the whole hero gently recedes as you scroll on
@@ -174,28 +166,41 @@ export default function Hero() {
       className="relative flex min-h-svh flex-col items-center justify-center overflow-hidden px-4 pt-24 pb-16"
     >
       {/* scene: saigon skyline left, palms right (the hoover-tower analog) */}
+      {/* the three anchors: big tower left, sign center, foliage corner right */}
       <SaigonSkyline
-        className="hero-float pointer-events-none absolute -left-10 bottom-0 hidden sm:block md:-left-4"
-        width={470}
+        className="hero-float pointer-events-none absolute -left-16 bottom-0 hidden sm:block"
+        width={660}
         data-speed="0.3"
       />
-      <PalmSilhouette
-        className="hero-float pointer-events-none absolute -right-6 bottom-0 hidden md:block"
-        width={265}
-        data-speed="0.35"
-      />
+      <div className="hero-float pointer-events-none absolute -right-8 bottom-0 hidden md:block" data-speed="0.35">
+        <PalmSilhouette className="ambient-sway" width={420} />
+      </div>
+      <div className="hero-float pointer-events-none absolute -right-4 -bottom-3 hidden md:block" data-speed="0.32">
+        <PixelStack className="ambient-float" data-amp="s" width={160} />
+      </div>
 
-      {/* floating scene props */}
-      <PixelPlanet className="hero-float absolute left-[7%] top-[12%]" size={124} data-speed="1.2" />
-      <PixelPlanet className="hero-float absolute right-[24%] bottom-[14%] hidden lg:block" size={86} data-speed="0.8" />
-      <FloatingLaptop className="hero-float absolute right-[7%] top-[13%] hidden md:block" width={132} data-speed="1.4" />
-      <FlightArc className="hero-float absolute right-[11%] top-[32%] hidden lg:block" width={245} data-speed="1.1" />
-      <FlightArc className="hero-float absolute left-[6%] bottom-[28%] -scale-x-100 hidden lg:block" width={195} color="#f8ac1a" data-speed="0.9" />
-      <PixelGrid className="hero-float absolute left-[21%] top-[26%]" size={48} data-speed="1.6" />
-      <Sparkle className="hero-float absolute right-[19%] top-[9%]" size={34} data-speed="1.1" />
-      <Sparkle className="hero-float absolute left-[14%] bottom-[22%]" size={24} color="#0145b4" data-speed="0.7" />
-      <Sparkle className="hero-float absolute right-[5%] bottom-[36%] hidden md:block" size={27} data-speed="1.3" />
-      <SpeedLines className="hero-float absolute left-[30%] top-[15%] -scale-x-100 hidden md:block" color="#f8ac1a" size={38} data-speed="0.8" />
+      {/* floating scene props (fewer, bigger — the anchors carry the scene) */}
+      <div className="hero-float absolute left-[7%] top-[12%]" data-speed="1.2">
+        <PixelPlanet className="ambient-float" size={124} />
+      </div>
+      <div className="hero-float absolute right-[7%] top-[13%] hidden md:block" data-speed="1.4">
+        <FloatingLaptop className="ambient-float" width={132} />
+      </div>
+      <div className="hero-float absolute right-[11%] top-[34%] hidden lg:block" data-speed="1.1">
+        <FlightArc className="ambient-float" width={245} />
+      </div>
+      <div className="hero-float absolute left-[6%] bottom-[28%] hidden lg:block" data-speed="0.9">
+        <FlightArc className="ambient-float -scale-x-100" width={195} color="#f8ac1a" />
+      </div>
+      <div className="hero-float absolute left-[21%] top-[26%]" data-speed="1.6">
+        <PixelGrid className="ambient-float" size={48} />
+      </div>
+      <div className="hero-float absolute right-[19%] top-[9%]" data-speed="1.1">
+        <Sparkle className="ambient-twinkle" size={34} />
+      </div>
+      <div className="hero-float absolute right-[5%] bottom-[40%] hidden md:block" data-speed="1.3">
+        <Sparkle className="ambient-twinkle" size={27} />
+      </div>
 
       <div className="hero-content relative flex max-w-4xl flex-col items-center text-center">
         <div className="relative">
