@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Sparkle } from "./decorations";
+import { Sparkle, PixelHeart } from "./decorations";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -27,7 +27,11 @@ export default function Sponsors() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="sponsors" className="px-4 py-24">
+    <section ref={sectionRef} id="sponsors" className="relative px-4 py-24">
+      {/* big hook: a giant pixel heart from the people who believe */}
+      <div className="pointer-events-none absolute -left-16 top-1/4 -z-[1] hidden lg:block">
+        <PixelHeart className="ambient-float" data-amp="s" size={280} />
+      </div>
       <div className="mx-auto max-w-4xl text-center">
         <p className="mb-3 text-sm font-semibold text-saigon">our friends ✦</p>
         <h2 className="text-4xl font-bold lowercase leading-tight md:text-5xl">

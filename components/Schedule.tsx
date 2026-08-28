@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Sparkle } from "./decorations";
+import { Sparkle, PixelClock } from "./decorations";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -58,7 +58,11 @@ export default function Schedule() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="schedule" className="px-4 py-24">
+    <section ref={sectionRef} id="schedule" className="relative px-4 py-24">
+      {/* big hook: a giant clock keeping the day\u2019s time */}
+      <div className="pointer-events-none absolute -left-24 top-1/3 -z-[1] hidden lg:block">
+        <PixelClock className="ambient-float" data-amp="s" size={310} />
+      </div>
       <div className="mx-auto max-w-4xl">
         <div className="text-center">
           <p className="mb-3 text-sm font-semibold text-saigon">

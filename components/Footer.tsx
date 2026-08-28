@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Sparkle, CodeMark } from "./decorations";
+import { Sparkle, CodeMark, PixelStack, PixelPlanet } from "./decorations";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -41,7 +41,14 @@ export default function Footer() {
       ref={footerRef}
       className="relative mt-12 overflow-hidden rounded-t-[3rem] bg-saigon px-4 pb-10 pt-20 text-white"
     >
-      <div className="mx-auto max-w-4xl text-center">
+      {/* big hooks: brick pile and a ghost planet in the corners */}
+      <div className="pointer-events-none absolute -bottom-8 -left-10 hidden lg:block">
+        <PixelStack className="ambient-float" data-amp="s" width={230} />
+      </div>
+      <div className="pointer-events-none absolute -right-20 -top-14 opacity-25 hidden lg:block">
+        <PixelPlanet className="ambient-float" size={320} />
+      </div>
+      <div className="relative z-10 mx-auto max-w-4xl text-center">
         <Sparkle className="footer-pop ambient-twinkle mx-auto mb-6" size={30} />
         <h2 className="footer-pop text-4xl font-bold lowercase leading-tight md:text-6xl">
           see you on{" "}

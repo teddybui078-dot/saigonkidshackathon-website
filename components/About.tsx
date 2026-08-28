@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { PixelGrid, Sparkle } from "./decorations";
+import { PixelGrid, Sparkle, FloatingLaptop } from "./decorations";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -78,6 +78,10 @@ export default function About() {
 
   return (
     <section ref={sectionRef} id="about" className="relative px-4 py-24">
+      {/* big hook: a giant laptop leaning in from the right */}
+      <div className="pointer-events-none absolute -right-24 bottom-16 -z-[1] hidden lg:block">
+        <FloatingLaptop className="ambient-float" data-amp="s" width={380} />
+      </div>
       <div className="mx-auto max-w-5xl">
         <div className="relative">
           <PixelGrid className="ambient-float absolute -left-2 -top-10 hidden lg:block" size={36} />
