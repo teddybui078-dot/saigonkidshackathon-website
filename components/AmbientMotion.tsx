@@ -113,6 +113,23 @@ export default function AmbientMotion() {
           .to(el, { scale: 1, duration: 0.25, ease: "power2.inOut" });
       });
 
+      // the idea bulb's rays pulse
+      gsap.utils.toArray<HTMLElement>(".bulb-ray").forEach((el) => {
+        gsap.fromTo(
+          el,
+          { opacity: 0.3, scale: 0.85 },
+          {
+            opacity: 1,
+            scale: 1.05,
+            duration: 1.1,
+            yoyo: true,
+            repeat: -1,
+            ease: "sine.inOut",
+            transformOrigin: "50% 45%",
+          }
+        );
+      });
+
       // the clock actually ticks
       gsap.to(".clock-hand-m", {
         rotation: "+=360",

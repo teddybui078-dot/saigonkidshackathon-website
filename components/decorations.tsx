@@ -433,3 +433,50 @@ export function PixelHeart({
     </svg>
   );
 }
+
+export function PixelBulb({
+  className = "",
+  size = 230,
+  ...rest
+}: {
+  className?: string;
+  size?: number;
+} & React.SVGProps<SVGSVGElement>) {
+  // an idea lightbulb — dream it up, then build it
+  return (
+    <svg
+      className={className}
+      width={size}
+      height={size * 1.15}
+      viewBox="0 0 160 184"
+      fill="none"
+      aria-hidden="true"
+    >
+      {/* rays */}
+      <g className="bulb-ray">
+        <path d="M80 8 L80 22" stroke={YELLOW} strokeWidth="7" strokeLinecap="round" />
+        <path d="M28 28 L38 38" stroke={YELLOW} strokeWidth="7" strokeLinecap="round" />
+        <path d="M132 28 L122 38" stroke={YELLOW} strokeWidth="7" strokeLinecap="round" />
+        <path d="M12 76 L26 76" stroke={YELLOW} strokeWidth="7" strokeLinecap="round" />
+        <path d="M148 76 L134 76" stroke={YELLOW} strokeWidth="7" strokeLinecap="round" />
+      </g>
+      {/* bulb dome */}
+      <circle cx="80" cy="80" r="44" fill={YELLOW} />
+      <circle cx="66" cy="66" r="10" fill="#fff" opacity="0.45" />
+      {/* filament */}
+      <path
+        d="M68 96 L68 84 L80 92 L92 82 L92 96"
+        stroke={BLUE}
+        strokeWidth="6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      {/* neck + pixel base */}
+      <path d="M66 122 L94 122 L92 132 L68 132 Z" fill={BLUE} />
+      <rect x="62" y="132" width="36" height="10" rx="3" fill={BLUE} />
+      <rect x="66" y="146" width="28" height="10" rx="3" fill={BLUE} />
+      <rect x="72" y="160" width="16" height="10" rx="3" fill={BLUE} />
+      <rect x="90" y="134" width="6" height="6" rx="1.5" fill={YELLOW} />
+    </svg>
+  );
+}
