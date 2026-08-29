@@ -28,32 +28,85 @@ export default function Schedule() {
       const section = sectionRef.current;
       if (!section) return;
 
-      // the timeline spine draws itself as you travel down the day
-      gsap.fromTo(
+      // the pole draws itself as you travel down the day. as its tip passes
+      // each collar, the bracket arm extends out from the pole and the
+      // lantern drops onto its hook — all keyed to the pole's own progress,
+      // so scrolling back up rewinds the whole thing.
+      const list = section.querySelector<HTMLElement>(".schedule-list");
+      if (!list) return;
+      const clamp = gsap.utils.clamp(0, 1);
+
+      const rows = gsap.utils.toArray<HTMLElement>(".schedule-item").map((li, i) => {
+        const arm = li.querySelector(".schedule-arm") as HTMLElement;
+        const collar = li.querySelector(".schedule-collar") as HTMLElement;
+        const lantern = li.querySelector(".schedule-lantern") as HTMLElement;
+        // starting state via set, so mm.revert() puts it all back
+        gsap.set(arm, { scaleX: 0, transformOrigin: i % 2 === 0 ? "100% 50%" : "0% 50%" });
+        gsap.set(collar, { scale: 0 });
+        gsap.set(lantern, { opacity: 0, y: -16 });
+        return {
+          li,
+          top: 0,
+          a: -1,
+          l: -1,
+          setArm: gsap.quickSetter(arm, "scaleX"),
+          setCollar: gsap.quickSetter(collar, "scale"),
+          setOpacity: gsap.quickSetter(lantern, "opacity"),
+          setY: gsap.quickSetter(lantern, "y", "px"),
+        };
+      });
+
+      let listHeight = 1;
+      let spine: gsap.core.Tween | undefined;
+
+      // px of pole drawn so far -> each row's arm and lantern progress
+      const paint = (tip: number) => {
+        rows.forEach((r) => {
+          const a = clamp((tip + 40 - r.top) / 60);
+          const l = clamp((tip + 40 - r.top - 50) / 90);
+          if (a !== r.a) {
+            r.a = a;
+            r.setArm(a);
+            r.setCollar(a);
+          }
+          if (l !== r.l) {
+            r.l = l;
+            r.setOpacity(l);
+            r.setY(-16 * (1 - l));
+          }
+        });
+      };
+
+      // geometry is measured on every scrolltrigger refresh (resize, md flip)
+      const measure = () => {
+        listHeight = list.offsetHeight;
+        rows.forEach((r) => {
+          r.top = r.li.offsetTop;
+        });
+        if (spine) paint(spine.progress() * listHeight);
+      };
+
+      spine = gsap.fromTo(
         ".schedule-spine",
         { scaleY: 0 },
         {
           scaleY: 1,
           ease: "none",
           transformOrigin: "top center",
+          // read the tween, not the trigger: with scrub the pole lags the
+          // scroll, and the arms must follow the pole
+          onUpdate: () => {
+            if (spine) paint(spine.progress() * listHeight);
+          },
           scrollTrigger: {
-            trigger: ".schedule-list",
+            trigger: list,
             start: "top 70%",
             end: "bottom 65%",
             scrub: 0.6,
+            onRefresh: measure,
           },
         }
       );
-
-      gsap.utils.toArray<HTMLElement>(".schedule-item").forEach((item, i) => {
-        gsap.from(item, {
-          x: i % 2 === 0 ? -50 : 50,
-          opacity: 0,
-          duration: 0.6,
-          ease: "back.out(1.5)",
-          scrollTrigger: { trigger: item, start: "top 80%" },
-        });
-      });
     });
     return () => mm.revert();
   }, []);
@@ -107,7 +160,7 @@ export default function Schedule() {
               >
                 {/* bracket arm out from the pole, and the collar it bolts to */}
                 <span
-                  className={`absolute top-0.5 hidden h-1.5 bg-saigon md:block ${
+                  className={`schedule-arm absolute top-0.5 hidden h-1.5 bg-saigon md:block ${
                     i % 2 === 0
                       ? "right-0 w-[calc(50%_+_1.25rem)] rounded-l-full"
                       : "left-0 w-[calc(50%_+_1.25rem)] rounded-r-full"
@@ -115,12 +168,14 @@ export default function Schedule() {
                   aria-hidden="true"
                 />
                 <span
-                  className={`absolute -top-1 hidden h-4 w-5 rounded-sm border-[3px] border-saigon bg-energy md:block ${
+                  className={`schedule-collar absolute -top-1 hidden h-4 w-5 rounded-sm border-[3px] border-saigon bg-energy md:block ${
                     i % 2 === 0 ? "-right-2.5" : "-left-2.5"
                   }`}
                   aria-hidden="true"
                 />
-                {/* a paper lantern hanging from the arm */}
+                {/* a paper lantern hanging from the arm; the outer wrapper is the
+                    scroll reveal, the inner one sways, so their transforms never fight */}
+                <div className="schedule-lantern">
                 <div className="ambient-hang mx-auto flex max-w-sm flex-col items-center md:max-w-none">
                   <Hook />
                   <div className="w-2/3 rounded-t-xl bg-saigon px-3 py-1 text-center text-sm font-bold text-energy">
@@ -132,6 +187,7 @@ export default function Schedule() {
                   </div>
                   <div className="h-3 w-2/3 rounded-b-xl bg-saigon" aria-hidden="true" />
                   <Tassel className="h-9 w-6" />
+                </div>
                 </div>
               </li>
             ))}
