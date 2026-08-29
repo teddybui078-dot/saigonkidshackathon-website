@@ -73,15 +73,22 @@ export default function Faq() {
           </h2>
         </div>
 
-        <div className="mt-12 space-y-4">
+        <div className="mt-12 space-y-7">
           {FAQS.map((faq, i) => {
             const isOpen = open === i;
             return (
               <div
                 key={faq.q}
                 data-open={isOpen}
-                className="faq-item rounded-2xl bg-white shadow-[0_2px_12px_rgba(30,41,59,0.05)]"
+                className="faq-item relative rounded-2xl border-[3px] border-saigon bg-white shadow-[0_6px_0_#cbd8ee]"
               >
+                {/* speech-bubble tail, alternating sides */}
+                <span
+                  aria-hidden="true"
+                  className={`absolute -bottom-[13px] h-5 w-5 rotate-45 border-b-[3px] border-r-[3px] border-saigon bg-white ${
+                    i % 2 === 0 ? "left-10" : "right-10"
+                  }`}
+                />
                 <button
                   type="button"
                   onClick={() => setOpen(isOpen ? null : i)}
@@ -92,10 +99,10 @@ export default function Faq() {
                     {faq.q}
                   </span>
                   <span
-                    className={`grid h-8 w-8 shrink-0 place-items-center rounded-full text-lg font-bold transition-transform duration-300 ${
+                    className={`grid h-9 w-9 shrink-0 place-items-center rounded-full border-2 border-saigon text-xl font-bold transition-transform duration-300 ${
                       isOpen
-                        ? "rotate-45 bg-saigon text-white"
-                        : "bg-canvas text-saigon"
+                        ? "rotate-45 bg-saigon text-white shadow-[0_3px_0_#01337f]"
+                        : "bg-energy text-ink shadow-[0_3px_0_#d18e07]"
                     }`}
                     aria-hidden="true"
                   >
