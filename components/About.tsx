@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { PixelGrid, Sparkle, FloatingLaptop, PixelBulb, PixelStack, FlightArc, Bolts, SignPost } from "./decorations";
+import { Screws, DomeButton, Led } from "./parts";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -135,32 +136,38 @@ export default function About() {
           ))}
         </div>
 
-        {/* control panel with big round buttons */}
-        <div className="relative mt-12 rounded-3xl border-4 border-saigon bg-white px-6 py-9 shadow-[0_10px_0_#01337f] md:px-10">
-          <Bolts />
-          <dl className="grid grid-cols-2 gap-x-6 gap-y-9 text-center md:grid-cols-4">
+        {/* a riveted control panel: brushed metal, screws, domed push-buttons */}
+        <div className="relative mt-14 rounded-3xl border-4 border-saigon bg-[#dbe4f2] bg-[repeating-linear-gradient(90deg,transparent_0_3px,rgba(255,255,255,0.35)_3px_4px)] px-6 pb-9 pt-10 shadow-[0_10px_0_#01337f] md:px-10">
+          <Screws />
+          <div className="absolute right-8 top-3 flex items-center gap-2 text-[10px] font-semibold tracking-wide text-ink/50">
+            <Led className="motion-safe:animate-led-blink" />
+            on
+          </div>
+          <dl className="grid grid-cols-2 gap-x-6 gap-y-9 md:grid-cols-4">
             {STATS.map((stat, i) => (
               <div key={stat.label} className="flex flex-col-reverse items-center">
-                <dt className="mt-4 text-sm font-semibold text-ink/60">
+                <dt className="mt-4 rounded-md bg-white/60 px-3 py-1 text-xs font-semibold text-ink/60">
                   {stat.label}
                 </dt>
-                <dd
-                  className={`grid h-28 w-28 place-items-center rounded-full border-4 border-saigon text-3xl font-bold md:text-4xl ${
-                    i % 2 === 0
-                      ? "bg-energy text-ink shadow-[0_8px_0_#d18e07]"
-                      : "bg-saigon text-white shadow-[0_8px_0_#01337f]"
-                  }`}
-                >
-                  {stat.value !== null ? (
-                    <span>
-                      <span className="stat-number" data-value={stat.value}>
-                        {stat.value}
+                {/* the well the button sits in */}
+                <dd className="h-32 w-32 rounded-full bg-[#c9d7ee] p-2 shadow-[inset_0_5px_0_#a8bfe2]">
+                  <DomeButton
+                    shape="round"
+                    tone={i % 2 === 0 ? "yellow" : "blue"}
+                    pressable
+                    className="text-3xl font-bold md:text-4xl"
+                  >
+                    {stat.value !== null ? (
+                      <span>
+                        <span className="stat-number" data-value={stat.value}>
+                          {stat.value}
+                        </span>
+                        {stat.suffix}
                       </span>
-                      {stat.suffix}
-                    </span>
-                  ) : (
-                    <span>{stat.suffix}</span>
-                  )}
+                    ) : (
+                      <span>{stat.suffix}</span>
+                    )}
+                  </DomeButton>
                 </dd>
               </div>
             ))}
