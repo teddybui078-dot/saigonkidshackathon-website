@@ -57,7 +57,8 @@ export default function Schedule() {
       });
 
       let listHeight = 1;
-      let spine: gsap.core.Tween | undefined;
+      // null until the tween exists: onRefresh fires during creation
+      let spine: gsap.core.Tween | null = null;
 
       // px of pole drawn so far -> each row's arm and lantern progress
       const paint = (tip: number) => {
