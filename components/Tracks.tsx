@@ -128,7 +128,7 @@ export default function Tracks() {
           });
           tl.fromTo(book, { x: () => -book.offsetWidth / 4 }, { x: 0, ease: "none", duration: 1 }, 0)
             .fromTo(cover, { rotateY: 0 }, { rotateY: -180, ease: "power1.inOut", duration: 1 }, 0)
-            .fromTo(content, { opacity: 0 }, { opacity: 1, ease: "none", duration: 0.4 }, 0.55)
+            .fromTo(content, { opacity: 0 }, { opacity: 1, ease: "none", duration: 0.5 }, 0.42) // ink shows as the pages come into view
             .to({}, { duration: 0.3 });
         } else {
           // small screens: the two pages simply arrive as you scroll
