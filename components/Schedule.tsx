@@ -141,7 +141,7 @@ export default function Schedule() {
             March 6, 2027 ✦
           </p>
           <h2 className="text-5xl font-bold leading-tight md:text-7xl">
-            One <span className="text-saigon">big</span> day
+            Schedule
           </h2>
         </div>
 
