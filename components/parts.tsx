@@ -157,7 +157,16 @@ export function Tassel({ className = "" }: { className?: string }) {
 
 /* ————— subject icons (the cartridge label) ————— */
 
-export type SubjectKind = "math" | "language" | "science" | "history";
+export type SubjectKind =
+  | "math"
+  | "language"
+  | "science"
+  | "history"
+  | "chat"
+  | "list"
+  | "shield"
+  | "pin"
+  | "gear";
 
 export function SubjectIcon({
   kind,
@@ -168,7 +177,8 @@ export function SubjectIcon({
   className?: string;
   size?: number;
 }) {
-  // four flat pixel-style icons: a plus tile, a speech bubble, a flask, a pagoda
+  // flat pixel-style icons: a plus tile, a speech bubble, a flask, a pagoda,
+  // two chat bubbles, a checklist, a shield, a map pin, a gear
   return (
     <svg
       className={className}
@@ -213,6 +223,46 @@ export function SubjectIcon({
           <rect x="10" y="17" width="20" height="5" rx="1.5" fill={YELLOW} />
           <path d="M20 21l14 10H6l14-10z" fill={BLUE} />
           <rect x="13" y="31" width="14" height="5" rx="1.5" fill={BLUE} />
+        </>
+      )}
+      {kind === "chat" && (
+        <>
+          <rect x="4" y="6" width="22" height="15" rx="5" fill={BLUE} />
+          <path d="M9 20l-2 7 7-6z" fill={BLUE} />
+          <rect x="14" y="17" width="22" height="15" rx="5" fill={YELLOW} />
+          <path d="M31 31l2 7-7-6z" fill={YELLOW} />
+        </>
+      )}
+      {kind === "list" && (
+        <>
+          <rect x="6" y="4" width="28" height="32" rx="5" fill={BLUE} />
+          <path d="M12 13l3 3 5-6" stroke={YELLOW} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+          <rect x="22" y="12" width="8" height="3" rx="1.5" fill="#fff" opacity="0.8" />
+          <path d="M12 22l3 3 5-6" stroke={YELLOW} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+          <rect x="22" y="21" width="8" height="3" rx="1.5" fill="#fff" opacity="0.8" />
+          <rect x="11" y="29" width="4" height="3" rx="1" fill="#fff" opacity="0.5" />
+          <rect x="22" y="29" width="8" height="3" rx="1.5" fill="#fff" opacity="0.8" />
+        </>
+      )}
+      {kind === "shield" && (
+        <>
+          <path d="M20 4l14 5v11c0 8-6 13-14 16-8-3-14-8-14-16V9l14-5z" fill={BLUE} />
+          <path d="M13 20l5 5 9-10" stroke={YELLOW} strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
+        </>
+      )}
+      {kind === "pin" && (
+        <>
+          <path d="M20 37c-8-9-13-15-13-21a13 13 0 0 1 26 0c0 6-5 12-13 21z" fill={BLUE} />
+          <circle cx="20" cy="16" r="5.5" fill={YELLOW} />
+        </>
+      )}
+      {kind === "gear" && (
+        <>
+          <path
+            d="M17 4h6l1 4.5 3.5 1.5 4-2.5 4 4-2.5 4 1.5 3.5 4.5 1v6l-4.5 1-1.5 3.5 2.5 4-4 4-4-2.5-3.5 1.5-1 4.5h-6l-1-4.5-3.5-1.5-4 2.5-4-4 2.5-4-1.5-3.5L4 23v-6l4.5-1 1.5-3.5-2.5-4 4-4 4 2.5 3.5-1.5L17 4z"
+            fill={BLUE}
+          />
+          <circle cx="20" cy="20" r="5.5" fill={YELLOW} />
         </>
       )}
     </svg>
