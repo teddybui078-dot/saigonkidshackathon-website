@@ -55,7 +55,7 @@ export default function Footer() {
           <span className="relative inline-block text-energy">
             March 6, 2027
             <svg
-              className="pointer-events-none absolute -inset-x-8 -inset-y-5 h-[calc(100%+2.5rem)] w-[calc(100%+4rem)]"
+              className="pointer-events-none absolute -inset-x-5 -inset-y-4 h-[calc(100%+2rem)] w-[calc(100%+2.5rem)]"
               viewBox="0 0 300 80"
               fill="none"
               preserveAspectRatio="none"
