@@ -163,10 +163,10 @@ export default function Tracks() {
         {/* two classroom doors, one per track */}
         <div className="track-doors mx-auto mt-14 grid max-w-4xl gap-8 md:grid-cols-2">
           {TRACKS.map((track) => (
-            <div key={track.n} className="track-door">
-              <div className="rounded-t-[2rem] bg-saigon-deep p-2.5 shadow-[0_10px_0_#01337f]">
+            <div key={track.n} className="track-door flex flex-col">
+              <div className="flex flex-1 flex-col rounded-t-[2rem] bg-saigon-deep p-2.5 shadow-[0_10px_0_#01337f]">
                 <div
-                  className={`relative flex min-h-[28rem] flex-col rounded-t-[1.6rem] px-6 pb-4 pt-6 md:min-h-[32rem] ${
+                  className={`relative flex min-h-[28rem] flex-1 flex-col rounded-t-[1.6rem] px-6 pb-4 pt-6 md:min-h-[32rem] ${
                     track.tone === "blue" ? "bg-saigon text-white" : "bg-energy text-ink"
                   }`}
                 >
