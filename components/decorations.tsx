@@ -1,8 +1,7 @@
 /* lightweight vector accents echoing the logo: pixel clusters, sparkles,
    orbit swooshes, and code marks. colors are fixed to the brand palette. */
 
-const BLUE = "#0145b4";
-const YELLOW = "#f8ac1a";
+import { BLUE, YELLOW, SKY_LIGHT, SKY_DEEP } from "./palette";
 
 export function PixelGrid({
   className = "",
@@ -104,38 +103,7 @@ export function CodeMark({
   );
 }
 
-export function SpeedLines({
-  className = "",
-  size = 28,
-  color = BLUE,
-  ...rest
-}: {
-  className?: string;
-  size?: number;
-  color?: string;
-} & React.SVGProps<SVGSVGElement>) {
-  // the little burst lines beside "saigon kids" in the logo
-  return (
-    <svg
-      className={className}
-      width={size}
-      height={size}
-      viewBox="0 0 28 28"
-      fill="none"
-      aria-hidden="true"
-      {...rest}
-    >
-      <path d="M4 24 L10 16" stroke={color} strokeWidth="4" strokeLinecap="round" />
-      <path d="M12 26 L15 18" stroke={color} strokeWidth="4" strokeLinecap="round" />
-      <path d="M2 14 L9 12" stroke={color} strokeWidth="4" strokeLinecap="round" />
-    </svg>
-  );
-}
-
 /* ————— hero scene elements (treehacks-style, brand-tinted) ————— */
-
-const SKY_LIGHT = "#c9d7ee";
-const SKY_DEEP = "#a8bfe2";
 
 export function SaigonSkyline({
   className = "",
@@ -357,6 +325,7 @@ export function PixelStack({
       viewBox="0 0 160 128"
       fill="none"
       aria-hidden="true"
+      {...rest}
     >
       {/* studs */}
       <rect x="52" y="24" width="14" height="10" rx="3" fill={BLUE} />
@@ -392,6 +361,7 @@ export function PixelClock({
       viewBox="0 0 200 200"
       fill="none"
       aria-hidden="true"
+      {...rest}
     >
       <circle cx="100" cy="100" r="88" fill="white" stroke={BLUE} strokeWidth="10" />
       <rect x="94" y="22" width="12" height="12" rx="3" fill={YELLOW} />
@@ -422,6 +392,7 @@ export function PixelHeart({
       viewBox="0 0 180 160"
       fill="none"
       aria-hidden="true"
+      {...rest}
     >
       <path
         d="M30 40 L50 40 L50 20 L80 20 L80 40 L100 40 L100 20 L130 20 L130 40 L150 40 L150 80 L130 80 L130 100 L110 100 L110 120 L90 120 L90 140 L70 140 L70 120 L50 120 L50 100 L30 100 L30 80 L10 80 L10 40 L30 40 Z"
@@ -451,6 +422,7 @@ export function PixelBulb({
       viewBox="0 0 160 184"
       fill="none"
       aria-hidden="true"
+      {...rest}
     >
       {/* rays */}
       <g className="bulb-ray">
