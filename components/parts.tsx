@@ -166,7 +166,10 @@ export type SubjectKind =
   | "list"
   | "shield"
   | "pin"
-  | "gear";
+  | "gear"
+  | "book"
+  | "palette"
+  | "heart";
 
 export function SubjectIcon({
   kind,
@@ -178,7 +181,8 @@ export function SubjectIcon({
   size?: number;
 }) {
   // flat pixel-style icons: a plus tile, a speech bubble, a flask, a pagoda,
-  // two chat bubbles, a checklist, a shield, a map pin, a gear
+  // two chat bubbles, a checklist, a shield, a map pin, a gear, an open
+  // book, a palette, a heart
   return (
     <svg
       className={className}
@@ -254,6 +258,38 @@ export function SubjectIcon({
         <>
           <path d="M20 37c-8-9-13-15-13-21a13 13 0 0 1 26 0c0 6-5 12-13 21z" fill={BLUE} />
           <circle cx="20" cy="16" r="5.5" fill={YELLOW} />
+        </>
+      )}
+      {kind === "book" && (
+        <>
+          <path d="M4 9a2 2 0 0 1 2-2h9a5 5 0 0 1 5 5v22a4 4 0 0 0-4-4H6a2 2 0 0 1-2-2V9z" fill={BLUE} />
+          <path d="M36 9a2 2 0 0 0-2-2h-9a5 5 0 0 0-5 5v22a4 4 0 0 1 4-4h10a2 2 0 0 0 2-2V9z" fill={BLUE} />
+          <rect x="8" y="12" width="9" height="2.5" rx="1.25" fill="#fff" opacity="0.8" />
+          <rect x="8" y="18" width="9" height="2.5" rx="1.25" fill="#fff" opacity="0.8" />
+          <rect x="23" y="12" width="9" height="2.5" rx="1.25" fill="#fff" opacity="0.8" />
+          <rect x="23" y="18" width="9" height="2.5" rx="1.25" fill="#fff" opacity="0.8" />
+          <path d="M28 7v11l-2.5-2-2.5 2V7z" fill={YELLOW} />
+        </>
+      )}
+      {kind === "palette" && (
+        <>
+          <path
+            d="M20 5c9 0 16 6 16 13.5 0 4-3 6.5-6.5 6.5H26a3 3 0 0 0-2.3 5c1 1.2.2 3-1.3 3H20C11 33 4 27 4 19S11 5 20 5z"
+            fill={BLUE}
+          />
+          <circle cx="12" cy="18" r="3" fill={YELLOW} />
+          <circle cx="18" cy="11.5" r="3" fill="#fff" opacity="0.9" />
+          <circle cx="26" cy="12.5" r="3" fill={YELLOW} />
+          <circle cx="11" cy="26" r="3" fill="#fff" opacity="0.9" />
+        </>
+      )}
+      {kind === "heart" && (
+        <>
+          <path
+            d="M10 7h6v4h8V7h6v4h4v10h-4v4h-4v4h-4v4h-4v-4h-4v-4h-4v-4H6V11h4V7z"
+            fill={BLUE}
+          />
+          <rect x="12" y="11" width="4" height="4" fill={YELLOW} />
         </>
       )}
       {kind === "gear" && (

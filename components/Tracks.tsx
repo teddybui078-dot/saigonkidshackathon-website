@@ -24,10 +24,12 @@ const TRACKS: Track[] = [
     blurb:
       "Make learning fun. Turn something worth learning into a game kids genuinely want to play.",
     examples: [
-      { kind: "math", label: "Math quests" },
-      { kind: "language", label: "Language adventures" },
-      { kind: "science", label: "Science puzzles" },
-      { kind: "history", label: "History journeys" },
+      { kind: "math", label: "Math" },
+      { kind: "book", label: "English" },
+      { kind: "science", label: "Science" },
+      { kind: "history", label: "History" },
+      { kind: "language", label: "Foreign language" },
+      { kind: "palette", label: "Art" },
     ],
   },
   {
@@ -41,6 +43,7 @@ const TRACKS: Track[] = [
       { kind: "shield", label: "Safety" },
       { kind: "pin", label: "Navigation" },
       { kind: "gear", label: "Operations" },
+      { kind: "heart", label: "Wellbeing" },
     ],
   },
 ];
@@ -64,17 +67,21 @@ function PageContent({ track }: { track: Track }) {
         <h3 className="text-3xl font-bold leading-tight text-saigon md:text-4xl">{track.name}</h3>
       </div>
       <p className="mt-4 text-lg font-medium leading-7 text-ink/80">{track.blurb}</p>
-      <ul className="mt-auto flex flex-wrap gap-2 pt-6">
+      {/* six suggestions, three by two — icon and label both live inside the square */}
+      <ul className="mt-auto grid grid-cols-3 gap-3 pt-6">
         {track.examples.map((example) => (
           <li
             key={example.label}
-            className="flex w-[4.6rem] flex-col items-center gap-1 rounded-md bg-canvas px-1 py-2 text-center text-[10px] font-semibold leading-tight text-ink/70"
+            className="flex aspect-[5/4] flex-col items-center justify-center gap-1.5 rounded-lg bg-canvas px-2 text-center text-xs font-semibold leading-tight text-ink/70"
           >
-            <SubjectIcon kind={example.kind} size={30} />
+            <SubjectIcon kind={example.kind} size={34} />
             {example.label}
           </li>
         ))}
       </ul>
+      <p className="mt-3 text-xs font-semibold text-ink/50">
+        Just a few ideas to spark you — any direction under this track goes.
+      </p>
     </div>
   );
 }
