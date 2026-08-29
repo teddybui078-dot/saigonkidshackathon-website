@@ -108,7 +108,7 @@ export default function Partnership() {
       {/* pinned: the heading and the three lockups beneath it */}
       <div className="partners-pin mx-auto max-w-4xl text-center">
         <p className="partners-line mb-3 text-sm font-semibold text-saigon">The partnership ✦</p>
-        <h2 className="partners-line text-5xl font-bold leading-tight md:text-7xl">
+        <h2 className="partners-line text-4xl font-bold leading-tight md:text-5xl">
           Three teams, <span className="text-saigon">one big day</span>
         </h2>
         <p className="partners-line mt-4 font-medium text-ink/60">The partnership that makes it happen.</p>
