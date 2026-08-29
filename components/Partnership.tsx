@@ -109,9 +109,9 @@ export default function Partnership() {
       <div className="partners-pin mx-auto max-w-4xl text-center">
         <p className="partners-line mb-3 text-sm font-semibold text-saigon">The partnership ✦</p>
         <h2 className="partners-line text-5xl font-bold leading-tight md:text-7xl">
-          Who&apos;s <span className="text-saigon">behind the day</span>
+          Three teams, <span className="text-saigon">one big day</span>
         </h2>
-        <p className="partners-line mt-4 font-medium text-ink/60">Three teams, one big day.</p>
+        <p className="partners-line mt-4 font-medium text-ink/60">The partnership that makes it happen.</p>
 
         {/* plain lockups: a logo slot and a name, a × between each pair.
             no box — the type is the object here */}
