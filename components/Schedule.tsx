@@ -135,7 +135,7 @@ export default function Schedule() {
       <div className="anchor-drift pointer-events-none absolute right-32 top-[90%] -z-[1] hidden lg:block">
         <PixelGrid size={80} />
       </div>
-      <div className="mx-auto max-w-4xl">
+      <div className="mx-auto max-w-5xl">
         <div className="text-center">
           <p className="mb-3 text-sm font-semibold text-saigon">
             March 6, 2027 ✦
@@ -156,7 +156,7 @@ export default function Schedule() {
             aria-hidden="true"
           />
 
-          <ol className="space-y-12">
+          <ol className="space-y-16">
             {SLOTS.map((slot, i) => (
               <li
                 key={slot.time}
@@ -182,17 +182,17 @@ export default function Schedule() {
                 {/* a paper lantern hanging from the arm; the outer wrapper is the
                     scroll reveal, the inner one sways, so their transforms never fight */}
                 <div className="schedule-lantern">
-                <div className="ambient-hang mx-auto flex max-w-sm flex-col items-center md:max-w-none">
+                <div className="ambient-hang mx-auto flex max-w-md flex-col items-center md:max-w-none">
                   <Hook />
-                  <div className="w-2/3 rounded-t-xl bg-saigon px-3 py-1 text-center text-sm font-bold text-energy">
+                  <div className="w-2/3 rounded-t-xl bg-saigon px-3 py-1.5 text-center text-base font-bold text-energy">
                     {slot.time}
                   </div>
-                  <div className="lantern-body w-full px-10 py-5 text-center">
-                    <h3 className="text-xl font-semibold">{slot.title}</h3>
-                    <p className="mt-1 text-base font-medium text-ink/65">{slot.body}</p>
+                  <div className="lantern-body w-full px-12 py-7 text-center">
+                    <h3 className="text-2xl font-semibold md:text-3xl">{slot.title}</h3>
+                    <p className="mt-2 text-lg font-medium leading-snug text-ink/65">{slot.body}</p>
                   </div>
                   <div className="h-3 w-2/3 rounded-b-xl bg-saigon" aria-hidden="true" />
-                  <Tassel className="h-9 w-6" />
+                  <Tassel className="h-11 w-7" />
                 </div>
                 </div>
               </li>
