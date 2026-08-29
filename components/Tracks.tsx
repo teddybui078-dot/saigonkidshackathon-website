@@ -4,57 +4,38 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { PixelGrid, Sparkle, PixelPlanet, FlightArc } from "./decorations";
-import { SubjectIcon, type SubjectKind } from "./parts";
 
 gsap.registerPlugin(ScrollTrigger);
-
-type Example = { kind: SubjectKind; label: string };
 
 type Track = {
   n: number;
   name: string;
   blurb: string;
-  examples: Example[];
 };
 
+/* the theme and tracks stay off the site until the reveal — the notebook
+   opens onto two placeholder pages for now */
 const TRACKS: Track[] = [
   {
     n: 1,
-    name: "Gamified Edtech",
+    name: "To be revealed",
     blurb:
-      "Make learning fun. Turn something worth learning into a game kids genuinely want to play.",
-    examples: [
-      { kind: "math", label: "Math" },
-      { kind: "book", label: "English" },
-      { kind: "science", label: "Science" },
-      { kind: "history", label: "History" },
-      { kind: "language", label: "Foreign language" },
-      { kind: "palette", label: "Art" },
-    ],
+      "The theme and its tracks stay under wraps until closer to the day. Whatever it is, you'll build something real around it with a team and mentors beside you.",
   },
   {
     n: 2,
-    name: "Smart Campus",
-    blurb:
-      "Build a tool that solves a real everyday problem students or teachers face at school.",
-    examples: [
-      { kind: "chat", label: "Communication" },
-      { kind: "list", label: "Organization" },
-      { kind: "shield", label: "Safety" },
-      { kind: "pin", label: "Navigation" },
-      { kind: "gear", label: "Operations" },
-      { kind: "heart", label: "Wellbeing" },
-    ],
+    name: "To be revealed",
+    blurb: "Track two is a secret for now too. Bring your curiosity — we'll bring the brief on the day.",
   },
 ];
 
-/* one notebook page: a subject header line, the track, its blurb, and the
-   example tiles pinned to the bottom of the page */
+/* one notebook page: a subject header line, the track, its blurb, and six
+   question-mark tiles where the example ideas will go */
 function PageContent({ track }: { track: Track }) {
   return (
     <div className="track-page-content relative flex h-full flex-col p-7 md:p-8">
       <div className="flex items-center justify-between border-b-2 border-saigon/20 pb-2 text-sm font-bold tracking-widest text-saigon/70">
-        <span>Subject: AI in Classrooms</span>
+        <span>Subject: to be revealed</span>
         <span>Track {track.n}</span>
       </div>
       <div className="mt-5 flex items-center gap-3">
@@ -67,21 +48,18 @@ function PageContent({ track }: { track: Track }) {
         <h3 className="text-3xl font-bold leading-tight text-saigon md:text-4xl">{track.name}</h3>
       </div>
       <p className="mt-4 text-lg font-medium leading-7 text-ink/80">{track.blurb}</p>
-      {/* six suggestions, three by two — icon and label both live inside the square */}
-      <ul className="mt-auto grid grid-cols-3 gap-3 pt-6">
-        {track.examples.map((example) => (
+      {/* six empty idea squares, three by two — they fill in with the reveal */}
+      <ul className="mt-auto grid grid-cols-3 gap-3 pt-6" aria-hidden="true">
+        {Array.from({ length: 6 }).map((_, i) => (
           <li
-            key={example.label}
-            className="flex aspect-[5/4] flex-col items-center justify-center gap-1.5 rounded-lg bg-canvas px-2 text-center text-xs font-semibold leading-tight text-ink/70"
+            key={i}
+            className="flex aspect-[5/4] items-center justify-center rounded-lg bg-canvas text-3xl font-bold text-saigon/40"
           >
-            <SubjectIcon kind={example.kind} size={34} />
-            {example.label}
+            ?
           </li>
         ))}
       </ul>
-      <p className="mt-3 text-xs font-semibold text-ink/50">
-        Just a few ideas to spark you — any direction under this track goes.
-      </p>
+      <p className="mt-3 text-xs font-semibold text-ink/50">Example ideas unlock with the reveal.</p>
     </div>
   );
 }
@@ -178,10 +156,10 @@ export default function Tracks() {
           The theme ✦
         </p>
         <h2 className="track-line text-5xl font-bold leading-tight md:text-6xl lg:text-7xl">
-          AI in <span className="text-saigon">Classrooms</span>
+          To be <span className="text-saigon">revealed</span>
         </h2>
         <p className="track-line mt-4 font-medium text-ink/60">
-          One theme. Two tracks. Open the notebook.
+          One theme. Two tracks. Announced closer to the day.
         </p>
 
         {/* the notebook. on phones and under reduced motion it's two stacked
