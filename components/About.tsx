@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { PixelGrid, Sparkle, FloatingLaptop, PixelBulb, PixelStack, FlightArc } from "./decorations";
+import { PixelGrid, Sparkle, FloatingLaptop, PixelBulb, PixelStack, FlightArc, Bolts, SignPost } from "./decorations";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -47,15 +47,20 @@ export default function About() {
         scrollTrigger: { trigger: section, start: "top 70%" },
       });
 
-      gsap.from(".about-card", {
-        y: 60,
-        opacity: 0,
-        rotate: (i) => (i % 2 === 0 ? -3 : 3),
-        duration: 0.7,
-        stagger: 0.15,
-        ease: "back.out(1.4)",
-        scrollTrigger: { trigger: ".about-cards", start: "top 75%" },
-      });
+      const tilt = [-2, 1.5, -1];
+      gsap.fromTo(
+        ".about-card",
+        { y: 60, opacity: 0, rotation: (i: number) => tilt[i] * 3 },
+        {
+          y: 0,
+          opacity: 1,
+          rotation: (i: number) => tilt[i],
+          duration: 0.7,
+          stagger: 0.15,
+          ease: "back.out(1.4)",
+          scrollTrigger: { trigger: ".about-cards", start: "top 75%" },
+        }
+      );
 
       gsap.utils.toArray<HTMLElement>(".stat-number").forEach((el) => {
         const target = Number(el.dataset.value);
@@ -79,11 +84,11 @@ export default function About() {
   return (
     <section ref={sectionRef} id="about" className="relative px-4 py-24">
       {/* big hooks alternating around the content */}
-      <div className="anchor-drift pointer-events-none absolute left-0 top-[6%] -z-[1] hidden lg:block">
-        <PixelBulb size={124} />
+      <div className="anchor-drift pointer-events-none absolute left-4 top-[6%] -z-[1] hidden lg:block">
+        <PixelBulb size={112} />
       </div>
-      <div className="anchor-drift pointer-events-none absolute right-8 top-[44%] -z-[1] hidden lg:block">
-        <FloatingLaptop className="anchor-wobble" width={370} />
+      <div className="anchor-drift pointer-events-none absolute right-10 top-[3%] -z-[1] hidden lg:block">
+        <FloatingLaptop className="anchor-wobble" width={300} />
       </div>
       <div className="anchor-drift pointer-events-none absolute left-8 top-[88%] -z-[1] hidden lg:block">
         <PixelStack width={170} />
@@ -111,45 +116,56 @@ export default function About() {
           </p>
         </div>
 
-        <div className="about-cards mt-14 grid gap-6 md:grid-cols-3">
+        {/* signs on posts */}
+        <div className="about-cards mt-14 grid gap-8 md:grid-cols-3">
           {CARDS.map((card, i) => (
-            <div
-              key={card.title}
-              className="about-card relative rounded-3xl bg-white p-7 shadow-[0_2px_16px_rgba(30,41,59,0.06)]"
-            >
-              <PixelGrid className="ambient-float absolute right-5 top-5" data-amp="s" size={26} />
-              <div
-                className={`mb-4 h-2 w-12 rounded-full ${
-                  i % 2 === 0 ? "bg-energy" : "bg-saigon"
-                }`}
-              />
-              <h3 className="text-xl font-semibold">{card.title}</h3>
-              <p className="mt-2 font-medium text-ink/70">{card.body}</p>
+            <div key={card.title} className="about-card flex flex-col items-center">
+              <div className="relative w-full rounded-2xl border-4 border-saigon bg-white px-7 pb-7 pt-8 shadow-[inset_0_0_0_4px_white,inset_0_0_0_7px_#f8ac1a,0_8px_0_#01337f]">
+                <Bolts />
+                <div
+                  className={`mb-4 h-2 w-12 rounded-full ${
+                    i % 2 === 0 ? "bg-energy" : "bg-saigon"
+                  }`}
+                />
+                <h3 className="text-xl font-semibold">{card.title}</h3>
+                <p className="mt-2 font-medium text-ink/70">{card.body}</p>
+              </div>
+              <SignPost height={58} />
             </div>
           ))}
         </div>
 
-        <dl className="mt-16 grid grid-cols-2 gap-8 rounded-3xl border-2 border-mist bg-white/60 p-8 text-center md:grid-cols-4">
-          {STATS.map((stat) => (
-            <div key={stat.label}>
-              <dd className="text-4xl font-bold text-saigon md:text-5xl">
-                {stat.value !== null ? (
-                  <>
-                    <span className="stat-number" data-value={stat.value}>
-                      {stat.value}
+        {/* control panel with big round buttons */}
+        <div className="relative mt-12 rounded-3xl border-4 border-saigon bg-white px-6 py-9 shadow-[0_10px_0_#01337f] md:px-10">
+          <Bolts />
+          <dl className="grid grid-cols-2 gap-x-6 gap-y-9 text-center md:grid-cols-4">
+            {STATS.map((stat, i) => (
+              <div key={stat.label} className="flex flex-col-reverse items-center">
+                <dt className="mt-4 text-sm font-semibold text-ink/60">
+                  {stat.label}
+                </dt>
+                <dd
+                  className={`grid h-28 w-28 place-items-center rounded-full border-4 border-saigon text-3xl font-bold md:text-4xl ${
+                    i % 2 === 0
+                      ? "bg-energy text-ink shadow-[0_8px_0_#d18e07]"
+                      : "bg-saigon text-white shadow-[0_8px_0_#01337f]"
+                  }`}
+                >
+                  {stat.value !== null ? (
+                    <span>
+                      <span className="stat-number" data-value={stat.value}>
+                        {stat.value}
+                      </span>
+                      {stat.suffix}
                     </span>
-                    {stat.suffix}
-                  </>
-                ) : (
-                  <span className="text-energy">{stat.suffix}</span>
-                )}
-              </dd>
-              <dt className="mt-1 text-sm font-medium text-ink/60">
-                {stat.label}
-              </dt>
-            </div>
-          ))}
-        </dl>
+                  ) : (
+                    <span>{stat.suffix}</span>
+                  )}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </div>
 
         <Sparkle className="ambient-twinkle absolute bottom-10 right-[8%] hidden lg:block" size={26} />
       </div>

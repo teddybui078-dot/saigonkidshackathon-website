@@ -480,3 +480,45 @@ export function PixelBulb({
     </svg>
   );
 }
+
+/* ————— physical card parts: bolts and sign posts ————— */
+
+export function Bolts({ className = "" }: { className?: string }) {
+  // four corner bolts — makes a panel read as a real mounted object
+  const spots = ["left-3 top-3", "right-3 top-3", "left-3 bottom-3", "right-3 bottom-3"];
+  return (
+    <>
+      {spots.map((spot) => (
+        <span
+          key={spot}
+          aria-hidden="true"
+          className={`pointer-events-none absolute ${spot} h-3 w-3 rounded-full border-2 border-saigon bg-energy ${className}`}
+        />
+      ))}
+    </>
+  );
+}
+
+export function SignPost({
+  className = "",
+  height = 60,
+}: {
+  className?: string;
+  height?: number;
+}) {
+  // the pole under a sign — our spire motif: pole, golden ring, yellow ball
+  return (
+    <svg
+      className={className}
+      width={height}
+      height={height}
+      viewBox="0 0 64 64"
+      fill="none"
+      aria-hidden="true"
+    >
+      <path d="M32 0 L32 50" stroke={BLUE} strokeWidth="7" strokeLinecap="round" />
+      <ellipse cx="32" cy="22" rx="20" ry="6" stroke={YELLOW} strokeWidth="3.5" />
+      <circle cx="32" cy="55" r="7" fill={YELLOW} stroke={BLUE} strokeWidth="3" />
+    </svg>
+  );
+}
