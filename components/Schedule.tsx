@@ -63,8 +63,10 @@ export default function Schedule() {
       // px of pole drawn so far -> each row's arm and lantern progress
       const paint = (tip: number) => {
         rows.forEach((r) => {
-          const a = clamp((tip + 40 - r.top) / 60);
-          const l = clamp((tip + 40 - r.top - 50) / 90);
+          // the arm starts the moment the tip reaches its collar, then the
+          // lantern fades in and drops as the arm finishes
+          const a = clamp((tip - r.top) / 50);
+          const l = clamp((tip - r.top - 30) / 70);
           if (a !== r.a) {
             r.a = a;
             r.setArm(a);
