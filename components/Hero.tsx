@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { Fragment, useEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -234,7 +234,23 @@ export default function Hero() {
           </div>
         </div>
 
-        <p className="hero-fade mt-24 max-w-xl text-lg font-medium text-ink/80 md:text-xl">
+        {/* who's behind it */}
+        <div className="hero-fade mt-24 flex flex-wrap items-center justify-center gap-2">
+          {["Saigon Kids Hackathon", "Project Possible", "Saigon South International School"].map((name, i) => (
+            <Fragment key={name}>
+              {i > 0 && (
+                <span className="text-lg font-bold text-energy" aria-hidden="true">
+                  ×
+                </span>
+              )}
+              <span className="rounded-md border-2 border-saigon bg-white px-3 py-1 text-xs font-semibold text-saigon">
+                {name}
+              </span>
+            </Fragment>
+          ))}
+        </div>
+
+        <p className="hero-fade mt-6 max-w-xl text-lg font-medium text-ink/80 md:text-xl">
           One big day of building, coding, and playing — for 130 young makers
           aged 8–15.
         </p>

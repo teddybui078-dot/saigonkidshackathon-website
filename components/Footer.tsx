@@ -84,7 +84,9 @@ export default function Footer() {
         </div>
 
         <div className="footer-pop mt-16 flex flex-col items-center gap-4 border-t border-white/20 pt-8 text-sm font-medium text-white/70 md:flex-row md:justify-between">
-          <p>Saigon Kids Hackathon © 2027</p>
+          <p className="max-w-xs md:text-left">
+            Saigon Kids Hackathon × Project Possible × Saigon South International School © 2027
+          </p>
           <CodeMark size={40} chevronColor="#ffffff" className="ambient-float opacity-80" data-amp="s" />
           <p>
             Made with <span className="text-energy">♥</span> in Saigon
