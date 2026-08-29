@@ -5,7 +5,7 @@ import About from "@/components/About";
 import Tracks from "@/components/Tracks";
 import Schedule from "@/components/Schedule";
 import Faq from "@/components/Faq";
-import Sponsors from "@/components/Sponsors";
+import Founders from "@/components/Founders";
 import Footer from "@/components/Footer";
 import ScrollProgress from "@/components/ScrollProgress";
 import SceneBackdrop from "@/components/SceneBackdrop";
@@ -23,7 +23,7 @@ export default function Home() {
       <About />
       <Tracks />
       <Schedule />
-      <Sponsors />
+      <Founders />
       <Faq />
       <Footer />
     </main>
