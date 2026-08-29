@@ -55,7 +55,7 @@ export default function Footer() {
           <span className="relative inline-block text-energy">
             March 6, 2027
             <svg
-              className="pointer-events-none absolute -inset-x-4 -inset-y-2 h-[calc(100%+1rem)] w-[calc(100%+2rem)]"
+              className="pointer-events-none absolute -inset-x-8 -inset-y-5 h-[calc(100%+2.5rem)] w-[calc(100%+4rem)]"
               viewBox="0 0 300 80"
               fill="none"
               preserveAspectRatio="none"
@@ -63,7 +63,7 @@ export default function Footer() {
             >
               <path
                 className="footer-orbit"
-                d="M 150 6 C 260 6 294 28 294 40 C 294 60 230 74 150 74 C 70 74 6 60 6 40 C 6 28 40 6 150 6"
+                d="M 150 4 C 262 4 296 26 296 40 C 296 62 232 76 150 76 C 68 76 4 62 4 40 C 4 26 38 4 150 4"
                 stroke="#f8ac1a"
                 strokeWidth="3"
                 strokeLinecap="round"
