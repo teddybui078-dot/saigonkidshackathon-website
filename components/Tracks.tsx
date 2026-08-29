@@ -4,23 +4,23 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { PixelGrid, Sparkle, PixelPlanet, FlightArc } from "./decorations";
-import { SubjectIcon, Pushpin, type SubjectKind } from "./parts";
+import { SubjectIcon, type SubjectKind } from "./parts";
 
 gsap.registerPlugin(ScrollTrigger);
 
 type Example = { kind: SubjectKind; label: string };
 
-const TRACKS: {
+type Track = {
   n: number;
   name: string;
-  tone: "blue" | "yellow";
   blurb: string;
   examples: Example[];
-}[] = [
+};
+
+const TRACKS: Track[] = [
   {
     n: 1,
     name: "Gamified Edtech",
-    tone: "blue",
     blurb:
       "Make learning fun. Turn something worth learning into a game kids genuinely want to play.",
     examples: [
@@ -33,7 +33,6 @@ const TRACKS: {
   {
     n: 2,
     name: "Smart Campus",
-    tone: "yellow",
     blurb:
       "Build a tool that solves a real everyday problem students or teachers face at school.",
     examples: [
@@ -46,60 +45,110 @@ const TRACKS: {
   },
 ];
 
+/* one notebook page: a subject header line, the track, its blurb, and the
+   example tiles pinned to the bottom of the page */
+function PageContent({ track }: { track: Track }) {
+  return (
+    <div className="track-page-content relative flex h-full flex-col p-6 md:p-7">
+      <div className="flex items-center justify-between border-b-2 border-saigon/20 pb-2 text-[11px] font-bold tracking-widest text-saigon/70">
+        <span>Subject: AI in Classrooms</span>
+        <span>Track {track.n}</span>
+      </div>
+      <div className="mt-5 flex items-center gap-3">
+        <span
+          className="grid h-9 w-9 shrink-0 place-items-center rounded-md border-[3px] border-saigon bg-energy text-base font-bold text-ink"
+          aria-hidden="true"
+        >
+          {track.n}
+        </span>
+        <h3 className="text-2xl font-bold leading-tight text-saigon md:text-3xl">{track.name}</h3>
+      </div>
+      <p className="mt-4 font-medium leading-7 text-ink/80">{track.blurb}</p>
+      <ul className="mt-auto flex flex-wrap gap-2 pt-6">
+        {track.examples.map((example) => (
+          <li
+            key={example.label}
+            className="flex w-[4.6rem] flex-col items-center gap-1 rounded-md bg-canvas px-1 py-2 text-center text-[10px] font-semibold leading-tight text-ink/70"
+          >
+            <SubjectIcon kind={example.kind} size={30} />
+            {example.label}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 export default function Tracks() {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const mm = gsap.matchMedia();
-    mm.add("(prefers-reduced-motion: no-preference)", () => {
-      const section = sectionRef.current;
-      if (!section) return;
+    mm.add(
+      {
+        motionOK: "(prefers-reduced-motion: no-preference)",
+        desktop: "(min-width: 48rem)", // tailwind's md — keeps css and gsap in step
+      },
+      (ctx) => {
+        const { motionOK, desktop } = ctx.conditions as Record<string, boolean>;
+        const section = sectionRef.current;
+        if (!section || !motionOK) return;
 
-      gsap.from(".track-line", {
-        y: 40,
-        opacity: 0,
-        duration: 0.7,
-        stagger: 0.12,
-        ease: "power3.out",
-        scrollTrigger: { trigger: section, start: "top 70%" },
-      });
+        const pinEl = section.querySelector<HTMLElement>(".track-pin");
+        const book = section.querySelector<HTMLElement>(".track-book");
+        const cover = section.querySelector<HTMLElement>(".track-cover");
+        if (!pinEl || !book || !cover) return;
+        const content = gsap.utils.toArray<HTMLElement>(".track-page-content", section);
 
-      gsap.from(".track-board", {
-        y: 70,
-        opacity: 0,
-        scale: 0.94,
-        duration: 0.8,
-        ease: "back.out(1.4)",
-        scrollTrigger: { trigger: ".track-board", start: "top 80%" },
-      });
-
-      gsap.from(".track-door", {
-        y: 60,
-        opacity: 0,
-        duration: 0.7,
-        stagger: 0.15,
-        ease: "back.out(1.4)",
-        scrollTrigger: { trigger: ".track-doors", start: "top 80%" },
-      });
-
-      gsap.utils.toArray<HTMLElement>(".track-door").forEach((door) => {
-        gsap.from(door.querySelectorAll(".track-subject"), {
-          y: 20,
+        gsap.from(".track-line", {
+          y: 40,
           opacity: 0,
-          scale: 0.8,
-          duration: 0.45,
-          stagger: 0.08,
-          ease: "back.out(1.8)",
-          scrollTrigger: { trigger: door, start: "top 65%" },
+          duration: 0.7,
+          stagger: 0.12,
+          ease: "power3.out",
+          scrollTrigger: { trigger: pinEl, start: "top 85%" },
         });
-      });
-    });
+
+        if (desktop) {
+          // the css default is the open spread; here we close the notebook and
+          // let the scroll open it: the cover swings on the spine while the
+          // whole book slides so the spread ends up centred
+          gsap.set(cover, { willChange: "transform" });
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: pinEl,
+              pin: true,
+              scrub: 0.6,
+              anticipatePin: 1,
+              invalidateOnRefresh: true,
+              start: () =>
+                "top " + Math.max(88, Math.round((window.innerHeight - pinEl.offsetHeight) / 2)),
+              end: () => "+=" + 1.6 * window.innerHeight,
+            },
+          });
+          tl.fromTo(book, { x: () => -book.offsetWidth / 4 }, { x: 0, ease: "none", duration: 1 }, 0)
+            .fromTo(cover, { rotateY: 0 }, { rotateY: -180, ease: "power1.inOut", duration: 1 }, 0)
+            .fromTo(content, { opacity: 0 }, { opacity: 1, ease: "none", duration: 0.4 }, 0.55)
+            .to({}, { duration: 0.3 });
+        } else {
+          // small screens: the two pages simply arrive as you scroll
+          gsap.from(".track-page", {
+            y: 60,
+            opacity: 0,
+            duration: 0.7,
+            stagger: 0.15,
+            ease: "back.out(1.4)",
+            scrollTrigger: { trigger: book, start: "top 75%" },
+          });
+        }
+      }
+    );
     return () => mm.revert();
   }, []);
 
   return (
     <section ref={sectionRef} id="tracks" className="relative overflow-hidden px-4 py-28">
-      {/* big hooks around the showcase */}
+      {/* big hooks around the notebook */}
       <div className="anchor-drift pointer-events-none absolute right-10 top-16 -z-[1] hidden lg:block">
         <PixelPlanet className="anchor-wobble" size={290} />
       </div>
@@ -116,107 +165,58 @@ export default function Tracks() {
         <Sparkle className="ambient-twinkle" size={40} />
       </div>
 
-      <div className="mx-auto max-w-4xl text-center">
+      {/* pinned: the heading and the notebook that opens beneath it */}
+      <div className="track-pin mx-auto max-w-4xl text-center">
         <p className="track-line mb-3 text-sm font-semibold text-saigon">
           The theme ✦
         </p>
+        <h2 className="track-line text-5xl font-bold leading-tight md:text-7xl">
+          AI in <span className="text-saigon">Classrooms</span>
+        </h2>
+        <p className="track-line mt-4 font-medium text-ink/60">
+          One theme. Two tracks. Open the notebook.
+        </p>
 
-        {/* the theme, written up on the classroom whiteboard */}
-        <div className="track-board relative mx-auto mt-2 max-w-4xl">
-          <div className="relative rounded-2xl border-[10px] border-[#a8bfe2] bg-white px-6 py-12 text-center shadow-[inset_0_0_0_3px_#e2e8f0,0_10px_0_#8fa9d4] md:px-10 md:py-14">
-            {/* magnets on the frame, doodles in the corners */}
-            <span aria-hidden="true" className="absolute -left-2 -top-2 h-5 w-5 rounded-full border-2 border-energy-deep bg-energy" />
-            <span aria-hidden="true" className="absolute -right-2 -top-2 h-5 w-5 rounded-full border-2 border-saigon-deep bg-saigon" />
-            <Sparkle className="ambient-twinkle absolute right-8 top-6" size={28} />
-            <span aria-hidden="true" className="absolute left-8 top-6 -rotate-6 text-sm font-bold text-saigon/40">
-              2027
-            </span>
-            <FlightArc className="absolute bottom-3 left-6 hidden md:block" width={140} color="#f8ac1a" />
-            <h2 className="text-5xl font-bold leading-tight md:text-7xl">
-              AI in{" "}
-              <span className="relative inline-block text-saigon">
-                Classrooms
-                <svg
-                  className="absolute -bottom-2 left-0 h-3 w-full"
-                  viewBox="0 0 200 12"
-                  preserveAspectRatio="none"
-                  aria-hidden="true"
-                >
-                  <path d="M2 8C40 2 80 10 120 5s60 4 78-1" stroke="#f8ac1a" strokeWidth="5" strokeLinecap="round" fill="none" />
-                </svg>
-              </span>
-            </h2>
-            <p className="mt-6 text-lg font-medium text-ink/60">One theme. Two tracks. Pick your door.</p>
+        {/* the notebook. on phones and under reduced motion it's two stacked
+            pages; on md+ with motion it's a 3d book that gsap closes and the
+            scroll opens. perspective lives on the book, preserve-3d only on the
+            cover, and rounding/overflow only on the two faces */}
+        <div className="track-book relative mx-auto mt-10 grid w-full max-w-[52rem] gap-6 text-left motion-safe:md:block motion-safe:md:h-[30rem] motion-safe:md:perspective-[2200px]">
+          {/* right page: track 2, the base page under the cover */}
+          <div className="track-page paper-ruled relative order-2 min-h-[22rem] overflow-hidden rounded-2xl border-[3px] border-saigon shadow-[6px_6px_0_#c9d7ee] motion-safe:md:absolute motion-safe:md:inset-y-0 motion-safe:md:left-1/2 motion-safe:md:min-h-0 motion-safe:md:w-1/2 motion-safe:md:rounded-l-none motion-safe:md:border-l-0">
+            <span aria-hidden="true" className="absolute inset-y-0 left-6 w-0.5 bg-energy/50" />
+            <PageContent track={TRACKS[1]} />
           </div>
-          {/* marker tray: two markers and an eraser */}
-          <div aria-hidden="true" className="relative mx-10 h-4 rounded-b-lg bg-[#a8bfe2]">
-            <span className="absolute -top-1.5 left-8 h-3 w-14 overflow-hidden rounded-full bg-saigon">
-              <span className="absolute right-0 top-0 h-3 w-4 bg-saigon-deep" />
-            </span>
-            <span className="absolute -top-1.5 left-28 h-3 w-14 overflow-hidden rounded-full bg-energy">
-              <span className="absolute right-0 top-0 h-3 w-4 bg-energy-deep" />
-            </span>
-            <span className="absolute -top-2 right-10 h-3.5 w-10 rounded border border-[#8fa9d4] bg-[#cbd8ee]" />
-          </div>
-        </div>
 
-        {/* two classroom doors, one per track */}
-        <div className="track-doors mx-auto mt-14 grid max-w-4xl gap-8 md:grid-cols-2">
-          {TRACKS.map((track) => (
-            <div key={track.n} className="track-door flex flex-col">
-              <div className="flex flex-1 flex-col rounded-t-[2rem] bg-saigon-deep p-2.5 shadow-[0_10px_0_#01337f]">
-                <div
-                  className={`relative flex min-h-[28rem] flex-1 flex-col rounded-t-[1.6rem] px-6 pb-4 pt-6 md:min-h-[32rem] ${
-                    track.tone === "blue" ? "bg-saigon text-white" : "bg-energy text-ink"
-                  }`}
-                >
-                  {/* room number, window, nameplate */}
-                  <span
-                    className="mx-auto grid h-10 w-12 place-items-center rounded-md border-[3px] border-saigon-deep bg-white text-lg font-bold text-saigon"
-                    aria-hidden="true"
-                  >
-                    {track.n}
-                  </span>
-                  <span
-                    className="relative mx-auto mt-5 block h-24 w-36 overflow-hidden rounded-lg border-4 border-saigon-deep bg-[#cbd8ee]"
-                    aria-hidden="true"
-                  >
-                    <span className="absolute -left-4 -top-4 h-32 w-8 rotate-[20deg] bg-white/50" />
-                  </span>
-                  <h3 className="mx-auto mt-5 rounded-md bg-white px-5 py-2 text-xl font-bold text-saigon shadow-[0_3px_0_#01337f]">
-                    {track.name}
-                  </h3>
-
-                  {/* the poster tacked to the door */}
-                  <div className="relative mt-6 rounded-lg bg-white p-5 pt-6 text-left text-ink shadow-[0_4px_0_rgba(1,51,127,0.25)]">
-                    <Pushpin className="absolute -top-3 left-4" size={22} />
-                    <p className="font-medium leading-7 text-ink/80">{track.blurb}</p>
-                    <ul className="mt-4 flex flex-wrap justify-center gap-2">
-                      {track.examples.map((example) => (
-                        <li
-                          key={example.label}
-                          className="track-subject flex w-[4.6rem] flex-col items-center gap-1 rounded-md bg-canvas px-1 py-2 text-center text-[10px] font-semibold leading-tight text-ink/70"
-                        >
-                          <SubjectIcon kind={example.kind} size={30} />
-                          {example.label}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* handle and kick plate */}
-                  <span
-                    className={`absolute right-1 top-1/2 h-5 w-5 rounded-full border-[3px] border-saigon-deep ${
-                      track.tone === "blue" ? "bg-energy" : "bg-saigon"
-                    }`}
-                    aria-hidden="true"
-                  />
-                  <span className="mx-1 mt-6 block h-8 rounded bg-black/10 md:mt-auto" aria-hidden="true" />
-                </div>
+          {/* the cover, hinged on the spine. its back face is the left page */}
+          <div className="track-cover order-1 motion-safe:md:absolute motion-safe:md:inset-y-0 motion-safe:md:left-1/2 motion-safe:md:w-1/2 motion-safe:md:origin-left motion-safe:md:transform-3d motion-safe:md:rotate-y-180">
+            {/* cover front: spine strip, elastic band, label sticker */}
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 hidden overflow-hidden rounded-r-2xl bg-saigon backface-hidden rotate-y-0 shadow-[0_10px_0_#01337f] motion-safe:md:block"
+            >
+              <span className="absolute inset-y-0 left-0 w-4 bg-saigon-deep" />
+              <span className="absolute inset-y-0 right-8 w-2.5 bg-energy" />
+              <div className="absolute left-12 right-16 top-14 rounded-lg bg-white px-5 py-5 shadow-[0_4px_0_#01337f]">
+                <PixelGrid size={20} />
+                <p className="mt-3 text-xs font-bold tracking-widest text-saigon/70">Theme notebook</p>
+                <p className="mt-1 text-2xl font-bold leading-tight text-ink">Saigon Kids Hackathon</p>
+                <p className="mt-2 text-sm font-semibold text-ink/60">March 6, 2027</p>
               </div>
-              <div aria-hidden="true" className="h-3 rounded-b-md bg-saigon-deep" />
+              <span className="absolute bottom-8 left-12 text-xs font-semibold text-white/70">scroll to open ↓</span>
             </div>
-          ))}
+            {/* left page: track 1 */}
+            <div className="track-page paper-ruled relative min-h-[22rem] overflow-hidden rounded-2xl border-[3px] border-saigon shadow-[6px_6px_0_#c9d7ee] motion-safe:md:absolute motion-safe:md:inset-0 motion-safe:md:min-h-0 motion-safe:md:rounded-r-none motion-safe:md:border-r-0 motion-safe:md:shadow-none motion-safe:md:backface-hidden motion-safe:md:rotate-y-180">
+              <span aria-hidden="true" className="absolute inset-y-0 left-6 w-0.5 bg-energy/50" />
+              <PageContent track={TRACKS[0]} />
+            </div>
+          </div>
+
+          {/* spine */}
+          <div
+            aria-hidden="true"
+            className="absolute inset-y-0 left-1/2 hidden w-3 -translate-x-1/2 rounded-full bg-saigon-deep motion-safe:md:block"
+          />
         </div>
       </div>
     </section>
