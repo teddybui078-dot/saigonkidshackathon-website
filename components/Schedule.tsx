@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Sparkle, PixelClock, PixelStack, CodeMark, PixelGrid } from "./decorations";
+import { Hook, Tassel } from "./parts";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -85,44 +86,52 @@ export default function Schedule() {
           </h2>
         </div>
 
-        <div className="schedule-list relative mt-16">
-          {/* spine */}
+        <div className="schedule-list relative mt-20">
+          {/* the pole, with a finial on top — draws itself as you scroll */}
           <div
-            className="schedule-spine absolute left-[1.1rem] top-0 h-full w-2 rounded-full bg-saigon md:left-1/2 md:-translate-x-1/2"
+            className="schedule-spine absolute left-1/2 top-0 h-full w-2 -translate-x-1/2 rounded-full bg-saigon"
+            aria-hidden="true"
+          />
+          <span
+            className="absolute -top-4 left-1/2 h-5 w-5 -translate-x-1/2 rounded-full border-[3px] border-saigon bg-energy"
             aria-hidden="true"
           />
 
-          <ol className="space-y-10">
+          <ol className="space-y-12">
             {SLOTS.map((slot, i) => (
               <li
                 key={slot.time}
-                className={`schedule-item relative flex items-start gap-6 pl-12 md:w-1/2 md:pl-0 ${
-                  i % 2 === 0
-                    ? "md:mr-auto md:flex-row-reverse md:pr-10"
-                    : "md:ml-auto md:pl-10"
+                className={`schedule-item relative md:w-1/2 ${
+                  i % 2 === 0 ? "md:mr-auto md:pr-10" : "md:ml-auto md:pl-10"
                 }`}
               >
+                {/* bracket arm out from the pole, and the collar it bolts to */}
                 <span
-                  className={`absolute left-2 top-1.5 h-6 w-6 rounded-md border-[3px] border-saigon ${
+                  className={`absolute top-0.5 hidden h-1.5 bg-saigon md:block ${
                     i % 2 === 0
-                      ? "bg-energy md:left-auto md:-right-3"
-                      : "bg-white md:-left-3"
+                      ? "right-0 w-[calc(50%_+_1.25rem)] rounded-l-full"
+                      : "left-0 w-[calc(50%_+_1.25rem)] rounded-r-full"
                   }`}
                   aria-hidden="true"
                 />
-                {/* an event ticket: punched notches + a tear-off time stub */}
-                <div className="relative flex w-full rounded-2xl border-[3px] border-saigon bg-white text-left shadow-[0_6px_0_#cbd8ee]">
-                  <span className="absolute -left-3 top-1/2 h-6 w-6 -translate-y-1/2 rounded-full border-[3px] border-saigon bg-[#e7edf7]" aria-hidden="true" />
-                  <span className="absolute -right-3 top-1/2 h-6 w-6 -translate-y-1/2 rounded-full border-[3px] border-saigon bg-[#e7edf7]" aria-hidden="true" />
-                  <div className="flex w-24 shrink-0 items-center justify-center rounded-l-[13px] border-r-[3px] border-dashed border-saigon bg-energy/15 px-2 text-center">
-                    <p className="text-lg font-bold text-saigon">{slot.time}</p>
+                <span
+                  className={`absolute -top-1 hidden h-4 w-5 rounded-sm border-[3px] border-saigon bg-energy md:block ${
+                    i % 2 === 0 ? "-right-2.5" : "-left-2.5"
+                  }`}
+                  aria-hidden="true"
+                />
+                {/* a paper lantern hanging from the arm */}
+                <div className="ambient-hang mx-auto flex max-w-sm flex-col items-center md:max-w-none">
+                  <Hook />
+                  <div className="w-3/4 rounded-t-xl bg-saigon px-3 py-1 text-center text-sm font-bold text-energy">
+                    {slot.time}
                   </div>
-                  <div className="p-5 md:p-6">
+                  <div className={`lantern-body w-full px-8 py-5 text-center ${i % 2 === 1 ? "lantern-body-warm" : ""}`}>
                     <h3 className="text-xl font-semibold">{slot.title}</h3>
-                    <p className="mt-1 text-base font-medium text-ink/65">
-                      {slot.body}
-                    </p>
+                    <p className="mt-1 text-base font-medium text-ink/65">{slot.body}</p>
                   </div>
+                  <div className="h-3 w-3/4 rounded-b-xl bg-saigon" aria-hidden="true" />
+                  <Tassel />
                 </div>
               </li>
             ))}
