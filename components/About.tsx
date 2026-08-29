@@ -85,11 +85,13 @@ export default function About() {
               { y: 0, opacity: 1, rotation: tilt[i], ease: "power2.out", duration: 1 },
               i
             );
+            // earlier notes straighten up and tuck behind, so only their clean
+            // top strip (pushpin, no text) peeks out above the main card
             if (i > 0) {
-              tl.to(cards[i - 1], { y: -28, scale: 0.94, opacity: 0.55, ease: "power2.out", duration: 1 }, i);
+              tl.to(cards[i - 1], { y: -34, rotation: 0, scale: 0.94, opacity: 0.55, ease: "power2.out", duration: 1 }, i);
             }
             if (i > 1) {
-              tl.to(cards[i - 2], { y: -52, scale: 0.9, opacity: 0.3, ease: "power2.out", duration: 1 }, i);
+              tl.to(cards[i - 2], { y: -62, rotation: 0, scale: 0.9, opacity: 0.3, ease: "power2.out", duration: 1 }, i);
             }
           });
           tl.to({}, { duration: 0.4 }); // hold on the last note before letting go
