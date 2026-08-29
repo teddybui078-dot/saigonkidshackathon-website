@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Sparkle, CodeMark, PixelStack, PixelPlanet } from "./decorations";
+import { PARTNERS } from "./partners";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -83,10 +84,22 @@ export default function Footer() {
           </span>
         </div>
 
-        <div className="footer-pop mt-16 flex flex-col items-center gap-4 border-t border-white/20 pt-8 text-sm font-medium text-white/70 md:flex-row md:justify-between">
-          <p className="max-w-xs md:text-left">
-            Saigon Kids Hackathon × Project Possible × Saigon South International School © 2027
-          </p>
+        {/* who's behind it — bold names on their own row, a yellow × between */}
+        <div className="footer-pop mt-14 flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+          {PARTNERS.map((partner, i) => (
+            <span key={partner.name} className="inline-flex items-center gap-2.5">
+              {i > 0 && (
+                <span className="text-2xl font-bold leading-none text-energy" aria-hidden="true">
+                  ×
+                </span>
+              )}
+              <span className="text-base font-bold text-white md:text-lg">{partner.name}</span>
+            </span>
+          ))}
+        </div>
+
+        <div className="footer-pop mt-10 flex flex-col items-center gap-4 border-t border-white/20 pt-8 text-sm font-medium text-white/70 md:flex-row md:justify-between">
+          <p>© 2027 Saigon Kids Hackathon</p>
           <CodeMark size={40} chevronColor="#ffffff" className="ambient-float opacity-80" data-amp="s" />
           <p>
             Made with <span className="text-energy">♥</span> in Saigon
