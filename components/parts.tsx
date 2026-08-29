@@ -3,7 +3,9 @@
    tassels, leds. every svg here has a fixed intrinsic
    size — anything that must stretch with content is css, not svg. */
 
+import Image from "next/image";
 import { BLUE, YELLOW, SKY_DEEP } from "./palette";
+import type { Partner } from "./partners";
 
 /* ————— fasteners ————— */
 
@@ -152,6 +154,43 @@ export function Tassel({ className = "" }: { className?: string }) {
       <rect x="6" y="10" width="8" height="6" rx="2" fill={BLUE} />
       <path d="M7 16 V26 M10 16 V28 M13 16 V25" stroke={YELLOW} strokeWidth="2.5" strokeLinecap="round" />
     </svg>
+  );
+}
+
+/* ————— logo slots ————— */
+
+export function LogoSlot({
+  partner,
+  size = 40,
+  className = "",
+}: {
+  partner: Partner;
+  size?: number;
+  className?: string;
+}) {
+  // a round slot for a partner's mark. the real logo is shown as-is —
+  // never rotated, recoloured or shadowed (GUIDELINES.md) — and until a
+  // mark arrives the slot is a dashed ring with "logo" written inside,
+  // the same placeholder the founder badges use
+  if (partner.logo) {
+    return (
+      <Image
+        src={partner.logo}
+        alt={`${partner.name} logo`}
+        width={size}
+        height={size}
+        className={`shrink-0 rounded-full ${className}`}
+      />
+    );
+  }
+  return (
+    <span
+      className={`grid shrink-0 place-items-center rounded-full border-[3px] border-dashed border-mist bg-white text-[10px] font-semibold leading-none text-ink/40 ${className}`}
+      style={{ width: size, height: size }}
+      aria-hidden="true"
+    >
+      {size >= 40 ? "logo" : null}
+    </span>
   );
 }
 
