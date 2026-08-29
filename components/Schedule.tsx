@@ -66,9 +66,10 @@ export default function Schedule() {
       const paint = (tip: number) => {
         rows.forEach((r) => {
           // the arm starts the moment the tip reaches its collar, then the
-          // lantern fades in and drops as the arm finishes
-          const a = clamp((tip - r.top) / 50);
-          const l = clamp((tip - r.top - 30) / 70);
+          // lantern fades in and drops over the next stretch of pole — the
+          // ramps are wide on purpose so each one takes its time
+          const a = clamp((tip - r.top) / 80);
+          const l = clamp((tip - r.top - 40) / 110);
           if (a !== r.a) {
             r.a = a;
             r.setArm(a);
@@ -107,8 +108,8 @@ export default function Schedule() {
           scrollTrigger: {
             trigger: list,
             start: "top 70%",
-            end: "bottom 65%",
-            scrub: 0.6,
+            end: "bottom 50%",
+            scrub: 1,
             onRefresh: measure,
           },
         }
