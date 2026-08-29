@@ -84,35 +84,28 @@ const TONES = {
   },
 } as const;
 
-const SHAPES = {
-  round: { box: "h-full w-full rounded-full", gloss: "left-5 top-3 h-3 w-8" },
-  pill: { box: "rounded-full px-7 py-3", gloss: "left-4 top-1.5 h-1.5 w-8" },
-} as const;
-
 export function DomeButton({
-  shape = "round",
   tone = "yellow",
   pressable = false,
   className = "",
   children,
 }: {
-  shape?: keyof typeof SHAPES;
   tone?: keyof typeof TONES;
   pressable?: boolean;
   className?: string;
   children: React.ReactNode;
 }) {
-  // a domed push-button: hard shadow for height, an inset lip at the
-  // bottom, and a specular gloss up top. `pressable` sinks it on hover.
+  // a round domed push-button that fills its wrapper: hard shadow for
+  // height, an inset lip at the bottom, a specular gloss up top.
+  // `pressable` sinks it on hover. size it with the wrapper.
   const t = TONES[tone];
-  const s = SHAPES[shape];
   return (
     <span
-      className={`relative inline-grid place-items-center border-4 border-saigon ${s.box} ${t.face} ${t.rest} ${
+      className={`relative inline-grid h-full w-full place-items-center rounded-full border-4 border-saigon ${t.face} ${t.rest} ${
         pressable ? `transition-[translate,box-shadow] duration-150 hover:translate-y-1.5 ${t.pressed}` : ""
       } ${className}`}
     >
-      <span aria-hidden="true" className={`pointer-events-none absolute rounded-full bg-white/60 ${s.gloss}`} />
+      <span aria-hidden="true" className="pointer-events-none absolute left-[15%] top-[10%] h-[10%] w-[30%] rounded-full bg-white/60" />
       <span className="relative">{children}</span>
     </span>
   );

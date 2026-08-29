@@ -14,7 +14,6 @@ import {
   FlightArc,
   PixelStack,
 } from "./decorations";
-import { Screws, DomeButton } from "./parts";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -241,14 +240,9 @@ export default function Hero() {
         </p>
 
         <div className="hero-fade mt-7 flex flex-wrap items-center justify-center gap-4">
-          <span className="relative inline-flex rounded-2xl border-[3px] border-saigon bg-[#dbe4f2] p-2.5 shadow-[0_6px_0_#01337f]">
-            <Screws />
-            <DomeButton shape="pill" tone="yellow" className="text-base font-semibold">
-              <span className="inline-flex items-center gap-2">
-                Registration opens soon
-                <Sparkle size={16} color="#1e293b" />
-              </span>
-            </DomeButton>
+          <span className="inline-flex items-center gap-2 rounded-full bg-energy px-7 py-3.5 text-base font-semibold text-ink shadow-[0_6px_0_#d18e07]">
+            Registration opens soon
+            <Sparkle size={16} color="#1e293b" />
           </span>
           <a
             href="#about"

@@ -4,7 +4,6 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Sparkle, CodeMark, PixelStack, PixelPlanet } from "./decorations";
-import { Screws, DomeButton } from "./parts";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -79,11 +78,8 @@ export default function Footer() {
         </p>
 
         <div className="footer-pop mt-8 flex justify-center">
-          <span className="relative inline-flex rounded-2xl border-[3px] border-saigon-deep bg-[#dbe4f2] p-2.5 shadow-[0_6px_0_#01337f]">
-            <Screws />
-            <DomeButton shape="pill" tone="yellow" className="text-base font-semibold">
-              Registration opens soon
-            </DomeButton>
+          <span className="rounded-full bg-energy px-7 py-3.5 text-base font-semibold text-ink shadow-[0_6px_0_#d18e07]">
+            Registration opens soon
           </span>
         </div>
 

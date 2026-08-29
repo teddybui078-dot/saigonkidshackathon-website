@@ -165,7 +165,6 @@ export default function About() {
                 {/* the well the button sits in */}
                 <dd className="h-32 w-32 rounded-full bg-[#c9d7ee] p-2 shadow-[inset_0_5px_0_#a8bfe2]">
                   <DomeButton
-                    shape="round"
                     tone={i % 2 === 0 ? "yellow" : "blue"}
                     pressable
                     className="text-3xl font-bold md:text-4xl"
