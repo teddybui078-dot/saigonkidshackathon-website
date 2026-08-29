@@ -3,9 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Image from "next/image";
 import { PixelGrid } from "./decorations";
-import { BubbleTail } from "./parts";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -75,47 +73,45 @@ export default function Faq() {
           </h2>
         </div>
 
-        {/* a chat thread: questions asked from the left, answered from the right */}
-        <div className="mt-12 space-y-8">
+        <div className="mt-12 space-y-7">
           {FAQS.map((faq, i) => {
             const isOpen = open === i;
             return (
-              <div key={faq.q} data-open={isOpen} className="faq-item flex flex-col">
-                <div className="flex items-end gap-3">
+              <div
+                key={faq.q}
+                data-open={isOpen}
+                className="faq-item relative rounded-2xl border-[3px] border-saigon bg-white shadow-[0_6px_0_#cbd8ee]"
+              >
+                {/* speech-bubble tail, alternating sides */}
+                <span
+                  aria-hidden="true"
+                  className={`absolute -bottom-[13px] h-5 w-5 rotate-45 border-b-[3px] border-r-[3px] border-saigon bg-white ${
+                    i % 2 === 0 ? "left-10" : "right-10"
+                  }`}
+                />
+                <button
+                  type="button"
+                  onClick={() => setOpen(isOpen ? null : i)}
+                  aria-expanded={isOpen}
+                  className="flex w-full items-center justify-between gap-4 rounded-2xl px-6 py-5 text-left"
+                >
+                  <span className="text-lg font-semibold">
+                    {faq.q}
+                  </span>
                   <span
-                    className="grid h-9 w-9 shrink-0 place-items-center rounded-full border-[3px] border-saigon bg-energy text-lg font-bold text-ink"
+                    className={`grid h-9 w-9 shrink-0 place-items-center rounded-full border-2 border-saigon text-xl font-bold transition-transform duration-300 ${
+                      isOpen
+                        ? "rotate-45 bg-saigon text-white shadow-[0_3px_0_#01337f]"
+                        : "bg-energy text-ink shadow-[0_3px_0_#d18e07]"
+                    }`}
                     aria-hidden="true"
                   >
-                    ?
+                    +
                   </span>
-                  <button
-                    type="button"
-                    onClick={() => setOpen(isOpen ? null : i)}
-                    aria-expanded={isOpen}
-                    className="relative flex max-w-[85%] items-center gap-4 rounded-2xl rounded-bl-md border-[3px] border-saigon bg-energy px-5 py-4 text-left shadow-[0_4px_0_#d18e07]"
-                  >
-                    <BubbleTail side="left" fill="#f8ac1a" />
-                    <span className="text-lg font-semibold">{faq.q}</span>
-                    <span
-                      className={`grid h-8 w-8 shrink-0 place-items-center rounded-full border-2 border-saigon text-lg font-bold transition-transform duration-300 ${
-                        isOpen ? "rotate-45 bg-saigon text-white" : "bg-white text-saigon"
-                      }`}
-                      aria-hidden="true"
-                    >
-                      +
-                    </span>
-                  </button>
-                </div>
+                </button>
                 <div className="faq-answer">
                   <div>
-                    {/* padding keeps the tail and shadow inside the clipped row */}
-                    <div className="mt-5 flex items-end justify-end gap-3 pb-5 pr-1">
-                      <div className="relative max-w-[85%] rounded-2xl rounded-br-md border-[3px] border-saigon bg-white px-5 py-4 shadow-[0_4px_0_#cbd8ee]">
-                        <BubbleTail side="right" fill="#ffffff" />
-                        <p className="font-medium text-ink/70">{faq.a}</p>
-                      </div>
-                      <Image src="/logo.png" alt="" width={36} height={36} className="shrink-0" />
-                    </div>
+                    <p className="px-6 pb-5 font-medium text-ink/70">{faq.a}</p>
                   </div>
                 </div>
               </div>

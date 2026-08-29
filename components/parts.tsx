@@ -1,6 +1,6 @@
 /* physical hardware and prop parts that turn a box into an object:
-   screws, domed buttons, pushpins, speech tails, lanyards, lantern
-   hooks and tassels, leds, knobs. every svg here has a fixed intrinsic
+   screws, domed buttons, pushpins, lanyards, lantern hooks and
+   tassels, leds, knobs. every svg here has a fixed intrinsic
    size — anything that must stretch with content is css, not svg. */
 
 import { BLUE, YELLOW, SKY_DEEP } from "./palette";
@@ -141,37 +141,7 @@ export function Knob({ className = "", turn = 0 }: { className?: string; turn?: 
   );
 }
 
-/* ————— speech, lanyards, lanterns ————— */
-
-export function BubbleTail({
-  side = "left",
-  fill = "#ffffff",
-  className = "",
-}: {
-  side?: "left" | "right";
-  fill?: string;
-  className?: string;
-}) {
-  // an open path: the two curves are stroked, the fill closes across the
-  // top on its own and sits over the bubble's border to hide it there.
-  return (
-    <svg
-      className={`pointer-events-none absolute -bottom-[14px] h-[17px] w-5 ${
-        side === "left" ? "left-1" : "right-1 -scale-x-100"
-      } ${className}`}
-      viewBox="0 0 20 17"
-      aria-hidden="true"
-    >
-      <path
-        d="M2 0 C3 8.5 8 14 19 17 C10 13 7 7.5 7 0"
-        fill={fill}
-        stroke={BLUE}
-        strokeWidth="3"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
+/* ————— lanyards and lanterns ————— */
 
 export function Lanyard({ className = "" }: { className?: string }) {
   // two straps meeting at a clip — the badge hangs from the clip
