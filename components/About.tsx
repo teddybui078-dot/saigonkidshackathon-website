@@ -8,24 +8,24 @@ import { PixelGrid, Sparkle, FloatingLaptop, PixelBulb, PixelStack, FlightArc } 
 gsap.registerPlugin(ScrollTrigger);
 
 const STATS = [
-  { value: 130, suffix: "", label: "young hackers" },
-  { value: 10, suffix: "h", label: "of making" },
-  { value: 20, suffix: "+", label: "mentors" },
-  { value: null, suffix: "∞", label: "ideas" },
+  { value: 130, suffix: "", label: "Young hackers" },
+  { value: 10, suffix: "h", label: "Hours of making" },
+  { value: 20, suffix: "+", label: "Mentors" },
+  { value: null, suffix: "∞", label: "Ideas" },
 ];
 
 const CARDS = [
   {
-    title: "no experience needed",
-    body: "total beginners welcome. if you can imagine it, we'll help you build it.",
+    title: "No experience needed",
+    body: "Total beginners welcome. If you can imagine it, we'll help you build it.",
   },
   {
-    title: "mentors everywhere",
-    body: "friendly engineers and teachers roam the floor all day, ready to unstick you.",
+    title: "Mentors everywhere",
+    body: "Friendly engineers and teachers roam the floor all day, ready to unstick you.",
   },
   {
-    title: "demos, prizes & pizza",
-    body: "every team shows off what they made on the big stage — and everyone eats well.",
+    title: "Demos, prizes & pizza",
+    body: "Every team shows off what they made on the big stage — and everyone eats well.",
   },
 ];
 
@@ -98,15 +98,15 @@ export default function About() {
         <div className="relative">
           <PixelGrid className="ambient-float absolute -left-2 -top-10 hidden lg:block" size={36} />
           <p className="about-line mb-3 text-sm font-semibold text-saigon">
-            about the day ✦
+            About the day ✦
           </p>
-          <h2 className="about-line max-w-2xl text-4xl font-bold lowercase leading-tight md:text-5xl">
-            what is <span className="text-saigon">saigon kids hackathon</span>?
+          <h2 className="about-line max-w-2xl text-4xl font-bold leading-tight md:text-5xl">
+            What is <span className="text-saigon">Saigon Kids Hackathon</span>?
           </h2>
           <p className="about-line mt-6 max-w-2xl text-lg font-medium text-ink/80">
-            it&apos;s a one-day invention marathon for kids. you team up with
+            It&apos;s a one-day invention marathon for kids. You team up with
             friends, dream up an idea, and build it — a game, an app, a robot, a
-            website — with mentors beside you the whole way. no grades, no
+            website — with mentors beside you the whole way. No grades, no
             pressure, just making things you&apos;re proud of.
           </p>
         </div>
@@ -123,7 +123,7 @@ export default function About() {
                   i % 2 === 0 ? "bg-energy" : "bg-saigon"
                 }`}
               />
-              <h3 className="text-xl font-semibold lowercase">{card.title}</h3>
+              <h3 className="text-xl font-semibold">{card.title}</h3>
               <p className="mt-2 font-medium text-ink/70">{card.body}</p>
             </div>
           ))}

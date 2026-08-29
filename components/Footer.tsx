@@ -50,10 +50,10 @@ export default function Footer() {
       </div>
       <div className="relative z-10 mx-auto max-w-4xl text-center">
         <Sparkle className="footer-pop ambient-twinkle mx-auto mb-6" size={30} />
-        <h2 className="footer-pop text-4xl font-bold lowercase leading-tight md:text-6xl">
-          see you on{" "}
+        <h2 className="footer-pop text-4xl font-bold leading-tight md:text-6xl">
+          See you on{" "}
           <span className="relative inline-block text-energy">
-            march 6, 2027
+            March 6, 2027
             <svg
               className="pointer-events-none absolute -inset-x-4 -inset-y-2 h-[calc(100%+1rem)] w-[calc(100%+2rem)]"
               viewBox="0 0 300 80"
@@ -74,20 +74,20 @@ export default function Footer() {
           </span>
         </h2>
         <p className="footer-pop mt-6 text-lg font-medium text-white/80">
-          ho chi minh city · 130 young makers · one unforgettable day
+          Ho Chi Minh City · 130 young makers · one unforgettable day
         </p>
 
         <div className="footer-pop mt-8 flex justify-center">
           <span className="rounded-full bg-energy px-7 py-3.5 text-base font-semibold text-ink shadow-[0_6px_0_#d18e07]">
-            registration opens soon
+            Registration opens soon
           </span>
         </div>
 
         <div className="footer-pop mt-16 flex flex-col items-center gap-4 border-t border-white/20 pt-8 text-sm font-medium text-white/70 md:flex-row md:justify-between">
-          <p>saigon kids hackathon © 2027</p>
+          <p>Saigon Kids Hackathon © 2027</p>
           <CodeMark size={40} chevronColor="#ffffff" className="ambient-float opacity-80" data-amp="s" />
           <p>
-            made with <span className="text-energy">♥</span> in saigon
+            Made with <span className="text-energy">♥</span> in Saigon
           </p>
         </div>
       </div>

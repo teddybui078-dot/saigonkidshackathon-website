@@ -9,28 +9,28 @@ gsap.registerPlugin(ScrollTrigger);
 
 const FAQS = [
   {
-    q: "who can join?",
-    a: "any kid aged 8–15 who's curious about making things with technology. we have around 130 spots, first come first served.",
+    q: "Who can join?",
+    a: "Any kid aged 8–15 who's curious about making things with technology. We have around 130 spots, first come first served.",
   },
   {
-    q: "do i need to know how to code?",
-    a: "nope! total beginners are welcome. mentors will help you every step of the way, and there are beginner-friendly tools for every idea.",
+    q: "Do I need to know how to code?",
+    a: "Nope! Total beginners are welcome. Mentors will help you every step of the way, and there are beginner-friendly tools for every idea.",
   },
   {
-    q: "what should i bring?",
-    a: "a laptop if you have one (we have loaners if you don't), a water bottle, and your biggest idea. we handle everything else.",
+    q: "What should I bring?",
+    a: "A laptop if you have one (we have loaners if you don't), a water bottle, and your biggest idea. We handle everything else.",
   },
   {
-    q: "is it free?",
-    a: "yes — free to attend, including meals, snacks, swag, and all the workshops. thanks to our sponsors!",
+    q: "Is it free?",
+    a: "Yes — free to attend, including meals, snacks, swag, and all the workshops. Thanks to our sponsors!",
   },
   {
-    q: "do parents stay?",
-    a: "parents check you in and can hang out in the family lounge. the demo showcase at 5pm is open to everyone — bring the whole family.",
+    q: "Do parents stay?",
+    a: "Parents check you in and can hang out in the family lounge. The demo showcase at 5pm is open to everyone — bring the whole family.",
   },
   {
-    q: "how do teams work?",
-    a: "teams of 2–4. come with friends or join our team-matching game in the morning — either way, you won't build alone.",
+    q: "How do teams work?",
+    a: "Teams of 2–4. Come with friends or join our team-matching game in the morning — either way, you won't build alone.",
   },
 ];
 
@@ -66,10 +66,10 @@ export default function Faq() {
         <div className="relative text-center">
           <PixelGrid className="ambient-float absolute -top-8 right-0 hidden md:block" size={32} />
           <p className="mb-3 text-sm font-semibold text-saigon">
-            good questions ✦
+            Good questions ✦
           </p>
-          <h2 className="text-4xl font-bold lowercase leading-tight md:text-5xl">
-            frequently asked <span className="text-energy">everything</span>
+          <h2 className="text-4xl font-bold leading-tight md:text-5xl">
+            Frequently asked <span className="text-energy">everything</span>
           </h2>
         </div>
 
@@ -88,7 +88,7 @@ export default function Faq() {
                   aria-expanded={isOpen}
                   className="flex w-full items-center justify-between gap-4 rounded-2xl px-6 py-5 text-left"
                 >
-                  <span className="text-lg font-semibold lowercase">
+                  <span className="text-lg font-semibold">
                     {faq.q}
                   </span>
                   <span

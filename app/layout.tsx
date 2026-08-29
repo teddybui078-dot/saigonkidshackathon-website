@@ -10,14 +10,14 @@ const dynapuff = DynaPuff({
 });
 
 export const metadata: Metadata = {
-  title: "saigon kids hackathon",
+  title: "Saigon Kids Hackathon",
   description:
-    "one big day of building, coding, and playing — 130 young makers, march 6, 2027, ho chi minh city.",
+    "One big day of building, coding, and playing — 130 young makers, March 6, 2027, Ho Chi Minh City.",
   icons: { icon: "/logo.png" },
   openGraph: {
-    title: "saigon kids hackathon",
+    title: "Saigon Kids Hackathon",
     description:
-      "one big day of building, coding, and playing — march 6, 2027, ho chi minh city.",
+      "One big day of building, coding, and playing — March 6, 2027, Ho Chi Minh City.",
     images: ["/logo.png"],
   },
 };

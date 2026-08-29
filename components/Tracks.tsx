@@ -8,10 +8,10 @@ import { PixelGrid, Sparkle, PixelPlanet, FlightArc } from "./decorations";
 gsap.registerPlugin(ScrollTrigger);
 
 const EXAMPLES = [
-  "math quests",
-  "language adventures",
-  "science puzzles",
-  "history journeys",
+  "Math quests",
+  "Language adventures",
+  "Science puzzles",
+  "History journeys",
 ];
 
 export default function Tracks() {
@@ -75,13 +75,13 @@ export default function Tracks() {
 
       <div className="mx-auto max-w-4xl text-center">
         <p className="track-line mb-3 text-sm font-semibold text-saigon">
-          the one and only track ✦
+          The one and only track ✦
         </p>
-        <h2 className="track-line text-5xl font-bold lowercase leading-tight md:text-7xl">
-          gamified <span className="text-energy">edtech</span>
+        <h2 className="track-line text-5xl font-bold leading-tight md:text-7xl">
+          Gamified <span className="text-energy">Edtech</span>
         </h2>
         <p className="track-line mt-4 font-medium text-ink/60">
-          one track. one mission. everyone all in.
+          One track. One mission. Everyone all in.
         </p>
 
         <div className="track-showcase relative mx-auto mt-12 max-w-2xl rounded-3xl bg-white p-9 text-left shadow-[0_2px_16px_rgba(30,41,59,0.06)] md:p-12">
@@ -90,13 +90,13 @@ export default function Tracks() {
             🎮
           </div>
           <div className="mt-5 h-2 w-16 rounded-full bg-energy" />
-          <h3 className="mt-5 text-2xl font-semibold lowercase md:text-3xl">
-            build a game that makes learning fun
+          <h3 className="mt-5 text-2xl font-semibold md:text-3xl">
+            Build a game that makes learning fun
           </h3>
           <p className="mt-4 text-lg font-medium text-ink/70">
-            every team builds toward the same mission: turn something worth
-            learning into something kids genuinely want to play. math,
-            languages, science, saigon history — pick your subject, make it a
+            Every team builds toward the same mission: turn something worth
+            learning into something kids genuinely want to play. Math,
+            languages, science, Saigon history — pick your subject, make it a
             game, and watch the room fight for a turn.
           </p>
 

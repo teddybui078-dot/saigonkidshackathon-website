@@ -8,14 +8,14 @@ import { Sparkle, PixelClock, PixelStack, CodeMark, PixelGrid } from "./decorati
 gsap.registerPlugin(ScrollTrigger);
 
 const SLOTS = [
-  { time: "8:00", title: "check-in & breakfast", body: "grab a badge, a bánh mì, and find your table." },
-  { time: "9:00", title: "opening ceremony", body: "the countdown, the mission, and a surprise or two." },
-  { time: "9:30", title: "hacking begins!", body: "teams form, laptops open, ideas start flying." },
-  { time: "12:00", title: "lunch break", body: "refuel with friends — and sneak a peek at other teams." },
-  { time: "14:00", title: "mini workshops", body: "quick, fun sessions: game design, robots, and ai tricks." },
-  { time: "16:30", title: "code freeze", body: "hands off the keyboard — time to practice your pitch." },
-  { time: "17:00", title: "demo time", body: "every team on stage showing what they built today." },
-  { time: "18:00", title: "awards & closing", body: "prizes, high-fives, and photos to remember it by." },
+  { time: "8:00", title: "Check-in & breakfast", body: "Grab a badge, a bánh mì, and find your table." },
+  { time: "9:00", title: "Opening ceremony", body: "The countdown, the mission, and a surprise or two." },
+  { time: "9:30", title: "Hacking begins!", body: "Teams form, laptops open, ideas start flying." },
+  { time: "12:00", title: "Lunch break", body: "Refuel with friends — and sneak a peek at other teams." },
+  { time: "14:00", title: "Mini workshops", body: "Quick, fun sessions: game design, robots, and AI tricks." },
+  { time: "16:30", title: "Code freeze", body: "Hands off the keyboard — time to practice your pitch." },
+  { time: "17:00", title: "Demo time", body: "Every team on stage showing what they built today." },
+  { time: "18:00", title: "Awards & closing", body: "Prizes, high-fives, and photos to remember it by." },
 ];
 
 export default function Schedule() {
@@ -78,10 +78,10 @@ export default function Schedule() {
       <div className="mx-auto max-w-4xl">
         <div className="text-center">
           <p className="mb-3 text-sm font-semibold text-saigon">
-            march 6, 2027 ✦
+            March 6, 2027 ✦
           </p>
-          <h2 className="text-5xl font-bold lowercase leading-tight md:text-7xl">
-            one <span className="text-saigon">big</span> day
+          <h2 className="text-5xl font-bold leading-tight md:text-7xl">
+            One <span className="text-saigon">big</span> day
           </h2>
         </div>
 
@@ -114,7 +114,7 @@ export default function Schedule() {
                   <p className="text-base font-bold text-energy-deep">
                     {slot.time}
                   </p>
-                  <h3 className="mt-1 text-xl font-semibold lowercase">
+                  <h3 className="mt-1 text-xl font-semibold">
                     {slot.title}
                   </h3>
                   <p className="mt-1 text-base font-medium text-ink/65">

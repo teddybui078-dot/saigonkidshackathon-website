@@ -4,11 +4,11 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 
 const LINKS = [
-  { href: "#about", label: "about" },
-  { href: "#tracks", label: "track" },
-  { href: "#schedule", label: "schedule" },
-  { href: "#faq", label: "faq" },
-  { href: "#sponsors", label: "sponsors" },
+  { href: "#about", label: "About" },
+  { href: "#tracks", label: "Track" },
+  { href: "#schedule", label: "Schedule" },
+  { href: "#faq", label: "FAQ" },
+  { href: "#sponsors", label: "Sponsors" },
 ];
 
 export default function Navbar() {
@@ -45,17 +45,17 @@ export default function Navbar() {
           href="#top"
           onClick={(e) => goTo(e, "#top")}
           className="flex items-center gap-2"
-          aria-label="saigon kids hackathon — back to top"
+          aria-label="Saigon Kids Hackathon — back to top"
         >
           <Image
             src="/logo.png"
-            alt="saigon kids hackathon logo"
+            alt="Saigon Kids Hackathon logo"
             width={44}
             height={44}
             priority
           />
           <span className="hidden text-sm font-semibold text-saigon sm:block">
-            saigon kids hackathon
+            Saigon Kids Hackathon
           </span>
         </a>
 
@@ -74,7 +74,7 @@ export default function Navbar() {
         </ul>
 
         <span className="rounded-full bg-energy px-4 py-2 text-sm font-semibold text-ink">
-          march 6, 2027
+          March 6, 2027
         </span>
       </nav>
     </header>

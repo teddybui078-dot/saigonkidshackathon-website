@@ -6,7 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const WORDS = ["code", "create", "play", "repeat"];
+const WORDS = ["Code", "Create", "Play", "Repeat"];
 
 export default function Ticker() {
   const wrapRef = useRef<HTMLDivElement>(null);
@@ -41,7 +41,7 @@ export default function Ticker() {
           WORDS.map((word, i) => (
             <span
               key={`${rep}-${i}`}
-              className={`flex items-center gap-8 text-5xl font-bold lowercase md:text-7xl ${
+              className={`flex items-center gap-8 text-5xl font-bold md:text-7xl ${
                 i % 2 === 0 ? "text-outline-blue" : "text-outline-yellow"
               }`}
             >

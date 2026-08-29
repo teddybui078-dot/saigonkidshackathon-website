@@ -210,33 +210,33 @@ export default function Hero() {
 
             <Image
               src="/logo.png"
-              alt="saigon kids hackathon logo"
+              alt="Saigon Kids Hackathon logo"
               width={110}
               height={110}
               priority
               className="hero-logo mx-auto mb-4"
             />
 
-            <h1 className="relative text-5xl font-bold lowercase leading-[0.95] sm:text-6xl md:text-7xl">
-              <span className="sr-only">saigon kids hackathon</span>
-              <SplitWord word="saigon kids" className="block text-energy" />
-              <SplitWord word="hackathon" className="block text-saigon" />
+            <h1 className="relative text-5xl font-bold leading-[0.95] sm:text-6xl md:text-7xl">
+              <span className="sr-only">Saigon Kids Hackathon</span>
+              <SplitWord word="Saigon Kids" className="block text-energy" />
+              <SplitWord word="Hackathon" className="block text-saigon" />
             </h1>
 
             <p className="hero-fade mt-5 text-base font-semibold text-ink sm:text-lg">
-              march 6, 2027 · ho chi minh city
+              March 6, 2027 · Ho Chi Minh City
             </p>
           </div>
         </div>
 
         <p className="hero-fade mt-16 max-w-xl text-lg font-medium text-ink/80 md:text-xl">
-          one big day of building, coding, and playing — for 130 young makers
+          One big day of building, coding, and playing — for 130 young makers
           aged 8–15.
         </p>
 
         <div className="hero-fade mt-7 flex flex-wrap items-center justify-center gap-4">
           <span className="inline-flex items-center gap-2 rounded-full bg-energy px-7 py-3.5 text-base font-semibold text-ink shadow-[0_6px_0_#d18e07]">
-            registration opens soon
+            Registration opens soon
             <Sparkle size={16} color="#1e293b" />
           </span>
           <a
@@ -252,13 +252,13 @@ export default function Hero() {
             }}
             className="rounded-full border-2 border-saigon bg-white/70 px-7 py-3 text-base font-semibold text-saigon transition-colors hover:bg-saigon hover:text-white"
           >
-            what is it?
+            What is it?
           </a>
         </div>
       </div>
 
       <p className="hero-hint absolute bottom-6 text-sm font-medium text-ink/50">
-        scroll to explore ↓
+        Scroll to explore ↓
       </p>
     </section>
   );

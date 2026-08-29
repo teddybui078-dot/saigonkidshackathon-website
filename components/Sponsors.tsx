@@ -33,9 +33,9 @@ export default function Sponsors() {
         <PixelHeart className="anchor-beat" size={280} />
       </div>
       <div className="mx-auto max-w-4xl text-center">
-        <p className="mb-3 text-sm font-semibold text-saigon">our friends ✦</p>
-        <h2 className="text-4xl font-bold lowercase leading-tight md:text-5xl">
-          powered by <span className="text-saigon">people who believe</span> in
+        <p className="mb-3 text-sm font-semibold text-saigon">Our friends ✦</p>
+        <h2 className="text-4xl font-bold leading-tight md:text-5xl">
+          Powered by <span className="text-saigon">people who believe</span> in
           young builders
         </h2>
 
@@ -46,7 +46,7 @@ export default function Sponsors() {
               className="sponsor-tile flex h-28 items-center justify-center rounded-2xl border-2 border-dashed border-mist bg-white/60"
             >
               <span className="flex items-center gap-2 text-sm font-medium text-ink/40">
-                your logo here
+                Your logo here
                 <Sparkle className="ambient-twinkle" size={13} color={i % 2 === 0 ? "#f8ac1a" : "#0145b4"} />
               </span>
             </div>
@@ -54,10 +54,10 @@ export default function Sponsors() {
         </div>
 
         <p className="mt-10 font-medium text-ink/70">
-          want to support 130 kids building their first big thing?
+          Want to support 130 kids building their first big thing?
         </p>
         <span className="mt-4 inline-block rounded-full border-2 border-saigon px-7 py-3 text-base font-semibold text-saigon">
-          sponsorship details coming soon
+          Sponsorship details coming soon
         </span>
       </div>
     </section>
