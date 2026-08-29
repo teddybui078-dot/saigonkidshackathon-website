@@ -67,3 +67,56 @@ body {
     transition: none;
   }
 }
+
+/* ————— object materials: paper, metal, lantern, marquee ————— */
+
+/* keyframes live in @theme so they only ship when a utility uses them;
+   callers apply them as motion-safe:animate-* so reduced motion opts out */
+@theme {
+  --animate-led-blink: led-blink 1.6s steps(1, end) infinite;
+  --animate-cursor-blink: cursor-blink 1s steps(1, end) infinite;
+
+  @keyframes led-blink {
+    0%, 60% { opacity: 1; }
+    61%, 100% { opacity: 0.25; }
+  }
+  @keyframes cursor-blink {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+  }
+}
+
+/* a right-pointing arrow silhouette; --head sets the tip length */
+@utility clip-arrow {
+  clip-path: polygon(
+    0 0,
+    calc(100% - var(--head, 22px)) 0,
+    100% 50%,
+    calc(100% - var(--head, 22px)) 100%,
+    0 100%
+  );
+}
+
+/* torn paper: a zig-zag bottom edge cut with a mask, tooth pitch fixed in
+   px so it never stretches with the card's width or height */
+.zigzag-bottom {
+  --tooth: 16px;
+  mask: conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg)
+    50% 100% / var(--tooth) 100%;
+}
+
+/* notepad rules under the text — body copy uses leading-7 to sit on them */
+.paper-ruled {
+  background: #fff linear-gradient(#dbe4f2 2px, #0000 2px) 0 2.5rem / 100% 28px;
+}
+
+/* a paper lantern: the 50% vertical radius bulges the sides at any text
+   height; faint vertical ribs give it structure */
+.lantern-body {
+  border-radius: 28px / 50%;
+  background: #fff repeating-linear-gradient(90deg, #0000 0 18px, #edf2f9 18px 21px);
+}
+
+.lantern-body-warm {
+  background-color: #fff8e7;
+}

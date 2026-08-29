@@ -5,7 +5,8 @@ import gsap from "gsap";
 
 /* keeps every decoration alive: nothing on the page ever sits still.
    opt in by class — .ambient-float drifts, .ambient-twinkle pulses in
-   and out, .ambient-sway rocks from the base (palms). data-amp="s"
+   and out, .ambient-sway rocks from the base (palms), .ambient-hang
+   swings from the top (lanterns), .marquee-bulb chases. data-amp="s"
    halves the drift for elements inside cards. */
 export default function AmbientMotion() {
   useEffect(() => {
@@ -56,6 +57,35 @@ export default function AmbientMotion() {
           transformOrigin: "50% 100%",
         });
       });
+
+      // lanterns and hanging things swing gently from their hook
+      gsap.utils.toArray<HTMLElement>(".ambient-hang").forEach((el) => {
+        gsap.fromTo(
+          el,
+          { rotation: -1.5 },
+          {
+            rotation: 1.5,
+            duration: gsap.utils.random(2.6, 3.8),
+            yoyo: true,
+            repeat: -1,
+            ease: "sine.inOut",
+            transformOrigin: "50% 0%",
+            delay: gsap.utils.random(0, 1.5),
+          }
+        );
+      });
+
+      // marquee bulbs chase along the sign
+      gsap.fromTo(
+        ".marquee-bulb",
+        { opacity: 0.3 },
+        {
+          opacity: 1,
+          duration: 0.3,
+          ease: "sine.inOut",
+          stagger: { each: 0.12, repeat: -1, yoyo: true },
+        }
+      );
 
       /* ——— signature moves for the big section anchors ——— */
 
