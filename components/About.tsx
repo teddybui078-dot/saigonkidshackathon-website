@@ -47,6 +47,7 @@ export default function About() {
 
         const pinEl = section.querySelector<HTMLElement>(".about-pin");
         const cards = gsap.utils.toArray<HTMLElement>(".about-card", section);
+        const bodies = cards.map((c) => c.querySelector(".about-card-body") as HTMLElement);
         const tilt = [-2, 1.5, -1];
 
         // the billboard text arrives once, before the pin begins
@@ -88,10 +89,11 @@ export default function About() {
             // earlier notes straighten up and tuck behind, so only their clean
             // top strip (pushpin, no text) peeks out above the main card
             if (i > 0) {
-              tl.to(cards[i - 1], { y: -34, rotation: 0, scale: 0.94, opacity: 0.55, ease: "power2.out", duration: 1 }, i);
+              tl.to(cards[i - 1], { y: -34, rotation: 0, scale: 0.94, opacity: 0.6, ease: "power2.out", duration: 1 }, i);
+              tl.to(bodies[i - 1], { opacity: 0, ease: "power2.out", duration: 0.5 }, i);
             }
             if (i > 1) {
-              tl.to(cards[i - 2], { y: -62, rotation: 0, scale: 0.9, opacity: 0.3, ease: "power2.out", duration: 1 }, i);
+              tl.to(cards[i - 2], { y: -62, rotation: 0, scale: 0.9, opacity: 0.35, ease: "power2.out", duration: 1 }, i);
             }
           });
           tl.to({}, { duration: 0.4 }); // hold on the last note before letting go
@@ -212,7 +214,7 @@ export default function About() {
                 <span className="zigzag-bottom paper-ruled absolute inset-[3px] bottom-[5px]" aria-hidden="true" />
                 <Pushpin className="absolute -top-3 left-5" />
                 <PixelGrid className="absolute bottom-7 right-4 opacity-60" size={16} />
-                <div className="relative px-7 pb-10 pt-10">
+                <div className="about-card-body relative px-7 pb-10 pt-10">
                   <h3 className="text-xl font-semibold leading-7">{card.title}</h3>
                   <p className="mt-2 font-medium leading-7 text-ink/70">{card.body}</p>
                 </div>
