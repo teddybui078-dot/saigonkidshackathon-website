@@ -452,3 +452,35 @@ export function PixelBulb({
     </svg>
   );
 }
+
+export function PixelTrophy({
+  className = "",
+  size = 120,
+  ...rest
+}: {
+  className?: string;
+  size?: number;
+} & React.SVGProps<SVGSVGElement>) {
+  // a chunky trophy cup — demo day, prizes, high-fives
+  return (
+    <svg
+      className={className}
+      width={size}
+      height={size}
+      viewBox="0 0 120 120"
+      fill="none"
+      aria-hidden="true"
+      {...rest}
+    >
+      <path d="M30 14h60v34a30 30 0 0 1-60 0V14z" fill={YELLOW} />
+      <path d="M30 24H18a8 8 0 0 0 0 16h12" stroke={YELLOW} strokeWidth="8" strokeLinecap="round" />
+      <path d="M90 24h12a8 8 0 0 1 0 16H90" stroke={YELLOW} strokeWidth="8" strokeLinecap="round" />
+      <circle cx="42" cy="26" r="5" fill="#fff" opacity="0.5" />
+      <rect x="54" y="30" width="12" height="12" rx="2" fill={BLUE} />
+      <rect x="52" y="76" width="16" height="14" fill={BLUE} />
+      <rect x="36" y="90" width="48" height="10" rx="3" fill={BLUE} />
+      <rect x="30" y="102" width="60" height="10" rx="3" fill={BLUE} />
+      <rect x="40" y="93" width="6" height="5" rx="1.5" fill={YELLOW} />
+    </svg>
+  );
+}

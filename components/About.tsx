@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { PixelGrid, Sparkle, FloatingLaptop, PixelBulb, PixelStack, FlightArc } from "./decorations";
+import { PixelGrid, Sparkle, FloatingLaptop, PixelBulb, PixelStack, FlightArc, PixelTrophy } from "./decorations";
 import { Screws, DomeButton, Led, Pushpin } from "./parts";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -19,14 +19,17 @@ const CARDS = [
   {
     title: "No experience needed",
     body: "Total beginners welcome. If you can imagine it, we'll help you build it.",
+    art: <PixelBulb size={88} />,
   },
   {
     title: "Mentors everywhere",
     body: "Friendly engineers and teachers roam the floor all day, ready to unstick you.",
+    art: <FloatingLaptop width={124} />,
   },
   {
     title: "Demos, prizes & pizza",
     body: "Every team shows off what they made on the big stage — and everyone eats well.",
+    art: <PixelTrophy size={96} />,
   },
 ];
 
@@ -152,20 +155,20 @@ export default function About() {
       <div className="pointer-events-none absolute bottom-40 right-14 -z-[1] hidden lg:block">
         <Sparkle className="ambient-twinkle" size={44} />
       </div>
-      <div className="mx-auto max-w-5xl">
+      <div className="mx-auto max-w-6xl">
         {/* the pinned pair: a billboard on the left, a stack of notes on the
             right that deal out one at a time as you scroll (md+) */}
-        <div className="about-pin grid gap-12 md:grid-cols-[1.15fr_1fr] md:items-center">
+        <div className="about-pin grid gap-12 md:grid-cols-[1.35fr_1fr] md:items-center lg:gap-16">
           {/* billboard: floodlights on top, framed face, two posts */}
           <div className="about-billboard relative">
-            <div className="mx-10 flex justify-around" aria-hidden="true">
-              {Array.from({ length: 3 }).map((_, i) => (
-                <span key={i} className="relative h-4 w-10 rounded-t-full bg-saigon-deep">
-                  <span className="absolute inset-x-3 bottom-0 h-1.5 rounded-t-full bg-energy" />
+            <div className="mx-12 flex justify-around" aria-hidden="true">
+              {Array.from({ length: 4 }).map((_, i) => (
+                <span key={i} className="relative h-5 w-12 rounded-t-full bg-saigon-deep">
+                  <span className="absolute inset-x-3.5 bottom-0 h-2 rounded-t-full bg-energy" />
                 </span>
               ))}
             </div>
-            <div className="relative rounded-2xl border-[6px] border-saigon bg-white px-7 py-8 shadow-[inset_0_0_0_5px_#c9d7ee,0_10px_0_#01337f] md:px-9 md:py-10">
+            <div className="relative rounded-2xl border-[6px] border-saigon bg-white px-8 py-10 shadow-[inset_0_0_0_5px_#c9d7ee,0_10px_0_#01337f] md:px-12 md:py-14">
               <Screws />
               {/* a marquee arrow: blue sign, chasing bulbs, pointing at the story */}
               <p
@@ -184,19 +187,19 @@ export default function About() {
                   </span>
                 </span>
               </p>
-              <h2 className="about-line text-4xl font-bold leading-tight lg:text-5xl">
+              <h2 className="about-line text-5xl font-bold leading-tight lg:text-6xl">
                 What is <span className="text-saigon">Saigon Kids Hackathon</span>?
               </h2>
-              <p className="about-line mt-5 text-lg font-medium text-ink/80">
+              <p className="about-line mt-6 text-xl font-medium leading-snug text-ink/80 lg:text-2xl">
                 It&apos;s a one-day invention marathon for kids. You team up with
                 friends, dream up an idea, and build it — a game, an app, a robot, a
                 website — with mentors beside you the whole way. No grades, no
                 pressure, just making things you&apos;re proud of.
               </p>
             </div>
-            <div className="mx-14 flex justify-between" aria-hidden="true">
-              <span className="h-16 w-3 rounded-b-sm bg-saigon" />
-              <span className="h-16 w-3 rounded-b-sm bg-saigon" />
+            <div className="mx-16 flex justify-between" aria-hidden="true">
+              <span className="h-20 w-4 rounded-b-sm bg-saigon" />
+              <span className="h-20 w-4 rounded-b-sm bg-saigon" />
             </div>
           </div>
 
@@ -206,7 +209,7 @@ export default function About() {
             {CARDS.map((card) => (
               <div
                 key={card.title}
-                className="about-card relative motion-safe:md:col-start-1 motion-safe:md:row-start-1"
+                className="about-card relative md:min-h-[26rem] motion-safe:md:col-start-1 motion-safe:md:row-start-1"
               >
                 {/* paper layers: shadow, outline, ruled face — all torn along the bottom */}
                 <span className="zigzag-bottom absolute inset-x-0 -bottom-1.5 top-1.5 bg-[#c9d7ee]" aria-hidden="true" />
@@ -214,9 +217,10 @@ export default function About() {
                 <span className="zigzag-bottom paper-ruled absolute inset-[3px] bottom-[5px]" aria-hidden="true" />
                 <Pushpin className="absolute -top-3 left-5" />
                 <PixelGrid className="absolute bottom-7 right-4 opacity-60" size={16} />
-                <div className="about-card-body relative px-7 pb-10 pt-10">
-                  <h3 className="text-xl font-semibold leading-7">{card.title}</h3>
-                  <p className="mt-2 font-medium leading-7 text-ink/70">{card.body}</p>
+                <div className="about-card-body relative px-8 pb-12 pt-12">
+                  <div className="flex h-28 items-end">{card.art}</div>
+                  <h3 className="mt-5 text-2xl font-semibold leading-7">{card.title}</h3>
+                  <p className="mt-3 text-lg font-medium leading-7 text-ink/70">{card.body}</p>
                 </div>
               </div>
             ))}
