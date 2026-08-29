@@ -154,3 +154,67 @@ export function Tassel({ className = "" }: { className?: string }) {
     </svg>
   );
 }
+
+/* ————— subject icons (the cartridge label) ————— */
+
+export type SubjectKind = "math" | "language" | "science" | "history";
+
+export function SubjectIcon({
+  kind,
+  className = "",
+  size = 40,
+}: {
+  kind: SubjectKind;
+  className?: string;
+  size?: number;
+}) {
+  // four flat pixel-style icons: a plus tile, a speech bubble, a flask, a pagoda
+  return (
+    <svg
+      className={className}
+      width={size}
+      height={size}
+      viewBox="0 0 40 40"
+      fill="none"
+      aria-hidden="true"
+    >
+      {kind === "math" && (
+        <>
+          <rect x="5" y="5" width="30" height="30" rx="8" fill={BLUE} />
+          <rect x="17" y="11" width="6" height="18" rx="2" fill={YELLOW} />
+          <rect x="11" y="17" width="18" height="6" rx="2" fill={YELLOW} />
+        </>
+      )}
+      {kind === "language" && (
+        <>
+          <path
+            d="M9 6h22a4 4 0 0 1 4 4v14a4 4 0 0 1-4 4H19l-7 7v-7H9a4 4 0 0 1-4-4V10a4 4 0 0 1 4-4z"
+            fill={YELLOW}
+          />
+          <text x="20" y="22" textAnchor="middle" fontSize="12" fontWeight="700" fill={BLUE}>
+            Aa
+          </text>
+        </>
+      )}
+      {kind === "science" && (
+        <>
+          <path
+            d="M15 5h10v11l9 15a3 3 0 0 1-2.6 4.5H8.6A3 3 0 0 1 6 31l9-15V5z"
+            fill={BLUE}
+          />
+          <path d="M12.5 27h15l2.8 4.6a1.5 1.5 0 0 1-1.3 2.4H11a1.5 1.5 0 0 1-1.3-2.4L12.5 27z" fill={YELLOW} />
+          <circle cx="17" cy="22" r="2" fill="#fff" opacity="0.8" />
+          <circle cx="22" cy="18" r="1.5" fill="#fff" opacity="0.8" />
+        </>
+      )}
+      {kind === "history" && (
+        <>
+          <path d="M20 4l16 12H4L20 4z" fill={BLUE} />
+          <rect x="10" y="17" width="20" height="5" rx="1.5" fill={YELLOW} />
+          <path d="M20 21l14 10H6l14-10z" fill={BLUE} />
+          <rect x="13" y="31" width="14" height="5" rx="1.5" fill={BLUE} />
+        </>
+      )}
+    </svg>
+  );
+}
