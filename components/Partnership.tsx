@@ -127,7 +127,7 @@ export default function Partnership() {
                 </span>
               )}
               <div className="partner-row flex flex-col items-center gap-3 md:flex-row md:gap-8">
-                <LogoSlot partner={partner} size={96} />
+                <LogoSlot partner={partner} size={120} />
                 <p className="text-balance text-4xl font-bold leading-[1.05] text-saigon sm:text-5xl md:text-6xl lg:text-7xl">
                   {partner.name}
                 </p>
