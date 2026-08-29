@@ -23,12 +23,14 @@ export default function Footer() {
         scrollTrigger: { trigger: footerRef.current, start: "top 75%" },
       });
 
+      // two pen passes under the date, drawn one after the other
       gsap.fromTo(
-        ".footer-orbit",
+        ".footer-underline",
         { strokeDashoffset: 1000 },
         {
           strokeDashoffset: 0,
-          duration: 1.6,
+          duration: 0.9,
+          stagger: 0.25,
           ease: "power2.inOut",
           scrollTrigger: { trigger: footerRef.current, start: "top 70%" },
         }
@@ -55,22 +57,27 @@ export default function Footer() {
           See you on{" "}
           <span className="relative inline-block text-energy">
             March 6, 2027
+            {/* two loose hand-drawn underlines, stretched to the date's width */}
             <svg
-              className="pointer-events-none absolute -inset-x-5 -inset-y-4 h-[calc(100%+2rem)] w-[calc(100%+2.5rem)]"
-              viewBox="0 0 300 80"
+              className="pointer-events-none absolute -bottom-3 left-0 h-5 w-full"
+              viewBox="0 0 300 24"
               fill="none"
               preserveAspectRatio="none"
               aria-hidden="true"
             >
-              <path
-                className="footer-orbit"
-                d="M 150 4 C 262 4 296 26 296 40 C 296 62 232 76 150 76 C 68 76 4 62 4 40 C 4 26 38 4 150 4"
-                stroke="#f8ac1a"
-                strokeWidth="3"
-                strokeLinecap="round"
-                pathLength={1000}
-                strokeDasharray={1000}
-              />
+              {["M 4 7 C 90 2 190 11 296 5", "M 14 18 C 100 14 200 22 284 15"].map((d) => (
+                <path
+                  key={d}
+                  className="footer-underline"
+                  d={d}
+                  stroke="#f8ac1a"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  vectorEffect="non-scaling-stroke"
+                  pathLength={1000}
+                  strokeDasharray={1000}
+                />
+              ))}
             </svg>
           </span>
         </h2>
