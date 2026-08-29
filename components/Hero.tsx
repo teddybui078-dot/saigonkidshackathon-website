@@ -239,16 +239,16 @@ export default function Hero() {
         {/* who's behind it — plain bold names with a logo slot each, no pills.
             each × lives inside the span of the name that follows it, so the
             pair never splits across a line break */}
-        <div className="hero-fade mt-24 flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
+        <div className="hero-fade mt-24 flex w-max max-w-[calc(100vw-2rem)] flex-wrap items-center justify-center gap-x-8 gap-y-4">
           {PARTNERS.map((partner, i) => (
             <span key={partner.name} className="inline-flex items-center gap-3">
               {i > 0 && (
-                <span className="text-3xl font-bold leading-none text-energy md:text-4xl" aria-hidden="true">
+                <span className="text-2xl font-bold leading-none text-energy md:text-3xl" aria-hidden="true">
                   ×
                 </span>
               )}
-              <LogoSlot partner={partner} size={44} />
-              <span className="text-xl font-bold text-saigon sm:text-2xl md:text-3xl">{partner.name}</span>
+              <LogoSlot partner={partner} size={64} />
+              <span className="text-lg font-bold text-saigon sm:text-xl xl:text-2xl">{partner.name}</span>
             </span>
           ))}
         </div>
