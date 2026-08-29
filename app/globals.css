@@ -113,10 +113,6 @@ body {
 /* a paper lantern: the 50% vertical radius bulges the sides at any text
    height; faint vertical ribs give it structure */
 .lantern-body {
-  border-radius: 28px / 50%;
-  background: #fff repeating-linear-gradient(90deg, #0000 0 18px, #edf2f9 18px 21px);
-}
-
-.lantern-body-warm {
-  background-color: #fff8e7;
+  border-radius: 44px / 50%;
+  background: #fff8e7 repeating-linear-gradient(90deg, #0000 0 18px, #f3e8d0 18px 21px);
 }

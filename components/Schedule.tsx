@@ -123,15 +123,15 @@ export default function Schedule() {
                 {/* a paper lantern hanging from the arm */}
                 <div className="ambient-hang mx-auto flex max-w-sm flex-col items-center md:max-w-none">
                   <Hook />
-                  <div className="w-3/4 rounded-t-xl bg-saigon px-3 py-1 text-center text-sm font-bold text-energy">
+                  <div className="w-2/3 rounded-t-xl bg-saigon px-3 py-1 text-center text-sm font-bold text-energy">
                     {slot.time}
                   </div>
-                  <div className={`lantern-body w-full px-8 py-5 text-center ${i % 2 === 1 ? "lantern-body-warm" : ""}`}>
+                  <div className="lantern-body w-full px-10 py-5 text-center">
                     <h3 className="text-xl font-semibold">{slot.title}</h3>
                     <p className="mt-1 text-base font-medium text-ink/65">{slot.body}</p>
                   </div>
-                  <div className="h-3 w-3/4 rounded-b-xl bg-saigon" aria-hidden="true" />
-                  <Tassel />
+                  <div className="h-3 w-2/3 rounded-b-xl bg-saigon" aria-hidden="true" />
+                  <Tassel className="h-9 w-6" />
                 </div>
               </li>
             ))}

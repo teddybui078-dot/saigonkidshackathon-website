@@ -114,7 +114,7 @@ export default function About() {
                 About the day
                 <span className="flex items-center gap-1.5" aria-hidden="true">
                   {Array.from({ length: 6 }).map((_, i) => (
-                    <span key={i} className="marquee-bulb h-2 w-2 rounded-full border border-energy-deep bg-energy" />
+                    <span key={i} className="marquee-bulb h-2.5 w-2.5 rounded-full border border-energy-deep bg-energy" />
                   ))}
                 </span>
               </span>
