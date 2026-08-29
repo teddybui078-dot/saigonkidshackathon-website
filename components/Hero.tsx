@@ -14,6 +14,8 @@ import {
   FlightArc,
   PixelStack,
 } from "./decorations";
+import { LogoSlot } from "./parts";
+import { PARTNERS } from "./partners";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -234,18 +236,19 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* who's behind it */}
-        <div className="hero-fade mt-24 flex flex-wrap items-center justify-center gap-2">
-          {["Saigon Kids Hackathon", "Project Possible", "Saigon South International School"].map((name, i) => (
-            <span key={name} className="inline-flex items-center gap-2">
+        {/* who's behind it — plain bold names with a logo slot each, no pills.
+            each × lives inside the span of the name that follows it, so the
+            pair never splits across a line break */}
+        <div className="hero-fade mt-24 flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
+          {PARTNERS.map((partner, i) => (
+            <span key={partner.name} className="inline-flex items-center gap-2.5">
               {i > 0 && (
-                <span className="text-lg font-bold text-energy" aria-hidden="true">
+                <span className="text-2xl font-bold leading-none text-energy" aria-hidden="true">
                   ×
                 </span>
               )}
-              <span className="rounded-md border-2 border-saigon bg-white px-3 py-1 text-xs font-semibold text-saigon">
-                {name}
-              </span>
+              <LogoSlot partner={partner} size={32} />
+              <span className="text-base font-bold text-saigon sm:text-lg">{partner.name}</span>
             </span>
           ))}
         </div>
