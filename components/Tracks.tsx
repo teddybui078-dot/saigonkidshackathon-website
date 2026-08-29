@@ -49,21 +49,21 @@ const TRACKS: Track[] = [
    example tiles pinned to the bottom of the page */
 function PageContent({ track }: { track: Track }) {
   return (
-    <div className="track-page-content relative flex h-full flex-col p-6 md:p-7">
-      <div className="flex items-center justify-between border-b-2 border-saigon/20 pb-2 text-[11px] font-bold tracking-widest text-saigon/70">
+    <div className="track-page-content relative flex h-full flex-col p-7 md:p-8">
+      <div className="flex items-center justify-between border-b-2 border-saigon/20 pb-2 text-sm font-bold tracking-widest text-saigon/70">
         <span>Subject: AI in Classrooms</span>
         <span>Track {track.n}</span>
       </div>
       <div className="mt-5 flex items-center gap-3">
         <span
-          className="grid h-9 w-9 shrink-0 place-items-center rounded-md border-[3px] border-saigon bg-energy text-base font-bold text-ink"
+          className="grid h-10 w-10 shrink-0 place-items-center rounded-md border-[3px] border-saigon bg-energy text-lg font-bold text-ink"
           aria-hidden="true"
         >
           {track.n}
         </span>
-        <h3 className="text-2xl font-bold leading-tight text-saigon md:text-3xl">{track.name}</h3>
+        <h3 className="text-3xl font-bold leading-tight text-saigon md:text-4xl">{track.name}</h3>
       </div>
-      <p className="mt-4 font-medium leading-7 text-ink/80">{track.blurb}</p>
+      <p className="mt-4 text-lg font-medium leading-7 text-ink/80">{track.blurb}</p>
       <ul className="mt-auto flex flex-wrap gap-2 pt-6">
         {track.examples.map((example) => (
           <li
@@ -170,7 +170,7 @@ export default function Tracks() {
         <p className="track-line mb-3 text-sm font-semibold text-saigon">
           The theme ✦
         </p>
-        <h2 className="track-line text-5xl font-bold leading-tight md:text-7xl">
+        <h2 className="track-line text-5xl font-bold leading-tight md:text-6xl lg:text-7xl">
           AI in <span className="text-saigon">Classrooms</span>
         </h2>
         <p className="track-line mt-4 font-medium text-ink/60">
@@ -181,7 +181,7 @@ export default function Tracks() {
             pages; on md+ with motion it's a 3d book that gsap closes and the
             scroll opens. perspective lives on the book, preserve-3d only on the
             cover, and rounding/overflow only on the two faces */}
-        <div className="track-book relative mx-auto mt-10 grid w-full max-w-[52rem] gap-6 text-left motion-safe:md:block motion-safe:md:h-[30rem] motion-safe:md:perspective-[2200px]">
+        <div className="track-book relative mx-auto mt-10 grid w-full max-w-[60rem] gap-6 text-left motion-safe:md:block motion-safe:md:h-[34rem] motion-safe:md:perspective-[2200px]">
           {/* right page: track 2, the base page under the cover */}
           <div className="track-page paper-ruled relative order-2 min-h-[22rem] overflow-hidden rounded-2xl border-[3px] border-saigon shadow-[6px_6px_0_#c9d7ee] motion-safe:md:absolute motion-safe:md:inset-y-0 motion-safe:md:left-1/2 motion-safe:md:min-h-0 motion-safe:md:w-1/2 motion-safe:md:rounded-l-none motion-safe:md:border-l-0">
             <span aria-hidden="true" className="absolute inset-y-0 left-6 w-0.5 bg-energy/50" />
@@ -197,13 +197,13 @@ export default function Tracks() {
             >
               <span className="absolute inset-y-0 left-0 w-4 bg-saigon-deep" />
               <span className="absolute inset-y-0 right-8 w-2.5 bg-energy" />
-              <div className="absolute left-12 right-16 top-14 rounded-lg bg-white px-5 py-5 shadow-[0_4px_0_#01337f]">
-                <PixelGrid size={20} />
-                <p className="mt-3 text-xs font-bold tracking-widest text-saigon/70">Theme notebook</p>
-                <p className="mt-1 text-2xl font-bold leading-tight text-ink">Saigon Kids Hackathon</p>
-                <p className="mt-2 text-sm font-semibold text-ink/60">March 6, 2027</p>
+              <div className="absolute left-14 right-20 top-16 rounded-lg bg-white px-6 py-6 shadow-[0_4px_0_#01337f]">
+                <PixelGrid size={24} />
+                <p className="mt-4 text-sm font-bold tracking-widest text-saigon/70">Theme notebook</p>
+                <p className="mt-1 text-3xl font-bold leading-tight text-ink">Saigon Kids Hackathon</p>
+                <p className="mt-3 text-base font-semibold text-ink/60">March 6, 2027</p>
               </div>
-              <span className="absolute bottom-8 left-12 text-xs font-semibold text-white/70">scroll to open ↓</span>
+              <span className="absolute bottom-10 left-14 text-sm font-semibold text-white/70">scroll to open ↓</span>
             </div>
             {/* left page: track 1 */}
             <div className="track-page paper-ruled relative min-h-[22rem] overflow-hidden rounded-2xl border-[3px] border-saigon shadow-[6px_6px_0_#c9d7ee] motion-safe:md:absolute motion-safe:md:inset-0 motion-safe:md:min-h-0 motion-safe:md:rounded-r-none motion-safe:md:border-r-0 motion-safe:md:shadow-none motion-safe:md:backface-hidden motion-safe:md:rotate-y-180">
