@@ -80,10 +80,6 @@ export default function Tracks() {
         </p>
         {/* the mission on an arcade cabinet: marquee, screen, control deck, coin slot */}
         <div className="track-showcase relative mx-auto mt-6 max-w-2xl text-left">
-          {/* side pillars give the cabinet its depth */}
-          <div aria-hidden="true" className="absolute -left-4 bottom-14 top-28 hidden w-4 rounded-l-xl bg-saigon-deep md:block" />
-          <div aria-hidden="true" className="absolute -right-4 bottom-14 top-28 hidden w-4 rounded-r-xl bg-saigon-deep md:block" />
-
           {/* marquee: the backlit sign carrying the track name */}
           <div className="relative rounded-t-[2rem] bg-saigon-deep px-5 pb-3 pt-5 md:px-6">
             <PixelGrid className="absolute left-5 top-7 hidden opacity-60 md:block" size={22} />
@@ -98,8 +94,12 @@ export default function Tracks() {
             </div>
           </div>
 
-          {/* the screen in its bezel: scanlines and glare paint under the text */}
-          <div className="mx-3 border-x-[6px] border-saigon bg-[#cbd8ee] p-4 md:mx-5 md:p-5">
+          {/* the screen in its bezel, flanked by the cabinet's side pillars;
+              scanlines and glare paint under the text */}
+          <div className="relative">
+            <div aria-hidden="true" className="absolute inset-y-0 left-0 hidden w-5 bg-saigon-deep md:block" />
+            <div aria-hidden="true" className="absolute inset-y-0 right-0 hidden w-5 bg-saigon-deep md:block" />
+          <div className="border-x-[6px] border-saigon bg-[#cbd8ee] p-4 md:mx-5 md:p-5">
             <div className="relative overflow-hidden rounded-2xl border-2 border-mist bg-white shadow-[inset_0_0_0_3px_#e2e8f0,inset_0_0_28px_rgba(1,69,180,0.08)]">
               <div
                 className="pointer-events-none absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent_0_3px,rgba(1,69,180,0.05)_3px_4px)]"
@@ -110,7 +110,7 @@ export default function Tracks() {
                 aria-hidden="true"
               />
               <div className="relative p-8 md:p-10">
-                <PixelGrid className="ambient-float absolute right-8 top-8" data-amp="s" size={30} />
+                <PixelGrid className="ambient-float absolute right-8 top-8 hidden md:block" data-amp="s" size={30} />
                 <h3 className="max-w-md text-2xl font-semibold md:text-3xl">
                   Build a game that makes learning fun
                 </h3>
@@ -126,6 +126,7 @@ export default function Tracks() {
                 </p>
               </div>
             </div>
+          </div>
           </div>
 
           {/* control deck: angled, jutting out past the body. the twin behind it
