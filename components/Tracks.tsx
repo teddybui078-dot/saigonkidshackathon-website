@@ -147,7 +147,7 @@ export default function Tracks() {
                   <span className="-mt-2 h-4 w-14 rounded-full border-2 border-saigon bg-[#a8bfe2]" />
                 </div>
                 {/* the subjects you can pick, as arcade buttons */}
-                <div className="flex flex-wrap justify-center gap-4 md:gap-6">
+                <div className="grid grid-cols-2 gap-x-6 gap-y-4 md:flex md:gap-6">
                   {EXAMPLES.map((subject, i) => (
                     <div key={subject} className="track-button flex flex-col items-center">
                       <span className="h-16 w-16 rounded-full bg-[#a8bfe2] p-1.5 shadow-[inset_0_3px_0_#8fa9d4]">
