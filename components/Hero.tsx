@@ -14,6 +14,7 @@ import {
   FlightArc,
   PixelStack,
 } from "./decorations";
+import { Screws, DomeButton } from "./parts";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -180,7 +181,12 @@ export default function Hero() {
       <div className="hero-content relative flex max-w-4xl flex-col items-center text-center">
         <div className="relative">
           {/* the sign */}
-          <div className="hero-sign relative rounded-[2rem] border-4 border-saigon bg-white px-8 py-8 shadow-[inset_0_0_0_5px_white,inset_0_0_0_9px_#f8ac1a,0_10px_40px_rgba(1,69,180,0.12)] sm:px-14 sm:py-10">
+          <div className="hero-sign relative rounded-[2rem] border-[6px] border-saigon bg-white px-8 py-8 shadow-[inset_0_0_0_6px_#c9d7ee,inset_0_-4px_0_6px_#a8bfe2,0_10px_40px_rgba(1,69,180,0.12)] sm:px-14 sm:py-10">
+            {/* pixel-grid accents tucked into the bevel's corners */}
+            <PixelGrid className="absolute left-4 top-4" size={16} />
+            <PixelGrid className="absolute right-4 top-4 -scale-x-100" size={16} />
+            <PixelGrid className="absolute bottom-4 left-4 -scale-y-100" size={16} />
+            <PixelGrid className="absolute bottom-4 right-4 -scale-100" size={16} />
             {/* spire + golden rings */}
             <svg
               className="absolute -top-16 left-1/2 h-20 w-16 -translate-x-1/2"
@@ -193,16 +199,16 @@ export default function Hero() {
               <ellipse className="hero-spire-ring" cx="32" cy="30" rx="26" ry="7" stroke="#f8ac1a" strokeWidth="3.5" />
               <ellipse className="hero-spire-ring" cx="32" cy="46" rx="19" ry="5.5" stroke="#f8ac1a" strokeWidth="3" />
             </svg>
-            {/* bottom stem mirroring the spire */}
+            {/* tapered spike planting the sign in the ground */}
             <svg
-              className="absolute -bottom-12 left-1/2 h-12 w-16 -translate-x-1/2"
-              viewBox="0 0 64 48"
+              className="absolute -bottom-20 left-1/2 h-20 w-16 -translate-x-1/2"
+              viewBox="0 0 64 80"
               fill="none"
               aria-hidden="true"
             >
-              <path d="M32 0 L32 36" stroke="#0145b4" strokeWidth="6" strokeLinecap="round" />
-              <circle cx="32" cy="40" r="6" fill="#f8ac1a" stroke="#0145b4" strokeWidth="3" />
-              <ellipse className="hero-spire-ring" cx="32" cy="20" rx="21" ry="6" stroke="#f8ac1a" strokeWidth="3" />
+              <path d="M26 0 L38 0 L32 74 Z" fill="#0145b4" />
+              <path d="M32 2 L32 60" stroke="#a8bfe2" strokeWidth="2" strokeLinecap="round" opacity="0.7" />
+              <ellipse className="hero-spire-ring" cx="32" cy="22" rx="21" ry="6" stroke="#f8ac1a" strokeWidth="3" />
             </svg>
             {/* yellow bolts on the frame */}
             <span className="absolute -left-2.5 top-1/2 h-5 w-5 -translate-y-1/2 rounded-full border-[3px] border-saigon bg-energy" aria-hidden="true" />
@@ -229,15 +235,20 @@ export default function Hero() {
           </div>
         </div>
 
-        <p className="hero-fade mt-16 max-w-xl text-lg font-medium text-ink/80 md:text-xl">
+        <p className="hero-fade mt-24 max-w-xl text-lg font-medium text-ink/80 md:text-xl">
           One big day of building, coding, and playing — for 130 young makers
           aged 8–15.
         </p>
 
         <div className="hero-fade mt-7 flex flex-wrap items-center justify-center gap-4">
-          <span className="inline-flex items-center gap-2 rounded-full bg-energy px-7 py-3.5 text-base font-semibold text-ink shadow-[0_6px_0_#d18e07]">
-            Registration opens soon
-            <Sparkle size={16} color="#1e293b" />
+          <span className="relative inline-flex rounded-2xl border-[3px] border-saigon bg-[#dbe4f2] p-2.5 shadow-[0_6px_0_#01337f]">
+            <Screws />
+            <DomeButton shape="pill" tone="yellow" className="text-base font-semibold">
+              <span className="inline-flex items-center gap-2">
+                Registration opens soon
+                <Sparkle size={16} color="#1e293b" />
+              </span>
+            </DomeButton>
           </span>
           <a
             href="#about"
