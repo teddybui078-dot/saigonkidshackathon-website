@@ -3,7 +3,8 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Sparkle, PixelHeart, Bolts } from "./decorations";
+import { Sparkle, PixelHeart } from "./decorations";
+import { Lanyard } from "./parts";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -44,20 +45,27 @@ export default function Sponsors() {
           young builders
         </h2>
 
+        {/* conference badges on lanyards */}
         <div className="mt-12 grid grid-cols-2 gap-5 md:grid-cols-3">
           {Array.from({ length: 6 }).map((_, i) => (
-            <div
-              key={i}
-              className="sponsor-tile relative mt-3 flex h-32 items-center justify-center rounded-2xl border-[3px] border-saigon bg-white shadow-[0_6px_0_#01337f]"
-            >
-              {/* hook */}
-              <span className="absolute -top-3 left-1/2 h-5 w-5 -translate-x-1/2 rounded-full border-[3px] border-saigon bg-energy" aria-hidden="true" />
-              <Bolts />
-              <div className="flex h-[62%] w-[74%] items-center justify-center rounded-xl border-2 border-dashed border-mist">
-                <span className="flex items-center gap-2 text-sm font-medium text-ink/40">
-                  Your logo here
-                  <Sparkle className="ambient-twinkle" size={13} color={i % 2 === 0 ? "#f8ac1a" : "#0145b4"} />
-                </span>
+            <div key={i} className="sponsor-tile">
+              {/* swings from the clip on hover — kept off the tile gsap tweens */}
+              <div className="flex origin-top flex-col items-center transition-transform duration-300 hover:rotate-2">
+                <Lanyard className="-mb-1" />
+                <div className="w-full rounded-xl border-[3px] border-saigon bg-white shadow-[0_6px_0_#01337f]">
+                  {/* header band with the punched slot the clip goes through */}
+                  <div className="flex h-8 items-center justify-center rounded-t-[9px] bg-saigon">
+                    <span className="h-1.5 w-10 rounded-full bg-white/80" aria-hidden="true" />
+                  </div>
+                  <div className="p-3">
+                    <div className="flex h-20 items-center justify-center rounded-lg border-2 border-dashed border-mist">
+                      <span className="flex items-center gap-2 text-sm font-medium text-ink/40">
+                        Your logo here
+                        <Sparkle className="ambient-twinkle" size={13} color={i % 2 === 0 ? "#f8ac1a" : "#0145b4"} />
+                      </span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           ))}

@@ -480,21 +480,3 @@ export function PixelBulb({
     </svg>
   );
 }
-
-/* ————— physical card parts: bolts and sign posts ————— */
-
-export function Bolts({ className = "" }: { className?: string }) {
-  // four corner bolts — makes a panel read as a real mounted object
-  const spots = ["left-3 top-3", "right-3 top-3", "left-3 bottom-3", "right-3 bottom-3"];
-  return (
-    <>
-      {spots.map((spot) => (
-        <span
-          key={spot}
-          aria-hidden="true"
-          className={`pointer-events-none absolute ${spot} h-3 w-3 rounded-full border-2 border-saigon bg-energy ${className}`}
-        />
-      ))}
-    </>
-  );
-}
