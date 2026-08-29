@@ -98,7 +98,7 @@ export default function Schedule() {
                 key={slot.time}
                 className={`schedule-item relative flex items-start gap-6 pl-12 md:w-1/2 md:pl-0 ${
                   i % 2 === 0
-                    ? "md:mr-auto md:flex-row-reverse md:pr-10 md:text-right"
+                    ? "md:mr-auto md:flex-row-reverse md:pr-10"
                     : "md:ml-auto md:pl-10"
                 }`}
               >
@@ -110,16 +110,19 @@ export default function Schedule() {
                   }`}
                   aria-hidden="true"
                 />
-                <div className="rounded-2xl bg-white p-6 shadow-[0_2px_12px_rgba(30,41,59,0.05)]">
-                  <p className="text-base font-bold text-energy-deep">
-                    {slot.time}
-                  </p>
-                  <h3 className="mt-1 text-xl font-semibold">
-                    {slot.title}
-                  </h3>
-                  <p className="mt-1 text-base font-medium text-ink/65">
-                    {slot.body}
-                  </p>
+                {/* an event ticket: punched notches + a tear-off time stub */}
+                <div className="relative flex w-full rounded-2xl border-[3px] border-saigon bg-white text-left shadow-[0_6px_0_#cbd8ee]">
+                  <span className="absolute -left-3 top-1/2 h-6 w-6 -translate-y-1/2 rounded-full border-[3px] border-saigon bg-[#e7edf7]" aria-hidden="true" />
+                  <span className="absolute -right-3 top-1/2 h-6 w-6 -translate-y-1/2 rounded-full border-[3px] border-saigon bg-[#e7edf7]" aria-hidden="true" />
+                  <div className="flex w-24 shrink-0 items-center justify-center rounded-l-[13px] border-r-[3px] border-dashed border-saigon bg-energy/15 px-2 text-center">
+                    <p className="text-lg font-bold text-saigon">{slot.time}</p>
+                  </div>
+                  <div className="p-5 md:p-6">
+                    <h3 className="text-xl font-semibold">{slot.title}</h3>
+                    <p className="mt-1 text-base font-medium text-ink/65">
+                      {slot.body}
+                    </p>
+                  </div>
                 </div>
               </li>
             ))}
