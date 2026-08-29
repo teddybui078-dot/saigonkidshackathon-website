@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { PixelGrid, Sparkle, PixelPlanet, FlightArc } from "./decorations";
+import { PixelGrid, Sparkle, PixelPlanet, FlightArc, Bolts } from "./decorations";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -84,36 +84,45 @@ export default function Tracks() {
           One track. One mission. Everyone all in.
         </p>
 
-        <div className="track-showcase relative mx-auto mt-12 max-w-2xl rounded-3xl bg-white p-9 text-left shadow-[0_2px_16px_rgba(30,41,59,0.06)] md:p-12">
-          <PixelGrid className="ambient-float absolute right-7 top-7" data-amp="s" size={34} />
-          <div className="text-6xl" aria-hidden="true">
-            🎮
-          </div>
-          <div className="mt-5 h-2 w-16 rounded-full bg-energy" />
-          <h3 className="mt-5 text-2xl font-semibold md:text-3xl">
-            Build a game that makes learning fun
-          </h3>
-          <p className="mt-4 text-lg font-medium text-ink/70">
-            Every team builds toward the same mission: turn something worth
-            learning into something kids genuinely want to play. Math,
-            languages, science, Saigon history — pick your subject, make it a
-            game, and watch the room fight for a turn.
-          </p>
+        {/* the mission on a retro monitor */}
+        <div className="track-showcase mx-auto mt-12 max-w-2xl text-left">
+          <div className="relative rounded-[1.75rem] border-[6px] border-saigon bg-[#cbd8ee] p-4 shadow-[0_10px_0_#01337f] md:p-5">
+            <Bolts />
+            <div className="relative rounded-2xl border-2 border-mist bg-white p-8 md:p-10">
+              <PixelGrid className="ambient-float absolute right-6 top-6" data-amp="s" size={30} />
+              <div className="text-6xl" aria-hidden="true">
+                🎮
+              </div>
+              <div className="mt-5 h-2 w-16 rounded-full bg-energy" />
+              <h3 className="mt-5 text-2xl font-semibold md:text-3xl">
+                Build a game that makes learning fun
+              </h3>
+              <p className="mt-4 text-lg font-medium text-ink/70">
+                Every team builds toward the same mission: turn something worth
+                learning into something kids genuinely want to play. Math,
+                languages, science, Saigon history — pick your subject, make it a
+                game, and watch the room fight for a turn.
+              </p>
 
-          <div className="track-chips mt-8 flex flex-wrap gap-3">
-            {EXAMPLES.map((chip, i) => (
-              <span
-                key={chip}
-                className={`track-chip rounded-full border-2 px-5 py-2 text-sm font-semibold ${
-                  i % 2 === 0
-                    ? "border-saigon text-saigon"
-                    : "border-energy text-energy-deep"
-                }`}
-              >
-                {chip}
-              </span>
-            ))}
+              <div className="track-chips mt-8 flex flex-wrap gap-3">
+                {EXAMPLES.map((chip, i) => (
+                  <span
+                    key={chip}
+                    className={`track-chip rounded-full border-2 border-saigon px-5 py-2 text-sm font-semibold ${
+                      i % 2 === 0
+                        ? "bg-white text-saigon shadow-[0_4px_0_#0145b4]"
+                        : "bg-energy text-ink shadow-[0_4px_0_#d18e07]"
+                    }`}
+                  >
+                    {chip}
+                  </span>
+                ))}
+              </div>
+            </div>
           </div>
+          {/* stand */}
+          <div className="mx-auto h-9 w-7 bg-saigon" aria-hidden="true" />
+          <div className="mx-auto h-4 w-44 rounded-full bg-saigon" aria-hidden="true" />
         </div>
       </div>
     </section>
