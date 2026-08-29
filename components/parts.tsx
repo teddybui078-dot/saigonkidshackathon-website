@@ -1,6 +1,6 @@
 /* physical hardware and prop parts that turn a box into an object:
    screws, domed buttons, pushpins, lanyards, lantern hooks and
-   tassels, leds, knobs. every svg here has a fixed intrinsic
+   tassels, leds. every svg here has a fixed intrinsic
    size — anything that must stretch with content is css, not svg. */
 
 import { BLUE, YELLOW, SKY_DEEP } from "./palette";
@@ -121,19 +121,6 @@ export function Led({ className = "" }: { className?: string }) {
   );
 }
 
-export function Knob({ className = "", turn = 0 }: { className?: string; turn?: number }) {
-  // a round dial with an indicator notch
-  return (
-    <span
-      aria-hidden="true"
-      className={`relative inline-block h-5 w-5 rounded-full border-2 border-saigon bg-[#a8bfe2] ${className}`}
-      style={{ rotate: `${turn}deg` }}
-    >
-      <span className="absolute left-1/2 top-0.5 h-2 w-0.5 -translate-x-1/2 rounded-full bg-saigon" />
-    </span>
-  );
-}
-
 /* ————— lanyards and lanterns ————— */
 
 export function Lanyard({ className = "" }: { className?: string }) {
@@ -164,34 +151,6 @@ export function Tassel({ className = "" }: { className?: string }) {
       <path d="M10 0 V10" stroke={YELLOW} strokeWidth="3" />
       <rect x="6" y="10" width="8" height="6" rx="2" fill={BLUE} />
       <path d="M7 16 V26 M10 16 V28 M13 16 V25" stroke={YELLOW} strokeWidth="2.5" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-/* ————— props ————— */
-
-export function PixelGamepad({ className = "", width = 72 }: { className?: string; width?: number }) {
-  // a flat gamepad: blue body, white d-pad, yellow face buttons
-  return (
-    <svg
-      className={className}
-      width={width}
-      height={width * (48 / 72)}
-      viewBox="0 0 72 48"
-      fill="none"
-      aria-hidden="true"
-    >
-      <circle cx="14" cy="34" r="12" fill={BLUE} />
-      <circle cx="58" cy="34" r="12" fill={BLUE} />
-      <rect x="6" y="8" width="60" height="30" rx="12" fill={BLUE} />
-      <rect x="15" y="16" width="6" height="16" rx="1.5" fill="#fff" />
-      <rect x="10" y="21" width="16" height="6" rx="1.5" fill="#fff" />
-      <circle cx="50" cy="18" r="3.5" fill={YELLOW} />
-      <circle cx="57" cy="24" r="3.5" fill={YELLOW} />
-      <circle cx="43" cy="24" r="3.5" fill={YELLOW} />
-      <circle cx="50" cy="30" r="3.5" fill={YELLOW} />
-      <rect x="32" y="22" width="4" height="4" rx="1" fill="#fff" opacity="0.7" />
-      <rect x="38" y="22" width="4" height="4" rx="1" fill="#fff" opacity="0.7" />
     </svg>
   );
 }
