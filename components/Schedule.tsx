@@ -42,7 +42,7 @@ export default function Schedule() {
         const lantern = li.querySelector(".schedule-lantern") as HTMLElement;
         // starting state via set, so mm.revert() puts it all back
         gsap.set(arm, { scaleX: 0, transformOrigin: i % 2 === 0 ? "100% 50%" : "0% 50%" });
-        gsap.set(collar, { scale: 0 });
+        gsap.set(collar, { scaleX: 0, scaleY: 0 });
         gsap.set(lantern, { opacity: 0, y: -16 });
         return {
           li,
@@ -50,7 +50,9 @@ export default function Schedule() {
           a: -1,
           l: -1,
           setArm: gsap.quickSetter(arm, "scaleX"),
-          setCollar: gsap.quickSetter(collar, "scale"),
+          // quickSetter takes the axis props, not the "scale" shorthand
+          setCollarX: gsap.quickSetter(collar, "scaleX"),
+          setCollarY: gsap.quickSetter(collar, "scaleY"),
           setOpacity: gsap.quickSetter(lantern, "opacity"),
           setY: gsap.quickSetter(lantern, "y", "px"),
         };
@@ -70,7 +72,8 @@ export default function Schedule() {
           if (a !== r.a) {
             r.a = a;
             r.setArm(a);
-            r.setCollar(a);
+            r.setCollarX(a);
+            r.setCollarY(a);
           }
           if (l !== r.l) {
             r.l = l;
