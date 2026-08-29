@@ -3,8 +3,8 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { PixelGrid, Sparkle, FloatingLaptop, PixelBulb, PixelStack, FlightArc, Bolts, SignPost } from "./decorations";
-import { Screws, DomeButton, Led } from "./parts";
+import { PixelGrid, Sparkle, FloatingLaptop, PixelBulb, PixelStack, FlightArc } from "./decorations";
+import { Screws, DomeButton, Led, Pushpin } from "./parts";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -103,8 +103,22 @@ export default function About() {
       <div className="mx-auto max-w-5xl">
         <div className="relative">
           <PixelGrid className="ambient-float absolute -left-2 -top-10 hidden lg:block" size={36} />
-          <p className="about-line mb-3 text-sm font-semibold text-saigon">
-            About the day ✦
+          {/* a marquee arrow: blue sign, chasing bulbs, pointing at the story */}
+          <p
+            className="about-line relative mb-5 inline-block [filter:drop-shadow(0_4px_0_#01337f)]"
+            style={{ "--head": "22px" } as React.CSSProperties}
+          >
+            <span className="clip-arrow block bg-saigon-deep">
+              <span className="clip-arrow absolute inset-[3px] right-[5px] bg-saigon" aria-hidden="true" />
+              <span className="relative flex items-center gap-3 py-2 pl-5 pr-[calc(var(--head)+1.25rem)] text-sm font-semibold text-white">
+                About the day
+                <span className="flex items-center gap-1.5" aria-hidden="true">
+                  {Array.from({ length: 6 }).map((_, i) => (
+                    <span key={i} className="marquee-bulb h-2 w-2 rounded-full border border-energy-deep bg-energy" />
+                  ))}
+                </span>
+              </span>
+            </span>
           </p>
           <h2 className="about-line max-w-2xl text-4xl font-bold leading-tight md:text-5xl">
             What is <span className="text-saigon">Saigon Kids Hackathon</span>?
@@ -117,21 +131,20 @@ export default function About() {
           </p>
         </div>
 
-        {/* signs on posts */}
-        <div className="about-cards mt-14 grid gap-8 md:grid-cols-3">
-          {CARDS.map((card, i) => (
-            <div key={card.title} className="about-card flex flex-col items-center">
-              <div className="relative w-full rounded-2xl border-4 border-saigon bg-white px-7 pb-7 pt-8 shadow-[inset_0_0_0_4px_white,inset_0_0_0_7px_#f8ac1a,0_8px_0_#01337f]">
-                <Bolts />
-                <div
-                  className={`mb-4 h-2 w-12 rounded-full ${
-                    i % 2 === 0 ? "bg-energy" : "bg-saigon"
-                  }`}
-                />
-                <h3 className="text-xl font-semibold">{card.title}</h3>
-                <p className="mt-2 font-medium text-ink/70">{card.body}</p>
+        {/* pinned paper notes: ruled paper, torn bottom edge, a pushpin */}
+        <div className="about-cards mt-14 grid gap-10 md:grid-cols-3">
+          {CARDS.map((card) => (
+            <div key={card.title} className="about-card relative">
+              {/* paper layers: shadow, outline, ruled face — all torn along the bottom */}
+              <span className="zigzag-bottom absolute inset-x-0 -bottom-1.5 top-1.5 bg-[#c9d7ee]" aria-hidden="true" />
+              <span className="zigzag-bottom absolute inset-0 bg-saigon" aria-hidden="true" />
+              <span className="zigzag-bottom paper-ruled absolute inset-[3px] bottom-[5px]" aria-hidden="true" />
+              <Pushpin className="absolute -top-3 left-5" />
+              <PixelGrid className="absolute bottom-7 right-4 opacity-60" size={16} />
+              <div className="relative px-7 pb-10 pt-10">
+                <h3 className="text-xl font-semibold leading-7">{card.title}</h3>
+                <p className="mt-2 font-medium leading-7 text-ink/70">{card.body}</p>
               </div>
-              <SignPost height={58} />
             </div>
           ))}
         </div>

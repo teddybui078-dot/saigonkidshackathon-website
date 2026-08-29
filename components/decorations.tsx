@@ -498,27 +498,3 @@ export function Bolts({ className = "" }: { className?: string }) {
     </>
   );
 }
-
-export function SignPost({
-  className = "",
-  height = 60,
-}: {
-  className?: string;
-  height?: number;
-}) {
-  // the pole under a sign — our spire motif: pole, golden ring, yellow ball
-  return (
-    <svg
-      className={className}
-      width={height}
-      height={height}
-      viewBox="0 0 64 64"
-      fill="none"
-      aria-hidden="true"
-    >
-      <path d="M32 0 L32 50" stroke={BLUE} strokeWidth="7" strokeLinecap="round" />
-      <ellipse cx="32" cy="22" rx="20" ry="6" stroke={YELLOW} strokeWidth="3.5" />
-      <circle cx="32" cy="55" r="7" fill={YELLOW} stroke={BLUE} strokeWidth="3" />
-    </svg>
-  );
-}
