@@ -227,9 +227,10 @@ body {
    (rounded-full, px-*, text-*) still wins over them */
 @layer components {
   /* a comic sticker: ink outline, a hard sun-yellow offset, soft corners.
-     the face is deep space unless the caller sets --sticker-face */
+     the face is a deep navy a shade off the ink, so the outline still
+     reads on it, unless the caller sets --sticker-face */
   .sticker-card {
-    background: var(--sticker-face, var(--bg-space-dark));
+    background: var(--sticker-face, color-mix(in srgb, var(--bg-space) 45%, var(--bg-space-dark)));
     border: 3px solid var(--stroke-ink);
     border-radius: 16px;
     box-shadow: 5px 5px 0 var(--accent-yellow);
