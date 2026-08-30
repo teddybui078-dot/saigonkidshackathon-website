@@ -65,7 +65,7 @@ export default function Footer() {
         <h2 className="footer-pop text-4xl font-bold leading-tight md:text-6xl">
           See you on{" "}
           <span className="relative inline-block text-energy">
-            March 6, 2027
+            {EVENT.date}
             {/* two loose hand-drawn underlines, stretched to the date's width */}
             <svg
               className="pointer-events-none absolute -bottom-3 left-0 h-5 w-full"
