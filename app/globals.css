@@ -220,3 +220,194 @@ body {
     radial-gradient(circle at 100% 50%, #0000 10px, #000 11px);
   mask-composite: intersect;
 }
+
+/* ————— in space: sticker cards, badges, buttons, the stars ————— */
+
+/* these live in the components layer so a utility on the element
+   (rounded-full, px-*, text-*) still wins over them */
+@layer components {
+  /* a comic sticker: ink outline, a hard sun-yellow offset, soft corners.
+     the face is deep space unless the caller sets --sticker-face */
+  .sticker-card {
+    background: var(--sticker-face, var(--bg-space-dark));
+    border: 3px solid var(--stroke-ink);
+    border-radius: 16px;
+    box-shadow: 5px 5px 0 var(--accent-yellow);
+    color: var(--text-white);
+  }
+
+  /* the same sticker as a white pill — the navbar, so the logo always
+     sits on white */
+  .sticker-pill {
+    background: var(--text-white);
+    border: 2px solid var(--stroke-ink);
+    border-radius: 9999px;
+    box-shadow: 3px 3px 0 var(--accent-yellow);
+    color: var(--color-ink);
+  }
+
+  /* the date badge: sun yellow, inked */
+  .badge-date {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 1rem;
+    border: 2px solid var(--stroke-ink);
+    border-radius: 9999px;
+    background: var(--accent-yellow);
+    color: var(--stroke-ink);
+    font-weight: 600;
+    line-height: 1.25;
+  }
+
+  /* a hollow badge in whatever colour the text is */
+  .badge-hollow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 1rem;
+    border: 2px solid currentColor;
+    border-radius: 9999px;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+
+  /* the primary action: solid red, ink stroke, white type. large bold
+     text on purpose — white on this red passes AA only as large text.
+     on hover the sticker lifts off the page and throws its yellow shadow */
+  .cta-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.75rem;
+    border: 2px solid var(--stroke-ink);
+    border-radius: 9999px;
+    background: var(--accent-red);
+    color: var(--text-white);
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 1.25;
+    box-shadow: 0 0 0 var(--accent-yellow);
+    transition:
+      box-shadow 0.18s ease,
+      translate 0.18s ease;
+  }
+
+  .cta-primary:hover,
+  .cta-primary:focus-visible {
+    box-shadow: 5px 5px 0 var(--accent-yellow);
+    translate: -2px -2px;
+  }
+
+  /* the quiet action: hollow, fills in on hover */
+  .cta-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.75rem;
+    border: 2px solid currentColor;
+    border-radius: 9999px;
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 1.25;
+    transition:
+      background-color 0.18s ease,
+      color 0.18s ease;
+  }
+
+  .cta-secondary:hover,
+  .cta-secondary:focus-visible {
+    background: var(--text-white);
+    color: var(--bg-space);
+  }
+
+  /* a faint sun-coloured halo for the things floating in space —
+     never the logo (GUIDELINES.md §4) */
+  .space-glow {
+    filter: drop-shadow(0 0 12px rgba(255, 209, 102, 0.3));
+  }
+}
+
+/* the sky moves only for people who haven't asked it not to. the mascot
+   float uses the separate translate/rotate properties so it never fights
+   the transform gsap writes on the parallax wrapper above it */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes star-twinkle {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.35;
+    }
+  }
+
+  @keyframes star-drift {
+    from {
+      translate: 0 0;
+    }
+    to {
+      translate: 6px -18px;
+    }
+  }
+
+  @keyframes space-float {
+    0%,
+    100% {
+      translate: 0 0;
+      rotate: -2deg;
+    }
+    50% {
+      translate: 0 -14px;
+      rotate: 2deg;
+    }
+  }
+
+  @keyframes flame-flicker {
+    from {
+      scale: 1 1;
+    }
+    to {
+      scale: 0.92 0.78;
+    }
+  }
+
+  .stars-far {
+    animation:
+      star-twinkle 4.4s ease-in-out infinite,
+      star-drift 26s ease-in-out infinite alternate;
+  }
+
+  .stars-mid {
+    animation:
+      star-twinkle 3.1s ease-in-out 0.8s infinite,
+      star-drift 18s ease-in-out infinite alternate;
+  }
+
+  .stars-near {
+    animation:
+      star-twinkle 2.4s ease-in-out 1.6s infinite,
+      star-drift 12s ease-in-out infinite alternate;
+  }
+
+  .float-slow {
+    animation: space-float 6s ease-in-out infinite;
+  }
+
+  .float-fast {
+    animation: space-float 4.2s ease-in-out infinite reverse;
+  }
+
+  .flame-flicker {
+    animation: flame-flicker 0.35s ease-in-out infinite alternate;
+    transform-box: fill-box;
+    transform-origin: 50% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-primary,
+  .cta-secondary {
+    transition: none;
+  }
+}
