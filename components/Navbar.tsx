@@ -1,8 +1,6 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import Image from "next/image";
 import SiteLink from "./SiteLink";
+import { EVENT } from "./event";
 
 const LINKS = [
   { href: "/#about", label: "About" },
@@ -15,40 +13,24 @@ const LINKS = [
   { href: "/#faq", label: "FAQ" },
 ];
 
+/* the nav is a white sticker pill at every scroll position, so the logo
+   always sits on a clean white surface (GUIDELINES.md §4) whether it is
+   over the midnight hero or the light page below */
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
   return (
     <header className="fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-4">
-      <nav
-        className={`flex w-full max-w-5xl items-center justify-between gap-4 rounded-full px-4 py-2 transition-all duration-300 ${
-          scrolled
-            ? "bg-white/90 shadow-[0_4px_24px_rgba(1,69,180,0.10)] backdrop-blur"
-            : "bg-transparent"
-        }`}
-      >
-        <SiteLink
-          href="/"
-          className="flex items-center gap-2"
-          aria-label="Saigon Kids Hackathon — home"
-        >
+      <nav className="sticker-pill flex w-full max-w-5xl items-center justify-between gap-4 px-3 py-1.5 sm:px-4">
+        <SiteLink href="/" className="flex items-center gap-2" aria-label={`${EVENT.name} — home`}>
           <Image
-            src="/logo.png"
-            alt="Saigon Kids Hackathon logo"
-            width={44}
+            src="/logo-v2.png"
+            alt=""
+            width={66}
             height={44}
-            priority
+            loading="eager"
+            sizes="66px"
+            className="h-11 w-auto"
           />
-          <span className="hidden text-sm font-semibold text-saigon lg:block">
-            Saigon Kids Hackathon
-          </span>
+          <span className="hidden text-sm font-semibold text-saigon lg:block">{EVENT.name}</span>
         </SiteLink>
 
         <ul className="hidden items-center gap-5 md:flex">
@@ -64,9 +46,7 @@ export default function Navbar() {
           ))}
         </ul>
 
-        <span className="rounded-full bg-energy px-4 py-2 text-sm font-semibold text-ink">
-          March 6, 2027
-        </span>
+        <span className="badge-date text-sm">{EVENT.date}</span>
       </nav>
     </header>
   );
