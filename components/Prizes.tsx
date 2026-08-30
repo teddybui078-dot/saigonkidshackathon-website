@@ -3,9 +3,9 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { PixelTrophy, Sparkle, PixelGrid, PixelStack } from "./decorations";
+import { Sparkle, PixelGrid, PixelStack } from "./decorations";
 import { Screws, Hook } from "./parts";
-import { Medal, Rosette, PrizeTag } from "./illustrations";
+import { Trophy, Medal, Rosette, PrizeTag, Bunting, Spotlight, Starburst } from "./illustrations";
 import { TEAM_AWARDS, SOLO_AWARDS, PRIZE_TBA, type TeamAward } from "./awards";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -24,11 +24,11 @@ const CAPTION: Record<TeamAward["place"], string> = {
   3: "podium-caption order-3",
 };
 
-/* each step has its own height; the clip box is the ground it rises out of */
+/* each step has its own height; the clip box is the floor it rises out of */
 const CLIP: Record<TeamAward["place"], string> = {
-  1: "podium-clip h-52 w-full overflow-hidden md:h-64",
-  2: "podium-clip h-40 w-full overflow-hidden md:h-52",
-  3: "podium-clip h-32 w-full overflow-hidden md:h-40",
+  1: "podium-clip h-48 w-full overflow-hidden md:h-56",
+  2: "podium-clip h-36 w-full overflow-hidden md:h-44",
+  3: "podium-clip h-28 w-full overflow-hidden md:h-36",
 };
 
 /* what stands on top of each step: the trophy (with a gold medal tucked
@@ -36,8 +36,8 @@ const CLIP: Record<TeamAward["place"], string> = {
 const TOPPER: Record<TeamAward["place"], React.ReactNode> = {
   1: (
     <span className="relative inline-block">
-      <PixelTrophy size={110} className="h-auto w-20 md:w-[110px]" />
-      <Medal tone="gold" size={54} className="absolute -right-7 bottom-1 -z-[1] rotate-12" />
+      <Trophy size={120} className="h-auto w-[5.5rem] md:w-[120px]" />
+      <Medal tone="gold" size={52} className="absolute -right-7 bottom-2 -z-[1] rotate-12" />
     </span>
   ),
   2: <Medal tone="silver" size={64} />,
@@ -47,9 +47,38 @@ const TOPPER: Record<TeamAward["place"], React.ReactNode> = {
 /* where on the pinned timeline each step starts rising: third first, then
    second, then the winner takes the longest */
 const RISE: Record<TeamAward["place"], { at: number; duration: number }> = {
-  3: { at: 0, duration: 1 },
-  2: { at: 0.5, duration: 1 },
-  1: { at: 1, duration: 1.2 },
+  3: { at: 0.6, duration: 1 },
+  2: { at: 1.0, duration: 1 },
+  1: { at: 1.4, duration: 1.2 },
+};
+
+/* the confetti burst around the trophy: where each piece lands (px from
+   the burst's centre) and what it is. literal, so the server and the
+   browser draw the same thing */
+const CONFETTI = [
+  { x: -96, y: -70, r: 20, kind: "square-yellow" },
+  { x: -70, y: -118, r: -30, kind: "dot-blue" },
+  { x: -36, y: -140, r: 12, kind: "square-white" },
+  { x: 8, y: -152, r: 40, kind: "dot-yellow" },
+  { x: 52, y: -134, r: -18, kind: "square-blue" },
+  { x: 92, y: -100, r: 25, kind: "dot-white" },
+  { x: 112, y: -56, r: -40, kind: "square-yellow" },
+  { x: -120, y: -22, r: 8, kind: "dot-yellow" },
+  { x: 124, y: -8, r: -12, kind: "square-blue" },
+  { x: -84, y: 10, r: 32, kind: "square-white" },
+  { x: 76, y: 24, r: -26, kind: "dot-blue" },
+  { x: -48, y: -92, r: -8, kind: "dot-white" },
+  { x: 30, y: -108, r: 16, kind: "square-yellow" },
+  { x: -14, y: -60, r: 0, kind: "dot-blue" },
+] as const;
+
+const CONFETTI_KIND: Record<(typeof CONFETTI)[number]["kind"], string> = {
+  "square-yellow": "block h-3 w-3 rounded-[3px] bg-energy",
+  "square-blue": "block h-3 w-3 rounded-[3px] bg-saigon",
+  "square-white": "block h-3 w-3 rounded-[3px] border-2 border-saigon bg-white",
+  "dot-yellow": "block h-3 w-3 rounded-full bg-energy",
+  "dot-blue": "block h-3 w-3 rounded-full bg-saigon",
+  "dot-white": "block h-3 w-3 rounded-full border-2 border-saigon bg-white",
 };
 
 export default function Prizes() {
@@ -61,7 +90,7 @@ export default function Prizes() {
       {
         motionOK: "(prefers-reduced-motion: no-preference)",
         desktop: "(min-width: 48rem)", // tailwind's md — keeps css and gsap in step
-        tall: "(min-height: 44rem)", // room for the whole podium under the navbar while pinned
+        tall: "(min-height: 52rem)", // room for the whole stage under the navbar while pinned
       },
       (ctx) => {
         const { motionOK, desktop, tall } = ctx.conditions as Record<string, boolean>;
@@ -70,12 +99,37 @@ export default function Prizes() {
 
         const pinEl = section.querySelector<HTMLElement>(".prizes-pin");
         const stage = section.querySelector<HTMLElement>(".podium-stage");
+        const curtains = gsap.utils.toArray<HTMLElement>(".curtain-panel", section);
+        const starburst = section.querySelector<HTMLElement>(".starburst");
+        const bunting = section.querySelector<HTMLElement>(".bunting");
+        const spotL = section.querySelector<HTMLElement>(".spotlight-l");
+        const spotR = section.querySelector<HTMLElement>(".spotlight-r");
         const steps = gsap.utils.toArray<HTMLElement>(".podium-step", section);
         const toppers = gsap.utils.toArray<HTMLElement>(".podium-topper", section);
         const trophyTopper = section.querySelector<HTMLElement>(".podium-topper-trophy");
         const medalToppers = gsap.utils.toArray<HTMLElement>(".podium-topper-medal", section);
+        const confetti = gsap.utils.toArray<HTMLElement>(".confetti", section);
         const tags = gsap.utils.toArray<HTMLElement>(".podium-tag", section);
+        const plates = gsap.utils.toArray<HTMLElement>(".podium-plate", section);
         const captions = gsap.utils.toArray<HTMLElement>(".podium-caption", section);
+
+        // the confetti rests where the css puts it; the burst flies it there
+        // from the centre
+        const confettiFrom = {
+          x: (i: number) => -CONFETTI[i].x,
+          y: (i: number) => -CONFETTI[i].y,
+          rotation: 0,
+          scale: 0,
+        };
+        const confettiTo = {
+          x: 0,
+          y: 0,
+          rotation: (i: number) => CONFETTI[i].r,
+          scale: 1,
+          duration: 0.6,
+          stagger: 0.03,
+          ease: "back.out(2)",
+        };
 
         // the heading arrives once, before the pin begins
         gsap.from(gsap.utils.toArray<HTMLElement>(".prizes-line", section), {
@@ -88,10 +142,11 @@ export default function Prizes() {
         });
 
         if (pinEl && desktop && tall) {
-          // pin the whole podium and raise it out of the ground as you
-          // scroll: third step, second, then first, then the hardware
-          // lands on top and the tags swing in
-          gsap.set([...steps, ...toppers, ...tags], { willChange: "transform" });
+          // pin the stage and run the show as you scroll: the bunting drops
+          // and the spotlights swing on, the curtains part on a starburst,
+          // the steps rise third-second-first, the trophy and medals land,
+          // confetti bursts, and the plates and tags come last
+          gsap.set([...steps, ...toppers, ...tags, ...curtains, ...confetti], { willChange: "transform" });
           const tl = gsap.timeline({
             scrollTrigger: {
               trigger: pinEl,
@@ -103,21 +158,42 @@ export default function Prizes() {
               // tuck it under the fixed navbar
               start: () =>
                 "top " + Math.max(88, Math.round((window.innerHeight - pinEl.offsetHeight) / 2)),
-              end: () => "+=" + 2.2 * window.innerHeight,
+              end: () => "+=" + 2.6 * window.innerHeight,
             },
           });
+          if (bunting) tl.from(bunting, { y: -40, opacity: 0, duration: 0.6, ease: "power2.out" }, 0);
+          if (spotL) {
+            tl.fromTo(
+              spotL,
+              { rotation: -40 },
+              { rotation: -18, duration: 0.7, ease: "power2.out", transformOrigin: "50% 10%" },
+              0
+            );
+          }
+          if (spotR) {
+            tl.fromTo(
+              spotR,
+              { rotation: 40 },
+              { rotation: 18, duration: 0.7, ease: "power2.out", transformOrigin: "50% 10%" },
+              0
+            );
+          }
+          tl.fromTo(curtains, { scaleX: 1 }, { scaleX: 0.08, duration: 1, ease: "power2.inOut" }, 0.2);
+          if (starburst) {
+            tl.fromTo(
+              starburst,
+              { scale: 0.6, opacity: 0 },
+              { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(1.5)" },
+              0.9
+            );
+          }
           steps.forEach((step, i) => {
             const rise = RISE[PODIUM[i].place];
             // each step rises from inside its own clip box
-            tl.fromTo(
-              step,
-              { yPercent: 100 },
-              { yPercent: 0, ease: "power2.out", duration: rise.duration },
-              rise.at
-            );
+            tl.fromTo(step, { yPercent: 100 }, { yPercent: 0, ease: "power2.out", duration: rise.duration }, rise.at);
           });
           if (trophyTopper) {
-            tl.from(trophyTopper, { y: -180, opacity: 0, ease: "bounce.out", duration: 1 }, 2.0);
+            tl.from(trophyTopper, { y: -180, opacity: 0, ease: "bounce.out", duration: 1 }, 2.4);
           }
           tl.from(
             medalToppers,
@@ -129,37 +205,57 @@ export default function Prizes() {
               duration: 0.8,
               stagger: 0.15,
             },
-            2.1
+            2.5
           );
+          tl.fromTo(confetti, confettiFrom, confettiTo, 3.1);
+          tl.from(plates, { y: 12, opacity: 0, duration: 0.4, stagger: 0.08 }, 3.2);
           tl.from(
             tags,
-            {
-              rotation: -35,
-              opacity: 0,
-              transformOrigin: "50% 0%",
-              duration: 0.5,
-              stagger: 0.1,
-              ease: "back.out(2)",
-            },
-            2.6
+            { rotation: -35, opacity: 0, transformOrigin: "50% 0%", duration: 0.5, stagger: 0.1, ease: "back.out(2)" },
+            3.25
           );
-          tl.from(captions, { y: 20, opacity: 0, stagger: 0.1, duration: 0.5 }, 2.7);
-          tl.to({}, { duration: 0.4 }); // hold on the finished podium before letting go
+          tl.from(captions, { y: 20, opacity: 0, stagger: 0.1, duration: 0.5 }, 3.3);
+          tl.to({}, { duration: 0.4 }); // hold on the finished stage before letting go
         } else {
-          // small screens: the steps rise together and the hardware drops on
+          // small screens or short windows: the curtain opens once as the
+          // stage comes into view, then the steps rise, the hardware drops
+          // on and the confetti pops
+          const trigger = stage ?? section;
+          gsap.fromTo(
+            curtains,
+            { scaleX: 1 },
+            { scaleX: 0.08, duration: 0.9, ease: "power2.inOut", scrollTrigger: { trigger, start: "top 75%" } }
+          );
+          if (starburst) {
+            gsap.from(starburst, {
+              scale: 0.6,
+              opacity: 0,
+              duration: 0.5,
+              delay: 0.6,
+              ease: "back.out(1.5)",
+              scrollTrigger: { trigger, start: "top 75%" },
+            });
+          }
           gsap.from(steps, {
             yPercent: 100,
             stagger: 0.15,
             duration: 0.8,
+            delay: 0.4,
             ease: "power2.out",
-            scrollTrigger: { trigger: stage ?? section, start: "top 75%" },
+            scrollTrigger: { trigger, start: "top 75%" },
           });
           gsap.from(toppers, {
             y: -60,
             opacity: 0,
             stagger: 0.12,
+            delay: 1,
             ease: "back.out(1.6)",
-            scrollTrigger: { trigger: stage ?? section, start: "top 70%" },
+            scrollTrigger: { trigger, start: "top 75%" },
+          });
+          gsap.fromTo(confetti, confettiFrom, {
+            ...confettiTo,
+            delay: 1.5,
+            scrollTrigger: { trigger, start: "top 75%" },
           });
         }
 
@@ -192,8 +288,7 @@ export default function Prizes() {
         <PixelGrid className="ambient-float" size={72} />
       </div>
 
-      {/* the pinned block: heading, the three steps, the ground they stand on,
-          and the captions under it */}
+      {/* the pinned block: heading, the stage, and the captions under it */}
       <div className="prizes-pin mx-auto max-w-5xl">
         <div className="text-center">
           <p className="prizes-line mb-3 text-sm font-semibold text-saigon">Podium &amp; prizes ✦</p>
@@ -206,9 +301,43 @@ export default function Prizes() {
           </p>
         </div>
 
-        <div className="podium-stage mx-auto mt-10 max-w-3xl">
+        {/* the stage: a back curtain in a screwed frame, spotlights in the
+            corners, bunting across the top, the podium on the boards */}
+        <div className="podium-stage relative mx-auto mt-10 max-w-4xl pt-14 md:pt-16">
+          {/* the back curtain — at rest the panels are tied back (the css
+              state), the show closes them and draws them open again */}
+          <div
+            className="curtain absolute inset-x-0 bottom-10 top-6 overflow-hidden rounded-t-3xl border-4 border-saigon bg-saigon-deep"
+            aria-hidden="true"
+          >
+            <Screws className="opacity-60" />
+            <div className="starburst absolute left-1/2 top-2 -translate-x-1/2">
+              <Starburst className="anchor-wobble" size={230} />
+            </div>
+            <span className="curtain-panel curtain-pleats absolute inset-y-0 left-0 w-1/2 origin-left [transform:scaleX(0.08)]" />
+            <span className="curtain-panel curtain-pleats absolute inset-y-0 right-0 w-1/2 origin-right [transform:scaleX(0.08)]" />
+            <span className="absolute left-[2%] top-[42%] h-9 w-[6%] rounded-full border-2 border-saigon bg-energy" />
+            <span className="absolute right-[2%] top-[42%] h-9 w-[6%] rounded-full border-2 border-saigon bg-energy" />
+          </div>
+
+          {/* the lamps, aimed at first place; gsap swings them from the head */}
+          <div
+            className="spotlight-l pointer-events-none absolute left-1 top-0 z-20 origin-[50%_10%] [transform:rotate(-18deg)] md:left-4"
+            aria-hidden="true"
+          >
+            <Spotlight width={80} />
+          </div>
+          <div
+            className="spotlight-r pointer-events-none absolute right-1 top-0 z-20 origin-[50%_10%] [transform:rotate(18deg)] md:right-4"
+            aria-hidden="true"
+          >
+            <Spotlight width={80} />
+          </div>
+
+          <Bunting className="bunting pointer-events-none absolute inset-x-4 top-0 z-20 h-12 w-[calc(100%-2rem)] md:h-14" />
+
           {/* the steps are the picture; the captions under them carry the words */}
-          <div className="grid grid-cols-3 items-end gap-3 md:gap-6" aria-hidden="true">
+          <div className="relative z-10 grid grid-cols-3 items-end gap-3 px-6 md:gap-6 md:px-12" aria-hidden="true">
             {PODIUM.map((award) => (
               <div key={award.place} className={COLUMN[award.place]}>
                 {/* what stands on the step — above the clip box, so it is never cut off */}
@@ -219,22 +348,34 @@ export default function Prizes() {
                       : "podium-topper podium-topper-medal relative z-10 -mb-3 flex items-end justify-center"
                   }
                 >
+                  {award.trophy && (
+                    // the burst: every piece rests where its css puts it, and
+                    // flies there from the middle when the trophy lands
+                    <div className="confetti-burst pointer-events-none absolute left-1/2 top-10 h-0 w-0">
+                      {CONFETTI.map((c, i) => (
+                        <span key={i} className="confetti absolute" style={{ left: c.x - 6, top: c.y - 6 }}>
+                          <span className={`ambient-twinkle ${CONFETTI_KIND[c.kind]}`} />
+                        </span>
+                      ))}
+                    </div>
+                  )}
                   {TOPPER[award.place]}
                 </div>
                 {/* the clip box: the step rises up out of this */}
                 <div className={CLIP[award.place]}>
-                  <div
-                    className="podium-step relative h-full w-full rounded-t-2xl border-4 border-saigon-deep border-t-[10px] border-t-energy bg-saigon shadow-[inset_0_-6px_0_#01337f]"
-                  >
+                  <div className="podium-step relative h-full w-full rounded-t-2xl border-4 border-saigon-deep border-t-[10px] border-t-energy bg-saigon shadow-[inset_0_-6px_0_#01337f]">
                     <Screws className="opacity-70" />
-                    {/* the ordinal, big and hollow, sitting above the tag */}
-                    <div className="flex h-full items-center justify-center pb-8">
-                      <span className="text-outline-white text-5xl font-bold leading-none md:text-7xl">
+                    {/* the ordinal, big and hollow, over an engraved name plate */}
+                    <div className="flex h-full flex-col items-center justify-center gap-2 pb-8">
+                      <span className="text-outline-white text-4xl font-bold leading-none md:text-6xl">
                         {award.ordinal}
+                      </span>
+                      <span className="podium-plate metal-brushed rounded-md border-2 border-saigon px-2 py-0.5 text-[9px] font-bold uppercase tracking-widest text-ink/70 md:text-[11px]">
+                        {award.name}
                       </span>
                     </div>
                     {/* a tag hung near the foot of the face — from sm up, where it fits the step */}
-                    <div className="podium-tag absolute bottom-4 left-1/2 hidden -translate-x-1/2 sm:block">
+                    <div className="podium-tag absolute bottom-3 left-1/2 hidden -translate-x-1/2 sm:block">
                       <PrizeTag tone="white">
                         <span className="whitespace-nowrap text-xs">+ a prize each</span>
                       </PrizeTag>
@@ -245,26 +386,29 @@ export default function Prizes() {
             ))}
           </div>
 
-          {/* the ground */}
-          <div className="h-3 w-full rounded-full bg-saigon shadow-[0_4px_0_#01337f]" aria-hidden="true" />
+          {/* the boards */}
+          <div
+            className="stage-floor relative z-10 h-10 rounded-b-2xl border-4 border-t-0 border-saigon shadow-[0_6px_0_#01337f]"
+            aria-hidden="true"
+          />
+        </div>
 
-          {/* captions under each step, in the same three columns */}
-          <div className="mt-6 grid grid-cols-3 gap-3 text-center md:gap-6">
-            {PODIUM.map((award) => (
-              <div key={award.place} className={CAPTION[award.place]}>
-                <h3 className="font-bold">{award.name}</h3>
-                <ul className="mt-1 space-y-0.5 text-sm font-medium text-ink/70">
-                  {award.wins.map((win) => (
-                    <li key={win} className="flex items-start justify-center gap-1.5">
-                      <span className="mt-1.5 h-2 w-2 shrink-0 rounded-[2px] bg-energy" aria-hidden="true" />
-                      <span>{win}</span>
-                    </li>
-                  ))}
-                </ul>
-                <p className="mt-2 text-xs font-semibold text-ink/70">{PRIZE_TBA}</p>
-              </div>
-            ))}
-          </div>
+        {/* captions under each step, in the same three columns */}
+        <div className="mx-auto mt-8 grid max-w-4xl grid-cols-3 gap-3 px-6 text-center md:gap-6 md:px-12">
+          {PODIUM.map((award) => (
+            <div key={award.place} className={CAPTION[award.place]}>
+              <h3 className="font-bold">{award.name}</h3>
+              <ul className="mt-1 space-y-0.5 text-sm font-medium text-ink/70">
+                {award.wins.map((win) => (
+                  <li key={win} className="flex items-start justify-center gap-1.5">
+                    <span className="mt-1.5 h-2 w-2 shrink-0 rounded-[2px] bg-energy" aria-hidden="true" />
+                    <span>{win}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-2 text-xs font-semibold text-ink/70">{PRIZE_TBA}</p>
+            </div>
+          ))}
         </div>
       </div>
 
@@ -298,7 +442,7 @@ export default function Prizes() {
                 {/* the outer wrapper is the reveal, the inner one swings on the hook */}
                 <div className="ambient-hang flex flex-col items-center">
                   <Hook />
-                  <Rosette size={80} />
+                  <Rosette symbol={award.symbol} size={80} />
                   <div className="mt-2 w-full max-w-[16rem] rounded-xl border-[3px] border-saigon bg-white p-4 text-center shadow-[0_6px_0_#cbd8ee]">
                     <h4 className="text-lg font-bold">{award.name}</h4>
                     <p className="text-sm font-medium text-ink/65">{award.blurb}</p>
