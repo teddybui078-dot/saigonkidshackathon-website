@@ -1,8 +1,9 @@
-/* bigger illustrated goods: the things you win and the things in the
-   builders kit. same rules as decorations.tsx — chunky flat shapes in
-   blue and yellow, fixed intrinsic sizes, every one aria-hidden. */
+/* bigger illustrated goods: the things you win, the stage they're won on,
+   and the badges in the builders kit. same rules as decorations.tsx —
+   chunky flat shapes in blue and yellow, fixed intrinsic sizes, every one
+   aria-hidden. */
 
-import { BLUE, BLUE_DEEP, YELLOW, YELLOW_DEEP, SKY_LIGHT, SKY_DEEP } from "./palette";
+import { BLUE, BLUE_DEEP, YELLOW, YELLOW_DEEP, SKY_LIGHT, SKY_DEEP, METAL } from "./palette";
 
 type SvgProps = { className?: string; size?: number } & React.SVGProps<SVGSVGElement>;
 
@@ -38,11 +39,60 @@ export function PartyPopper({ className = "", size = 40, ...rest }: SvgProps) {
 
 /* ————— things you win ————— */
 
+export function Trophy({ className = "", size = 140, ...rest }: SvgProps) {
+  // the cup: big loop handles, a code mark engraved on the bowl, a star on
+  // the stem, a stepped base with a brushed name plate, rays off the rim
+  return (
+    <svg
+      className={className}
+      width={size}
+      height={size * (190 / 160)}
+      viewBox="0 0 160 190"
+      fill="none"
+      aria-hidden="true"
+      {...rest}
+    >
+      {/* rays */}
+      <path d="M80 4 V18 M44 14 L52 26 M116 14 L108 26" stroke={YELLOW} strokeWidth="6" strokeLinecap="round" />
+      {/* handles */}
+      <path d="M40 50 H22 A15 15 0 0 0 22 80 H42" stroke={YELLOW} strokeWidth="9" strokeLinecap="round" />
+      <path d="M120 50 H138 A15 15 0 0 1 138 80 H118" stroke={YELLOW} strokeWidth="9" strokeLinecap="round" />
+      {/* bowl */}
+      <path d="M40 36 H120 V80 A40 40 0 0 1 40 80 Z" fill={YELLOW} />
+      <rect x="34" y="30" width="92" height="12" rx="4" fill={YELLOW_DEEP} />
+      <path d="M50 48 V72" stroke="#fff" strokeWidth="5" strokeLinecap="round" opacity="0.55" />
+      {/* the engraving: a code mark */}
+      <path d="M66 62 L56 74 L66 86" stroke={BLUE} strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M85 58 L77 90" stroke={BLUE} strokeWidth="6" strokeLinecap="round" />
+      <path d="M96 62 L106 74 L96 86" stroke={BLUE} strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
+      {/* stem with a star */}
+      <rect x="70" y="118" width="20" height="24" rx="3" fill={BLUE} />
+      <path
+        d="M80 122 L82.5 127.5 L88 128 L84 132 L85 137.5 L80 135 L75 137.5 L76 132 L72 128 L77.5 127.5 Z"
+        fill={YELLOW}
+      />
+      {/* base */}
+      <rect x="52" y="141" width="56" height="14" rx="4" fill={BLUE} />
+      <rect x="40" y="155" width="80" height="18" rx="5" fill={BLUE} />
+      <rect x="56" y="159" width="48" height="10" rx="2" fill={METAL} stroke={BLUE_DEEP} strokeWidth="1.5" />
+      <rect x="32" y="173" width="96" height="13" rx="5" fill={BLUE_DEEP} />
+      <rect x="42" y="177" width="6" height="5" rx="1" fill={YELLOW} />
+      <rect x="112" y="177" width="6" height="5" rx="1" fill={YELLOW} />
+    </svg>
+  );
+}
+
 const MEDAL_TONES = {
-  gold: { face: YELLOW, rim: YELLOW_DEEP },
-  silver: { face: SKY_LIGHT, rim: SKY_DEEP },
-  bronze: { face: YELLOW_DEEP, rim: "#a86f06" },
+  gold: { face: YELLOW, rim: YELLOW_DEEP, numeral: "1" },
+  silver: { face: SKY_LIGHT, rim: SKY_DEEP, numeral: "2" },
+  bronze: { face: YELLOW_DEEP, rim: "#a86f06", numeral: "3" },
 } as const;
+
+/* the notched edge of a medal: 24 little bumps around the disc */
+const MEDAL_NOTCHES = Array.from({ length: 24 }, (_, i) => {
+  const a = (i * Math.PI) / 12;
+  return { cx: (40 + 27 * Math.cos(a)).toFixed(1), cy: (86 + 27 * Math.sin(a)).toFixed(1) };
+});
 
 export function Medal({
   tone = "gold",
@@ -50,44 +100,59 @@ export function Medal({
   size = 72,
   ...rest
 }: SvgProps & { tone?: keyof typeof MEDAL_TONES }) {
-  // a medal on a v-shaped ribbon: two blue straps down to a disc with a
-  // pixel star. tone picks the metal.
+  // a striped ribbon through a ring, a notched disc, the place embossed on
+  // it as a numeral. tone picks the metal.
   const t = MEDAL_TONES[tone];
   return (
     <svg
       className={className}
       width={size}
-      height={size * 1.375}
-      viewBox="0 0 80 110"
+      height={size * (118 / 80)}
+      viewBox="0 0 80 118"
       fill="none"
       aria-hidden="true"
       {...rest}
     >
-      <path d="M18 0 L34 0 L46 50 L30 58 Z" fill={BLUE} />
-      <path d="M62 0 L46 0 L34 50 L50 58 Z" fill={BLUE_DEEP} />
-      <path d="M26 0 L39 44" stroke={YELLOW} strokeWidth="2.5" strokeDasharray="5 5" />
-      <path d="M54 0 L41 44" stroke={YELLOW} strokeWidth="2.5" strokeDasharray="5 5" />
-      <circle cx="40" cy="78" r="29" fill={t.rim} />
-      <circle cx="40" cy="78" r="24" fill={t.face} />
-      <circle cx="40" cy="78" r="19" stroke={t.rim} strokeWidth="2.5" />
-      <path d="M40 64 L44 72 L53 73 L46 79 L48 88 L40 83 L32 88 L34 79 L27 73 L36 72 Z" fill={BLUE} />
-      <circle cx="30" cy="67" r="4" fill="#fff" opacity="0.55" />
+      <path d="M20 0 L36 0 L46 52 L30 60 Z" fill={BLUE} />
+      <path d="M60 0 L44 0 L34 52 L50 60 Z" fill={BLUE_DEEP} />
+      <path d="M27 0 L39 46" stroke={YELLOW} strokeWidth="4" />
+      <path d="M53 0 L41 46" stroke={YELLOW} strokeWidth="4" />
+      <circle cx="40" cy="60" r="6" stroke={t.rim} strokeWidth="4" />
+      {MEDAL_NOTCHES.map((n, i) => (
+        <circle key={i} cx={n.cx} cy={n.cy} r="4" fill={t.rim} />
+      ))}
+      <circle cx="40" cy="86" r="27" fill={t.rim} />
+      <circle cx="40" cy="86" r="22" fill={t.face} />
+      <circle cx="40" cy="86" r="17" stroke={t.rim} strokeWidth="2" />
+      <text x="40" y="95" textAnchor="middle" fontSize="26" fontWeight="700" fill={BLUE}>
+        {t.numeral}
+      </text>
+      <circle cx="31" cy="76" r="4" fill="#fff" opacity="0.55" />
     </svg>
   );
 }
 
-export function Rosette({ className = "", size = 72, ...rest }: SvgProps) {
-  // an award rosette: a scalloped yellow disc, a blue centre with a
-  // sparkle, two ribbon tails
-  const scallops = Array.from({ length: 12 }, (_, i) => {
-    const a = (i * Math.PI) / 6;
-    return { cx: 40 + 26 * Math.cos(a), cy: 38 + 26 * Math.sin(a) };
-  });
+export type RosetteSymbol = "star" | "palette" | "rocket";
+
+/* the scalloped edge of a rosette */
+const ROSETTE_SCALLOPS = Array.from({ length: 12 }, (_, i) => {
+  const a = (i * Math.PI) / 6;
+  return { cx: (40 + 26 * Math.cos(a)).toFixed(1), cy: (38 + 26 * Math.sin(a)).toFixed(1) };
+});
+
+export function Rosette({
+  symbol = "star",
+  className = "",
+  size = 72,
+  ...rest
+}: SvgProps & { symbol?: RosetteSymbol }) {
+  // an award rosette: scalloped yellow disc, white ring, a blue centre
+  // carrying the award's own symbol, two ribbon tails
   return (
     <svg
       className={className}
       width={size}
-      height={size * 1.375}
+      height={size * (110 / 80)}
       viewBox="0 0 80 110"
       fill="none"
       aria-hidden="true"
@@ -95,13 +160,37 @@ export function Rosette({ className = "", size = 72, ...rest }: SvgProps) {
     >
       <path d="M28 58 L22 108 L34 100 L40 108 L40 60 Z" fill={BLUE} />
       <path d="M52 58 L58 108 L46 100 L40 108 L40 60 Z" fill={BLUE_DEEP} />
-      {scallops.map((s, i) => (
-        <circle key={i} cx={s.cx.toFixed(1)} cy={s.cy.toFixed(1)} r="8" fill={YELLOW} />
+      {ROSETTE_SCALLOPS.map((s, i) => (
+        <circle key={i} cx={s.cx} cy={s.cy} r="8" fill={YELLOW} />
       ))}
       <circle cx="40" cy="38" r="27" fill={YELLOW} />
-      <circle cx="40" cy="38" r="20" fill="#fff" />
-      <circle cx="40" cy="38" r="15" fill={BLUE} />
-      <path d="M40 29 L43 35 L49 38 L43 41 L40 47 L37 41 L31 38 L37 35 Z" fill={YELLOW} />
+      <circle cx="40" cy="38" r="21" fill="#fff" />
+      <circle cx="40" cy="38" r="16" fill={BLUE} />
+      {symbol === "star" && (
+        <path
+          d="M40 27 L43.2 34 L50.6 34.8 L45.1 39.9 L46.7 47.2 L40 43.4 L33.3 47.2 L34.9 39.9 L29.4 34.8 L36.8 34 Z"
+          fill={YELLOW}
+        />
+      )}
+      {symbol === "palette" && (
+        <>
+          <path
+            d="M40 27c7 0 12 4.5 12 10 0 3-2 5-5 5h-3a2 2 0 0 0-1.5 3.5c.7.8.2 2-1 2H40c-7 0-12-4.5-12-10.5S33 27 40 27z"
+            fill={YELLOW}
+          />
+          <circle cx="34" cy="35" r="2" fill={BLUE} />
+          <circle cx="40" cy="31.5" r="2" fill="#fff" />
+          <circle cx="46" cy="34" r="2" fill={BLUE} />
+        </>
+      )}
+      {symbol === "rocket" && (
+        <>
+          <path d="M40 26c5 4 7 10 7 16v6H33v-6c0-6 2-12 7-16z" fill={YELLOW} />
+          <circle cx="40" cy="38" r="3" fill={BLUE} />
+          <path d="M33 42l-4 5h4zM47 42l4 5h-4z" fill={YELLOW} />
+          <path d="M37 48h6l-3 6z" fill="#fff" />
+        </>
+      )}
     </svg>
   );
 }
@@ -134,6 +223,91 @@ export function PrizeTag({
         {children}
       </span>
     </span>
+  );
+}
+
+/* ————— the stage ————— */
+
+/* pennants along the string: x positions and the string's height there
+   (a quadratic from y 6 at the ends to y 20 in the middle) */
+const PENNANTS = [50, 140, 230, 320, 410, 500, 590, 680, 770].map((x, i) => {
+  const t = x / 800;
+  return { x, y: 6 + 56 * t * (1 - t), tone: (["yellow", "blue", "white"] as const)[i % 3] };
+});
+
+export function Bunting({ className = "", ...rest }: Omit<SvgProps, "size">) {
+  // a sagging string of pennants — stretched to whatever width the caller
+  // gives it, so the flags widen a touch on a wide stage
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 800 70"
+      preserveAspectRatio="none"
+      fill="none"
+      aria-hidden="true"
+      {...rest}
+    >
+      <path d="M0 6 Q400 34 800 6" stroke={BLUE} strokeWidth="3" vectorEffect="non-scaling-stroke" />
+      {PENNANTS.map((p) => (
+        <path
+          key={p.x}
+          d={`M${p.x - 22} ${p.y.toFixed(1)} H${p.x + 22} L${p.x} ${(p.y + 34).toFixed(1)} Z`}
+          fill={p.tone === "yellow" ? YELLOW : p.tone === "blue" ? BLUE : "#fff"}
+          stroke={BLUE}
+          strokeWidth="2"
+          vectorEffect="non-scaling-stroke"
+          strokeLinejoin="round"
+        />
+      ))}
+    </svg>
+  );
+}
+
+export function Spotlight({ className = "", width = 90, ...rest }: Omit<SvgProps, "size"> & { width?: number }) {
+  // a stage lamp on a short arm with a soft beam under it — the caller
+  // rotates the wrapper from the lamp head to aim it
+  return (
+    <svg
+      className={className}
+      width={width}
+      height={width * (200 / 120)}
+      viewBox="0 0 120 200"
+      fill="none"
+      aria-hidden="true"
+      {...rest}
+    >
+      <path d="M44 48 L76 48 L118 200 L2 200 Z" fill={YELLOW} opacity="0.28" />
+      <rect x="56" y="0" width="8" height="14" fill={BLUE} />
+      <rect x="40" y="10" width="40" height="34" rx="6" fill={BLUE_DEEP} stroke={BLUE} strokeWidth="3" />
+      <rect x="44" y="40" width="32" height="8" rx="3" fill={YELLOW} />
+      <rect x="46" y="16" width="10" height="5" rx="2" fill="#fff" opacity="0.5" />
+    </svg>
+  );
+}
+
+/* a sixteen-point burst, pointy tips and stubby valleys */
+const BURST = Array.from({ length: 32 }, (_, i) => {
+  const a = (i * Math.PI) / 16 - Math.PI / 2;
+  const r = i % 2 === 0 ? 100 : 64;
+  return `${(100 + r * Math.cos(a)).toFixed(1)} ${(100 + r * Math.sin(a)).toFixed(1)}`;
+}).join(" L");
+
+export function Starburst({ className = "", size = 220, ...rest }: SvgProps) {
+  // the flash behind the winner
+  return (
+    <svg
+      className={className}
+      width={size}
+      height={size}
+      viewBox="0 0 200 200"
+      fill="none"
+      aria-hidden="true"
+      {...rest}
+    >
+      <path d={`M${BURST} Z`} fill={YELLOW} />
+      <circle cx="100" cy="100" r="42" fill="#fff" opacity="0.9" />
+      <circle cx="100" cy="100" r="28" fill={YELLOW} />
+    </svg>
   );
 }
 
@@ -187,108 +361,75 @@ export function ToteBag({
   );
 }
 
-export function SnackBag({ className = "", size = 90, ...rest }: SvgProps) {
-  // a crimped snack bag: yellow body, blue crimps, a blue window with crumbs
+export type KitKind = "snacks" | "stickers" | "hat" | "wristbands";
+
+export function KitIcon({ kind, className = "", size = 40 }: { kind: KitKind; className?: string; size?: number }) {
+  // simple flat marks for the four things in the bag: a cookie, a star
+  // sticker with a peeled corner, a cap, a wristband with its clasp
   return (
     <svg
       className={className}
       width={size}
-      height={size * (130 / 100)}
-      viewBox="0 0 100 130"
+      height={size}
+      viewBox="0 0 40 40"
       fill="none"
       aria-hidden="true"
-      {...rest}
     >
-      <rect x="14" y="16" width="72" height="98" rx="8" fill={YELLOW} />
-      <rect x="8" y="8" width="84" height="14" rx="4" fill={BLUE} />
-      <path d="M16 15 H84" stroke={YELLOW} strokeWidth="2.5" strokeDasharray="4 5" />
-      <rect x="8" y="108" width="84" height="14" rx="4" fill={BLUE} />
-      <path d="M16 115 H84" stroke={YELLOW} strokeWidth="2.5" strokeDasharray="4 5" />
-      <rect x="28" y="42" width="44" height="44" rx="10" fill={BLUE} />
-      <circle cx="42" cy="58" r="4" fill="#fff" opacity="0.85" />
-      <circle cx="56" cy="66" r="5" fill={YELLOW} />
-      <circle cx="60" cy="52" r="3" fill="#fff" opacity="0.7" />
-      <rect x="24" y="26" width="14" height="6" rx="3" fill="#fff" opacity="0.5" />
+      {kind === "snacks" && (
+        <>
+          <circle cx="20" cy="21" r="15" fill={BLUE} />
+          <g fill={YELLOW}>
+            <rect x="11" y="15" width="4" height="4" rx="1" />
+            <rect x="20" y="11" width="4" height="4" rx="1" />
+            <rect x="25" y="21" width="4" height="4" rx="1" />
+            <rect x="13" y="25" width="4" height="4" rx="1" />
+            <rect x="21" y="28" width="4" height="4" rx="1" />
+          </g>
+          <circle cx="32" cy="10" r="6" fill="#fff" />
+        </>
+      )}
+      {kind === "stickers" && (
+        <>
+          <path
+            d="M20 4 L24.7 14.6 L36.2 15.8 L27.6 23.5 L30 34.8 L20 29 L10 34.8 L12.4 23.5 L3.8 15.8 L15.3 14.6 Z"
+            fill={BLUE}
+          />
+          <path d="M30 34.8 L35.5 33.3 L31.6 28.5 Z" fill={YELLOW} />
+          <circle cx="17" cy="16" r="2" fill="#fff" opacity="0.7" />
+        </>
+      )}
+      {kind === "hat" && (
+        <>
+          <path d="M8 24 C8 12 32 12 32 24 Z" fill={BLUE} />
+          <circle cx="20" cy="12" r="2.5" fill={YELLOW} />
+          <rect x="17" y="17" width="6" height="5" rx="1" fill={YELLOW} />
+          <path d="M8 24 C14 28 30 29 37 25 L36 29 C29 33 14 32 7 28 Z" fill={YELLOW} />
+        </>
+      )}
+      {kind === "wristbands" && (
+        <>
+          <rect x="4" y="14" width="32" height="12" rx="6" fill={BLUE} />
+          <circle cx="10" cy="20" r="1.8" fill="#fff" />
+          <circle cx="30" cy="20" r="1.8" fill="#fff" />
+          <rect x="16" y="11" width="8" height="18" rx="2" fill={YELLOW} />
+          <rect x="18.5" y="16" width="3" height="8" rx="1" fill={BLUE} />
+        </>
+      )}
     </svg>
   );
 }
 
-export function StickerSheet({ className = "", size = 96, ...rest }: SvgProps) {
-  // a sheet of three stickers with one corner peeling up
+export function KitBadge({ kind, className = "", size = 120 }: { kind: KitKind; className?: string; size?: number }) {
+  // a round patch: white face, blue ring, a dashed yellow stitch, the mark
+  // in the middle — the "logo" of each thing in the kit
   return (
-    <svg
-      className={className}
-      width={size}
-      height={size * (130 / 110)}
-      viewBox="0 0 110 130"
-      fill="none"
+    <span
+      className={`relative grid shrink-0 place-items-center rounded-full border-4 border-saigon bg-white shadow-[0_6px_0_#01337f] ${className}`}
+      style={{ width: size, height: size }}
       aria-hidden="true"
-      {...rest}
     >
-      <rect x="6" y="6" width="98" height="118" rx="10" fill="#fff" stroke={BLUE} strokeWidth="4" />
-      {/* sparkle sticker */}
-      <circle cx="34" cy="38" r="18" fill={YELLOW} />
-      <path d="M34 26 L37 35 L46 38 L37 41 L34 50 L31 41 L22 38 L31 35 Z" fill={BLUE} />
-      {/* pixel grid sticker */}
-      <rect x="58" y="20" width="36" height="36" rx="9" fill={BLUE} />
-      <rect x="66" y="28" width="8" height="8" rx="2" fill={YELLOW} />
-      <rect x="78" y="28" width="8" height="8" rx="2" fill={YELLOW} opacity="0.6" />
-      <rect x="66" y="40" width="8" height="8" rx="2" fill={YELLOW} opacity="0.6" />
-      <rect x="78" y="40" width="8" height="8" rx="2" fill="#fff" opacity="0.7" />
-      {/* code sticker */}
-      <circle cx="52" cy="90" r="22" fill={BLUE} />
-      <text x="52" y="97" textAnchor="middle" fontSize="18" fontWeight="700" fill={YELLOW}>
-        {"</>"}
-      </text>
-      {/* peeling corner */}
-      <path d="M104 100 L104 124 L80 124 Z" fill={SKY_LIGHT} />
-      <path d="M104 100 L80 124" stroke={BLUE} strokeWidth="3" />
-    </svg>
-  );
-}
-
-export function Cap({ className = "", width = 120, ...rest }: SvgProps & { width?: number }) {
-  // the builders cap: blue dome, yellow brim, a pixel-grid patch up front
-  return (
-    <svg
-      className={className}
-      width={width}
-      height={width * (90 / 140)}
-      viewBox="0 0 140 90"
-      fill="none"
-      aria-hidden="true"
-      {...rest}
-    >
-      <path d="M20 62 C20 18 120 18 120 62 Z" fill={BLUE} />
-      <path d="M70 20 L70 62 M45 24 C40 36 36 48 36 62 M95 24 C100 36 104 48 104 62" stroke={BLUE_DEEP} strokeWidth="3" />
-      <circle cx="70" cy="20" r="6" fill={YELLOW} />
-      <path d="M20 62 C40 76 100 78 138 66 L136 76 C100 88 40 86 18 72 Z" fill={YELLOW} />
-      <path d="M22 70 C50 80 100 82 132 72" stroke={YELLOW_DEEP} strokeWidth="2.5" strokeDasharray="4 5" />
-      <rect x="56" y="38" width="28" height="18" rx="4" fill={YELLOW} />
-      <rect x="61" y="43" width="7" height="7" rx="1.5" fill={BLUE} />
-      <rect x="72" y="43" width="7" height="7" rx="1.5" fill={BLUE} opacity="0.6" />
-    </svg>
-  );
-}
-
-export function Wristband({ className = "", width = 110, ...rest }: SvgProps & { width?: number }) {
-  // a looped wristband with a yellow stitch and a clasp, "SKH" on the front
-  return (
-    <svg
-      className={className}
-      width={width}
-      height={width * (70 / 120)}
-      viewBox="0 0 120 70"
-      fill="none"
-      aria-hidden="true"
-      {...rest}
-    >
-      <ellipse cx="60" cy="35" rx="46" ry="22" stroke={BLUE} strokeWidth="16" />
-      <ellipse cx="60" cy="35" rx="46" ry="22" stroke={YELLOW} strokeWidth="2.5" strokeDasharray="8 8" />
-      <rect x="51" y="6" width="18" height="12" rx="3" fill={YELLOW} stroke={BLUE} strokeWidth="2.5" />
-      <text x="60" y="61" textAnchor="middle" fontSize="11" fontWeight="700" fill={YELLOW}>
-        SKH
-      </text>
-    </svg>
+      <span className="absolute inset-[7px] rounded-full border-2 border-dashed border-energy" />
+      <KitIcon kind={kind} size={Math.round(size * 0.55)} />
+    </span>
   );
 }

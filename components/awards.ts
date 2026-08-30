@@ -39,16 +39,36 @@ export const TEAM_AWARDS: TeamAward[] = [
   },
 ];
 
-export type SoloAward = { id: string; name: string; blurb: string; prize: string };
+export type SoloAward = {
+  id: string;
+  name: string;
+  blurb: string;
+  prize: string;
+  /* the mark in the middle of its rosette */
+  symbol: "star" | "palette" | "rocket";
+};
 
 /* individual awards: a prize each, no medals or trophies */
 export const SOLO_AWARDS: SoloAward[] = [
-  { id: "best-solo", name: "Best Solo Project", blurb: "The strongest project built by a team of one.", prize: PRIZE_TBA },
+  {
+    id: "best-solo",
+    name: "Best Solo Project",
+    blurb: "The strongest project built by a team of one.",
+    prize: PRIZE_TBA,
+    symbol: "star",
+  },
   {
     id: "best-design-solo",
     name: "Best Design Solo Project",
     blurb: "The solo build that looks and feels the most finished.",
     prize: PRIZE_TBA,
+    symbol: "palette",
   },
-  { id: "rising-hacker", name: "Rising Hacker", blurb: "The builder who came the furthest in one day.", prize: PRIZE_TBA },
+  {
+    id: "rising-hacker",
+    name: "Rising Hacker",
+    blurb: "The builder who came the furthest in one day.",
+    prize: PRIZE_TBA,
+    symbol: "rocket",
+  },
 ];

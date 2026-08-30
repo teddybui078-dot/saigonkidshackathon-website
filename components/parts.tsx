@@ -4,7 +4,7 @@
    size — anything that must stretch with content is css, not svg. */
 
 import Image from "next/image";
-import { BLUE, YELLOW, SKY_DEEP, METAL, METAL_DEEP } from "./palette";
+import { BLUE, YELLOW, SKY_DEEP, METAL } from "./palette";
 import type { Partner } from "./partners";
 
 /* ————— fasteners ————— */
@@ -123,27 +123,7 @@ export function Led({ className = "" }: { className?: string }) {
   );
 }
 
-/* ————— clips and rings ————— */
-
-export function ClipboardClip({ className = "", width = 120 }: { className?: string; width?: number }) {
-  // the metal clip at the top of a clipboard: a plate, a lever, a hanging hole
-  return (
-    <svg
-      className={className}
-      width={width}
-      height={width * (44 / 120)}
-      viewBox="0 0 120 44"
-      fill="none"
-      aria-hidden="true"
-    >
-      <rect x="6" y="18" width="108" height="23" rx="7" fill={METAL} stroke={BLUE} strokeWidth="3" />
-      <rect x="38" y="3" width="44" height="24" rx="7" fill={METAL_DEEP} stroke={BLUE} strokeWidth="3" />
-      <circle cx="60" cy="14" r="4" fill={BLUE} />
-      <circle cx="18" cy="29" r="3.5" fill={SKY_DEEP} stroke={BLUE} strokeWidth="2" />
-      <circle cx="102" cy="29" r="3.5" fill={SKY_DEEP} stroke={BLUE} strokeWidth="2" />
-    </svg>
-  );
-}
+/* ————— rings ————— */
 
 export function BinderRing({ className = "", size = 28 }: { className?: string; size?: number }) {
   // a metal ring through punched paper — the rulebook's binding
