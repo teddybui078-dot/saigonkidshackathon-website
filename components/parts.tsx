@@ -188,18 +188,22 @@ export function LogoSlot({
   size?: number;
   className?: string;
 }) {
-  // a round slot for a partner's mark. the real logo is shown as-is —
-  // never rotated, recoloured or shadowed (GUIDELINES.md) — and until a
-  // mark arrives the slot is a dashed ring with "logo" written inside,
-  // the same placeholder the founder badges use
+  // a slot for a partner's mark, `size` tall. the real logo is shown as-is
+  // at its own proportions — never stretched, rotated, recoloured or
+  // shadowed (GUIDELINES.md) — and until a mark arrives the slot is a
+  // dashed ring with "logo" written inside, the same placeholder the
+  // founder badges use
   if (partner.logo) {
+    const { src, width, height } = partner.logo;
+    const rendered = Math.round((size * width) / height);
     return (
       <Image
-        src={partner.logo}
+        src={src}
         alt={`${partner.name} logo`}
-        width={size}
+        width={rendered}
         height={size}
-        className={`shrink-0 rounded-full ${className}`}
+        sizes={`${rendered}px`}
+        className={`h-auto shrink-0 ${className}`}
       />
     );
   }
