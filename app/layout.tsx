@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { DynaPuff } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
+import { EVENT, AGES } from "@/components/event";
 
 const dynapuff = DynaPuff({
   subsets: ["latin"],
@@ -10,14 +11,12 @@ const dynapuff = DynaPuff({
 });
 
 export const metadata: Metadata = {
-  title: "Saigon Kids Hackathon",
-  description:
-    "One big day of building, coding, and playing — 130 young makers, March 6, 2027, Ho Chi Minh City.",
+  title: EVENT.name,
+  description: `One big day of building, coding, and playing — ${EVENT.spots} young makers aged ${AGES}, ${EVENT.date}, ${EVENT.city}.`,
   icons: { icon: "/logo.png" },
   openGraph: {
-    title: "Saigon Kids Hackathon",
-    description:
-      "One big day of building, coding, and playing — March 6, 2027, Ho Chi Minh City.",
+    title: EVENT.name,
+    description: `One big day of building, coding, and playing — ${EVENT.date}, ${EVENT.city}.`,
     images: ["/logo.png"],
   },
 };

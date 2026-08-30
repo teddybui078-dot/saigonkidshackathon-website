@@ -16,6 +16,7 @@ import {
 } from "./decorations";
 import { LogoSlot } from "./parts";
 import { PARTNERS } from "./partners";
+import { EVENT, AGES } from "./event";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -254,8 +255,8 @@ export default function Hero() {
         </div>
 
         <p className="hero-fade mt-6 max-w-xl text-lg font-medium text-ink/80 md:text-xl">
-          One big day of building, coding, and playing — for 130 young makers
-          aged 8–15.
+          One big day of building, coding, and playing — for {EVENT.spots} young makers
+          aged {AGES}.
         </p>
 
         <div className="hero-fade mt-7 flex flex-wrap items-center justify-center gap-4">

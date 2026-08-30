@@ -4,13 +4,14 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { PixelGrid } from "./decorations";
+import { EVENT, AGES, GRADES, TEAM_SIZE } from "./event";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const FAQS = [
   {
     q: "Who can join?",
-    a: "Any kid aged 8–15 who's curious about making things with technology. We have around 130 spots, first come first served.",
+    a: `Any kid aged ${AGES} (${GRADES}) who's curious about making things with technology. There are ${EVENT.spots} builder spots, first come first served.`,
   },
   {
     q: "Do I need to know how to code?",
@@ -21,16 +22,16 @@ const FAQS = [
     a: "A laptop if you have one (we have loaners if you don't), a water bottle, and your biggest idea. We handle everything else.",
   },
   {
-    q: "Is it free?",
-    a: "Yes — free to attend, including meals, snacks, swag, and all the workshops. Thanks to our sponsors!",
+    q: "How much does it cost?",
+    a: `${EVENT.fee.display} per builder. That covers the whole day — lunch, snacks, the builders kit, mentors, and the judging lab. How to pay comes with registration.`,
   },
   {
     q: "Do parents stay?",
-    a: "Parents check you in and can hang out in the family lounge. The demo showcase at 5pm is open to everyone — bring the whole family.",
+    a: `Yes — a parent or guardian stays on site for the whole day, so a grown-up is always there if anything comes up. School and camp groups can send one or two adult chaperones instead. Demos and awards at ${EVENT.demos} are open to the whole family.`,
   },
   {
     q: "How do teams work?",
-    a: "Teams of 2–4. Come with friends or join our team-matching game in the morning — either way, you won't build alone.",
+    a: `Teams of ${TEAM_SIZE} — three is the sweet spot. Come with friends, join team matching on the morning, or go solo if you'd rather build alone.`,
   },
 ];
 

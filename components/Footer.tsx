@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Sparkle, CodeMark, PixelStack, PixelPlanet } from "./decorations";
 import { PARTNERS } from "./partners";
+import { EVENT } from "./event";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -82,7 +83,7 @@ export default function Footer() {
           </span>
         </h2>
         <p className="footer-pop mt-6 text-lg font-medium text-white/80">
-          Ho Chi Minh City · 130 young makers · one unforgettable day
+          {EVENT.city} · {EVENT.spots} young makers · one unforgettable day
         </p>
 
         <div className="footer-pop mt-8 flex justify-center">
