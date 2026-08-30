@@ -29,18 +29,28 @@ const STAR_CLASS: Record<StarDepth, string> = {
 export function HeroCanvas() {
   return (
     <HeroLayerShell layer="canvas" className="bg-linear-to-b from-space to-space-dark">
+      {/* the grain: one svg filter, one still overlay rasterised once. it sits
+          under the stars so their loops never re-blend it */}
+      <GrainFilter id={GRAIN_ID} />
+      <div
+        className="absolute inset-0 opacity-[0.14] mix-blend-soft-light [transform:translateZ(0)]"
+        style={{ filter: `url(#${GRAIN_ID})` }}
+      />
       {STAR_DEPTHS.map((depth) => {
         const layer = STARFIELD[depth];
         return (
           <span
             key={depth}
             className={`${STAR_CLASS[depth]} absolute left-0 top-0 rounded-full bg-white`}
-            style={{
-              width: layer.size,
-              height: layer.size,
-              boxShadow: layer.shadow,
-              opacity: layer.opacity,
-            }}
+            style={
+              {
+                width: layer.size,
+                height: layer.size,
+                boxShadow: layer.shadow,
+                opacity: layer.opacity,
+                "--star-alpha": layer.opacity,
+              } as React.CSSProperties
+            }
           />
         );
       })}
@@ -48,12 +58,6 @@ export function HeroCanvas() {
       <Sparkle className="ambient-twinkle absolute left-[14%] top-[16%]" size={22} color={SUN} />
       <Sparkle className="ambient-twinkle absolute right-[18%] top-[22%]" size={16} color={SUN} />
       <Sparkle className="ambient-twinkle absolute left-[24%] top-[62%] hidden md:block" size={18} color={SUN} />
-      {/* the grain: one svg filter, one still overlay that is rasterised once */}
-      <GrainFilter id={GRAIN_ID} />
-      <div
-        className="absolute inset-0 opacity-[0.14] mix-blend-soft-light [transform:translateZ(0)]"
-        style={{ filter: `url(#${GRAIN_ID})` }}
-      />
     </HeroLayerShell>
   );
 }
@@ -72,7 +76,8 @@ export function HeroCelestial() {
         className="hero-float absolute -right-6 -top-4 hidden w-[380px] md:block lg:w-[440px]"
         data-speed={PARALLAX.far}
       >
-        <EarthHorizon className="h-auto w-full" />
+        {/* overflow-visible lets the disc keep its curve past the drawing box */}
+        <EarthHorizon className="h-auto w-full overflow-visible" />
       </div>
     </HeroLayerShell>
   );
@@ -82,11 +87,12 @@ export function HeroCelestial() {
 export function HeroLandmark() {
   return (
     <HeroLayerShell layer="landmark">
+      {/* centred by the flex row, so the parallax tween owns the whole transform */}
       <div
-        className="hero-float absolute bottom-[4.5rem] left-1/2 w-20 [transform:translateX(-50%)] sm:w-24 md:bottom-[6.25rem] md:w-32"
+        className="hero-float absolute inset-x-0 bottom-[4.5rem] flex justify-center md:bottom-[6.25rem]"
         data-speed={PARALLAX.mid}
       >
-        <Rocket className="hero-rocket h-auto w-full" />
+        <Rocket className="hero-rocket h-auto w-20 sm:w-24 md:w-32" />
       </div>
     </HeroLayerShell>
   );

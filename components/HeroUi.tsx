@@ -46,7 +46,7 @@ export default function HeroUi() {
           <SiteLink href="/#about" className="cta-primary">
             what is it?
           </SiteLink>
-          <SiteLink href="/rules" className="cta-secondary text-white">
+          <SiteLink href="/rules" className="cta-secondary">
             the rules
           </SiteLink>
         </div>

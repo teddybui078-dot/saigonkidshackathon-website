@@ -20,7 +20,8 @@ function scatter(seed: number, count: number): Star[] {
   const rand = mulberry32(seed);
   return Array.from({ length: count }, () => ({
     x: Math.round(rand() * 10000) / 100,
-    y: Math.round(rand() * 10000) / 100,
+    // down to 130vh: the hero grows past one screen on short viewports
+    y: Math.round(rand() * 13000) / 100,
   }));
 }
 

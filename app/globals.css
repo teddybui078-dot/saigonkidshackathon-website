@@ -285,7 +285,8 @@ body {
     border-radius: 9999px;
     background: var(--accent-red);
     color: var(--text-white);
-    font-size: 1.125rem;
+    /* 19px bold clears the wcag large-text bar, where white on this red passes */
+    font-size: 1.1875rem;
     font-weight: 700;
     line-height: 1.25;
     box-shadow: 0 0 0 var(--accent-yellow);
@@ -300,7 +301,9 @@ body {
     translate: -2px -2px;
   }
 
-  /* the quiet action: hollow, fills in on hover */
+  /* the quiet action: hollow in the surrounding text colour, fills in on
+     hover. don't add a text-* utility to it — that would win over the
+     hover colour and leave white type on the white fill */
   .cta-secondary {
     display: inline-flex;
     align-items: center;
@@ -308,7 +311,8 @@ body {
     padding: 0.8rem 1.75rem;
     border: 2px solid currentColor;
     border-radius: 9999px;
-    font-size: 1.125rem;
+    color: inherit;
+    font-size: 1.1875rem;
     font-weight: 600;
     line-height: 1.25;
     transition:
@@ -333,13 +337,15 @@ body {
    float uses the separate translate/rotate properties so it never fights
    the transform gsap writes on the parallax wrapper above it */
 @media (prefers-reduced-motion: no-preference) {
+  /* each star depth sets --star-alpha, so the twinkle dims from its own
+     brightness instead of flattening the three depths to one */
   @keyframes star-twinkle {
     0%,
     100% {
-      opacity: 1;
+      opacity: var(--star-alpha, 1);
     }
     50% {
-      opacity: 0.35;
+      opacity: calc(var(--star-alpha, 1) * 0.35);
     }
   }
 
@@ -399,10 +405,16 @@ body {
     animation: space-float 4.2s ease-in-out infinite reverse;
   }
 
-  .flame-flicker {
+  /* the rocket's flame group and the satellite's signal arcs, by the
+     class hooks the art carries */
+  .hero-flame {
     animation: flame-flicker 0.35s ease-in-out infinite alternate;
     transform-box: fill-box;
     transform-origin: 50% 0;
+  }
+
+  .hero-signal {
+    animation: star-twinkle 1.6s ease-in-out infinite;
   }
 }
 
