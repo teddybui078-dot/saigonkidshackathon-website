@@ -4,17 +4,17 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Sparkle, PixelGrid, CodeMark } from "./decorations";
-import { ToteBag, SnackBag, StickerSheet, Cap, Wristband } from "./illustrations";
+import { ToteBag, KitBadge } from "./illustrations";
 import { KIT, type KitItem } from "./kit";
 
 gsap.registerPlugin(ScrollTrigger);
 
-/* the goods, one illustration per kit item */
+/* the goods: one round badge logo per kit item */
 const ART: Record<KitItem["id"], React.ReactNode> = {
-  snacks: <SnackBag size={96} />,
-  stickers: <StickerSheet size={104} />,
-  hat: <Cap width={140} />,
-  wristbands: <Wristband width={130} />,
+  snacks: <KitBadge kind="snacks" size={118} />,
+  stickers: <KitBadge kind="stickers" size={118} />,
+  hat: <KitBadge kind="hat" size={118} />,
+  wristbands: <KitBadge kind="wristbands" size={118} />,
 };
 
 /* where each item comes to rest around the bag on md+ (full strings so
