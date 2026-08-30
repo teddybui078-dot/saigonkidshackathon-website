@@ -38,7 +38,15 @@ export default function RouteScroll() {
       if (cancelled) return;
       ScrollTrigger.refresh();
       const hash = window.location.hash;
-      if (hash && hash.length > 1 && scrollToHash(hash, true)) return;
+      if (hash.length > 1 && scrollToHash(hash, true)) {
+        // the pins re-measure once the page has moved; settle a second time
+        raf = requestAnimationFrame(() => {
+          if (cancelled) return;
+          ScrollTrigger.refresh();
+          scrollToHash(hash, true);
+        });
+        return;
+      }
       if (!wasPop && !isFirst) scrollToTop(true);
     };
     document.fonts.ready.then(() => {

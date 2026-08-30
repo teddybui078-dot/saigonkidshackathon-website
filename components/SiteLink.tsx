@@ -11,12 +11,30 @@ import type { ComponentProps, MouseEvent } from "react";
 
 export const NAV_OFFSET = -72;
 
-/* scroll to an element by hash. returns false if it isn't on this page */
+/* where an element sits on the page in layout terms — offsetTop up the
+   chain, so an entrance transform mid-flight doesn't skew the target */
+function pageTop(el: HTMLElement) {
+  let y = 0;
+  let node: HTMLElement | null = el;
+  while (node) {
+    y += node.offsetTop;
+    node = node.offsetParent as HTMLElement | null;
+  }
+  return y;
+}
+
+/* scroll to an element by hash. returns false if it isn't on this page.
+   lenis measures the page on a debounced resize observer and clamps every
+   scroll to that (possibly stale) limit, so re-measure first and hand it
+   the exact number we mean */
 export function scrollToHash(hash: string, immediate = false) {
   const el = document.querySelector<HTMLElement>(hash);
   if (!el) return false;
-  if (window.__lenis) {
-    window.__lenis.scrollTo(el, { offset: NAV_OFFSET, immediate });
+  const lenis = window.__lenis;
+  if (lenis) {
+    lenis.resize();
+    const y = pageTop(el) + NAV_OFFSET;
+    lenis.scrollTo(Math.max(0, y), { immediate });
   } else {
     el.scrollIntoView({ behavior: immediate ? "auto" : "smooth" });
   }
@@ -24,8 +42,10 @@ export function scrollToHash(hash: string, immediate = false) {
 }
 
 export function scrollToTop(immediate = false) {
-  if (window.__lenis) {
-    window.__lenis.scrollTo(0, { immediate });
+  const lenis = window.__lenis;
+  if (lenis) {
+    lenis.resize();
+    lenis.scrollTo(0, { immediate });
   } else {
     window.scrollTo({ top: 0, behavior: immediate ? "auto" : "smooth" });
   }
