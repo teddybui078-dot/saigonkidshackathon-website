@@ -17,9 +17,9 @@ const RULE_LABEL = `Rule ${String(JUDGING_RULE?.n ?? 9).padStart(2, "0")}`;
 /* a bigger paddle for a bigger score — full strings so tailwind sees them */
 const PADDLE: Record<number, { card: string; number: string }> = {
   30: { card: "w-32", number: "text-5xl" },
-  20: { card: "w-28", number: "text-4xl" },
-  15: { card: "w-[6.5rem]", number: "text-4xl" },
-  10: { card: "w-24", number: "text-3xl" },
+  20: { card: "w-[7.25rem]", number: "text-4xl" },
+  15: { card: "w-28", number: "text-4xl" },
+  10: { card: "w-[6.5rem]", number: "text-3xl" },
 };
 const paddleFor = (c: Criterion) => PADDLE[c.pts] ?? PADDLE[15];
 
@@ -114,7 +114,7 @@ export default function Judging() {
                         pts
                       </span>
                       <span className="sr-only">{c.pts} points —</span>
-                      <span className="mt-2 block rounded-md border-2 border-saigon bg-energy px-1.5 py-1 text-xs font-bold leading-tight md:text-sm">
+                      <span className="mt-2 block rounded-md border-2 border-saigon bg-energy px-1 py-1 text-xs font-bold leading-tight">
                         {c.title}
                       </span>
                     </div>

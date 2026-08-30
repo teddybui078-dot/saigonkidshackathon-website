@@ -58,8 +58,8 @@ export function Trophy({ className = "", size = 140, ...rest }: SvgProps) {
       <path d="M40 50 H22 A15 15 0 0 0 22 80 H42" stroke={YELLOW} strokeWidth="9" strokeLinecap="round" />
       <path d="M120 50 H138 A15 15 0 0 1 138 80 H118" stroke={YELLOW} strokeWidth="9" strokeLinecap="round" />
       {/* bowl */}
-      <path d="M40 36 H120 V80 A40 40 0 0 1 40 80 Z" fill={YELLOW} />
-      <rect x="34" y="30" width="92" height="12" rx="4" fill={YELLOW_DEEP} />
+      <path d="M40 36 H120 V80 A40 40 0 0 1 40 80 Z" fill={YELLOW} stroke={BLUE_DEEP} strokeWidth="3" />
+      <rect x="34" y="30" width="92" height="12" rx="4" fill={YELLOW_DEEP} stroke={BLUE_DEEP} strokeWidth="2" />
       <path d="M50 48 V72" stroke="#fff" strokeWidth="5" strokeLinecap="round" opacity="0.55" />
       {/* the engraving: a code mark */}
       <path d="M66 62 L56 74 L66 86" stroke={BLUE} strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
@@ -276,7 +276,7 @@ export function Spotlight({ className = "", width = 90, ...rest }: Omit<SvgProps
       aria-hidden="true"
       {...rest}
     >
-      <path d="M44 48 L76 48 L118 200 L2 200 Z" fill={YELLOW} opacity="0.28" />
+      <path d="M44 48 L76 48 L118 200 L2 200 Z" fill="#fff" opacity="0.3" />
       <rect x="56" y="0" width="8" height="14" fill={BLUE} />
       <rect x="40" y="10" width="40" height="34" rx="6" fill={BLUE_DEEP} stroke={BLUE} strokeWidth="3" />
       <rect x="44" y="40" width="32" height="8" rx="3" fill={YELLOW} />
@@ -305,8 +305,7 @@ export function Starburst({ className = "", size = 220, ...rest }: SvgProps) {
       {...rest}
     >
       <path d={`M${BURST} Z`} fill={YELLOW} />
-      <circle cx="100" cy="100" r="42" fill="#fff" opacity="0.9" />
-      <circle cx="100" cy="100" r="28" fill={YELLOW} />
+      <circle cx="100" cy="100" r="58" fill="#fff" opacity="0.92" />
     </svg>
   );
 }
