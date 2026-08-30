@@ -16,6 +16,10 @@ export const RUBRIC: Criterion[] = [
 export const RUBRIC_TOTAL = RUBRIC.reduce((sum, c) => sum + c.pts, 0); // 120
 export const RUBRIC_MAX = Math.max(...RUBRIC.map((c) => c.pts)); // the longest bar
 
+/* "seven questions" in the heading, derived so a new criterion can't desync it */
+const WORDS = ["", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"];
+export const RUBRIC_COUNT_WORD = WORDS[RUBRIC.length] ?? String(RUBRIC.length);
+
 /* when two projects tie, these settle it, in order */
 export const TIE_BREAKERS = ["Technical", "Creativity", "Impact"];
 
