@@ -5,19 +5,10 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Sparkle, PixelClock, PixelStack, CodeMark, PixelGrid } from "./decorations";
 import { Hook, Tassel } from "./parts";
+import { AGENDA } from "./agenda";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const SLOTS = [
-  { time: "8:00", title: "Check-in & breakfast", body: "Grab a badge, a bánh mì, and find your table." },
-  { time: "9:00", title: "Opening ceremony", body: "The countdown, the mission, and a surprise or two." },
-  { time: "9:30", title: "Hacking begins!", body: "Teams form, laptops open, ideas start flying." },
-  { time: "12:00", title: "Lunch break", body: "Refuel with friends — and sneak a peek at other teams." },
-  { time: "14:00", title: "Mini workshops", body: "Quick, fun sessions: game design, robots, and AI tricks." },
-  { time: "16:30", title: "Code freeze", body: "Hands off the keyboard — time to practice your pitch." },
-  { time: "17:00", title: "Demo time", body: "Every team on stage showing what they built today." },
-  { time: "18:00", title: "Awards & closing", body: "Prizes, high-fives, and photos to remember it by." },
-];
 
 export default function Schedule() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -158,7 +149,7 @@ export default function Schedule() {
           />
 
           <ol className="space-y-16">
-            {SLOTS.map((slot, i) => (
+            {AGENDA.map((slot, i) => (
               <li
                 key={slot.time}
                 className={`schedule-item relative md:w-1/2 ${
