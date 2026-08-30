@@ -168,13 +168,14 @@ export default function Judging() {
           <ClipboardClip className="absolute -top-6 left-1/2 z-10 -translate-x-1/2" width={130} />
           <div className="judge-sheet paper-index relative rotate-[-0.6deg] rounded-lg border-[3px] border-saigon px-6 pb-6 pt-4 md:px-8 md:pb-8">
             {/* the printed header sits on the card's blue rule */}
-            <div className="flex min-h-6 flex-wrap items-center justify-between gap-x-4 gap-y-0.5 text-[11px] font-bold tracking-widest text-saigon/70">
+            <div className="flex min-h-6 items-center justify-between gap-x-4 text-[10px] font-bold tracking-widest text-saigon/70 md:text-[11px]">
               <span>SCORECARD</span>
               <span>
-                team <span aria-hidden="true">________</span>
+                team <span aria-hidden="true">______</span>
               </span>
-              <span>
-                judge <span aria-hidden="true">________</span>
+              {/* the judge blank only fits from sm up */}
+              <span className="hidden sm:inline">
+                judge <span aria-hidden="true">______</span>
               </span>
             </div>
 
@@ -202,7 +203,10 @@ export default function Judging() {
                     </span>
                     <span className="sr-only">{c.pts} points</span>
                   </span>
-                  <p className="col-span-2 col-start-2 text-sm font-medium leading-5 text-ink/60">{c.note}</p>
+                  {/* the note runs the full width on phones, under the bar from md */}
+                  <p className="col-span-3 col-start-1 text-sm font-medium leading-5 text-ink/60 md:col-span-2 md:col-start-2">
+                    {c.note}
+                  </p>
                 </li>
               ))}
             </ol>
