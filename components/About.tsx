@@ -15,8 +15,8 @@ gsap.registerPlugin(ScrollTrigger);
 const STATS = [
   { value: EVENT.spots, suffix: "", label: "Builder spots", icon: null },
   { value: EVENT.hours, suffix: "h", label: "Hours of building", icon: null },
-  { value: null, suffix: "∞", label: "Fun", icon: <PartyPopper size={34} /> },
-  { value: null, suffix: "∞", label: "Ideas", icon: <PixelBulb size={28} /> },
+  { value: null, suffix: "∞", label: "Fun", icon: <PartyPopper size={46} /> },
+  { value: null, suffix: "∞", label: "Ideas", icon: <PixelBulb size={36} /> },
 ];
 
 const CARDS = [
