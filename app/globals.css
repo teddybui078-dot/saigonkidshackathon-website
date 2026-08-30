@@ -97,6 +97,12 @@ body {
   );
 }
 
+/* brushed metal: a pale plate with fine vertical grain — control panels,
+   clip plates, label plates */
+.metal-brushed {
+  background: #dbe4f2 repeating-linear-gradient(90deg, #0000 0 3px, rgba(255, 255, 255, 0.35) 3px 4px);
+}
+
 /* torn paper: a zig-zag bottom edge cut with a mask, tooth pitch fixed in
    px so it never stretches with the card's width or height */
 .zigzag-bottom {

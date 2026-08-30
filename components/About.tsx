@@ -5,14 +5,18 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { PixelGrid, Sparkle, FloatingLaptop, PixelBulb, PixelStack, FlightArc, PixelTrophy } from "./decorations";
 import { Screws, DomeButton, Led, Pushpin } from "./parts";
+import { PartyPopper } from "./illustrations";
+import { EVENT } from "./event";
 
 gsap.registerPlugin(ScrollTrigger);
 
+/* two numbers that count up, two that never end — the infinite ones carry
+   a little illustration on the button instead of a digit */
 const STATS = [
-  { value: 130, suffix: "", label: "Young hackers" },
-  { value: 10, suffix: "h", label: "Hours of making" },
-  { value: 20, suffix: "+", label: "Mentors" },
-  { value: null, suffix: "∞", label: "Ideas" },
+  { value: EVENT.spots, suffix: "", label: "Builder spots", icon: null },
+  { value: EVENT.hours, suffix: "h", label: "Hours of building", icon: null },
+  { value: null, suffix: "∞", label: "Fun", icon: <PartyPopper size={34} /> },
+  { value: null, suffix: "∞", label: "Ideas", icon: <PixelBulb size={28} /> },
 ];
 
 const CARDS = [
@@ -116,6 +120,16 @@ export default function About() {
             }
           );
         }
+
+        // the infinite buttons pop their little illustration into place
+        gsap.from(".stat-infinite", {
+          scale: 0,
+          rotation: -25,
+          duration: 0.6,
+          stagger: 0.15,
+          ease: "back.out(2.2)",
+          scrollTrigger: { trigger: ".about-panel", start: "top 85%" },
+        });
 
         gsap.utils.toArray<HTMLElement>(".stat-number").forEach((el) => {
           const target = Number(el.dataset.value);
@@ -228,7 +242,7 @@ export default function About() {
         </div>
 
         {/* a riveted control panel: brushed metal, screws, domed push-buttons */}
-        <div className="relative mt-14 rounded-3xl border-4 border-saigon bg-[#dbe4f2] bg-[repeating-linear-gradient(90deg,transparent_0_3px,rgba(255,255,255,0.35)_3px_4px)] px-6 pb-9 pt-10 shadow-[0_10px_0_#01337f] md:px-10">
+        <div className="about-panel metal-brushed relative mt-14 rounded-3xl border-4 border-saigon px-6 pb-9 pt-10 shadow-[0_10px_0_#01337f] md:px-10">
           <Screws />
           <div className="absolute right-8 top-3 flex items-center gap-2 text-[10px] font-semibold tracking-wide text-ink/50">
             <Led className="motion-safe:animate-led-blink" />
@@ -255,7 +269,10 @@ export default function About() {
                         {stat.suffix}
                       </span>
                     ) : (
-                      <span>{stat.suffix}</span>
+                      <span className="stat-infinite flex flex-col items-center leading-none">
+                        {stat.icon}
+                        <span className="mt-0.5">{stat.suffix}</span>
+                      </span>
                     )}
                   </DomeButton>
                 </dd>
