@@ -2,14 +2,15 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import SiteLink from "./SiteLink";
 
 const LINKS = [
-  { href: "#about", label: "About" },
-  { href: "#tracks", label: "Tracks" },
-  { href: "#schedule", label: "Schedule" },
-  { href: "#partners", label: "Partners" },
-  { href: "#founders", label: "Founders" },
-  { href: "#faq", label: "FAQ" },
+  { href: "/#about", label: "About" },
+  { href: "/#tracks", label: "Tracks" },
+  { href: "/#schedule", label: "Schedule" },
+  { href: "/#partners", label: "Partners" },
+  { href: "/#founders", label: "Founders" },
+  { href: "/#faq", label: "FAQ" },
 ];
 
 export default function Navbar() {
@@ -22,17 +23,6 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const goTo = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    const target = document.querySelector(href);
-    if (!target) return;
-    if (window.__lenis) {
-      window.__lenis.scrollTo(target as HTMLElement, { offset: -72 });
-    } else {
-      (target as HTMLElement).scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
     <header className="fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-4">
       <nav
@@ -42,11 +32,10 @@ export default function Navbar() {
             : "bg-transparent"
         }`}
       >
-        <a
-          href="#top"
-          onClick={(e) => goTo(e, "#top")}
+        <SiteLink
+          href="/"
           className="flex items-center gap-2"
-          aria-label="Saigon Kids Hackathon — back to top"
+          aria-label="Saigon Kids Hackathon — home"
         >
           <Image
             src="/logo.png"
@@ -55,21 +44,20 @@ export default function Navbar() {
             height={44}
             priority
           />
-          <span className="hidden text-sm font-semibold text-saigon sm:block">
+          <span className="hidden text-sm font-semibold text-saigon lg:block">
             Saigon Kids Hackathon
           </span>
-        </a>
+        </SiteLink>
 
-        <ul className="hidden items-center gap-6 md:flex">
+        <ul className="hidden items-center gap-5 md:flex">
           {LINKS.map((link) => (
             <li key={link.href}>
-              <a
+              <SiteLink
                 href={link.href}
-                onClick={(e) => goTo(e, link.href)}
                 className="text-sm font-medium text-ink transition-colors hover:text-saigon"
               >
                 {link.label}
-              </a>
+              </SiteLink>
             </li>
           ))}
         </ul>

@@ -16,6 +16,8 @@
 html {
   scroll-behavior: auto;
   overflow-x: clip;
+  /* native hash jumps (reduced motion, no lenis) clear the fixed navbar */
+  scroll-padding-top: 6rem;
 }
 
 body {

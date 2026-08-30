@@ -15,6 +15,7 @@ import {
   PixelStack,
 } from "./decorations";
 import { LogoSlot } from "./parts";
+import SiteLink from "./SiteLink";
 import { PARTNERS } from "./partners";
 import { EVENT, AGES } from "./event";
 
@@ -264,21 +265,12 @@ export default function Hero() {
             Registration opens soon
             <Sparkle size={16} color="#1e293b" />
           </span>
-          <a
-            href="#about"
-            onClick={(e) => {
-              e.preventDefault();
-              const el = document.querySelector("#about");
-              if (el && window.__lenis) {
-                window.__lenis.scrollTo(el as HTMLElement, { offset: -72 });
-              } else {
-                el?.scrollIntoView({ behavior: "smooth" });
-              }
-            }}
+          <SiteLink
+            href="/#about"
             className="rounded-full border-2 border-saigon bg-white/70 px-7 py-3 text-base font-semibold text-saigon transition-colors hover:bg-saigon hover:text-white"
           >
             What is it?
-          </a>
+          </SiteLink>
         </div>
       </div>
 
