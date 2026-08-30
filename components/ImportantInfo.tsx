@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type KeyboardEvent } from "react";
+import { useEffect, useLayoutEffect, useRef, useState, type KeyboardEvent } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { FloatingLaptop, PixelStack, Sparkle } from "./decorations";
@@ -27,9 +27,9 @@ const TABS: { key: TabKey; label: string; icon: SubjectKind }[] = [
    touch lower in white and lift on hover */
 const TAB_CLASS = {
   active:
-    "info-tab inline-flex shrink-0 items-center gap-2 rounded-t-xl border-[3px] border-b-0 border-saigon bg-energy px-3 py-2 text-sm font-bold text-ink translate-y-0 md:px-5",
+    "info-tab inline-flex shrink-0 items-center gap-2 rounded-t-xl border-[3px] border-b-0 border-saigon bg-energy px-3 py-2 text-sm font-bold text-ink translate-y-0 transition-[translate,background-color,color] duration-200 ease-out md:px-5",
   inactive:
-    "info-tab inline-flex shrink-0 items-center gap-2 rounded-t-xl border-[3px] border-b-0 border-saigon bg-white px-3 py-2 text-sm font-bold text-ink/60 translate-y-1 transition-transform hover:translate-y-0.5 md:px-5",
+    "info-tab inline-flex shrink-0 items-center gap-2 rounded-t-xl border-[3px] border-b-0 border-saigon bg-white px-3 py-2 text-sm font-bold text-ink/60 translate-y-1 transition-[translate,background-color,color] duration-200 ease-out hover:translate-y-0.5 md:px-5",
 };
 
 const PILL =
@@ -106,9 +106,12 @@ function CheckSquare() {
 export default function ImportantInfo() {
   const sectionRef = useRef<HTMLElement>(null);
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const deckRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState<TabKey>("fees");
   // the card that was last dealt — the first mount deals nothing
   const lastActive = useRef<TabKey>("fees");
+  // how tall the deck was before the switch, so it can glide to the new card
+  const deckHeight = useRef<number | null>(null);
 
   useEffect(() => {
     const mm = gsap.matchMedia();
@@ -161,39 +164,56 @@ export default function ImportantInfo() {
     return () => mm.revert();
   }, []);
 
-  useEffect(() => {
+  // before paint, so the deck is already at its old height when the new
+  // card appears — then it glides to the new one and the card fades in
+  useLayoutEffect(() => {
     // no deal on first mount (or a strict-mode re-run) — only on a real switch
     if (lastActive.current === active) return;
     lastActive.current = active;
-    const section = sectionRef.current;
-    const panel = section?.querySelector<HTMLElement>("#panel-" + active);
-    if (!panel) return;
-
-    // the cards differ in height, so the sections below need re-measuring
-    ScrollTrigger.refresh();
+    const deck = deckRef.current;
+    const panel = deck?.querySelector<HTMLElement>("#panel-" + active);
+    const from = deckHeight.current;
+    deckHeight.current = null;
+    if (!deck || !panel) return;
 
     const mm = gsap.matchMedia();
     mm.add("(prefers-reduced-motion: no-preference)", () => {
-      // the new card lifts out of the box with a little tilt
+      const to = deck.offsetHeight;
+      if (from !== null && from !== to) {
+        gsap.fromTo(
+          deck,
+          { height: from },
+          {
+            height: to,
+            duration: 0.35,
+            ease: "power2.out",
+            clearProps: "height",
+            // the sections below only need re-measuring once the glide is done
+            onComplete: () => ScrollTrigger.refresh(),
+          }
+        );
+      } else {
+        ScrollTrigger.refresh();
+      }
       gsap.fromTo(
         panel,
-        { y: 14, opacity: 0, rotation: -0.6 },
-        {
-          y: 0,
-          opacity: 1,
-          rotation: 0,
-          duration: 0.35,
-          ease: "back.out(1.6)",
-          clearProps: "transform",
-        }
+        { opacity: 0, y: 10 },
+        { opacity: 1, y: 0, duration: 0.3, ease: "power2.out", clearProps: "transform,opacity" }
       );
+    });
+    mm.add("(prefers-reduced-motion: reduce)", () => {
+      ScrollTrigger.refresh();
     });
     return () => mm.revert();
   }, [active]);
 
   const select = (i: number) => {
+    deckHeight.current = deckRef.current?.offsetHeight ?? null;
     setActive(TABS[i].key);
-    tabRefs.current[i]?.focus();
+    const tab = tabRefs.current[i];
+    tab?.focus();
+    // keep the chosen divider in view when the strip scrolls on phones
+    tab?.scrollIntoView({ inline: "nearest", block: "nearest" });
   };
 
   const onKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
@@ -295,6 +315,8 @@ export default function ImportantInfo() {
                 aria-hidden="true"
               />
 
+              {/* the deck: clipped while it glides between card heights */}
+              <div ref={deckRef} className="info-deck relative overflow-hidden">
               <Panel id="fees" title="Fees" active={active === "fees"}>
                 {/* the price on a luggage tag, hung from a short string */}
                 <div className="relative inline-block pt-4">
@@ -386,6 +408,7 @@ export default function ImportantInfo() {
                   Read the whole rulebook →
                 </SiteLink>
               </Panel>
+              </div>
             </div>
           </div>
         </div>
