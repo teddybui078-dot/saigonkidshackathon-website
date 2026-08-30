@@ -38,7 +38,7 @@ body {
   border-radius: 6px;
 }
 
-/* hollow display text used by the scroll ticker */
+/* hollow display text used by the scroll ticker (and, in white, on the podium) */
 .text-outline-blue {
   color: transparent;
   -webkit-text-stroke: 2px var(--color-saigon);
@@ -47,6 +47,11 @@ body {
 .text-outline-yellow {
   color: transparent;
   -webkit-text-stroke: 2px var(--color-energy);
+}
+
+.text-outline-white {
+  color: transparent;
+  -webkit-text-stroke: 3px #fff;
 }
 
 /* faq accordion open/close via grid rows — no JS measuring needed */
@@ -123,4 +128,56 @@ body {
 .lantern-body {
   border-radius: 44px / 50%;
   background: #fff8e7 repeating-linear-gradient(90deg, #0000 0 18px, #f3e8d0 18px 21px);
+}
+
+/* an index card: one blue header rule, then faint rules under it */
+.paper-index {
+  background:
+    linear-gradient(#0145b4 2.5px, #0000 2.5px) 0 2.5rem / 100% 100% no-repeat,
+    linear-gradient(#dbe4f2 2px, #0000 2px) 0 3.25rem / 100% 28px,
+    #fff;
+}
+
+/* punched paper: ruled, with a column of holes down the left edge for
+   the binder rings — hole pitch fixed in px like the zigzag's tooth */
+.paper-punched {
+  background:
+    radial-gradient(circle at 1.25rem 50%, #c9d7ee 6px, #0000 7px) 0 0 / 100% 56px,
+    linear-gradient(#dbe4f2 2px, #0000 2px) 0 2.5rem / 100% 28px,
+    #fff;
+}
+
+/* a rubber stamp: tracked caps in a double ring, inked onto the paper.
+   callers rotate it (-rotate-6) or let gsap land it */
+.stamp {
+  display: inline-block;
+  padding: 0.35rem 0.8rem;
+  border: 3px solid currentColor;
+  border-radius: 0.6rem;
+  box-shadow: inset 0 0 0 2px #fff, inset 0 0 0 4px currentColor;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  mix-blend-mode: multiply;
+}
+
+/* a luggage-tag silhouette pointing left; --nose sets the point's length */
+@utility clip-tag {
+  clip-path: polygon(
+    var(--nose, 14px) 0,
+    100% 0,
+    100% 100%,
+    var(--nose, 14px) 100%,
+    0 50%
+  );
+}
+
+/* a ticket: a round notch bitten out of each side, halfway down */
+.ticket-notched {
+  mask:
+    radial-gradient(circle at 0 50%, #0000 10px, #000 11px),
+    radial-gradient(circle at 100% 50%, #0000 10px, #000 11px);
+  mask-composite: intersect;
 }
