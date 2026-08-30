@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { DynaPuff } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
@@ -23,6 +23,11 @@ export const metadata: Metadata = {
     description: `One big day of building, coding, and playing — ${EVENT.date}, ${EVENT.city}.`,
     images: ["/logo.png"],
   },
+};
+
+/* the browser chrome on phones matches the midnight sky */
+export const viewport: Viewport = {
+  themeColor: "#191970",
 };
 
 export default function RootLayout({

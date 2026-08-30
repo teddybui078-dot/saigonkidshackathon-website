@@ -169,7 +169,7 @@ export default function Hero() {
         <FlightArc className="ambient-float" width={245} />
       </div>
       <div className="hero-float absolute left-[6%] bottom-[28%] hidden lg:block" data-speed="0.9">
-        <FlightArc className="ambient-float -scale-x-100" width={195} color="#f8ac1a" />
+        <FlightArc className="ambient-float -scale-x-100" width={195} color="#ffb703" />
       </div>
       <div className="hero-float absolute left-[21%] top-[26%]" data-speed="1.6">
         <PixelGrid className="ambient-float" size={48} />
@@ -197,10 +197,10 @@ export default function Hero() {
               fill="none"
               aria-hidden="true"
             >
-              <path d="M32 80 L32 14" stroke="#0145b4" strokeWidth="6" strokeLinecap="round" />
-              <circle cx="32" cy="10" r="7" fill="#f8ac1a" stroke="#0145b4" strokeWidth="3" />
-              <ellipse className="hero-spire-ring" cx="32" cy="30" rx="26" ry="7" stroke="#f8ac1a" strokeWidth="3.5" />
-              <ellipse className="hero-spire-ring" cx="32" cy="46" rx="19" ry="5.5" stroke="#f8ac1a" strokeWidth="3" />
+              <path d="M32 80 L32 14" stroke="#191970" strokeWidth="6" strokeLinecap="round" />
+              <circle cx="32" cy="10" r="7" fill="#ffb703" stroke="#191970" strokeWidth="3" />
+              <ellipse className="hero-spire-ring" cx="32" cy="30" rx="26" ry="7" stroke="#ffb703" strokeWidth="3.5" />
+              <ellipse className="hero-spire-ring" cx="32" cy="46" rx="19" ry="5.5" stroke="#ffb703" strokeWidth="3" />
             </svg>
             {/* tapered spike planting the sign in the ground */}
             <svg
@@ -209,9 +209,9 @@ export default function Hero() {
               fill="none"
               aria-hidden="true"
             >
-              <path d="M26 0 L38 0 L32 74 Z" fill="#0145b4" />
+              <path d="M26 0 L38 0 L32 74 Z" fill="#191970" />
               <path d="M32 2 L32 60" stroke="#a8bfe2" strokeWidth="2" strokeLinecap="round" opacity="0.7" />
-              <ellipse className="hero-spire-ring" cx="32" cy="22" rx="21" ry="6" stroke="#f8ac1a" strokeWidth="3" />
+              <ellipse className="hero-spire-ring" cx="32" cy="22" rx="21" ry="6" stroke="#ffb703" strokeWidth="3" />
             </svg>
             {/* yellow bolts on the frame */}
             <span className="absolute -left-2.5 top-1/2 h-5 w-5 -translate-y-1/2 rounded-full border-[3px] border-saigon bg-energy" aria-hidden="true" />
@@ -261,7 +261,7 @@ export default function Hero() {
         </p>
 
         <div className="hero-fade mt-7 flex flex-wrap items-center justify-center gap-4">
-          <span className="inline-flex items-center gap-2 rounded-full bg-energy px-7 py-3.5 text-base font-semibold text-ink shadow-[0_6px_0_#d18e07]">
+          <span className="inline-flex items-center gap-2 rounded-full bg-energy px-7 py-3.5 text-base font-semibold text-ink shadow-[0_6px_0_#d99a00]">
             Registration opens soon
             <Sparkle size={16} color="#1e293b" />
           </span>

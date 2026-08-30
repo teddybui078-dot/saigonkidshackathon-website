@@ -33,7 +33,7 @@ const TAB_CLASS = {
 };
 
 const PILL =
-  "mt-5 inline-flex rounded-full bg-energy px-5 py-2.5 text-sm font-semibold text-ink shadow-[0_4px_0_#d18e07]";
+  "mt-5 inline-flex rounded-full bg-energy px-5 py-2.5 text-sm font-semibold text-ink shadow-[0_4px_0_#d99a00]";
 
 const REQUIREMENTS = [
   `Ages ${AGES} (${GRADES})`,
@@ -290,7 +290,7 @@ export default function ImportantInfo() {
 
           {/* the card box: sky-blue tin, four screws, a riveted label plate
               on the front lip */}
-          <div className="info-box relative rounded-2xl border-4 border-saigon bg-[#c9d7ee] p-4 shadow-[0_8px_0_#01337f] md:p-6">
+          <div className="info-box relative rounded-2xl border-4 border-saigon bg-[#c9d7ee] p-4 shadow-[0_8px_0_#0d1b2a] md:p-6">
             <Screws />
             <span className="metal-brushed absolute -bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md border-2 border-saigon px-3 py-0.5 text-[10px] font-bold tracking-widest text-ink/70">
               <span
@@ -324,7 +324,7 @@ export default function ImportantInfo() {
                     className="absolute left-[18px] top-0 h-5 w-[3px] rounded-full bg-saigon"
                     aria-hidden="true"
                   />
-                  <PrizeTag className="-rotate-1 [filter:drop-shadow(0_4px_0_#01337f)]">
+                  <PrizeTag className="-rotate-1 [filter:drop-shadow(0_4px_0_#0d1b2a)]">
                     <span className="text-lg font-bold">{EVENT.fee.display} per builder</span>
                   </PrizeTag>
                 </div>

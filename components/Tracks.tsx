@@ -178,11 +178,11 @@ export default function Tracks() {
             {/* cover front: spine strip, elastic band, label sticker */}
             <div
               aria-hidden="true"
-              className="absolute inset-0 hidden overflow-hidden rounded-r-2xl bg-saigon backface-hidden rotate-y-0 shadow-[0_10px_0_#01337f] motion-safe:md:block"
+              className="absolute inset-0 hidden overflow-hidden rounded-r-2xl bg-saigon backface-hidden rotate-y-0 shadow-[0_10px_0_#0d1b2a] motion-safe:md:block"
             >
               <span className="absolute inset-y-0 left-0 w-4 bg-saigon-deep" />
               <span className="absolute inset-y-0 right-8 w-2.5 bg-energy" />
-              <div className="absolute left-14 right-20 top-16 rounded-lg bg-white px-6 py-6 shadow-[0_4px_0_#01337f]">
+              <div className="absolute left-14 right-20 top-16 rounded-lg bg-white px-6 py-6 shadow-[0_4px_0_#0d1b2a]">
                 <PixelGrid size={24} />
                 <p className="mt-4 text-sm font-bold tracking-widest text-saigon/70">Theme notebook</p>
                 <p className="mt-1 text-3xl font-bold leading-tight text-ink">Saigon Kids Hackathon</p>

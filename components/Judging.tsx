@@ -102,7 +102,7 @@ export default function Judging() {
                   {/* outer li is the raise, this one sways from the stick's base */}
                   <div className="ambient-sway flex flex-col items-center">
                     <div
-                      className={`${p.card} rounded-2xl border-[3px] border-saigon bg-white px-2 pb-3 pt-4 text-center shadow-[0_6px_0_#01337f]`}
+                      className={`${p.card} rounded-2xl border-[3px] border-saigon bg-white px-2 pb-3 pt-4 text-center shadow-[0_6px_0_#0d1b2a]`}
                     >
                       <span className={`${p.number} block font-bold leading-none text-saigon`} aria-hidden="true">
                         {c.pts}
@@ -130,7 +130,7 @@ export default function Judging() {
           </ol>
 
           {/* the table the sticks are planted in */}
-          <div className="h-4 rounded-full bg-saigon shadow-[0_5px_0_#01337f]" aria-hidden="true" />
+          <div className="h-4 rounded-full bg-saigon shadow-[0_5px_0_#0d1b2a]" aria-hidden="true" />
           <div className="mx-16 flex justify-between" aria-hidden="true">
             <span className="h-8 w-3 rounded-b-sm bg-saigon" />
             <span className="h-8 w-3 rounded-b-sm bg-saigon" />
@@ -149,7 +149,7 @@ export default function Judging() {
         {/* the total, the stamp, the tie-breakers, the rulebook */}
         <div className="mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-6">
           <div className="flex items-center gap-4">
-            <span className="judge-badge grid h-24 w-24 place-items-center rounded-full border-4 border-saigon bg-energy text-center shadow-[0_6px_0_#d18e07]">
+            <span className="judge-badge grid h-24 w-24 place-items-center rounded-full border-4 border-saigon bg-energy text-center shadow-[0_6px_0_#d99a00]">
               <span className="block text-3xl font-bold leading-none">
                 {RUBRIC_TOTAL}
                 <span className="mt-1 block text-[10px] font-bold uppercase tracking-widest text-ink/60">points</span>

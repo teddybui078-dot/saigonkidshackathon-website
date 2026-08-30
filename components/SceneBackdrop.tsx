@@ -44,7 +44,7 @@ export default function SceneBackdrop() {
       <PixelPlanet className="ambient-float absolute right-[4%] top-[18%] opacity-60 hidden lg:block" size={72} />
       <Sparkle className="ambient-twinkle absolute left-[8%] top-[12%] opacity-80" size={26} />
       <Sparkle className="ambient-twinkle absolute right-[10%] bottom-[14%] opacity-80" size={30} />
-      <Sparkle className="ambient-twinkle absolute left-[16%] bottom-[8%] opacity-70 hidden md:block" size={20} color="#0145b4" />
+      <Sparkle className="ambient-twinkle absolute left-[16%] bottom-[8%] opacity-70 hidden md:block" size={20} color="#191970" />
       <Sparkle className="ambient-twinkle absolute right-[22%] top-[8%] opacity-60 hidden lg:block" size={18} />
       <PixelGrid className="ambient-float absolute right-[3%] bottom-[42%] opacity-60 hidden md:block" size={40} />
       <PixelGrid className="ambient-float absolute left-[2%] top-[32%] opacity-50 hidden lg:block" size={32} />

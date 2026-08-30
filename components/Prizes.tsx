@@ -363,7 +363,7 @@ export default function Prizes() {
                 </div>
                 {/* the clip box: the step rises up out of this */}
                 <div className={CLIP[award.place]}>
-                  <div className="podium-step relative h-full w-full rounded-t-2xl border-4 border-saigon-deep border-t-[10px] border-t-energy bg-saigon shadow-[inset_0_-6px_0_#01337f]">
+                  <div className="podium-step relative h-full w-full rounded-t-2xl border-4 border-saigon-deep border-t-[10px] border-t-energy bg-saigon shadow-[inset_0_-6px_0_#0d1b2a]">
                     <Screws className="opacity-70" />
                     {/* the ordinal, big and hollow, over an engraved name plate */}
                     <div className="flex h-full flex-col items-center justify-center gap-2 pb-8">
@@ -388,7 +388,7 @@ export default function Prizes() {
 
           {/* the boards */}
           <div
-            className="stage-floor relative z-10 h-10 rounded-b-2xl border-4 border-t-0 border-saigon shadow-[0_6px_0_#01337f]"
+            className="stage-floor relative z-10 h-10 rounded-b-2xl border-4 border-t-0 border-saigon shadow-[0_6px_0_#0d1b2a]"
             aria-hidden="true"
           />
         </div>
@@ -434,7 +434,7 @@ export default function Prizes() {
             fill="none"
             aria-hidden="true"
           >
-            <path d="M0 8 Q300 40 600 8" stroke="#0145b4" strokeWidth="3" vectorEffect="non-scaling-stroke" />
+            <path d="M0 8 Q300 40 600 8" stroke="#191970" strokeWidth="3" vectorEffect="non-scaling-stroke" />
           </svg>
           <div className="solo-grid grid grid-cols-1 gap-8 md:-mt-6 md:grid-cols-3">
             {SOLO_AWARDS.map((award) => (

@@ -57,7 +57,7 @@ export default function Founders() {
               {/* swings from the clip on hover — kept off the tile gsap tweens */}
               <div className="flex origin-top flex-col items-center transition-transform duration-300 hover:rotate-2">
                 <Lanyard className="-mb-1" />
-                <div className="w-full rounded-xl border-[3px] border-saigon bg-white shadow-[0_6px_0_#01337f]">
+                <div className="w-full rounded-xl border-[3px] border-saigon bg-white shadow-[0_6px_0_#0d1b2a]">
                   {/* header band with the punched slot the clip goes through */}
                   <div className="flex h-8 items-center justify-center gap-3 rounded-t-[9px] bg-saigon text-[11px] font-bold tracking-widest text-white">
                     <span className="h-1.5 w-10 rounded-full bg-white/80" aria-hidden="true" />
@@ -68,7 +68,7 @@ export default function Founders() {
                       className="grid h-20 w-20 place-items-center rounded-full border-[3px] border-dashed border-mist bg-canvas"
                       aria-hidden="true"
                     >
-                      <Sparkle className="ambient-twinkle" size={16} color={i % 2 === 0 ? "#f8ac1a" : "#0145b4"} />
+                      <Sparkle className="ambient-twinkle" size={16} color={i % 2 === 0 ? "#ffb703" : "#191970"} />
                     </div>
                     <p className="mt-4 text-lg font-bold">{person.name}</p>
                     <p className="text-sm font-medium text-ink/60">{person.role}</p>

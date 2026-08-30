@@ -79,7 +79,7 @@ export default function Footer() {
                   key={d}
                   className="footer-underline"
                   d={d}
-                  stroke="#f8ac1a"
+                  stroke="#ffb703"
                   strokeWidth="3"
                   strokeLinecap="round"
                   vectorEffect="non-scaling-stroke"
@@ -95,7 +95,7 @@ export default function Footer() {
         </p>
 
         <div className="footer-pop mt-8 flex justify-center">
-          <span className="rounded-full bg-energy px-7 py-3.5 text-base font-semibold text-ink shadow-[0_6px_0_#d18e07]">
+          <span className="rounded-full bg-energy px-7 py-3.5 text-base font-semibold text-ink shadow-[0_6px_0_#d99a00]">
             Registration opens soon
           </span>
         </div>

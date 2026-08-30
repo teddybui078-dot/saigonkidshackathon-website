@@ -1,14 +1,34 @@
 @import "tailwindcss";
 
+:root {
+  /* the modern space colourway — GUIDELINES.md §2. these six are the
+     source of truth; the tailwind tokens below point at them */
+  --bg-space: #191970;
+  --bg-space-dark: #0d1b2a;
+  --accent-yellow: #ffd166;
+  --accent-red: #ff2b2b;
+  --text-white: #ffffff;
+  --stroke-ink: #0a0e1a;
+}
+
 @theme inline {
   /* saigon kids hackathon brand palette — see GUIDELINES.md */
   --color-canvas: #f1f5f9;
-  --color-saigon: #0145b4;
-  --color-saigon-deep: #01337f;
-  --color-energy: #f8ac1a;
-  --color-energy-deep: #d18e07;
+  /* the brand blue is midnight now, so every ink outline and hard shadow
+     on the paper cards follows the sky */
+  --color-saigon: var(--bg-space);
+  --color-saigon-deep: var(--bg-space-dark);
+  --color-energy: #ffb703;
+  --color-energy-deep: #d99a00;
   --color-ink: #1e293b;
   --color-mist: #e2e8f0;
+  /* in-space palette: the hero canvas, its sun-yellow accents, the red
+     action colour and the ink that outlines every sticker */
+  --color-space: var(--bg-space);
+  --color-space-dark: var(--bg-space-dark);
+  --color-sun: var(--accent-yellow);
+  --color-flare: var(--accent-red);
+  --color-ink-deep: var(--stroke-ink);
 
   --font-sans: var(--font-dynapuff), "Trebuchet MS", system-ui, sans-serif;
 }
@@ -36,6 +56,12 @@ body {
   outline: 3px solid var(--color-saigon);
   outline-offset: 3px;
   border-radius: 6px;
+}
+
+/* on the midnight canvas a midnight ring would vanish — sections that sit
+   in space carry .on-space and get a sun-yellow ring instead */
+.on-space :focus-visible {
+  outline-color: var(--accent-yellow);
 }
 
 /* hollow display text used by the scroll ticker (and, in white, on the podium) */
@@ -133,7 +159,7 @@ body {
 /* an index card: one blue header rule, then faint rules under it */
 .paper-index {
   background:
-    linear-gradient(#0145b4 2.5px, #0000 2.5px) 0 2.5rem / 100% 100% no-repeat,
+    linear-gradient(#191970 2.5px, #0000 2.5px) 0 2.5rem / 100% 100% no-repeat,
     linear-gradient(#dbe4f2 2px, #0000 2px) 0 3.25rem / 100% 28px,
     #fff;
 }
@@ -179,7 +205,7 @@ body {
 /* a stage curtain: blue velvet with darker pleats, gathered by scaling it
    sideways from its edge */
 .curtain-pleats {
-  background: repeating-linear-gradient(90deg, #0145b4 0 28px, #01337f 28px 36px);
+  background: repeating-linear-gradient(90deg, #191970 0 28px, #0d1b2a 28px 36px);
 }
 
 /* stage boards: pale planks with a seam every so often */

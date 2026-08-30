@@ -164,7 +164,7 @@ export default function About() {
         <PixelStack width={170} />
       </div>
       <div className="anchor-drift pointer-events-none absolute bottom-24 right-24 -z-[1] hidden lg:block">
-        <FlightArc width={220} color="#f8ac1a" />
+        <FlightArc width={220} color="#ffb703" />
       </div>
       <div className="pointer-events-none absolute bottom-40 right-14 -z-[1] hidden lg:block">
         <Sparkle className="ambient-twinkle" size={44} />
@@ -182,11 +182,11 @@ export default function About() {
                 </span>
               ))}
             </div>
-            <div className="relative rounded-2xl border-[6px] border-saigon bg-white px-8 py-10 shadow-[inset_0_0_0_5px_#c9d7ee,0_10px_0_#01337f] md:px-12 md:py-14">
+            <div className="relative rounded-2xl border-[6px] border-saigon bg-white px-8 py-10 shadow-[inset_0_0_0_5px_#c9d7ee,0_10px_0_#0d1b2a] md:px-12 md:py-14">
               <Screws />
               {/* a marquee arrow: blue sign, chasing bulbs, pointing at the story */}
               <p
-                className="about-line relative mb-5 inline-block [filter:drop-shadow(0_4px_0_#01337f)]"
+                className="about-line relative mb-5 inline-block [filter:drop-shadow(0_4px_0_#0d1b2a)]"
                 style={{ "--head": "22px" } as React.CSSProperties}
               >
                 <span className="clip-arrow block bg-saigon-deep">
@@ -242,7 +242,7 @@ export default function About() {
         </div>
 
         {/* a riveted control panel: brushed metal, screws, domed push-buttons */}
-        <div className="about-panel metal-brushed relative mt-14 rounded-3xl border-4 border-saigon px-6 pb-9 pt-10 shadow-[0_10px_0_#01337f] md:px-10">
+        <div className="about-panel metal-brushed relative mt-14 rounded-3xl border-4 border-saigon px-6 pb-9 pt-10 shadow-[0_10px_0_#0d1b2a] md:px-10">
           <Screws />
           <div className="absolute right-8 top-3 flex items-center gap-2 text-[10px] font-semibold tracking-wide text-ink/50">
             <Led className="motion-safe:animate-led-blink" />

@@ -339,7 +339,7 @@ export function PixelStack({
       {/* face hints */}
       <rect x="54" y="46" width="10" height="10" rx="2.5" fill="#f1f5f9" opacity="0.5" />
       <rect x="96" y="88" width="10" height="10" rx="2.5" fill="#f1f5f9" opacity="0.5" />
-      <rect x="18" y="88" width="10" height="10" rx="2.5" fill="#0145b4" opacity="0.35" />
+      <rect x="18" y="88" width="10" height="10" rx="2.5" fill="#191970" opacity="0.35" />
     </svg>
   );
 }
