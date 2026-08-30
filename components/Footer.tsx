@@ -6,6 +6,14 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Sparkle, CodeMark, PixelStack, PixelPlanet } from "./decorations";
 import { PARTNERS } from "./partners";
 import { EVENT } from "./event";
+import SiteLink from "./SiteLink";
+
+const LINKS = [
+  { href: "/rules", label: "The rules" },
+  { href: "/parents", label: "Parents' guide" },
+  { href: "/#judging", label: "How judging works" },
+  { href: "/#info", label: "Fees & requirements" },
+];
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -105,6 +113,19 @@ export default function Footer() {
             </span>
           ))}
         </div>
+
+        {/* the practical pages, one row of plain links */}
+        <nav aria-label="More about the day" className="footer-pop mt-8">
+          <ul className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm font-semibold text-white/70">
+            {LINKS.map((link) => (
+              <li key={link.href}>
+                <SiteLink href={link.href} className="transition-colors hover:text-energy">
+                  {link.label}
+                </SiteLink>
+              </li>
+            ))}
+          </ul>
+        </nav>
 
         <div className="footer-pop mt-10 flex flex-col items-center gap-4 border-t border-white/20 pt-8 text-sm font-medium text-white/70 md:flex-row md:justify-between">
           <p>© 2027 Saigon Kids Hackathon</p>

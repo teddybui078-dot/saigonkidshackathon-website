@@ -148,7 +148,9 @@ body {
 }
 
 /* a rubber stamp: tracked caps in a double ring, inked onto the paper.
-   callers rotate it (-rotate-6) or let gsap land it */
+   tilt it with -rotate-6 when css owns it; when gsap lands it, rest it with
+   [transform:rotate(-6deg)] instead — v4's rotate-* writes the separate
+   `rotate` property, which would stack on top of gsap's transform */
 .stamp {
   display: inline-block;
   padding: 0.35rem 0.8rem;
