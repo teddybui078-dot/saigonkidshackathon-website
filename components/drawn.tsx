@@ -356,29 +356,52 @@ export function DrawnBadgeBg({
   );
 }
 
-/* a giant lego brick for the podium: three drawn studs on top, a wobbly
-   body, the usual thrown shadow. the winner gets the lacquer. */
+/* a giant lego brick for the podium, redrawn at signboard scale: chunky
+   cylinder studs, a hand-bowed body per place, thicker ink, scuffed
+   lacquer, and one stud always seated a little crooked. the winner gets
+   the lacquer. */
 const LEGO_TONE = {
   flare: { body: FLARE, stud: FLARE, shadow: SUN },
   sun: { body: SUN, stud: SUN, shadow: FLARE },
   paper: { body: PAPER, stud: PAPER, shadow: SUN },
 } as const;
 
+const LEGO_BODIES = [
+  "M18 42 Q150 32 282 40 Q292 41 293 52 Q297 128 292 200 Q291 211 279 212 Q150 218 24 213 Q12 212 11 200 Q6 130 13 52 Q14 43 18 42 Z",
+  "M16 44 Q148 36 284 42 Q293 43 293 54 Q295 132 291 202 Q290 212 278 213 Q148 217 22 214 Q11 213 10 201 Q8 128 12 54 Q13 45 16 44 Z",
+  "M20 40 Q152 34 280 42 Q291 43 292 54 Q298 126 293 198 Q292 210 280 211 Q152 219 26 214 Q13 213 12 201 Q7 132 14 50 Q15 41 20 40 Z",
+];
+const LEGO_TICKS = [
+  { light: "M32 56 Q150 48 268 54", dark: "M44 198 Q160 205 260 200" },
+  { light: "M52 58 Q160 50 276 56", dark: "M36 200 Q150 207 246 202" },
+  { light: "M28 54 Q146 48 258 52", dark: "M52 196 Q166 204 266 198" },
+];
+const LEGO_CROOKED = [
+  { stud: 2, deg: 2.5 },
+  { stud: 0, deg: -3 },
+  { stud: 1, deg: 3 },
+];
+const LEGO_SCUFFS = [
+  ["M40 80 L58 64", "M50 88 L66 72"],
+  ["M232 72 L248 58", "M58 182 L72 168"],
+  ["M226 176 L244 162", "M236 184 L252 170"],
+];
+const STUD_X = [66, 150, 234];
+
 export function LegoStep({
   tone = "paper",
+  variant = 0,
   className = "",
 }: {
   tone?: keyof typeof LEGO_TONE;
+  variant?: number;
   className?: string;
 }) {
   const t = LEGO_TONE[tone];
-  const body =
-    "M16 40 Q150 34 284 38 Q292 39 293 50 Q296 130 292 202 Q291 212 280 213 Q150 218 22 214 Q11 213 10 202 Q7 128 12 50 Q13 41 16 40 Z";
-  const studs = [
-    "M40 12 Q66 8 90 11 Q95 12 95 18 L94 44 L38 44 L37 18 Q37 13 40 12 Z",
-    "M124 10 Q150 7 174 10 Q179 11 179 17 L178 44 L122 44 L121 16 Q121 11 124 10 Z",
-    "M208 12 Q234 9 258 12 Q263 13 263 19 L262 44 L206 44 L205 18 Q205 13 208 12 Z",
-  ];
+  const body = LEGO_BODIES[variant % LEGO_BODIES.length];
+  const tick = LEGO_TICKS[variant % LEGO_TICKS.length];
+  const crooked = LEGO_CROOKED[variant % LEGO_CROOKED.length];
+  const scuffs = LEGO_SCUFFS[variant % LEGO_SCUFFS.length];
   return (
     <svg
       aria-hidden="true"
@@ -388,13 +411,34 @@ export function LegoStep({
       preserveAspectRatio="none"
       fill="none"
     >
-      <path d={body} transform="translate(8 9)" fill={t.shadow} />
-      {studs.map((d, i) => (
-        <path key={i} d={d} fill={t.stud} stroke={STROKE} strokeWidth={4} strokeLinejoin="round" vectorEffect="non-scaling-stroke" />
+      <path d={body} transform="translate(11 12)" fill={t.shadow} />
+      {STUD_X.map((cx, i) => (
+        <g key={i} transform={i === crooked.stud ? `rotate(${crooked.deg} ${cx} 28)` : undefined}>
+          <path
+            d={`M${cx - 29} 16 Q${cx - 29} 11 ${cx - 24} 11 L${cx + 24} 11 Q${cx + 29} 11 ${cx + 29} 16 L${cx + 29} 46 L${cx - 29} 46 Z`}
+            fill={t.stud}
+            stroke={STROKE}
+            strokeWidth={5}
+            strokeLinejoin="round"
+            vectorEffect="non-scaling-stroke"
+          />
+          <ellipse cx={cx} cy={15} rx={29} ry={9} fill={t.stud} stroke={STROKE} strokeWidth={4} vectorEffect="non-scaling-stroke" />
+          <path
+            d={`M${cx - 16} 11 Q${cx} 5 ${cx + 16} 11`}
+            stroke={PAPER}
+            strokeWidth={3.5}
+            strokeLinecap="round"
+            opacity={0.45}
+            vectorEffect="non-scaling-stroke"
+          />
+        </g>
       ))}
-      <path d={body} fill={t.body} stroke={STROKE} strokeWidth={5} strokeLinejoin="round" vectorEffect="non-scaling-stroke" />
-      <path d="M30 54 Q150 48 270 52" stroke={PAPER} strokeWidth={4} strokeLinecap="round" opacity={0.35} vectorEffect="non-scaling-stroke" />
-      <path d="M40 200 Q160 206 262 202" stroke={SPACE_DARK} strokeWidth={4} strokeLinecap="round" opacity={0.35} vectorEffect="non-scaling-stroke" />
+      <path d={body} fill={t.body} stroke={STROKE} strokeWidth={6} strokeLinejoin="round" vectorEffect="non-scaling-stroke" />
+      <path d={tick.light} stroke={PAPER} strokeWidth={4} strokeLinecap="round" opacity={0.35} vectorEffect="non-scaling-stroke" />
+      <path d={tick.dark} stroke={SPACE_DARK} strokeWidth={4} strokeLinecap="round" opacity={0.35} vectorEffect="non-scaling-stroke" />
+      {scuffs.map((d) => (
+        <path key={d} d={d} stroke={PAPER} strokeWidth={3.5} strokeLinecap="round" opacity={0.5} vectorEffect="non-scaling-stroke" />
+      ))}
     </svg>
   );
 }

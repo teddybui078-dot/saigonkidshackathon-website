@@ -4,11 +4,11 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Sparkle, PixelGrid, PixelStack, SparkleCross } from "./decorations";
-import { ChalkScribble } from "./space";
-import { Hook } from "./parts";
+import { ChalkScribble, KidAstronaut } from "./space";
+import { Hook, Screw } from "./parts";
 import { Trophy, Medal, Rosette, PrizeTag } from "./illustrations";
 import { TEAM_AWARDS, SOLO_AWARDS, PRIZE_TBA, type TeamAward } from "./awards";
-import { DrawnBg, LegoStep } from "./drawn";
+import { DrawnPaddleBg, LegoStep } from "./drawn";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -50,11 +50,16 @@ const TOPPER: Record<TeamAward["place"], React.ReactNode> = {
     <span className="relative inline-block">
       <Trophy size={120} className="h-auto w-[5.5rem] md:w-[120px]" />
       <Medal tone="gold" size={52} className="absolute -right-7 bottom-2 -z-[1] rotate-12" />
+      {/* the astronaut climbed up for the photo and stayed */}
+      <KidAstronaut className="absolute -right-24 bottom-0 hidden w-16 md:block" />
     </span>
   ),
   2: <Medal tone="silver" size={64} />,
   3: <Medal tone="bronze" size={60} />,
 };
+
+/* the solo cards hang off one string but were cut from different boards */
+const SOLO_SHAPE = [0, 5, 3];
 
 /* the confetti burst around the trophy: where each piece lands (px from
    the burst's centre) and what it is. literal, so the server and the
@@ -241,14 +246,16 @@ export default function Prizes() {
                 {/* the clip box: the step rises up out of this */}
                 <div className={CLIP[award.place]}>
                   <div className="podium-step relative h-full w-full">
-                    <LegoStep tone={STEP_TONE[award.place]} />
-                    {/* the ordinal, big and hollow, over a moulded name plate */}
+                    <LegoStep tone={STEP_TONE[award.place]} variant={award.place - 1} />
+                    {/* the ordinal, big and hollow, over a plate bolted to the face */}
                     <div className="relative flex h-full flex-col items-center justify-center gap-2 pb-8 pt-4">
                       <span className={`${ORDINAL[award.place]} text-4xl font-bold leading-none md:text-6xl`}>
                         {award.ordinal}
                       </span>
-                      <span className="podium-plate metal-brushed rounded-md border-2 border-saigon px-2 py-0.5 text-[9px] font-bold uppercase tracking-widest text-ink/70 md:text-[11px]">
+                      <span className="podium-plate metal-brushed relative rounded-md border-2 border-saigon py-0.5 pl-4 pr-4 text-[9px] font-bold uppercase tracking-widest text-ink/70 md:pl-5 md:pr-5 md:text-[11px]">
+                        <Screw size={8} turn={24} className="absolute left-1 top-1/2 -translate-y-1/2" />
                         {award.name}
+                        <Screw size={8} turn={68} className="absolute right-1 top-1/2 -translate-y-1/2" />
                       </span>
                     </div>
                     {/* a tag hung near the foot of the face — from sm up, where it fits the step */}
@@ -316,7 +323,7 @@ export default function Prizes() {
                   <Hook />
                   <Rosette symbol={award.symbol} size={80} />
                   <div className="relative mt-2 w-full max-w-[16rem] p-4 text-center text-ink">
-                    <DrawnBg aspect="square" seed={SOLO_AWARDS.indexOf(award)} tone="paper" />
+                    <DrawnPaddleBg shape={SOLO_SHAPE[SOLO_AWARDS.indexOf(award)]} tone="paper" />
                     <div className="relative">
                     <h4 className="text-lg font-bold">{award.name}</h4>
                     <p className="text-sm font-medium text-ink/65">{award.blurb}</p>
