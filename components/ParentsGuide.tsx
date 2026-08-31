@@ -4,7 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { PixelHeart, Sparkle, PixelGrid, FloatingLaptop } from "./decorations";
-import { Screws, Pushpin, Lanyard, SubjectIcon } from "./parts";
+import { Pushpin, Lanyard, SubjectIcon } from "./parts";
+import { DrawnBg } from "./drawn";
 import { PrizeTag } from "./illustrations";
 import SiteLink from "./SiteLink";
 import { PARENTS_GUIDE, ON_SITE_RULE, type GuideItem } from "./parents";
@@ -390,9 +391,9 @@ export default function ParentsGuide() {
 
       {/* the noticeboard: a sky-blue cork face in a screwed-down frame, with
           every part of the guide pinned to it as its own object */}
-      <div className="board relative mx-auto max-w-6xl rounded-3xl border-[6px] border-ink-deep bg-[#c9d7ee] p-5 shadow-[inset_0_0_0_5px_#a8bfe2,0_10px_0_#ffd166] md:p-10">
-        <Screws />
-        <div className="grid gap-8 md:grid-cols-2 md:items-start md:gap-10">
+      <div className="board relative mx-auto max-w-6xl p-6 md:p-12">
+        <DrawnBg aspect="wide" seed={1} tone="sky" bolts />
+        <div className="relative grid gap-8 md:grid-cols-2 md:items-start md:gap-10">
           {PARENTS_GUIDE.map((item) => (
             <GuideObject key={item.id} item={item} />
           ))}
