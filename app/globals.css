@@ -1,21 +1,7 @@
 @import "tailwindcss";
 
-:root {
-  /* the original daylight brand — the drawn world stays, the colours go
-     back to before the midnight change. these six are the source of
-     truth; the tailwind tokens below point at them. --bg-space is the
-     day sky now, --accent-red carries the brand blue (the action colour),
-     and the drawn ink is the deep brand blue. */
-  --bg-space: #f1f5f9;
-  --bg-space-dark: #e2e8f0;
-  --accent-yellow: #f8ac1a;
-  --accent-red: #0145b4;
-  --text-white: #ffffff;
-  --stroke-ink: #01337f;
-}
-
 @theme inline {
-  /* saigon kids hackathon brand palette — the original blue/yellow */
+  /* saigon kids hackathon brand palette — see GUIDELINES.md */
   --color-canvas: #f1f5f9;
   --color-saigon: #0145b4;
   --color-saigon-deep: #01337f;
@@ -23,15 +9,6 @@
   --color-energy-deep: #d18e07;
   --color-ink: #1e293b;
   --color-mist: #e2e8f0;
-  /* the day-sky palette: the same names the drawn world was built on,
-     re-lit — space is the pale sky, sun is the warm brand yellow, flare
-     is the brand blue action colour */
-  --color-space: var(--bg-space);
-  --color-space-dark: var(--bg-space-dark);
-  --color-space-light: #a8bfe2;
-  --color-sun: var(--accent-yellow);
-  --color-flare: var(--accent-red);
-  --color-ink-deep: var(--stroke-ink);
 
   --font-sans: var(--font-dynapuff), "Trebuchet MS", system-ui, sans-serif;
 }
@@ -41,12 +18,10 @@ html {
   overflow-x: clip;
   /* native hash jumps (reduced motion, no lenis) clear the fixed navbar */
   scroll-padding-top: 6rem;
-  color-scheme: light;
 }
 
-/* the whole site lives under the day sky */
 body {
-  background-color: var(--bg-space-dark);
+  background-color: var(--color-canvas);
   color: var(--color-ink);
   font-family: var(--font-sans);
   overflow-x: clip;
@@ -57,14 +32,10 @@ body {
   color: var(--color-ink);
 }
 
-/* two rings so focus reads on every surface: white hugging the element
-   (visible on blue chrome), brand blue outside it (visible on the light
-   page and white paper) */
 :focus-visible {
   outline: 3px solid var(--color-saigon);
   outline-offset: 3px;
   border-radius: 6px;
-  box-shadow: 0 0 0 3px var(--text-white);
 }
 
 /* hollow display text used by the scroll ticker (and, in white, on the podium) */
@@ -80,7 +51,7 @@ body {
 
 .text-outline-white {
   color: transparent;
-  -webkit-text-stroke: 2.5px #fff;
+  -webkit-text-stroke: 3px #fff;
 }
 
 /* faq accordion open/close via grid rows — no JS measuring needed */
@@ -110,10 +81,15 @@ body {
    callers apply them as motion-safe:animate-* so reduced motion opts out */
 @theme {
   --animate-led-blink: led-blink 1.6s steps(1, end) infinite;
+  --animate-cursor-blink: cursor-blink 1s steps(1, end) infinite;
 
   @keyframes led-blink {
     0%, 60% { opacity: 1; }
     61%, 100% { opacity: 0.25; }
+  }
+  @keyframes cursor-blink {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
   }
 }
 
@@ -178,11 +154,9 @@ body {
 .stamp {
   display: inline-block;
   padding: 0.35rem 0.8rem;
-  border: 2px solid currentColor;
+  border: 3px solid currentColor;
   border-radius: 0.6rem;
-  box-shadow:
-    inset 0 0 0 2px var(--stamp-gap, #fff),
-    inset 0 0 0 3px currentColor;
+  box-shadow: inset 0 0 0 2px #fff, inset 0 0 0 4px currentColor;
   font-size: 0.75rem;
   font-weight: 700;
   line-height: 1.2;
@@ -202,328 +176,21 @@ body {
   );
 }
 
+/* a stage curtain: blue velvet with darker pleats, gathered by scaling it
+   sideways from its edge */
+.curtain-pleats {
+  background: repeating-linear-gradient(90deg, #0145b4 0 28px, #01337f 28px 36px);
+}
+
+/* stage boards: pale planks with a seam every so often */
+.stage-floor {
+  background: #dbe4f2 repeating-linear-gradient(90deg, #0000 0 60px, rgba(1, 69, 180, 0.15) 60px 63px);
+}
+
 /* a ticket: a round notch bitten out of each side, halfway down */
 .ticket-notched {
   mask:
     radial-gradient(circle at 0 50%, #0000 10px, #000 11px),
     radial-gradient(circle at 100% 50%, #0000 10px, #000 11px);
   mask-composite: intersect;
-}
-
-/* ————— in space: sticker cards, badges, buttons, the stars ————— */
-
-/* these live in the components layer so a utility on the element
-   (rounded-full, px-*, text-*) still wins over them */
-@layer components {
-  /* a comic sticker: ink outline, a hard sun-yellow offset, soft corners.
-     the face is a deep navy a shade off the ink, so the outline still
-     reads on it, unless the caller sets --sticker-face */
-  .sticker-card {
-    background: var(--sticker-face, color-mix(in srgb, var(--bg-space) 45%, var(--bg-space-dark)));
-    border: 3px solid var(--stroke-ink);
-    border-radius: 16px;
-    box-shadow: 4px 4px 0 var(--accent-yellow);
-    color: var(--text-white);
-  }
-
-  /* the same sticker as a white pill — the navbar, so the logo always
-     sits on white */
-  .sticker-pill {
-    background: var(--text-white);
-    border: 2px solid var(--stroke-ink);
-    border-radius: 9999px;
-    box-shadow: 2px 2px 0 var(--accent-yellow);
-    color: var(--color-ink);
-  }
-
-  /* the date badge: sun yellow, inked */
-  .badge-date {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    padding: 0.4rem 1rem;
-    border: 2px solid var(--stroke-ink);
-    border-radius: 9999px;
-    background: var(--accent-yellow);
-    color: var(--stroke-ink);
-    font-weight: 600;
-    line-height: 1.25;
-  }
-
-  /* a hollow badge in whatever colour the text is */
-  .badge-hollow {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    padding: 0.4rem 1rem;
-    border: 2px solid currentColor;
-    border-radius: 9999px;
-    font-weight: 600;
-    line-height: 1.25;
-  }
-
-  /* the primary action: solid red, ink stroke, white type. large bold
-     text on purpose — white on this red passes AA only as large text.
-     on hover the sticker lifts off the page and throws its yellow shadow */
-  .cta-primary {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.8rem 1.75rem;
-    border: 2px solid var(--stroke-ink);
-    border-radius: 9999px;
-    background: var(--accent-red);
-    color: var(--text-white);
-    /* 19px bold clears the wcag large-text bar, where white on this red passes */
-    font-size: 1.1875rem;
-    font-weight: 700;
-    line-height: 1.25;
-    box-shadow: 0 0 0 var(--accent-yellow);
-    transition:
-      box-shadow 0.18s ease,
-      translate 0.18s ease;
-  }
-
-  .cta-primary:hover,
-  .cta-primary:focus-visible {
-    box-shadow: 4px 4px 0 var(--accent-yellow);
-    translate: -2px -2px;
-  }
-
-  /* the quiet action: hollow in the surrounding text colour, fills in on
-     hover. don't add a text-* utility to it — that would win over the
-     hover colour and leave white type on the white fill */
-  .cta-secondary {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.8rem 1.75rem;
-    border: 2px solid currentColor;
-    border-radius: 9999px;
-    color: inherit;
-    font-size: 1.1875rem;
-    font-weight: 600;
-    line-height: 1.25;
-    transition:
-      background-color 0.18s ease,
-      color 0.18s ease;
-  }
-
-  .cta-secondary:hover,
-  .cta-secondary:focus-visible {
-    background: var(--text-white);
-    color: var(--color-saigon);
-  }
-
-  /* a faint sun-coloured halo for the things floating in the sky —
-     never the logo (GUIDELINES.md §4) */
-  .space-glow {
-    filter: drop-shadow(0 0 12px rgba(248, 172, 26, 0.3));
-  }
-}
-
-/* the sky moves only for people who haven't asked it not to. the mascot
-   float uses the separate translate/rotate properties so it never fights
-   the transform gsap writes on the parallax wrapper above it */
-@media (prefers-reduced-motion: no-preference) {
-  /* each star depth sets --star-alpha, so the twinkle dims from its own
-     brightness instead of flattening the three depths to one */
-  @keyframes star-twinkle {
-    0%,
-    100% {
-      opacity: var(--star-alpha, 1);
-    }
-    50% {
-      opacity: calc(var(--star-alpha, 1) * 0.5);
-    }
-  }
-
-  @keyframes star-drift {
-    from {
-      translate: 0 0;
-    }
-    to {
-      translate: 4px -12px;
-    }
-  }
-
-  @keyframes space-float {
-    0%,
-    100% {
-      translate: 0 0;
-      rotate: -1.5deg;
-    }
-    50% {
-      translate: 0 -10px;
-      rotate: 1.5deg;
-    }
-  }
-
-  .stars-far {
-    animation:
-      star-twinkle 4.4s ease-in-out infinite,
-      star-drift 26s ease-in-out infinite alternate;
-  }
-
-  .stars-mid {
-    animation:
-      star-twinkle 3.1s ease-in-out 0.8s infinite,
-      star-drift 18s ease-in-out infinite alternate;
-  }
-
-  .stars-near {
-    animation:
-      star-twinkle 2.4s ease-in-out 1.6s infinite,
-      star-drift 12s ease-in-out infinite alternate;
-  }
-
-  .float-slow {
-    animation: space-float 7s ease-in-out infinite;
-  }
-
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .cta-primary,
-  .cta-secondary {
-    transition: none;
-  }
-}
-
-/* ————— the street's constant motion — swings, spins, sways, blinks.
-   every loop animates the separate translate/rotate/scale properties or
-   opacity, so gsap's transform on the wrappers never collides. per-item
-   timing comes in through the --*-time custom properties ————— */
-
-@media (prefers-reduced-motion: no-preference) {
-  /* the runaway brick's spin */
-  @keyframes turn {
-    to {
-      rotate: 360deg;
-    }
-  }
-
-  @keyframes hover-drift {
-    from {
-      translate: 0 0;
-    }
-    to {
-      translate: 0 -7px;
-    }
-  }
-
-  .brick-free {
-    animation:
-      hover-drift 3.4s ease-in-out infinite alternate,
-      turn 18s linear infinite;
-    transform-box: fill-box;
-    transform-origin: center;
-  }
-
-  /* foliage rocking from the clump's base */
-  @keyframes sway {
-    from {
-      rotate: -1.75deg;
-    }
-    to {
-      rotate: 1.75deg;
-    }
-  }
-
-  .leaf-a,
-  .leaf-b,
-  .frond {
-    animation: sway var(--sway-time, 5.5s) ease-in-out infinite alternate;
-    transform-box: fill-box;
-    transform-origin: 100% 100%;
-  }
-
-  .leaf-b {
-    --sway-time: 6.3s;
-  }
-
-  .frond {
-    --sway-time: 7s;
-  }
-
-  /* the lotus breathes on its stem */
-  @keyframes breathe {
-    from {
-      scale: 1;
-    }
-    to {
-      scale: 1.04;
-    }
-  }
-
-  .lotus-breathe {
-    animation: breathe 3s ease-in-out infinite alternate;
-    transform-box: fill-box;
-    transform-origin: 50% 100%;
-  }
-
-  /* chalk stars wink; tower windows flicker awake; leds blink on one
-     shared clock (same period and phase as parts.tsx's led-blink) */
-  @keyframes chalk-blink {
-    0%,
-    100% {
-      opacity: 1;
-      scale: 1;
-    }
-    50% {
-      opacity: 0.45;
-      scale: 0.9;
-    }
-  }
-
-  .chalk-blink {
-    animation: chalk-blink var(--blink-time, 3.2s) ease-in-out infinite;
-    transform-box: fill-box;
-    transform-origin: center;
-  }
-
-  @keyframes window-flicker {
-    0%,
-    91%,
-    100% {
-      opacity: 1;
-    }
-    92%,
-    97% {
-      opacity: 0.35;
-    }
-  }
-
-  .tower-windows {
-    animation: window-flicker var(--flicker-time, 4s) steps(1, end) infinite;
-  }
-
-  @keyframes led-wink {
-    0%,
-    60% {
-      opacity: 1;
-    }
-    61%,
-    100% {
-      opacity: 0.25;
-    }
-  }
-
-  .board-led {
-    animation: led-wink 1.6s steps(1, end) infinite;
-  }
-
-  /* the cloud band slides across the tower */
-  @keyframes drift-x {
-    from {
-      translate: -12px 0;
-    }
-    to {
-      translate: 12px 0;
-    }
-  }
-
-  .tower-cloud {
-    animation: drift-x 9s ease-in-out infinite alternate;
-  }
 }

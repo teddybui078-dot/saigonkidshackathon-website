@@ -3,9 +3,8 @@
 import { useEffect, useLayoutEffect, useRef, useState, type KeyboardEvent } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { PixelStack, Sparkle } from "./decorations";
-import { Scuffs, SubjectIcon, type SubjectKind } from "./parts";
-import { DrawnBg } from "./drawn";
+import { FloatingLaptop, PixelStack, Sparkle } from "./decorations";
+import { Screws, SubjectIcon, type SubjectKind } from "./parts";
 import { PrizeTag } from "./illustrations";
 import SiteLink from "./SiteLink";
 import { EVENT, AGES, GRADES, TEAM_SIZE, FEE_COVERS } from "./event";
@@ -28,13 +27,13 @@ const TABS: { key: TabKey; label: string; icon: SubjectKind }[] = [
    touch lower in white and lift on hover */
 const TAB_CLASS = {
   active:
-    "info-tab inline-flex shrink-0 items-center gap-2 rounded-t-xl border-2 border-b-0 border-ink-deep bg-energy px-3 py-2 text-sm font-bold text-ink translate-y-0 transition-[translate,background-color,color] duration-200 ease-out md:px-5",
+    "info-tab inline-flex shrink-0 items-center gap-2 rounded-t-xl border-[3px] border-b-0 border-saigon bg-energy px-3 py-2 text-sm font-bold text-ink translate-y-0 transition-[translate,background-color,color] duration-200 ease-out md:px-5",
   inactive:
-    "info-tab inline-flex shrink-0 items-center gap-2 rounded-t-xl border-2 border-b-0 border-ink-deep bg-white px-3 py-2 text-sm font-bold text-ink/60 translate-y-1 transition-[translate,background-color,color] duration-200 ease-out hover:translate-y-0.5 md:px-5",
+    "info-tab inline-flex shrink-0 items-center gap-2 rounded-t-xl border-[3px] border-b-0 border-saigon bg-white px-3 py-2 text-sm font-bold text-ink/60 translate-y-1 transition-[translate,background-color,color] duration-200 ease-out hover:translate-y-0.5 md:px-5",
 };
 
 const PILL =
-  "mt-5 inline-flex rounded-full bg-energy px-5 py-2.5 text-sm font-semibold text-ink shadow-[0_3px_0_#d18e07]";
+  "mt-5 inline-flex rounded-full bg-energy px-5 py-2.5 text-sm font-semibold text-ink shadow-[0_4px_0_#d18e07]";
 
 const REQUIREMENTS = [
   `Ages ${AGES} (${GRADES})`,
@@ -64,7 +63,7 @@ function Panel({
       aria-labelledby={"tab-" + id}
       hidden={!active}
       tabIndex={0}
-      className="info-panel paper-index relative min-h-[22rem] rounded-lg border-[3px] border-ink-deep p-6 text-ink pt-14 md:p-8 md:pt-14"
+      className="info-panel paper-index relative min-h-[22rem] rounded-lg border-[3px] border-saigon p-6 pt-14 md:p-8 md:pt-14"
     >
       <h3 className="absolute left-6 top-3 text-xs font-bold uppercase tracking-widest text-saigon/70">
         {title}
@@ -231,22 +230,25 @@ export default function ImportantInfo() {
   };
 
   return (
-    <section ref={sectionRef} id="info" className="relative px-4 py-28 md:py-32">
+    <section ref={sectionRef} id="info" className="relative px-4 py-24">
       {/* big hooks: a laptop rocking top-right, a pixel stack bottom-left */}
-      <div className="anchor-drift pointer-events-none absolute bottom-24 left-8 -z-[1] hidden opacity-70 lg:block">
-        <PixelStack width={140} />
+      <div className="anchor-drift pointer-events-none absolute right-8 top-10 -z-[1] hidden lg:block">
+        <FloatingLaptop className="anchor-wobble" width={260} />
+      </div>
+      <div className="anchor-drift pointer-events-none absolute bottom-24 left-8 -z-[1] hidden lg:block">
+        <PixelStack width={180} />
       </div>
       <div className="pointer-events-none absolute left-[14%] top-28 -z-[1] hidden lg:block">
-        <Sparkle className="ambient-twinkle" size={32} />
+        <Sparkle className="ambient-twinkle" size={48} />
       </div>
 
       <div className="mx-auto max-w-4xl">
         <div className="text-center">
-          <p className="info-line mb-3 text-sm font-semibold tracking-wide text-energy-deep">Before you sign up ✦</p>
+          <p className="info-line mb-3 text-sm font-semibold text-saigon">Before you sign up ✦</p>
           <h2 className="info-line text-4xl font-bold leading-tight md:text-5xl">
-            The <span className="text-energy-deep">important</span> information
+            The <span className="text-saigon">important</span> information
           </h2>
-          <p className="info-line mt-4 font-medium text-ink/70">
+          <p className="info-line mt-4 font-medium text-ink/60">
             Fees, requirements, what parents need to know, and the rules — all in one box.
           </p>
         </div>
@@ -288,12 +290,9 @@ export default function ImportantInfo() {
 
           {/* the card box: sky-blue tin, four screws, a riveted label plate
               on the front lip */}
-          <div className="info-box relative p-6 text-ink md:p-9">
-            <DrawnBg aspect="wide" seed={2} tone="sky" bolts />
-            {/* the tin has done a few trips */}
-            <Scuffs seed={1} size={60} className="absolute right-16 top-3 -rotate-[6deg] hidden md:block" />
-            <Scuffs seed={2} size={52} className="absolute bottom-4 left-12 rotate-[4deg] hidden md:block" />
-            <span className="metal-brushed absolute -bottom-3 left-1/2 z-10 -translate-x-1/2 whitespace-nowrap rounded-md border-2 border-saigon px-3 py-0.5 text-[10px] font-bold tracking-widest text-ink/70">
+          <div className="info-box relative rounded-2xl border-4 border-saigon bg-[#c9d7ee] p-4 shadow-[0_8px_0_#01337f] md:p-6">
+            <Screws />
+            <span className="metal-brushed absolute -bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md border-2 border-saigon px-3 py-0.5 text-[10px] font-bold tracking-widest text-ink/70">
               <span
                 className="absolute left-1 top-1/2 h-1.5 w-1.5 -translate-y-1/2 rounded-full border border-saigon bg-[#a8bfe2]"
                 aria-hidden="true"
@@ -367,7 +366,7 @@ export default function ImportantInfo() {
                   Here&apos;s what the day looks like from the family side.
                 </p>
                 {/* the one rule every family plans around, stamped on a notice */}
-                <div className="mt-4 rounded-xl border-[3px] border-ink-deep bg-white p-4 shadow-[0_3px_0_#f8ac1a]">
+                <div className="mt-4 rounded-xl border-[3px] border-saigon bg-white p-4 shadow-[0_4px_0_#cbd8ee]">
                   <span className="stamp -rotate-3 text-saigon" aria-hidden="true">
                     Stays on site — all day
                   </span>

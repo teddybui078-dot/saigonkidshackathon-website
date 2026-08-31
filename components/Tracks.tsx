@@ -4,8 +4,6 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { PixelGrid, Sparkle, PixelPlanet, FlightArc } from "./decorations";
-import { DrawnBg } from "./drawn";
-import { EVENT } from "./event";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -42,7 +40,7 @@ function PageContent({ track }: { track: Track }) {
       </div>
       <div className="mt-5 flex items-center gap-3">
         <span
-          className="grid h-10 w-10 shrink-0 place-items-center rounded-md border-2 border-saigon bg-energy text-lg font-bold text-ink"
+          className="grid h-10 w-10 shrink-0 place-items-center rounded-md border-[3px] border-saigon bg-energy text-lg font-bold text-ink"
           aria-hidden="true"
         >
           {track.n}
@@ -55,7 +53,7 @@ function PageContent({ track }: { track: Track }) {
         {Array.from({ length: 6 }).map((_, i) => (
           <li
             key={i}
-            className="flex aspect-[5/4] items-center justify-center rounded-lg bg-white text-3xl font-bold text-saigon/40"
+            className="flex aspect-[5/4] items-center justify-center rounded-lg bg-canvas text-3xl font-bold text-saigon/40"
           >
             ?
           </li>
@@ -134,27 +132,33 @@ export default function Tracks() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="tracks" className="relative overflow-hidden px-4 py-28 md:py-32">
-      {/* the curated few: the planet, an arc, one sparkle */}
-      <div className="anchor-drift pointer-events-none absolute right-10 top-16 -z-[1] hidden opacity-70 lg:block">
-        <PixelPlanet className="anchor-wobble" size={230} />
+    <section ref={sectionRef} id="tracks" className="relative overflow-hidden px-4 py-28">
+      {/* big hooks around the notebook */}
+      <div className="anchor-drift pointer-events-none absolute right-10 top-16 -z-[1] hidden lg:block">
+        <PixelPlanet className="anchor-wobble" size={290} />
       </div>
       <div className="pointer-events-none absolute bottom-14 left-10 -z-[1] hidden lg:block">
-        <Sparkle className="ambient-twinkle" size={36} />
+        <Sparkle className="ambient-twinkle" size={64} />
+      </div>
+      <div className="anchor-drift pointer-events-none absolute bottom-6 left-28 -z-[1] hidden lg:block">
+        <PixelGrid size={92} />
       </div>
       <div className="anchor-drift pointer-events-none absolute bottom-10 right-16 -z-[1] hidden lg:block">
-        <FlightArc width={220} />
+        <FlightArc width={300} />
+      </div>
+      <div className="pointer-events-none absolute bottom-32 right-12 -z-[1] hidden lg:block">
+        <Sparkle className="ambient-twinkle" size={40} />
       </div>
 
       {/* pinned: the heading and the notebook that opens beneath it */}
       <div className="track-pin mx-auto max-w-4xl text-center">
-        <p className="track-line mb-3 text-sm font-semibold tracking-wide text-energy-deep">
+        <p className="track-line mb-3 text-sm font-semibold text-saigon">
           The theme ✦
         </p>
-        <h2 className="track-line text-5xl font-bold leading-tight md:text-6xl">
-          To be <span className="text-energy-deep">revealed</span>
+        <h2 className="track-line text-5xl font-bold leading-tight md:text-6xl lg:text-7xl">
+          To be <span className="text-saigon">revealed</span>
         </h2>
-        <p className="track-line mt-4 font-medium text-ink/70">
+        <p className="track-line mt-4 font-medium text-ink/60">
           One theme. Two tracks. Announced closer to the day.
         </p>
 
@@ -164,45 +168,40 @@ export default function Tracks() {
             cover, and rounding/overflow only on the two faces */}
         <div className="track-book relative mx-auto mt-10 grid w-full max-w-[60rem] gap-6 text-left motion-safe:md:block motion-safe:md:h-[34rem] motion-safe:md:perspective-[2200px]">
           {/* right page: track 2, the base page under the cover */}
-          <div className="track-page paper-ruled relative order-2 text-ink min-h-[22rem] overflow-hidden rounded-2xl border-[3px] border-ink-deep shadow-[4px_4px_0_#f8ac1a] motion-safe:md:absolute motion-safe:md:inset-y-0 motion-safe:md:left-1/2 motion-safe:md:min-h-0 motion-safe:md:w-1/2 motion-safe:md:rounded-l-none motion-safe:md:border-l-0">
+          <div className="track-page paper-ruled relative order-2 min-h-[22rem] overflow-hidden rounded-2xl border-[3px] border-saigon shadow-[6px_6px_0_#c9d7ee] motion-safe:md:absolute motion-safe:md:inset-y-0 motion-safe:md:left-1/2 motion-safe:md:min-h-0 motion-safe:md:w-1/2 motion-safe:md:rounded-l-none motion-safe:md:border-l-0">
             <span aria-hidden="true" className="absolute inset-y-0 left-6 w-0.5 bg-energy/50" />
             <PageContent track={TRACKS[1]} />
           </div>
 
           {/* the cover, hinged on the spine. its back face is the left page */}
           <div className="track-cover order-1 motion-safe:md:absolute motion-safe:md:inset-y-0 motion-safe:md:left-1/2 motion-safe:md:w-1/2 motion-safe:md:origin-left motion-safe:md:transform-3d motion-safe:md:rotate-y-180">
-            {/* cover front: a drawn space-blue board with the label sticker */}
+            {/* cover front: spine strip, elastic band, label sticker */}
             <div
               aria-hidden="true"
-              className="absolute inset-0 hidden backface-hidden rotate-y-0 motion-safe:md:block"
+              className="absolute inset-0 hidden overflow-hidden rounded-r-2xl bg-saigon backface-hidden rotate-y-0 shadow-[0_10px_0_#01337f] motion-safe:md:block"
             >
-              <DrawnBg aspect="tall" seed={4} tone="spaceLight" />
-              <span className="absolute inset-y-4 left-2 w-1 rounded-full bg-ink-deep/30" />
-              <span className="absolute inset-y-4 right-9 w-2.5 rounded-full border-2 border-ink-deep bg-energy" />
-              <div className="absolute left-14 right-20 top-16 rounded-lg bg-white px-6 py-6 text-ink shadow-[0_3px_0_#01337f]">
+              <span className="absolute inset-y-0 left-0 w-4 bg-saigon-deep" />
+              <span className="absolute inset-y-0 right-8 w-2.5 bg-energy" />
+              <div className="absolute left-14 right-20 top-16 rounded-lg bg-white px-6 py-6 shadow-[0_4px_0_#01337f]">
                 <PixelGrid size={24} />
                 <p className="mt-4 text-sm font-bold tracking-widest text-saigon/70">Theme notebook</p>
-                <p className="mt-1 text-3xl font-bold leading-tight text-ink">{EVENT.name}</p>
-                <p className="mt-3 text-base font-semibold text-ink/60">{EVENT.date}</p>
+                <p className="mt-1 text-3xl font-bold leading-tight text-ink">Saigon Kids Hackathon</p>
+                <p className="mt-3 text-base font-semibold text-ink/60">March 6, 2027</p>
               </div>
-              <span className="absolute bottom-10 left-14 text-sm font-semibold text-saigon/80">scroll to open ↓</span>
+              <span className="absolute bottom-10 left-14 text-sm font-semibold text-white/70">scroll to open ↓</span>
             </div>
             {/* left page: track 1 */}
-            <div className="track-page paper-ruled text-ink relative min-h-[22rem] overflow-hidden rounded-2xl border-[3px] border-ink-deep shadow-[4px_4px_0_#f8ac1a] motion-safe:md:absolute motion-safe:md:inset-0 motion-safe:md:min-h-0 motion-safe:md:rounded-r-none motion-safe:md:border-r-0 motion-safe:md:shadow-none motion-safe:md:backface-hidden motion-safe:md:rotate-y-180">
+            <div className="track-page paper-ruled relative min-h-[22rem] overflow-hidden rounded-2xl border-[3px] border-saigon shadow-[6px_6px_0_#c9d7ee] motion-safe:md:absolute motion-safe:md:inset-0 motion-safe:md:min-h-0 motion-safe:md:rounded-r-none motion-safe:md:border-r-0 motion-safe:md:shadow-none motion-safe:md:backface-hidden motion-safe:md:rotate-y-180">
               <span aria-hidden="true" className="absolute inset-y-0 left-6 w-0.5 bg-energy/50" />
               <PageContent track={TRACKS[0]} />
             </div>
           </div>
 
-          {/* the spine is a lego rail — studs clip the two pages together */}
+          {/* spine */}
           <div
             aria-hidden="true"
-            className="absolute inset-y-2 left-1/2 hidden w-3 -translate-x-1/2 flex-col items-center justify-evenly rounded-full bg-space-light motion-safe:md:flex"
-          >
-            {Array.from({ length: 6 }).map((_, i) => (
-              <span key={i} className="h-3.5 w-3.5 rounded-[4px] border-2 border-ink-deep bg-energy" />
-            ))}
-          </div>
+            className="absolute inset-y-0 left-1/2 hidden w-3 -translate-x-1/2 rounded-full bg-saigon-deep motion-safe:md:block"
+          />
         </div>
       </div>
     </section>

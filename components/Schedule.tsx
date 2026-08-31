@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Sparkle, PixelClock } from "./decorations";
+import { Sparkle, PixelClock, PixelStack, CodeMark, PixelGrid } from "./decorations";
 import { Hook, Tassel } from "./parts";
 import { AGENDA } from "./agenda";
 
@@ -110,20 +110,29 @@ export default function Schedule() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="schedule" className="relative px-4 py-28 md:py-32">
+    <section ref={sectionRef} id="schedule" className="relative px-4 py-24">
       {/* big hooks alternating down both sides of the day */}
-      <div className="anchor-drift pointer-events-none absolute left-8 top-[22%] -z-[1] hidden opacity-70 lg:block">
-        <PixelClock size={280} />
+      <div className="anchor-drift pointer-events-none absolute left-8 top-[22%] -z-[1] hidden lg:block">
+        <PixelClock size={340} />
+      </div>
+      <div className="anchor-drift pointer-events-none absolute right-10 top-[45%] -z-[1] hidden lg:block">
+        <PixelStack width={200} />
+      </div>
+      <div className="anchor-drift pointer-events-none absolute left-14 top-[68%] -z-[1] hidden lg:block">
+        <CodeMark className="anchor-wobble" size={150} />
       </div>
       <div className="pointer-events-none absolute right-16 top-[85%] -z-[1] hidden lg:block">
-        <Sparkle className="ambient-twinkle" size={36} />
+        <Sparkle className="ambient-twinkle" size={64} />
+      </div>
+      <div className="anchor-drift pointer-events-none absolute right-32 top-[90%] -z-[1] hidden lg:block">
+        <PixelGrid size={80} />
       </div>
       <div className="mx-auto max-w-5xl">
         <div className="text-center">
-          <p className="mb-3 text-sm font-semibold tracking-wide text-energy-deep">
+          <p className="mb-3 text-sm font-semibold text-saigon">
             March 6, 2027 ✦
           </p>
-          <h2 className="text-5xl font-bold leading-tight md:text-6xl">
+          <h2 className="text-5xl font-bold leading-tight md:text-7xl">
             Schedule
           </h2>
         </div>
@@ -131,11 +140,11 @@ export default function Schedule() {
         <div className="schedule-list relative mt-20">
           {/* the pole, with a finial on top — draws itself as you scroll */}
           <div
-            className="schedule-spine absolute left-1/2 top-0 h-full w-2 -translate-x-1/2 rounded-full bg-space-light"
+            className="schedule-spine absolute left-1/2 top-0 h-full w-2 -translate-x-1/2 rounded-full bg-saigon"
             aria-hidden="true"
           />
           <span
-            className="absolute -top-4 left-1/2 h-5 w-5 -translate-x-1/2 rounded-full border-2 border-ink-deep bg-energy"
+            className="absolute -top-4 left-1/2 h-5 w-5 -translate-x-1/2 rounded-full border-[3px] border-saigon bg-energy"
             aria-hidden="true"
           />
 
@@ -149,7 +158,7 @@ export default function Schedule() {
               >
                 {/* bracket arm out from the pole, and the collar it bolts to */}
                 <span
-                  className={`schedule-arm absolute top-0.5 hidden h-1.5 bg-space-light md:block ${
+                  className={`schedule-arm absolute top-0.5 hidden h-1.5 bg-saigon md:block ${
                     i % 2 === 0
                       ? "right-0 w-[calc(50%_+_1.25rem)] rounded-l-full"
                       : "left-0 w-[calc(50%_+_1.25rem)] rounded-r-full"
@@ -157,7 +166,7 @@ export default function Schedule() {
                   aria-hidden="true"
                 />
                 <span
-                  className={`schedule-collar absolute -top-1 hidden h-4 w-5 rounded-sm border-2 border-ink-deep bg-energy md:block ${
+                  className={`schedule-collar absolute -top-1 hidden h-4 w-5 rounded-sm border-[3px] border-saigon bg-energy md:block ${
                     i % 2 === 0 ? "-right-2.5" : "-left-2.5"
                   }`}
                   aria-hidden="true"
@@ -167,14 +176,14 @@ export default function Schedule() {
                 <div className="schedule-lantern">
                 <div className="ambient-hang mx-auto flex max-w-md flex-col items-center md:max-w-none">
                   <Hook />
-                  <div className="w-2/3 rounded-t-xl bg-space-light px-3 py-1.5 text-center text-base font-bold text-saigon-deep">
+                  <div className="w-2/3 rounded-t-xl bg-saigon px-3 py-1.5 text-center text-base font-bold text-energy">
                     {slot.time}
                   </div>
-                  <div className="lantern-body w-full px-12 py-7 text-center text-ink">
+                  <div className="lantern-body w-full px-12 py-7 text-center">
                     <h3 className="text-2xl font-semibold md:text-3xl">{slot.title}</h3>
-                    <p className="mt-2 text-lg font-medium leading-snug text-ink/70">{slot.body}</p>
+                    <p className="mt-2 text-lg font-medium leading-snug text-ink/65">{slot.body}</p>
                   </div>
-                  <div className="h-3 w-2/3 rounded-b-xl bg-space-light" aria-hidden="true" />
+                  <div className="h-3 w-2/3 rounded-b-xl bg-saigon" aria-hidden="true" />
                   <Tassel className="h-11 w-7" />
                 </div>
                 </div>

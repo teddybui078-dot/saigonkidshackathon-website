@@ -3,20 +3,18 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Sparkle, CodeMark } from "./decorations";
+import { Sparkle, PixelGrid, CodeMark } from "./decorations";
 import { ToteBag, KitBadge } from "./illustrations";
-import { FloatBrick, ChalkScribble } from "./space";
-import { SKY_LIGHT } from "./palette";
 import { KIT, type KitItem } from "./kit";
 
 gsap.registerPlugin(ScrollTrigger);
 
 /* the goods: one round badge logo per kit item */
 const ART: Record<KitItem["id"], React.ReactNode> = {
-  snacks: <KitBadge kind="snacks" size={118} seed={0} />,
-  stickers: <KitBadge kind="stickers" size={118} seed={1} />,
-  hat: <KitBadge kind="hat" size={118} seed={2} />,
-  wristbands: <KitBadge kind="wristbands" size={118} seed={1} />,
+  snacks: <KitBadge kind="snacks" size={118} />,
+  stickers: <KitBadge kind="stickers" size={118} />,
+  hat: <KitBadge kind="hat" size={118} />,
+  wristbands: <KitBadge kind="wristbands" size={118} />,
 };
 
 /* where each item comes to rest around the bag on md+ (full strings so
@@ -138,25 +136,24 @@ export default function BuildersKit() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="kit" className="relative px-4 py-28 md:py-32">
+    <section ref={sectionRef} id="kit" className="relative px-4 py-24">
       {/* big hooks in the corners: a sparkle, a pixel cluster, the code mark */}
       <div className="pointer-events-none absolute left-12 top-12 -z-[1] hidden lg:block">
-        <Sparkle className="ambient-twinkle" size={36} />
+        <Sparkle className="ambient-twinkle" size={56} />
+      </div>
+      <div className="pointer-events-none absolute right-12 top-10 -z-[1] hidden lg:block">
+        <PixelGrid className="ambient-float" size={96} />
       </div>
       <div className="pointer-events-none absolute bottom-20 right-16 -z-[1] hidden lg:block">
-        <CodeMark className="ambient-float" size={110} />
-      </div>
-      {/* a chalk zigzag skipping off the bag */}
-      <div className="pointer-events-none absolute left-[18%] bottom-32 -z-[1] hidden -rotate-[6deg] lg:block">
-        <ChalkScribble kind="zigzag" width={80} />
+        <CodeMark className="ambient-float" size={150} />
       </div>
       <div className="mx-auto max-w-5xl">
         <div className="text-center">
-          <p className="kit-line mb-3 text-sm font-semibold tracking-wide text-energy-deep">In your bag ✦</p>
+          <p className="kit-line mb-3 text-sm font-semibold text-saigon">In your bag ✦</p>
           <h2 className="kit-line text-4xl font-bold leading-tight md:text-5xl">
-            Every builder gets a <span className="text-energy-deep">builders kit</span>
+            Every builder gets a <span className="text-saigon">builders kit</span>
           </h2>
-          <p className="kit-line mt-4 font-medium text-ink/70">
+          <p className="kit-line mt-4 font-medium text-ink/60">
             Snacks, stickers, a hat and wristbands — yours to keep.
           </p>
         </div>
@@ -181,18 +178,12 @@ export default function BuildersKit() {
               {/* outer div is the pop, this one drifts */}
               <div className="ambient-float flex flex-col items-center" data-amp="s">
                 {ART[item.id]}
-                <span className="kit-caption mt-2 rounded-full border-2 border-ink-deep bg-white px-3 py-1 text-xs font-bold text-ink shadow-[0_2px_0_#f8ac1a]">
+                <span className="kit-caption mt-2 rounded-full border-2 border-saigon bg-white px-3 py-1 text-xs font-bold shadow-[0_3px_0_#cbd8ee]">
                   {item.name}
                 </span>
               </div>
             </div>
           ))}
-
-          {/* a brick that spilled out with the goods */}
-          <FloatBrick
-            color={SKY_LIGHT}
-            className="ambient-float absolute -bottom-2 left-1/2 hidden w-12 -translate-x-[190px] rotate-[-8deg] md:block"
-          />
 
           {/* front layer: the body with its band and label. first row of the
               grid below md, over the back layer on md+ */}
@@ -205,7 +196,7 @@ export default function BuildersKit() {
         </div>
 
         {/* the same four things in plain words, so nobody has to hunt */}
-        <dl className="mt-8 grid grid-cols-2 gap-4 text-center text-sm font-medium text-ink/70 md:grid-cols-4">
+        <dl className="mt-8 grid grid-cols-2 gap-4 text-center text-sm font-medium text-ink/65 md:grid-cols-4">
           {KIT.map((item) => (
             <div key={item.id}>
               <dt className="font-bold text-ink">{item.name}</dt>

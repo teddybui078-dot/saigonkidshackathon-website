@@ -3,9 +3,8 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { PixelGrid, Sparkle, FloatingLaptop, PixelBulb, PixelStack, PixelTrophy } from "./decorations";
-import { Screws, DomeButton, Led, Pushpin, Scuffs } from "./parts";
-import { DrawnBg, DrawnDiscBg } from "./drawn";
+import { PixelGrid, Sparkle, FloatingLaptop, PixelBulb, PixelStack, FlightArc, PixelTrophy } from "./decorations";
+import { Screws, DomeButton, Led, Pushpin } from "./parts";
 import { PartyPopper } from "./illustrations";
 import { EVENT } from "./event";
 
@@ -153,16 +152,22 @@ export default function About() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="about" className="relative px-4 py-28 md:py-32">
-      {/* the curated few: a laptop, a brick stack, one sparkle */}
-      <div className="anchor-drift pointer-events-none absolute right-10 top-6 -z-[1] hidden opacity-70 lg:block">
-        <FloatingLaptop className="anchor-wobble" width={240} />
+    <section ref={sectionRef} id="about" className="relative px-4 py-24">
+      {/* big hooks alternating around the content */}
+      <div className="anchor-drift pointer-events-none absolute left-4 top-10 -z-[1] hidden lg:block">
+        <PixelBulb size={112} />
       </div>
-      <div className="anchor-drift pointer-events-none absolute bottom-28 left-8 -z-[1] hidden opacity-70 lg:block">
-        <PixelStack width={140} />
+      <div className="anchor-drift pointer-events-none absolute right-10 top-6 -z-[1] hidden lg:block">
+        <FloatingLaptop className="anchor-wobble" width={300} />
+      </div>
+      <div className="anchor-drift pointer-events-none absolute bottom-28 left-8 -z-[1] hidden lg:block">
+        <PixelStack width={170} />
+      </div>
+      <div className="anchor-drift pointer-events-none absolute bottom-24 right-24 -z-[1] hidden lg:block">
+        <FlightArc width={220} color="#f8ac1a" />
       </div>
       <div className="pointer-events-none absolute bottom-40 right-14 -z-[1] hidden lg:block">
-        <Sparkle className="ambient-twinkle" size={32} />
+        <Sparkle className="ambient-twinkle" size={44} />
       </div>
       <div className="mx-auto max-w-6xl">
         {/* the pinned pair: a billboard on the left, a stack of notes on the
@@ -172,14 +177,13 @@ export default function About() {
           <div className="about-billboard relative">
             <div className="mx-12 flex justify-around" aria-hidden="true">
               {Array.from({ length: 4 }).map((_, i) => (
-                <span key={i} className="relative h-5 w-12 rounded-t-full bg-space-light">
+                <span key={i} className="relative h-5 w-12 rounded-t-full bg-saigon-deep">
                   <span className="absolute inset-x-3.5 bottom-0 h-2 rounded-t-full bg-energy" />
                 </span>
               ))}
             </div>
-            <div className="relative text-ink">
-              <DrawnBg aspect="wide" seed={3} tone="paper" bolts />
-              <div className="relative z-10 px-8 py-10 md:px-12 md:py-14">
+            <div className="relative rounded-2xl border-[6px] border-saigon bg-white px-8 py-10 shadow-[inset_0_0_0_5px_#c9d7ee,0_10px_0_#01337f] md:px-12 md:py-14">
+              <Screws />
               {/* a marquee arrow: blue sign, chasing bulbs, pointing at the story */}
               <p
                 className="about-line relative mb-5 inline-block [filter:drop-shadow(0_4px_0_#01337f)]"
@@ -206,11 +210,10 @@ export default function About() {
                 website — with mentors beside you the whole way. No grades, no
                 pressure, just making things you&apos;re proud of.
               </p>
-              </div>
             </div>
             <div className="mx-16 flex justify-between" aria-hidden="true">
-              <span className="h-20 w-4 rounded-b-sm bg-space-light" />
-              <span className="h-20 w-4 rounded-b-sm bg-space-light" />
+              <span className="h-20 w-4 rounded-b-sm bg-saigon" />
+              <span className="h-20 w-4 rounded-b-sm bg-saigon" />
             </div>
           </div>
 
@@ -222,8 +225,10 @@ export default function About() {
                 key={card.title}
                 className="about-card relative md:min-h-[26rem] motion-safe:md:col-start-1 motion-safe:md:row-start-1"
               >
-                {/* the note is a drawn panel now — same pin, new paper */}
-                <DrawnBg aspect="tall" seed={CARDS.indexOf(card)} tone="paper" />
+                {/* paper layers: shadow, outline, ruled face — all torn along the bottom */}
+                <span className="zigzag-bottom absolute inset-x-0 -bottom-1.5 top-1.5 bg-[#c9d7ee]" aria-hidden="true" />
+                <span className="zigzag-bottom absolute inset-0 bg-saigon" aria-hidden="true" />
+                <span className="zigzag-bottom paper-ruled absolute inset-[3px] bottom-[5px]" aria-hidden="true" />
                 <Pushpin className="absolute -top-3 left-5" />
                 <PixelGrid className="absolute bottom-7 right-4 opacity-60" size={16} />
                 <div className="about-card-body relative px-8 pb-12 pt-12">
@@ -237,11 +242,8 @@ export default function About() {
         </div>
 
         {/* a riveted control panel: brushed metal, screws, domed push-buttons */}
-        <div className="about-panel metal-brushed relative mt-12 rounded-3xl border-[3px] border-ink-deep px-6 pb-9 pt-10 text-ink shadow-[0_7px_0_#f8ac1a] md:px-10">
+        <div className="about-panel metal-brushed relative mt-14 rounded-3xl border-4 border-saigon px-6 pb-9 pt-10 shadow-[0_10px_0_#01337f] md:px-10">
           <Screws />
-          {/* the panel has been carried around a bit */}
-          <Scuffs seed={0} className="absolute left-12 top-4 hidden md:block" />
-          <Scuffs seed={2} size={56} className="absolute bottom-5 right-14 rotate-[8deg] hidden md:block" />
           <div className="absolute right-8 top-3 flex items-center gap-2 text-[10px] font-semibold tracking-wide text-ink/50">
             <Led className="motion-safe:animate-led-blink" />
             on
@@ -252,9 +254,8 @@ export default function About() {
                 <dt className="mt-4 rounded-md bg-white/60 px-3 py-1 text-xs font-semibold text-ink/60">
                   {stat.label}
                 </dt>
-                {/* the well the button sits in, drawn */}
-                <dd className="relative h-32 w-32 p-2">
-                  <DrawnDiscBg seed={i} tone="sky" />
+                {/* the well the button sits in */}
+                <dd className="h-32 w-32 rounded-full bg-[#c9d7ee] p-2 shadow-[inset_0_5px_0_#a8bfe2]">
                   <DomeButton
                     tone={i % 2 === 0 ? "yellow" : "blue"}
                     pressable
@@ -280,6 +281,7 @@ export default function About() {
           </dl>
         </div>
 
+        <Sparkle className="ambient-twinkle absolute bottom-10 right-[8%] hidden lg:block" size={26} />
       </div>
     </section>
   );

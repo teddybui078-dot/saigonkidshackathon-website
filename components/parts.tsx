@@ -4,7 +4,7 @@
    size — anything that must stretch with content is css, not svg. */
 
 import Image from "next/image";
-import { BLUE, YELLOW, SKY_DEEP, METAL, SUN, SPACE_LIGHT, PAPER } from "./palette";
+import { BLUE, YELLOW, SKY_DEEP, METAL } from "./palette";
 import type { Partner } from "./partners";
 
 /* ————— fasteners ————— */
@@ -64,57 +64,9 @@ export function Pushpin({ className = "", size = 26 }: { className?: string; siz
       fill="none"
       aria-hidden="true"
     >
-      <path d="M14 20 L14 34" stroke={BLUE} strokeWidth="2.5" strokeLinecap="round" />
-      <circle cx="14" cy="12" r="10" fill={YELLOW} stroke={BLUE} strokeWidth="2.5" />
+      <path d="M14 20 L14 34" stroke={BLUE} strokeWidth="3" strokeLinecap="round" />
+      <circle cx="14" cy="12" r="10" fill={YELLOW} stroke={BLUE} strokeWidth="3" />
       <circle cx="10.5" cy="8.5" r="2.5" fill="#fff" opacity="0.7" />
-    </svg>
-  );
-}
-
-/* ————— wear ————— */
-
-/* hand-scratched marks for hard surfaces — metal, lacquer, plastic.
-   three arrangements picked by seed: parallel ticks with a stray comma,
-   an L-scratch with a lone tick, three short rain ticks. the way worked
-   surfaces actually look. */
-const SCUFF_MARKS = [
-  ["M8 30 L24 14", "M16 36 L32 20", "M62 12 Q68 8 72 14"],
-  ["M10 12 L28 10 L32 26", "M58 32 L74 20"],
-  ["M8 26 L18 12", "M30 32 L42 16", "M56 24 L64 12"],
-];
-
-export function Scuffs({
-  className = "",
-  seed = 0,
-  size = 72,
-  color = PAPER,
-}: {
-  className?: string;
-  seed?: number;
-  size?: number;
-  color?: string;
-}) {
-  const marks = SCUFF_MARKS[seed % SCUFF_MARKS.length];
-  return (
-    <svg
-      className={`pointer-events-none ${className}`}
-      width={size}
-      height={size * (44 / 84)}
-      viewBox="0 0 84 44"
-      fill="none"
-      aria-hidden="true"
-    >
-      {marks.map((d) => (
-        <path
-          key={d}
-          d={d}
-          stroke={color}
-          strokeWidth={2.5}
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          opacity={0.45}
-        />
-      ))}
     </svg>
   );
 }
@@ -124,13 +76,13 @@ export function Scuffs({
 const TONES = {
   yellow: {
     face: "bg-energy text-ink",
-    rest: "shadow-[0_5px_0_#d18e07,inset_0_-5px_0_rgba(0,0,0,0.08)]",
-    pressed: "hover:shadow-[0_2px_0_#d18e07,inset_0_-5px_0_rgba(0,0,0,0.08)]",
+    rest: "shadow-[0_8px_0_#d18e07,inset_0_-5px_0_rgba(0,0,0,0.08)]",
+    pressed: "hover:shadow-[0_3px_0_#d18e07,inset_0_-5px_0_rgba(0,0,0,0.08)]",
   },
   blue: {
     face: "bg-saigon text-white",
-    rest: "shadow-[0_5px_0_#01337f,inset_0_-5px_0_rgba(0,0,0,0.12)]",
-    pressed: "hover:shadow-[0_2px_0_#01337f,inset_0_-5px_0_rgba(0,0,0,0.12)]",
+    rest: "shadow-[0_8px_0_#01337f,inset_0_-5px_0_rgba(0,0,0,0.12)]",
+    pressed: "hover:shadow-[0_3px_0_#01337f,inset_0_-5px_0_rgba(0,0,0,0.12)]",
   },
 } as const;
 
@@ -151,8 +103,8 @@ export function DomeButton({
   const t = TONES[tone];
   return (
     <span
-      className={`relative inline-grid h-full w-full place-items-center rounded-full border-[3px] border-saigon ${t.face} ${t.rest} ${
-        pressable ? `transition-[translate,box-shadow] duration-150 hover:translate-y-1 ${t.pressed}` : ""
+      className={`relative inline-grid h-full w-full place-items-center rounded-full border-4 border-saigon ${t.face} ${t.rest} ${
+        pressable ? `transition-[translate,box-shadow] duration-150 hover:translate-y-1.5 ${t.pressed}` : ""
       } ${className}`}
     >
       <span aria-hidden="true" className="pointer-events-none absolute left-[15%] top-[10%] h-[10%] w-[30%] rounded-full bg-white/60" />
@@ -168,40 +120,6 @@ export function Led({ className = "" }: { className?: string }) {
       aria-hidden="true"
       className={`inline-block h-2.5 w-2.5 rounded-full border border-energy-deep bg-energy shadow-[0_0_0_3px_rgba(248,172,26,0.25)] ${className}`}
     />
-  );
-}
-
-/* ————— stakes ————— */
-
-export function CoilStake({ className = "" }: { className?: string }) {
-  // a springy aerial for a mounted sign: three coil loops on a stake,
-  // drawn twice so the coil keeps its ink
-  return (
-    <svg
-      className={className}
-      width={48}
-      height={96}
-      viewBox="0 0 48 96"
-      fill="none"
-      aria-hidden="true"
-    >
-      <path
-        d="M10 14 C 42 6 46 24 24 28 C 2 32 2 48 24 51 C 46 54 44 68 24 70"
-        stroke={BLUE}
-        strokeWidth={7}
-        strokeLinecap="round"
-        fill="none"
-      />
-      <path
-        d="M10 14 C 42 6 46 24 24 28 C 2 32 2 48 24 51 C 46 54 44 68 24 70"
-        stroke={YELLOW}
-        strokeWidth={3.5}
-        strokeLinecap="round"
-        fill="none"
-      />
-      <path d="M24 70 L24 92" stroke={BLUE} strokeWidth={7} strokeLinecap="round" />
-      <path d="M24 71 L24 90" stroke={SPACE_LIGHT} strokeWidth={3.5} strokeLinecap="round" />
-    </svg>
   );
 }
 
@@ -231,7 +149,7 @@ export function Lanyard({ className = "" }: { className?: string }) {
   // two straps meeting at a clip — the badge hangs from the clip
   return (
     <svg className={`h-11 w-28 ${className}`} viewBox="0 0 112 44" fill="none" aria-hidden="true">
-      <path d="M6 0 L56 34 M106 0 L56 34" stroke={SUN} strokeWidth="6" strokeLinecap="round" />
+      <path d="M6 0 L56 34 M106 0 L56 34" stroke={BLUE} strokeWidth="6" strokeLinecap="round" />
       <path d="M6 0 L56 34 M106 0 L56 34" stroke={YELLOW} strokeWidth="1.5" strokeDasharray="4 5" />
       <rect x="47" y="30" width="18" height="12" rx="3" fill={YELLOW} stroke={BLUE} strokeWidth="2.5" />
     </svg>
@@ -243,7 +161,7 @@ export function Hook({ className = "" }: { className?: string }) {
   return (
     <svg className={`h-4 w-5 ${className}`} viewBox="0 0 20 16" fill="none" aria-hidden="true">
       <circle cx="10" cy="5" r="3.5" fill={YELLOW} stroke={BLUE} strokeWidth="2.5" />
-      <path d="M10 8.5 V16" stroke={SUN} strokeWidth="3" />
+      <path d="M10 8.5 V16" stroke={BLUE} strokeWidth="3" />
     </svg>
   );
 }
@@ -253,7 +171,7 @@ export function Tassel({ className = "" }: { className?: string }) {
   return (
     <svg className={`h-7 w-5 ${className}`} viewBox="0 0 20 28" fill="none" aria-hidden="true">
       <path d="M10 0 V10" stroke={YELLOW} strokeWidth="3" />
-      <rect x="6" y="10" width="8" height="6" rx="2" fill={SPACE_LIGHT} />
+      <rect x="6" y="10" width="8" height="6" rx="2" fill={BLUE} />
       <path d="M7 16 V26 M10 16 V28 M13 16 V25" stroke={YELLOW} strokeWidth="2.5" strokeLinecap="round" />
     </svg>
   );
@@ -270,22 +188,18 @@ export function LogoSlot({
   size?: number;
   className?: string;
 }) {
-  // a slot for a partner's mark, `size` tall. the real logo is shown as-is
-  // at its own proportions — never stretched, rotated, recoloured or
-  // shadowed (GUIDELINES.md) — and until a mark arrives the slot is a
-  // dashed ring with "logo" written inside, the same placeholder the
-  // founder badges use
+  // a round slot for a partner's mark. the real logo is shown as-is —
+  // never rotated, recoloured or shadowed (GUIDELINES.md) — and until a
+  // mark arrives the slot is a dashed ring with "logo" written inside,
+  // the same placeholder the founder badges use
   if (partner.logo) {
-    const { src, width, height } = partner.logo;
-    const rendered = Math.round((size * width) / height);
     return (
       <Image
-        src={src}
+        src={partner.logo}
         alt={`${partner.name} logo`}
-        width={rendered}
+        width={size}
         height={size}
-        sizes={`${rendered}px`}
-        className={`h-auto shrink-0 ${className}`}
+        className={`shrink-0 rounded-full ${className}`}
       />
     );
   }

@@ -48,7 +48,7 @@ export default function Ticker() {
               {word}
               <span
                 className={`inline-block h-4 w-4 rounded-sm ${
-                  i % 2 === 0 ? "bg-energy" : "bg-white"
+                  i % 2 === 0 ? "bg-energy" : "bg-saigon"
                 }`}
               />
             </span>

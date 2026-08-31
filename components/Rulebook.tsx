@@ -25,9 +25,9 @@ const CHIPS = [
    can see them. one line in the strip, wrapping in the column */
 const TOC_LINK = {
   active:
-    "inline-flex items-start gap-2 whitespace-nowrap rounded-full border-2 border-ink-deep px-3 py-1.5 text-sm font-semibold transition-colors bg-energy text-ink shadow-[0_2px_0_#d18e07] lg:whitespace-normal",
+    "inline-flex items-start gap-2 whitespace-nowrap rounded-full border-2 border-saigon px-3 py-1.5 text-sm font-semibold transition-colors bg-energy text-ink shadow-[0_3px_0_#d18e07] lg:whitespace-normal",
   inactive:
-    "inline-flex items-start gap-2 whitespace-nowrap rounded-full border-2 border-ink-deep px-3 py-1.5 text-sm font-semibold transition-colors bg-white/70 text-ink/70 hover:bg-white lg:whitespace-normal",
+    "inline-flex items-start gap-2 whitespace-nowrap rounded-full border-2 border-saigon px-3 py-1.5 text-sm font-semibold transition-colors bg-white/70 text-ink/70 hover:bg-white lg:whitespace-normal",
 } as const;
 
 /* the line a sheet has to cross to count as "the one you're on": just under
@@ -138,18 +138,18 @@ export default function Rulebook() {
       </div>
 
       <header className="mx-auto max-w-5xl px-4 pb-10 pt-32 text-center md:pt-40">
-        <p className="rule-line mb-3 text-sm font-semibold tracking-wide text-energy-deep">The rules ✦</p>
+        <p className="rule-line mb-3 text-sm font-semibold text-saigon">The rules ✦</p>
         <h1 className="rule-line text-5xl font-bold leading-tight md:text-7xl">
-          The whole rulebook, <span className="text-energy-deep">up front</span>
+          The whole rulebook, <span className="text-saigon">up front</span>
         </h1>
-        <p className="rule-line mx-auto mt-5 max-w-2xl text-lg font-medium text-ink/75 md:text-xl">
+        <p className="rule-line mx-auto mt-5 max-w-2xl text-lg font-medium text-ink/70 md:text-xl">
           {RULES_INTRO}
         </p>
         <div className="mt-7 flex flex-wrap justify-center gap-3">
           {CHIPS.map((chip) => (
             <span
               key={chip}
-              className="rule-chip rounded-full border-2 border-ink-deep bg-white px-4 py-1.5 text-sm font-semibold text-saigon shadow-[0_2px_0_#f8ac1a]"
+              className="rule-chip rounded-full border-2 border-saigon bg-white px-4 py-1.5 text-sm font-semibold text-saigon shadow-[0_3px_0_#cbd8ee]"
             >
               {chip}
             </span>
@@ -161,7 +161,7 @@ export default function Rulebook() {
         {/* contents: a column of tabs on wide screens, a strip of chips you
             can thumb through on small ones */}
         <nav aria-labelledby="rules-toc-label" className="mb-10 lg:sticky lg:top-28 lg:mb-0 lg:self-start">
-          <p id="rules-toc-label" className="mb-3 text-xs font-bold uppercase tracking-widest text-energy-deep/80">
+          <p id="rules-toc-label" className="mb-3 text-xs font-bold uppercase tracking-widest text-saigon/70">
             On this page
           </p>
           {/* a little breathing room so the focus ring isn't clipped by the scroller */}
@@ -181,7 +181,7 @@ export default function Rulebook() {
                   aria-current={active === rule.id ? "true" : undefined}
                   className={active === rule.id ? TOC_LINK.active : TOC_LINK.inactive}
                 >
-                  <span className="shrink-0 font-bold text-energy-deep">{pad(rule.n)}</span>
+                  <span className="shrink-0 font-bold text-saigon">{pad(rule.n)}</span>
                   {rule.title}
                 </a>
               </li>
@@ -194,13 +194,13 @@ export default function Rulebook() {
               ring each — rail, ring and holes all share one centre line */}
           <div className="relative">
             <span
-              className="absolute bottom-2 left-[19px] top-2 hidden w-2 rounded-full bg-space-light md:block"
+              className="absolute bottom-2 left-[19px] top-2 hidden w-2 rounded-full bg-saigon md:block"
               aria-hidden="true"
             />
             <ol className="space-y-8">
               {RULES.map((rule) => (
                 <li key={rule.id} id={rule.id} tabIndex={-1} className="rule-sheet relative scroll-mt-28 outline-none">
-                  <article className="paper-punched relative rounded-2xl border-[3px] border-ink-deep py-8 pl-8 pr-6 text-ink shadow-[0_4px_0_#f8ac1a] md:pl-20 md:pr-10">
+                  <article className="paper-punched relative rounded-2xl border-[3px] border-saigon py-8 pl-8 pr-6 shadow-[0_6px_0_#01337f] md:pl-20 md:pr-10">
                     {/* the number, big and hollow, in the top corner of the sheet */}
                     <span
                       className="text-outline-blue absolute right-6 top-4 select-none text-6xl font-bold leading-none md:text-7xl"
@@ -222,8 +222,8 @@ export default function Rulebook() {
           </div>
 
           {/* a loose note at the back of the book */}
-          <div className="mt-12 rounded-2xl border-[3px] border-dashed border-white/30 bg-white/10 p-6">
-            <RichText text={RULES_CLOSING} className="text-lg font-medium leading-7 text-ink/80" />
+          <div className="mt-12 rounded-2xl border-[3px] border-dashed border-saigon/40 bg-white/60 p-6">
+            <RichText text={RULES_CLOSING} className="text-lg font-medium leading-7 text-ink/70" />
           </div>
         </div>
       </div>

@@ -17,10 +17,10 @@ export default function AmbientMotion() {
         .forEach((el) => {
           const k = el.dataset.amp === "s" ? 0.5 : 1;
           gsap.to(el, {
-            y: `+=${gsap.utils.random(7, 15) * k}`,
-            x: `+=${gsap.utils.random(-10, 10) * k}`,
-            rotation: gsap.utils.random(-3.5, 3.5) * k,
-            duration: gsap.utils.random(3.5, 6.5),
+            y: `+=${gsap.utils.random(10, 22) * k}`,
+            x: `+=${gsap.utils.random(-14, 14) * k}`,
+            rotation: gsap.utils.random(-5, 5) * k,
+            duration: gsap.utils.random(2.8, 5.5),
             yoyo: true,
             repeat: -1,
             ease: "sine.inOut",
@@ -33,11 +33,11 @@ export default function AmbientMotion() {
         .forEach((el) => {
           gsap.fromTo(
             el,
-            { scale: 0.7, opacity: 0.45 },
+            { scale: 0.55, opacity: 0.35 },
             {
-              scale: 1.1,
+              scale: 1.15,
               opacity: 1,
-              duration: gsap.utils.random(2.2, 3.8),
+              duration: gsap.utils.random(1.6, 3),
               yoyo: true,
               repeat: -1,
               ease: "sine.inOut",
@@ -49,8 +49,8 @@ export default function AmbientMotion() {
 
       gsap.utils.toArray<HTMLElement>(".ambient-sway").forEach((el) => {
         gsap.to(el, {
-          rotation: gsap.utils.random(1.5, 2),
-          duration: gsap.utils.random(4, 5.5),
+          rotation: gsap.utils.random(2, 3),
+          duration: gsap.utils.random(3.2, 4.5),
           yoyo: true,
           repeat: -1,
           ease: "sine.inOut",
@@ -62,10 +62,10 @@ export default function AmbientMotion() {
       gsap.utils.toArray<HTMLElement>(".ambient-hang").forEach((el) => {
         gsap.fromTo(
           el,
-          { rotation: -1 },
+          { rotation: -1.5 },
           {
-            rotation: 1,
-            duration: gsap.utils.random(3.4, 4.6),
+            rotation: 1.5,
+            duration: gsap.utils.random(2.6, 3.8),
             yoyo: true,
             repeat: -1,
             ease: "sine.inOut",
@@ -89,11 +89,11 @@ export default function AmbientMotion() {
 
       /* ——— signature moves for the big section anchors ——— */
 
-      // every anchor keeps drifting vertically, a touch quieter now
+      // every anchor keeps drifting vertically at full amplitude
       gsap.utils.toArray<HTMLElement>(".anchor-drift").forEach((el) => {
         gsap.to(el, {
-          y: `+=${gsap.utils.random(10, 14)}`,
-          duration: gsap.utils.random(4.5, 6),
+          y: `+=${gsap.utils.random(14, 20)}`,
+          duration: gsap.utils.random(3.5, 5),
           yoyo: true,
           repeat: -1,
           ease: "sine.inOut",
@@ -105,10 +105,10 @@ export default function AmbientMotion() {
       gsap.utils.toArray<HTMLElement>(".anchor-wobble").forEach((el) => {
         gsap.fromTo(
           el,
-          { rotation: -4 },
+          { rotation: -6 },
           {
-            rotation: 4,
-            duration: gsap.utils.random(5, 7),
+            rotation: 6,
+            duration: gsap.utils.random(4, 6),
             yoyo: true,
             repeat: -1,
             ease: "sine.inOut",
@@ -121,10 +121,10 @@ export default function AmbientMotion() {
       gsap.utils.toArray<HTMLElement>(".anchor-wiggle").forEach((el) => {
         gsap.fromTo(
           el,
-          { rotation: 7 },
+          { rotation: 5 },
           {
-            rotation: 16,
-            duration: 2.8,
+            rotation: 18,
+            duration: 2.2,
             yoyo: true,
             repeat: -1,
             ease: "sine.inOut",
@@ -136,10 +136,10 @@ export default function AmbientMotion() {
       // the heart beats: thump-thump… pause
       gsap.utils.toArray<HTMLElement>(".anchor-beat").forEach((el) => {
         gsap
-          .timeline({ repeat: -1, repeatDelay: 1.6 })
-          .to(el, { scale: 1.08, duration: 0.14, ease: "power2.out", transformOrigin: "50% 50%" })
+          .timeline({ repeat: -1, repeatDelay: 1.2 })
+          .to(el, { scale: 1.12, duration: 0.14, ease: "power2.out", transformOrigin: "50% 50%" })
           .to(el, { scale: 1, duration: 0.16, ease: "power2.in" })
-          .to(el, { scale: 1.05, duration: 0.14, ease: "power2.out" })
+          .to(el, { scale: 1.08, duration: 0.14, ease: "power2.out" })
           .to(el, { scale: 1, duration: 0.25, ease: "power2.inOut" });
       });
 
@@ -147,11 +147,11 @@ export default function AmbientMotion() {
       gsap.utils.toArray<HTMLElement>(".bulb-ray").forEach((el) => {
         gsap.fromTo(
           el,
-          { opacity: 0.45, scale: 0.9 },
+          { opacity: 0.3, scale: 0.85 },
           {
             opacity: 1,
-            scale: 1.02,
-            duration: 1.4,
+            scale: 1.05,
+            duration: 1.1,
             yoyo: true,
             repeat: -1,
             ease: "sine.inOut",

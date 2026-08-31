@@ -3,8 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { FlightArc, Sparkle } from "./decorations";
-import { FloatBrick } from "./space";
+import { FlightArc, PixelGrid, Sparkle } from "./decorations";
 import { LogoSlot } from "./parts";
 import { PARTNERS } from "./partners";
 
@@ -94,29 +93,28 @@ export default function Partnership() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="partners" className="relative overflow-hidden px-4 py-28 md:py-32">
+    <section ref={sectionRef} id="partners" className="relative overflow-hidden px-4 py-24">
       {/* big hooks either side — the words themselves stay bare */}
       <div className="anchor-drift pointer-events-none absolute left-6 top-16 -z-[1] hidden lg:block">
-        <FlightArc width={200} />
+        <FlightArc width={260} />
+      </div>
+      <div className="anchor-drift pointer-events-none absolute bottom-12 right-10 -z-[1] hidden lg:block">
+        <PixelGrid size={88} />
       </div>
       <div className="pointer-events-none absolute right-24 top-20 -z-[1] hidden lg:block">
-        <Sparkle className="ambient-twinkle" size={32} />
+        <Sparkle className="ambient-twinkle" size={44} />
       </div>
 
       {/* pinned: the heading and the three lockups beneath it */}
       <div className="partners-pin mx-auto max-w-5xl text-center">
-        <p className="partners-line mb-3 text-sm font-semibold tracking-wide text-energy-deep">The partnership ✦</p>
+        <p className="partners-line mb-3 text-sm font-semibold text-saigon">The partnership ✦</p>
         <h2 className="partners-line text-4xl font-bold leading-tight md:text-5xl">
-          Three teams, <span className="text-energy-deep">one big day</span>
+          Three teams, <span className="text-saigon">one big day</span>
         </h2>
-        <p className="partners-line mt-4 font-medium text-ink/70">The partnership that makes it happen.</p>
+        <p className="partners-line mt-4 font-medium text-ink/60">The partnership that makes it happen.</p>
 
         {/* plain lockups: a logo slot and a name, a × between each pair.
             no box — the type is the object here */}
-        <FloatBrick
-          className="ambient-float pointer-events-none absolute right-[10%] top-24 hidden w-14 rotate-[7deg] lg:block"
-          aria-hidden="true"
-        />
         <div className="partners-rows mt-12 flex flex-col items-center">
           {PARTNERS.map((partner, i) => (
             <div key={partner.name} className="contents">

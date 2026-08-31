@@ -4,7 +4,6 @@
    aria-hidden. */
 
 import { BLUE, BLUE_DEEP, YELLOW, YELLOW_DEEP, SKY_LIGHT, SKY_DEEP, METAL } from "./palette";
-import { DrawnDiscBg } from "./drawn";
 
 type SvgProps = { className?: string; size?: number } & React.SVGProps<SVGSVGElement>;
 
@@ -229,8 +228,87 @@ export function PrizeTag({
 
 /* ————— the stage ————— */
 
+/* pennants along the string: x positions and the string's height there
+   (a quadratic from y 6 at the ends to y 20 in the middle) */
+const PENNANTS = [50, 140, 230, 320, 410, 500, 590, 680, 770].map((x, i) => {
+  const t = x / 800;
+  return { x, y: 6 + 56 * t * (1 - t), tone: (["yellow", "blue", "white"] as const)[i % 3] };
+});
 
+export function Bunting({ className = "", ...rest }: Omit<SvgProps, "size">) {
+  // a sagging string of pennants — stretched to whatever width the caller
+  // gives it, so the flags widen a touch on a wide stage
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 800 70"
+      preserveAspectRatio="none"
+      fill="none"
+      aria-hidden="true"
+      {...rest}
+    >
+      <path d="M0 6 Q400 34 800 6" stroke={BLUE} strokeWidth="3" vectorEffect="non-scaling-stroke" />
+      {PENNANTS.map((p) => (
+        <path
+          key={p.x}
+          d={`M${p.x - 22} ${p.y.toFixed(1)} H${p.x + 22} L${p.x} ${(p.y + 34).toFixed(1)} Z`}
+          fill={p.tone === "yellow" ? YELLOW : p.tone === "blue" ? BLUE : "#fff"}
+          stroke={BLUE}
+          strokeWidth="2"
+          vectorEffect="non-scaling-stroke"
+          strokeLinejoin="round"
+        />
+      ))}
+    </svg>
+  );
+}
 
+export function Spotlight({ className = "", width = 90, ...rest }: Omit<SvgProps, "size"> & { width?: number }) {
+  // a stage lamp on a short arm with a soft beam under it — the caller
+  // rotates the wrapper from the lamp head to aim it
+  return (
+    <svg
+      className={className}
+      width={width}
+      height={width * (200 / 120)}
+      viewBox="0 0 120 200"
+      fill="none"
+      aria-hidden="true"
+      {...rest}
+    >
+      <path d="M44 48 L76 48 L118 200 L2 200 Z" fill="#fff" opacity="0.3" />
+      <rect x="56" y="0" width="8" height="14" fill={BLUE} />
+      <rect x="40" y="10" width="40" height="34" rx="6" fill={BLUE_DEEP} stroke={BLUE} strokeWidth="3" />
+      <rect x="44" y="40" width="32" height="8" rx="3" fill={YELLOW} />
+      <rect x="46" y="16" width="10" height="5" rx="2" fill="#fff" opacity="0.5" />
+    </svg>
+  );
+}
+
+/* a sixteen-point burst, pointy tips and stubby valleys */
+const BURST = Array.from({ length: 32 }, (_, i) => {
+  const a = (i * Math.PI) / 16 - Math.PI / 2;
+  const r = i % 2 === 0 ? 100 : 64;
+  return `${(100 + r * Math.cos(a)).toFixed(1)} ${(100 + r * Math.sin(a)).toFixed(1)}`;
+}).join(" L");
+
+export function Starburst({ className = "", size = 220, ...rest }: SvgProps) {
+  // the flash behind the winner
+  return (
+    <svg
+      className={className}
+      width={size}
+      height={size}
+      viewBox="0 0 200 200"
+      fill="none"
+      aria-hidden="true"
+      {...rest}
+    >
+      <path d={`M${BURST} Z`} fill={YELLOW} />
+      <circle cx="100" cy="100" r="58" fill="#fff" opacity="0.92" />
+    </svg>
+  );
+}
 
 /* ————— the builders kit ————— */
 
@@ -340,28 +418,17 @@ export function KitIcon({ kind, className = "", size = 40 }: { kind: KitKind; cl
   );
 }
 
-export function KitBadge({
-  kind,
-  className = "",
-  size = 120,
-  seed = 0,
-}: {
-  kind: KitKind;
-  className?: string;
-  size?: number;
-  seed?: number;
-}) {
-  // a drawn round patch: wobbly white face, thrown sun shadow, a dashed
-  // yellow stitch, the mark in the middle — the "logo" of each kit thing
+export function KitBadge({ kind, className = "", size = 120 }: { kind: KitKind; className?: string; size?: number }) {
+  // a round patch: white face, blue ring, a dashed yellow stitch, the mark
+  // in the middle — the "logo" of each thing in the kit
   return (
     <span
-      className={`relative grid shrink-0 place-items-center ${className}`}
+      className={`relative grid shrink-0 place-items-center rounded-full border-4 border-saigon bg-white shadow-[0_6px_0_#01337f] ${className}`}
       style={{ width: size, height: size }}
       aria-hidden="true"
     >
-      <DrawnDiscBg seed={seed} tone="paper" />
-      <span className="absolute inset-[10px] rounded-full border-2 border-dashed border-energy" />
-      <KitIcon kind={kind} size={Math.round(size * 0.55)} className="relative" />
+      <span className="absolute inset-[7px] rounded-full border-2 border-dashed border-energy" />
+      <KitIcon kind={kind} size={Math.round(size * 0.55)} />
     </span>
   );
 }

@@ -4,8 +4,6 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { PixelGrid } from "./decorations";
-import { ChalkScribble } from "./space";
-import { DrawnBubbleBg, DrawnTail, type TailKind } from "./drawn";
 import { EVENT, AGES, GRADES, TEAM_SIZE } from "./event";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -37,10 +35,6 @@ const FAQS = [
   },
 ];
 
-/* which tail each bubble trails — the nervous coding question thinks in
-   dots, the money question gets the curl */
-const TAIL_KINDS: TailKind[] = ["wedge", "dots", "curl", "curl", "wedge", "dots"];
-
 export default function Faq() {
   const sectionRef = useRef<HTMLElement>(null);
   const [open, setOpen] = useState<number | null>(0);
@@ -61,22 +55,18 @@ export default function Faq() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="faq" className="relative px-4 py-28 md:py-32">
+    <section ref={sectionRef} id="faq" className="relative px-4 py-24">
       {/* big hook: a giant question mark leaning in from the right */}
       <span
-        className="anchor-wiggle pointer-events-none absolute right-12 top-1/4 -z-[1] hidden rotate-12 text-outline-blue select-none text-[14rem] font-bold leading-none opacity-40 lg:block"
+        className="anchor-wiggle pointer-events-none absolute right-12 top-1/4 -z-[1] hidden rotate-12 select-none text-[16rem] font-bold leading-none text-[#c9d7ee] lg:block"
         aria-hidden="true"
       >
         ?
       </span>
-      {/* a chalk flick looping past the question mark */}
-      <div className="pointer-events-none absolute right-[24%] top-16 -z-[1] hidden -rotate-[4deg] lg:block">
-        <ChalkScribble kind="loop" width={85} />
-      </div>
       <div className="mx-auto max-w-3xl">
         <div className="relative text-center">
-          <PixelGrid className="ambient-float absolute -top-8 right-0 hidden md:block" size={24} />
-          <p className="mb-3 text-sm font-semibold tracking-wide text-energy-deep">
+          <PixelGrid className="ambient-float absolute -top-8 right-0 hidden md:block" size={32} />
+          <p className="mb-3 text-sm font-semibold text-saigon">
             Good questions ✦
           </p>
           <h2 className="text-4xl font-bold leading-tight md:text-5xl">
@@ -91,20 +81,20 @@ export default function Faq() {
               <div
                 key={faq.q}
                 data-open={isOpen}
-                className="faq-item relative text-ink"
+                className="faq-item relative rounded-2xl border-[3px] border-saigon bg-white shadow-[0_6px_0_#cbd8ee]"
               >
-                <DrawnBubbleBg shape={i} tone="paper" />
-                {/* each bubble trails its own tail, alternating sides */}
-                <DrawnTail
-                  side={i % 2 === 0 ? "left" : "right"}
-                  kind={TAIL_KINDS[i]}
-                  className={`absolute -bottom-[22px] ${i % 2 === 0 ? "left-10" : "right-10"}`}
+                {/* speech-bubble tail, alternating sides */}
+                <span
+                  aria-hidden="true"
+                  className={`absolute -bottom-[13px] h-5 w-5 rotate-45 border-b-[3px] border-r-[3px] border-saigon bg-white ${
+                    i % 2 === 0 ? "left-10" : "right-10"
+                  }`}
                 />
                 <button
                   type="button"
                   onClick={() => setOpen(isOpen ? null : i)}
                   aria-expanded={isOpen}
-                  className="relative flex w-full items-center justify-between gap-4 rounded-2xl px-6 py-5 text-left"
+                  className="flex w-full items-center justify-between gap-4 rounded-2xl px-6 py-5 text-left"
                 >
                   <span className="text-lg font-semibold">
                     {faq.q}
@@ -112,15 +102,15 @@ export default function Faq() {
                   <span
                     className={`grid h-9 w-9 shrink-0 place-items-center rounded-full border-2 border-saigon text-xl font-bold transition-transform duration-300 ${
                       isOpen
-                        ? "rotate-45 bg-saigon text-white shadow-[0_2px_0_#01337f]"
-                        : "bg-energy text-ink shadow-[0_2px_0_#d18e07]"
+                        ? "rotate-45 bg-saigon text-white shadow-[0_3px_0_#01337f]"
+                        : "bg-energy text-ink shadow-[0_3px_0_#d18e07]"
                     }`}
                     aria-hidden="true"
                   >
                     +
                   </span>
                 </button>
-                <div className="faq-answer relative">
+                <div className="faq-answer">
                   <div>
                     <p className="px-6 pb-5 font-medium text-ink/70">{faq.a}</p>
                   </div>
