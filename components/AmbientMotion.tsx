@@ -3,11 +3,12 @@
 import { useEffect } from "react";
 import gsap from "gsap";
 
-/* keeps every decoration alive: nothing on the page ever sits still.
-   opt in by class — .ambient-float drifts, .ambient-twinkle pulses in
-   and out, .ambient-sway rocks from the base (palms), .ambient-hang
-   swings from the top (lanterns), .marquee-bulb chases. data-amp="s"
-   halves the drift for elements inside cards. */
+/* keeps the page alive: nothing here ever sits quite still. opt in by
+   class — .ambient-float drifts, .ambient-twinkle pulses in and out,
+   .ambient-sway rocks from the base (palms), .ambient-hang swings from
+   the top (lanterns, rosettes, tags), .marquee-bulb chases and
+   .bulb-ray glows. data-amp="s" halves the drift for anything sitting
+   inside a card, so copy never wanders far. */
 export default function AmbientMotion() {
   useEffect(() => {
     const mm = gsap.matchMedia();
@@ -87,62 +88,6 @@ export default function AmbientMotion() {
         }
       );
 
-      /* ——— signature moves for the big section anchors ——— */
-
-      // every anchor keeps drifting vertically at full amplitude
-      gsap.utils.toArray<HTMLElement>(".anchor-drift").forEach((el) => {
-        gsap.to(el, {
-          y: `+=${gsap.utils.random(14, 20)}`,
-          duration: gsap.utils.random(3.5, 5),
-          yoyo: true,
-          repeat: -1,
-          ease: "sine.inOut",
-          delay: gsap.utils.random(0, 1),
-        });
-      });
-
-      // laptop and planets slowly rock
-      gsap.utils.toArray<HTMLElement>(".anchor-wobble").forEach((el) => {
-        gsap.fromTo(
-          el,
-          { rotation: -6 },
-          {
-            rotation: 6,
-            duration: gsap.utils.random(4, 6),
-            yoyo: true,
-            repeat: -1,
-            ease: "sine.inOut",
-            transformOrigin: "50% 50%",
-          }
-        );
-      });
-
-      // the question mark swings like a pendulum
-      gsap.utils.toArray<HTMLElement>(".anchor-wiggle").forEach((el) => {
-        gsap.fromTo(
-          el,
-          { rotation: 5 },
-          {
-            rotation: 18,
-            duration: 2.2,
-            yoyo: true,
-            repeat: -1,
-            ease: "sine.inOut",
-            transformOrigin: "50% 50%",
-          }
-        );
-      });
-
-      // the heart beats: thump-thump… pause
-      gsap.utils.toArray<HTMLElement>(".anchor-beat").forEach((el) => {
-        gsap
-          .timeline({ repeat: -1, repeatDelay: 1.2 })
-          .to(el, { scale: 1.12, duration: 0.14, ease: "power2.out", transformOrigin: "50% 50%" })
-          .to(el, { scale: 1, duration: 0.16, ease: "power2.in" })
-          .to(el, { scale: 1.08, duration: 0.14, ease: "power2.out" })
-          .to(el, { scale: 1, duration: 0.25, ease: "power2.inOut" });
-      });
-
       // the idea bulb's rays pulse
       gsap.utils.toArray<HTMLElement>(".bulb-ray").forEach((el) => {
         gsap.fromTo(
@@ -158,22 +103,6 @@ export default function AmbientMotion() {
             transformOrigin: "50% 45%",
           }
         );
-      });
-
-      // the clock actually ticks
-      gsap.to(".clock-hand-m", {
-        rotation: "+=360",
-        duration: 12,
-        repeat: -1,
-        ease: "none",
-        svgOrigin: "100 100",
-      });
-      gsap.to(".clock-hand-h", {
-        rotation: "+=360",
-        duration: 144,
-        repeat: -1,
-        ease: "none",
-        svgOrigin: "100 100",
       });
     });
     return () => mm.revert();
