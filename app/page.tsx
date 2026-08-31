@@ -3,7 +3,6 @@ import Ticker from "@/components/Ticker";
 import About from "@/components/About";
 import Tracks from "@/components/Tracks";
 import Schedule from "@/components/Schedule";
-import Judging from "@/components/Judging";
 import Prizes from "@/components/Prizes";
 import BuildersKit from "@/components/BuildersKit";
 import Partnership from "@/components/Partnership";
@@ -22,7 +21,6 @@ export default function Home() {
       <About />
       <Tracks />
       <Schedule />
-      <Judging />
       <Prizes />
       <BuildersKit />
       <Partnership />

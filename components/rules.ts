@@ -2,6 +2,7 @@
    by RichText. summaries are the one-line version for the info box. */
 
 import { EVENT, AGES, GRADES, TEAM_SIZE } from "./event";
+import { RUBRIC, RUBRIC_TOTAL, TIE_BREAKERS, JUDGING_LAB } from "./rubric";
 
 export type Rule = { n: number; id: string; title: string; summary: string; paragraphs: string[] };
 
@@ -39,7 +40,7 @@ export const RULES: Rule[] = [
     summary: `Revealed at ${EVENT.reveal} on the day. Every team picks one and builds for it.`,
     paragraphs: [
       `The challenges are revealed at ${EVENT.reveal} on the day, after kickoff. Every team picks one challenge and builds for it.`,
-      "Your project should genuinely fit the challenge you entered — challenge relevance is worth 10 points on the rubric.",
+      `Your project should genuinely fit the challenge you entered — challenge relevance is worth ${RUBRIC.find((c) => c.id === "relevance")!.pts} points on the rubric.`,
     ],
   },
   {
@@ -98,10 +99,12 @@ export const RULES: Rule[] = [
     n: 9,
     id: "judging-and-prizes",
     title: "Judging and prizes",
-    summary: "120 points across 7 criteria. Judges test every project in the judging lab.",
+    summary: `${RUBRIC_TOTAL} points across ${RUBRIC.length} criteria. Judges test every project in the judging lab.`,
     paragraphs: [
-      'Projects are scored out of 120 points across 7 criteria. Full scoring descriptors are on [the judging section](/#judging). Ties are broken first by Technical Execution, then Creativity / Originality, then Impact / "Why This?".',
-      "Judges test every project during the judging lab — this is not a pitch-only competition.",
+      `Projects are scored out of ${RUBRIC_TOTAL} points across ${RUBRIC.length} criteria: ${RUBRIC.map((c) => `${c.title} (${c.pts})`).join(", ")}.`,
+      `What each one asks: ${RUBRIC.map((c) => `${c.title} — ${c.note.replace(/[.?]$/, "")}`).join("; ")}.`,
+      JUDGING_LAB,
+      `Ties are broken first by ${TIE_BREAKERS.join(", then ")}.`,
     ],
   },
   {

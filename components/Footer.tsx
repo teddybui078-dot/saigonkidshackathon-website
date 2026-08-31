@@ -11,7 +11,7 @@ import SiteLink from "./SiteLink";
 const LINKS = [
   { href: "/rules", label: "The rules" },
   { href: "/parents", label: "Parents' guide" },
-  { href: "/#judging", label: "How judging works" },
+  { href: "/rules#judging-and-prizes", label: "How judging works" },
   { href: "/#info", label: "Fees & requirements" },
 ];
 
