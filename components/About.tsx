@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { PixelGrid, Sparkle, FloatingLaptop, PixelBulb, PixelStack, FlightArc, PixelTrophy } from "./decorations";
 import { Screws, DomeButton, Led, Pushpin } from "./parts";
+import { DrawnBg, DrawnDiscBg } from "./drawn";
 import { PartyPopper } from "./illustrations";
 import { EVENT } from "./event";
 
@@ -182,8 +183,9 @@ export default function About() {
                 </span>
               ))}
             </div>
-            <div className="relative rounded-2xl border-[6px] border-ink-deep bg-white px-8 py-10 text-ink shadow-[inset_0_0_0_5px_#c9d7ee,0_10px_0_#ffd166] md:px-12 md:py-14">
-              <Screws />
+            <div className="relative text-ink">
+              <DrawnBg aspect="wide" seed={0} tone="paper" bolts />
+              <div className="relative z-10 px-8 py-10 md:px-12 md:py-14">
               {/* a marquee arrow: blue sign, chasing bulbs, pointing at the story */}
               <p
                 className="about-line relative mb-5 inline-block [filter:drop-shadow(0_4px_0_#0d1b2a)]"
@@ -210,6 +212,7 @@ export default function About() {
                 website — with mentors beside you the whole way. No grades, no
                 pressure, just making things you&apos;re proud of.
               </p>
+              </div>
             </div>
             <div className="mx-16 flex justify-between" aria-hidden="true">
               <span className="h-20 w-4 rounded-b-sm bg-space-light" />
@@ -225,10 +228,8 @@ export default function About() {
                 key={card.title}
                 className="about-card relative md:min-h-[26rem] motion-safe:md:col-start-1 motion-safe:md:row-start-1"
               >
-                {/* paper layers: shadow, outline, ruled face — all torn along the bottom */}
-                <span className="zigzag-bottom absolute inset-x-0 -bottom-1.5 top-1.5 bg-[#ffd166]" aria-hidden="true" />
-                <span className="zigzag-bottom absolute inset-0 bg-ink-deep" aria-hidden="true" />
-                <span className="zigzag-bottom paper-ruled absolute inset-[3px] bottom-[5px]" aria-hidden="true" />
+                {/* the note is a drawn panel now — same pin, new paper */}
+                <DrawnBg aspect="tall" seed={CARDS.indexOf(card)} tone="paper" />
                 <Pushpin className="absolute -top-3 left-5" />
                 <PixelGrid className="absolute bottom-7 right-4 opacity-60" size={16} />
                 <div className="about-card-body relative px-8 pb-12 pt-12">
@@ -254,8 +255,9 @@ export default function About() {
                 <dt className="mt-4 rounded-md bg-white/60 px-3 py-1 text-xs font-semibold text-ink/60">
                   {stat.label}
                 </dt>
-                {/* the well the button sits in */}
-                <dd className="h-32 w-32 rounded-full bg-[#c9d7ee] p-2 shadow-[inset_0_5px_0_#a8bfe2]">
+                {/* the well the button sits in, drawn */}
+                <dd className="relative h-32 w-32 p-2">
+                  <DrawnDiscBg seed={i} tone="sky" />
                   <DomeButton
                     tone={i % 2 === 0 ? "yellow" : "blue"}
                     pressable
