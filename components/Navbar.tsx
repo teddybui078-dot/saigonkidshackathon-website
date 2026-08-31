@@ -5,6 +5,7 @@ import Image from "next/image";
 import SiteLink from "./SiteLink";
 
 const LINKS = [
+  { href: "/#essentials", label: "Cost" },
   { href: "/#about", label: "About" },
   { href: "/#tracks", label: "Tracks" },
   { href: "/#schedule", label: "Schedule" },

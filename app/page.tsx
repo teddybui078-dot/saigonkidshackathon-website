@@ -1,5 +1,6 @@
 import Hero from "@/components/Hero";
 import Ticker from "@/components/Ticker";
+import Essentials from "@/components/Essentials";
 import About from "@/components/About";
 import Tracks from "@/components/Tracks";
 import Schedule from "@/components/Schedule";
@@ -18,6 +19,7 @@ export default function Home() {
       <AmbientMotion />
       <Hero />
       <Ticker />
+      <Essentials />
       <About />
       <Tracks />
       <Schedule />

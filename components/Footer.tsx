@@ -9,6 +9,7 @@ import { EVENT } from "./event";
 import SiteLink from "./SiteLink";
 
 const LINKS = [
+  { href: "/#essentials", label: "Cost & the adult rule" },
   { href: "/rules", label: "The rules" },
   { href: "/parents", label: "Parents' guide" },
   { href: "/rules#judging-and-prizes", label: "How judging works" },
