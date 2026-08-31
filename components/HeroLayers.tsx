@@ -18,7 +18,7 @@ import {
   RingedPlanet,
   SwirlPlanet,
   Landmark81,
-  RobotCyclo,
+  KidAstronaut,
   Foliage,
   BrickPile,
   SaigonSkyline,
@@ -157,15 +157,15 @@ export function HeroLandmark() {
   );
 }
 
-/* layer 3 — the robot pedalling its rocket cyclo, floating mid-right */
+/* layer 3 — the kid astronaut drifting mid-right, waving down */
 export function HeroMascots() {
   return (
     <HeroLayerShell layer="mascots">
       <div
-        className="hero-float hero-mascot-wrap absolute -right-10 bottom-[22%] w-56 sm:right-0 sm:w-72 md:right-[2%] md:top-[30%] md:bottom-auto md:w-[30vw] lg:right-[4%] lg:w-[26vw] max-w-[520px]"
+        className="hero-float hero-mascot-wrap absolute -right-2 bottom-[24%] w-36 sm:right-[2%] sm:w-44 md:right-[5%] md:top-[34%] md:bottom-auto md:w-[19vw] lg:right-[7%] lg:w-[17vw] max-w-[360px]"
         data-speed={PARALLAX.near}
       >
-        <RobotCyclo className="float-slow space-glow h-auto w-full" />
+        <KidAstronaut className="float-slow space-glow h-auto w-full" />
       </div>
     </HeroLayerShell>
   );
