@@ -45,11 +45,6 @@ export default function HeroMotion({ children }: { children: ReactNode }) {
           "-=0.7"
         )
         .from(
-          ".hero-tag-wrap",
-          { rotation: -14, duration: 1.2, ease: "elastic.out(1, 0.4)" },
-          "-=0.6"
-        )
-        .from(
           ".hero-landmark",
           { y: 90, opacity: 0, duration: 0.8, ease: "power3.out" },
           "-=1.1"
