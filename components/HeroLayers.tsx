@@ -3,11 +3,12 @@
    orchestrator only ever moves the .hero-float wrappers. z-order comes
    from HERO_LAYER, nowhere else. */
 
-import { GRAIN_ID, PARALLAX } from "./hero-layers";
+import { CHALK_ID, GRAIN_ID, PARALLAX } from "./hero-layers";
 import { STARFIELD, STAR_DEPTHS, type StarDepth } from "./starfield";
 import {
   HeroLayerShell,
   GrainFilter,
+  ChalkFilter,
   EarthHorizon,
   CodingSatellite,
   MoonTerrain,
@@ -176,6 +177,20 @@ export function HeroTerrain() {
         <Foliage className="h-auto w-full" />
       </div>
       <BrickPile className="absolute bottom-[6%] right-[20%] hidden w-44 sm:block md:w-56" />
+    </HeroLayerShell>
+  );
+}
+
+/* layer 6 — the chalk tooth over the whole scene, so no fill is a clean
+   fill. one still overlay, rasterised once, everything animates under it */
+export function HeroTexture() {
+  return (
+    <HeroLayerShell layer="texture">
+      <ChalkFilter id={CHALK_ID} />
+      <div
+        className="absolute inset-0 opacity-[0.10] mix-blend-soft-light [transform:translateZ(0)]"
+        style={{ filter: `url(#${CHALK_ID})` }}
+      />
     </HeroLayerShell>
   );
 }

@@ -65,6 +65,23 @@ export function GrainFilter({ id }: { id: string }) {
   );
 }
 
+/* the grain's coarse sibling: blotchy chalk tooth instead of fine sand.
+   laid once over the whole hero so every flat fill picks up the same
+   paper, and it rasterises exactly once */
+export function ChalkFilter({ id }: { id: string }) {
+  return (
+    <svg className="absolute h-0 w-0" aria-hidden="true" focusable="false">
+      <filter id={id} x="0" y="0" width="100%" height="100%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.22" numOctaves="2" stitchTiles="stitch" />
+        <feColorMatrix type="saturate" values="0" />
+        <feComponentTransfer>
+          <feFuncA type="table" tableValues="0 0.15 0.6 1" />
+        </feComponentTransfer>
+      </filter>
+    </svg>
+  );
+}
+
 /* ————— the sky swirls ————— */
 
 /* broad wind-bands brushed across the sky, cresting with the orbit track
