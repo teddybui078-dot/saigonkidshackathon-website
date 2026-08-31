@@ -22,41 +22,29 @@ export default function HeroMotion({ children }: { children: ReactNode }) {
       const section = sectionRef.current;
       if (!section) return;
 
-      // the entrance: the string settles, the sign drops onto its cords,
-      // the words arrive, the lanterns light left to right, the tag
-      // overswings, the city rises, the cyclo pops. all .from(), so with
-      // no js (or no motion) the final state is what you get
+      // the entrance: the sign drops in, the words arrive, the city
+      // rises, the astronaut pops. all .from(), so with no js (or no
+      // motion) the final state is what you get
       const intro = gsap.timeline({ defaults: { ease: "back.out(1.6)" } });
       intro
-        .from(".hero-string", { y: -60, opacity: 0, duration: 0.6, ease: "power2.out" })
-        .from(
-          ".hero-sign",
-          { y: -90, opacity: 0, duration: 0.9, ease: "back.out(1.4)" },
-          "-=0.25"
-        )
+        .from(".hero-sign", { y: -90, opacity: 0, duration: 0.9, ease: "back.out(1.4)" })
         .from(
           ".hero-fade",
           { y: 24, opacity: 0, duration: 0.6, stagger: 0.12, ease: "power3.out" },
           "-=0.4"
         )
         .from(
-          ".hero-lantern",
-          { scale: 0, duration: 0.5, stagger: 0.08, ease: "back.out(2)", transformOrigin: "50% 0" },
-          "-=0.7"
-        )
-        .from(
           ".hero-landmark",
           { y: 90, opacity: 0, duration: 0.8, ease: "power3.out" },
-          "-=1.1"
+          "-=0.5"
         )
         .from(
           ".hero-mascot-wrap",
           { scale: 0, opacity: 0, duration: 0.7, ease: "back.out(2)", transformOrigin: "50% 50%" },
-          "-=0.7"
+          "-=0.6"
         );
 
-      // the sign bobs and sways on its cords — the drawn board may tilt,
-      // pinned at the knots so they never leave the string
+      // the sign bobs and sways on its stems, drifting in place
       gsap.to(".hero-sign", {
         y: -10,
         rotation: 0.7,
@@ -69,7 +57,7 @@ export default function HeroMotion({ children }: { children: ReactNode }) {
       });
 
       // the art parallaxes at its own depth as you scroll on; the sign
-      // and its string stay put so the cords never detach
+      // stays put so the behind-board planets keep their crop
       gsap.utils.toArray<HTMLElement>(".hero-float", section).forEach((el) => {
         const speed = Number(el.dataset.speed ?? 1);
         gsap.to(el, {
