@@ -1,12 +1,14 @@
 /* the hero's name, drawn by hand — not typeset. every letter is its own
-   skeleton path stroked twice (fat ink pass under a colour pass), with
-   the lean, baseline drift and uneven heights baked into the coordinates
-   so no two letters sit alike. the colours echo the logo lockup: sun
-   "saigon kids" over midnight "hackathon". this is lettering, not the
-   logo — it may tilt; the circular mark never does */
+   skeleton path stroked twice (fat ink pass under a colour pass). the
+   letters keep even heights and a level baseline so the mark reads
+   instantly; the hand shows in the accents instead — a chalk double-pass
+   down the first h, and the o wearing a scribbled orbit ring like the
+   logo's swoosh. the colours echo the logo lockup: sun "saigon kids"
+   over midnight "hackathon". this is lettering, not the logo — it may
+   tilt; the circular mark never does */
 
 import type { SVGProps } from "react";
-import { SPACE, SUN, STROKE } from "./palette";
+import { SPACE, SUN, STROKE, PAPER } from "./palette";
 
 /* one d string per letter; multi-M strings carry a letter's extra limbs
    (stems, dots, crossbars) so both passes stay in step */
@@ -35,27 +37,27 @@ const SMALL: string[] = [
   "M546 52 Q530 48 528 60 Q527 70 541 72 Q555 74 553 85 Q551 95 532 91",
 ];
 
-/* "hackathon" — x-height ~110, ascenders reaching for the string above,
-   baseline drifting 254–262 like a sign painted freehand */
+/* "hackathon" — even x-height on a level baseline, a degree of lean at
+   most; proportional first, hand-made second */
 const BIG: string[] = [
   // h
-  "M35 118 Q32 190 38 258 M36 205 Q38 152 62 150 Q88 150 87 205 L85 258",
+  "M35 118 Q32 190 36 257 M36 200 Q38 152 62 150 Q86 150 85 202 L84 257",
   // a
-  "M162 178 Q110 168 104 214 Q100 258 138 261 Q160 262 163 240 M164 172 Q168 222 162 262",
+  "M160 160 Q110 152 106 204 Q104 250 142 255 Q159 256 161 236 M162 154 Q165 205 161 259",
   // c
-  "M238 184 Q192 166 186 212 Q182 252 232 250",
+  "M240 170 Q190 154 186 206 Q184 252 240 248",
   // k
-  "M252 120 Q248 190 252 258 M298 156 Q278 182 254 198 M260 204 Q284 230 300 258",
+  "M262 120 Q259 190 262 257 M306 158 Q286 184 264 200 M270 206 Q292 232 308 257",
   // a
-  "M378 176 Q328 168 322 212 Q318 254 356 257 Q376 258 379 236 M380 172 Q384 220 378 256",
+  "M386 160 Q336 154 332 204 Q330 250 368 255 Q385 256 387 236 M388 155 Q391 205 387 258",
   // t
-  "M418 126 Q414 190 416 234 Q417 252 436 248 M400 170 Q420 163 444 168",
+  "M420 124 Q417 190 419 236 Q420 253 438 249 M404 166 Q422 160 446 164",
   // h
-  "M462 116 Q459 190 464 260 M463 206 Q466 152 490 152 Q514 152 513 206 L511 260",
+  "M470 118 Q468 190 471 258 M471 202 Q474 152 496 151 Q519 152 518 203 L517 258",
   // o
-  "M570 174 Q530 172 526 214 Q523 254 564 256 Q604 258 601 212 Q598 175 570 174",
+  "M572 158 Q534 156 530 205 Q528 250 566 253 Q604 255 601 205 Q599 160 572 158",
   // n
-  "M618 156 Q614 205 618 258 M619 198 Q622 152 646 152 Q670 154 668 205 L666 258",
+  "M626 154 Q623 205 626 257 M627 200 Q630 152 650 151 Q674 153 672 204 L670 257",
 ];
 
 function Pass({ paths, stroke, width }: { paths: string[]; stroke: string; width: number }) {
@@ -77,6 +79,14 @@ export function WordmarkArt(props: SVGProps<SVGGElement>) {
       <Pass paths={SMALL} stroke={SUN} width={11} />
       <Pass paths={BIG} stroke={STROKE} width={37} />
       <Pass paths={BIG} stroke={SPACE} width={23} />
+      {/* the hand shows here: a chalk double-pass down the first h, and
+          the o wearing its orbit ring, front sweep then back tick */}
+      <g fill="none" strokeLinecap="round">
+        <path d="M37 128 Q33 170 36 212 Q37 234 34 252" stroke={PAPER} strokeWidth={3} opacity={0.3} />
+        <path d="M40 198 Q43 158 60 154" stroke={PAPER} strokeWidth={3} opacity={0.3} />
+        <path d="M496 212 Q508 250 566 252 Q628 254 642 208" stroke={SUN} strokeWidth={6} opacity={0.95} />
+        <path d="M638 200 Q630 180 608 172" stroke={SUN} strokeWidth={5} opacity={0.55} />
+      </g>
     </g>
   );
 }
