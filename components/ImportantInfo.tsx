@@ -27,9 +27,9 @@ const TABS: { key: TabKey; label: string; icon: SubjectKind }[] = [
    touch lower in white and lift on hover */
 const TAB_CLASS = {
   active:
-    "info-tab inline-flex shrink-0 items-center gap-2 rounded-t-xl border-[3px] border-b-0 border-saigon bg-energy px-3 py-2 text-sm font-bold text-ink translate-y-0 transition-[translate,background-color,color] duration-200 ease-out md:px-5",
+    "info-tab inline-flex shrink-0 items-center gap-2 rounded-t-xl border-[3px] border-b-0 border-ink-deep bg-energy px-3 py-2 text-sm font-bold text-ink translate-y-0 transition-[translate,background-color,color] duration-200 ease-out md:px-5",
   inactive:
-    "info-tab inline-flex shrink-0 items-center gap-2 rounded-t-xl border-[3px] border-b-0 border-saigon bg-white px-3 py-2 text-sm font-bold text-ink/60 translate-y-1 transition-[translate,background-color,color] duration-200 ease-out hover:translate-y-0.5 md:px-5",
+    "info-tab inline-flex shrink-0 items-center gap-2 rounded-t-xl border-[3px] border-b-0 border-ink-deep bg-white px-3 py-2 text-sm font-bold text-ink/60 translate-y-1 transition-[translate,background-color,color] duration-200 ease-out hover:translate-y-0.5 md:px-5",
 };
 
 const PILL =
@@ -63,7 +63,7 @@ function Panel({
       aria-labelledby={"tab-" + id}
       hidden={!active}
       tabIndex={0}
-      className="info-panel paper-index relative min-h-[22rem] rounded-lg border-[3px] border-saigon p-6 pt-14 md:p-8 md:pt-14"
+      className="info-panel paper-index relative min-h-[22rem] rounded-lg border-[3px] border-ink-deep p-6 text-ink pt-14 md:p-8 md:pt-14"
     >
       <h3 className="absolute left-6 top-3 text-xs font-bold uppercase tracking-widest text-saigon/70">
         {title}
@@ -244,11 +244,11 @@ export default function ImportantInfo() {
 
       <div className="mx-auto max-w-4xl">
         <div className="text-center">
-          <p className="info-line mb-3 text-sm font-semibold text-saigon">Before you sign up ✦</p>
+          <p className="info-line mb-3 text-sm font-semibold text-sun">Before you sign up ✦</p>
           <h2 className="info-line text-4xl font-bold leading-tight md:text-5xl">
-            The <span className="text-saigon">important</span> information
+            The <span className="text-sun">important</span> information
           </h2>
-          <p className="info-line mt-4 font-medium text-ink/60">
+          <p className="info-line mt-4 font-medium text-white/70">
             Fees, requirements, what parents need to know, and the rules — all in one box.
           </p>
         </div>
@@ -290,7 +290,7 @@ export default function ImportantInfo() {
 
           {/* the card box: sky-blue tin, four screws, a riveted label plate
               on the front lip */}
-          <div className="info-box relative rounded-2xl border-4 border-saigon bg-[#c9d7ee] p-4 shadow-[0_8px_0_#0d1b2a] md:p-6">
+          <div className="info-box relative rounded-2xl border-4 border-ink-deep bg-[#c9d7ee] p-4 text-ink shadow-[0_8px_0_#ffd166] md:p-6">
             <Screws />
             <span className="metal-brushed absolute -bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md border-2 border-saigon px-3 py-0.5 text-[10px] font-bold tracking-widest text-ink/70">
               <span
@@ -366,7 +366,7 @@ export default function ImportantInfo() {
                   Here&apos;s what the day looks like from the family side.
                 </p>
                 {/* the one rule every family plans around, stamped on a notice */}
-                <div className="mt-4 rounded-xl border-[3px] border-saigon bg-white p-4 shadow-[0_4px_0_#cbd8ee]">
+                <div className="mt-4 rounded-xl border-[3px] border-ink-deep bg-white p-4 shadow-[0_4px_0_#ffd166]">
                   <span className="stamp -rotate-3 text-saigon" aria-hidden="true">
                     Stays on site — all day
                   </span>

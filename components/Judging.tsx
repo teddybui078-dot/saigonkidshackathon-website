@@ -69,7 +69,7 @@ export default function Judging() {
     <section ref={sectionRef} id="judging" className="relative px-4 py-24">
       {/* big hooks: the score everyone is chasing, an arc, a sparkle */}
       <span
-        className="anchor-wiggle text-outline-blue pointer-events-none absolute left-6 top-24 -z-[1] hidden select-none rotate-[-8deg] text-[13rem] font-bold leading-none lg:block"
+        className="anchor-wiggle text-outline-white pointer-events-none absolute left-6 top-24 -z-[1] hidden select-none rotate-[-8deg] text-[13rem] font-bold leading-none lg:block"
         aria-hidden="true"
       >
         {RUBRIC_TOTAL}
@@ -83,11 +83,11 @@ export default function Judging() {
 
       <div className="mx-auto max-w-5xl">
         <div className="text-center">
-          <p className="judge-line mb-3 text-sm font-semibold text-saigon">How judging works ✦</p>
+          <p className="judge-line mb-3 text-sm font-semibold text-sun">How judging works ✦</p>
           <h2 className="judge-line text-4xl font-bold leading-tight md:text-5xl">
-            {RUBRIC_TOTAL} points, <span className="text-saigon">{RUBRIC_COUNT_WORD} questions</span>
+            {RUBRIC_TOTAL} points, <span className="text-sun">{RUBRIC_COUNT_WORD} questions</span>
           </h2>
-          <p className="judge-line mt-4 font-medium text-ink/60">{JUDGING_LAB}</p>
+          <p className="judge-line mt-4 font-medium text-white/70">{JUDGING_LAB}</p>
         </div>
 
         {/* the judges' table: seven score paddles held up in a row, each
@@ -102,7 +102,7 @@ export default function Judging() {
                   {/* outer li is the raise, this one sways from the stick's base */}
                   <div className="ambient-sway flex flex-col items-center">
                     <div
-                      className={`${p.card} rounded-2xl border-[3px] border-saigon bg-white px-2 pb-3 pt-4 text-center shadow-[0_6px_0_#0d1b2a]`}
+                      className={`${p.card} rounded-2xl border-[3px] border-ink-deep bg-white px-2 pb-3 pt-4 text-center text-ink shadow-[0_6px_0_#ffd166]`}
                     >
                       <span className={`${p.number} block font-bold leading-none text-saigon`} aria-hidden="true">
                         {c.pts}
@@ -114,14 +114,14 @@ export default function Judging() {
                         pts
                       </span>
                       <span className="sr-only">{c.pts} points —</span>
-                      <span className="mt-2 block rounded-md border-2 border-saigon bg-energy px-1 py-1 text-xs font-bold leading-tight">
+                      <span className="mt-2 block rounded-md border-2 border-ink-deep bg-energy px-1 py-1 text-xs font-bold leading-tight">
                         {c.title}
                       </span>
                     </div>
-                    <span className="h-14 w-2.5 rounded-b-md bg-saigon" aria-hidden="true" />
+                    <span className="h-14 w-2.5 rounded-b-md bg-energy border border-ink-deep" aria-hidden="true" />
                   </div>
                   {/* on phones the note sits right under its paddle */}
-                  <p className="mt-3 max-w-[11rem] text-center text-sm font-medium leading-5 text-ink/60 md:hidden">
+                  <p className="mt-3 max-w-[11rem] text-center text-sm font-medium leading-5 text-white/70 md:hidden">
                     {c.note}
                   </p>
                 </li>
@@ -130,16 +130,16 @@ export default function Judging() {
           </ol>
 
           {/* the table the sticks are planted in */}
-          <div className="h-4 rounded-full bg-saigon shadow-[0_5px_0_#0d1b2a]" aria-hidden="true" />
+          <div className="h-4 rounded-full bg-space-light shadow-[0_5px_0_#ffd166]" aria-hidden="true" />
           <div className="mx-16 flex justify-between" aria-hidden="true">
-            <span className="h-8 w-3 rounded-b-sm bg-saigon" />
-            <span className="h-8 w-3 rounded-b-sm bg-saigon" />
+            <span className="h-8 w-3 rounded-b-sm bg-space-light" />
+            <span className="h-8 w-3 rounded-b-sm bg-space-light" />
           </div>
 
           {/* from md the notes line up under their paddles, below the table */}
           <ul className="mt-6 hidden grid-cols-7 gap-x-3 md:grid">
             {RUBRIC.map((c) => (
-              <li key={c.id} className="text-center text-sm font-medium leading-5 text-ink/60">
+              <li key={c.id} className="text-center text-sm font-medium leading-5 text-white/70">
                 {c.note}
               </li>
             ))}
@@ -149,7 +149,7 @@ export default function Judging() {
         {/* the total, the stamp, the tie-breakers, the rulebook */}
         <div className="mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-6">
           <div className="flex items-center gap-4">
-            <span className="judge-badge grid h-24 w-24 place-items-center rounded-full border-4 border-saigon bg-energy text-center shadow-[0_6px_0_#d99a00]">
+            <span className="judge-badge grid h-24 w-24 place-items-center rounded-full border-4 border-ink-deep bg-energy text-center shadow-[0_6px_0_#d99a00]">
               <span className="block text-3xl font-bold leading-none">
                 {RUBRIC_TOTAL}
                 <span className="mt-1 block text-[10px] font-bold uppercase tracking-widest text-ink/60">points</span>
@@ -159,10 +159,10 @@ export default function Judging() {
               Tested in the lab
             </span>
           </div>
-          <p className="text-sm font-semibold text-ink/70">Ties: {TIE_BREAKERS.join(" → ")}</p>
+          <p className="text-sm font-semibold text-white/75">Ties: {TIE_BREAKERS.join(" → ")}</p>
           <SiteLink
             href="/rules#judging-and-prizes"
-            className="rounded-full border-2 border-saigon bg-white px-4 py-1.5 text-sm font-semibold text-saigon transition-colors hover:bg-saigon hover:text-white"
+            className="rounded-full border-2 border-ink-deep bg-white px-4 py-1.5 text-sm font-semibold text-saigon transition-colors hover:bg-space-light hover:text-white"
           >
             {RULE_LABEL} in the rulebook →
           </SiteLink>

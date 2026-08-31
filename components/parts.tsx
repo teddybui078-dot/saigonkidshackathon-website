@@ -4,7 +4,7 @@
    size — anything that must stretch with content is css, not svg. */
 
 import Image from "next/image";
-import { BLUE, YELLOW, SKY_DEEP, METAL } from "./palette";
+import { BLUE, YELLOW, SKY_DEEP, METAL, SUN, SPACE_LIGHT } from "./palette";
 import type { Partner } from "./partners";
 
 /* ————— fasteners ————— */
@@ -149,7 +149,7 @@ export function Lanyard({ className = "" }: { className?: string }) {
   // two straps meeting at a clip — the badge hangs from the clip
   return (
     <svg className={`h-11 w-28 ${className}`} viewBox="0 0 112 44" fill="none" aria-hidden="true">
-      <path d="M6 0 L56 34 M106 0 L56 34" stroke={BLUE} strokeWidth="6" strokeLinecap="round" />
+      <path d="M6 0 L56 34 M106 0 L56 34" stroke={SUN} strokeWidth="6" strokeLinecap="round" />
       <path d="M6 0 L56 34 M106 0 L56 34" stroke={YELLOW} strokeWidth="1.5" strokeDasharray="4 5" />
       <rect x="47" y="30" width="18" height="12" rx="3" fill={YELLOW} stroke={BLUE} strokeWidth="2.5" />
     </svg>
@@ -161,7 +161,7 @@ export function Hook({ className = "" }: { className?: string }) {
   return (
     <svg className={`h-4 w-5 ${className}`} viewBox="0 0 20 16" fill="none" aria-hidden="true">
       <circle cx="10" cy="5" r="3.5" fill={YELLOW} stroke={BLUE} strokeWidth="2.5" />
-      <path d="M10 8.5 V16" stroke={BLUE} strokeWidth="3" />
+      <path d="M10 8.5 V16" stroke={SUN} strokeWidth="3" />
     </svg>
   );
 }
@@ -171,7 +171,7 @@ export function Tassel({ className = "" }: { className?: string }) {
   return (
     <svg className={`h-7 w-5 ${className}`} viewBox="0 0 20 28" fill="none" aria-hidden="true">
       <path d="M10 0 V10" stroke={YELLOW} strokeWidth="3" />
-      <rect x="6" y="10" width="8" height="6" rx="2" fill={BLUE} />
+      <rect x="6" y="10" width="8" height="6" rx="2" fill={SPACE_LIGHT} />
       <path d="M7 16 V26 M10 16 V28 M13 16 V25" stroke={YELLOW} strokeWidth="2.5" strokeLinecap="round" />
     </svg>
   );

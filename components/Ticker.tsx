@@ -42,13 +42,13 @@ export default function Ticker() {
             <span
               key={`${rep}-${i}`}
               className={`flex items-center gap-8 text-5xl font-bold md:text-7xl ${
-                i % 2 === 0 ? "text-outline-blue" : "text-outline-yellow"
+                i % 2 === 0 ? "text-outline-white" : "text-outline-yellow"
               }`}
             >
               {word}
               <span
                 className={`inline-block h-4 w-4 rounded-sm ${
-                  i % 2 === 0 ? "bg-energy" : "bg-saigon"
+                  i % 2 === 0 ? "bg-energy" : "bg-white"
                 }`}
               />
             </span>

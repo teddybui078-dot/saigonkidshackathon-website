@@ -26,12 +26,12 @@ const PLUS = {
     "grid h-9 w-9 shrink-0 place-items-center rounded-full border-2 border-saigon text-xl font-bold transition-transform duration-300 bg-energy text-ink shadow-[0_3px_0_#d99a00]",
 };
 const TAIL = {
-  left: "absolute -bottom-[13px] left-10 h-5 w-5 rotate-45 border-b-[3px] border-r-[3px] border-saigon bg-white",
-  right: "absolute -bottom-[13px] right-10 h-5 w-5 rotate-45 border-b-[3px] border-r-[3px] border-saigon bg-white",
+  left: "absolute -bottom-[13px] left-10 h-5 w-5 rotate-45 border-b-[3px] border-r-[3px] border-ink-deep bg-white",
+  right: "absolute -bottom-[13px] right-10 h-5 w-5 rotate-45 border-b-[3px] border-r-[3px] border-ink-deep bg-white",
 };
 
 const GHOST_BUTTON =
-  "rounded-full border-2 border-saigon bg-white/70 px-7 py-3 font-semibold text-saigon transition-colors hover:bg-saigon hover:text-white";
+  "rounded-full border-2 border-white/40 bg-white/10 px-7 py-3 font-semibold text-white transition-colors hover:bg-white hover:text-saigon";
 
 /* ————— the objects pinned to the board, one per kind ————— */
 
@@ -39,7 +39,7 @@ function Notice({ item }: { item: GuideItem }) {
   // the rule, on a white card held by two pins with a stamp inked top-right
   const groups = item.body[item.body.length - 1];
   return (
-    <div className="board-item relative rounded-2xl border-4 border-saigon bg-white p-6 shadow-[0_8px_0_#0d1b2a] md:col-span-2 md:p-8">
+    <div className="board-item relative rounded-2xl border-4 border-ink-deep bg-white p-6 text-ink shadow-[0_8px_0_#ffd166] md:col-span-2 md:p-8">
       <Pushpin className="board-pin absolute -top-3 left-6" />
       <Pushpin className="board-pin absolute -top-3 right-6" />
       {/* the stamp rests at -6deg via transform (not the rotate property),
@@ -75,8 +75,8 @@ function Note({ item }: { item: GuideItem }) {
   // a pushpin holding it to the board
   return (
     <div className="board-item board-note relative">
-      <span className="zigzag-bottom absolute inset-x-0 -bottom-1.5 top-1.5 bg-saigon-deep" aria-hidden="true" />
-      <span className="zigzag-bottom absolute inset-0 bg-saigon" aria-hidden="true" />
+      <span className="zigzag-bottom absolute inset-x-0 -bottom-1.5 top-1.5 bg-sun" aria-hidden="true" />
+      <span className="zigzag-bottom absolute inset-0 bg-ink-deep" aria-hidden="true" />
       <span className="zigzag-bottom paper-ruled absolute inset-[3px] bottom-[5px]" aria-hidden="true" />
       <Pushpin className="board-pin absolute -top-3 left-5" />
       <PixelGrid className="absolute bottom-7 right-4 opacity-60" size={16} />
@@ -96,8 +96,8 @@ function AgendaTicket({ item }: { item: GuideItem }) {
   // a ticket strip: blue header band, one row per slot, a notch each side.
   // the wrapper carries the shadow — the notch mask would clip it off the card
   return (
-    <div className="board-item rounded-lg shadow-[0_6px_0_#0d1b2a]">
-      <div className="ticket-notched overflow-hidden rounded-lg border-[3px] border-saigon bg-white">
+    <div className="board-item rounded-lg text-ink shadow-[0_6px_0_#ffd166]">
+      <div className="ticket-notched overflow-hidden rounded-lg border-[3px] border-ink-deep bg-white">
         <h3 className="bg-saigon px-5 py-2 text-xs font-bold uppercase tracking-widest text-white">{item.title}</h3>
         <ol>
           {AGENDA.map((slot) => (
@@ -121,7 +121,7 @@ function AgendaTicket({ item }: { item: GuideItem }) {
 function FeeTag({ item }: { item: GuideItem }) {
   // the fee on a luggage tag, sitting on a plain card
   return (
-    <div className="board-item relative rounded-2xl border-[3px] border-saigon bg-white p-6 shadow-[0_6px_0_#0d1b2a]">
+    <div className="board-item relative rounded-2xl border-[3px] border-ink-deep bg-white p-6 text-ink shadow-[0_6px_0_#ffd166]">
       <h3 className="text-xs font-semibold uppercase tracking-widest text-ink/50">{item.title}</h3>
       <div className="mt-3">
         <PrizeTag className="text-lg [&_span]:text-lg">{EVENT.fee.display} per builder</PrizeTag>
@@ -139,7 +139,7 @@ function Checklist({ item }: { item: GuideItem }) {
   // an index card: the title on the header rule, a checklist icon in the
   // corner, an empty check square before each line
   return (
-    <div className="board-item paper-index relative rounded-lg border-[3px] border-saigon p-6 pt-12 shadow-[0_6px_0_#0d1b2a]">
+    <div className="board-item paper-index relative rounded-lg border-[3px] border-ink-deep p-6 pt-12 text-ink shadow-[0_6px_0_#ffd166]">
       <h3 className="absolute left-6 top-3 text-xs font-bold uppercase tracking-widest text-saigon/70">{item.title}</h3>
       <SubjectIcon kind="list" size={28} className="absolute right-5 top-2" />
       <ul>
@@ -161,7 +161,7 @@ function ParentBadge({ item }: { item: GuideItem }) {
       {/* swings from the clip on hover — kept off the gsap wrapper */}
       <div className="mx-auto flex max-w-sm origin-top flex-col items-center transition-transform duration-300 hover:rotate-2">
         <Lanyard className="-mb-1" />
-        <div className="w-full rounded-xl border-[3px] border-saigon bg-white shadow-[0_6px_0_#0d1b2a]">
+        <div className="w-full rounded-xl border-[3px] border-ink-deep bg-white text-ink shadow-[0_6px_0_#ffd166]">
           {/* header band with the punched slot the clip goes through */}
           <div className="flex h-8 items-center justify-center gap-3 rounded-t-[9px] bg-saigon text-[11px] font-bold tracking-widest text-white">
             <span className="h-1.5 w-10 rounded-full bg-white/80" aria-hidden="true" />
@@ -169,7 +169,7 @@ function ParentBadge({ item }: { item: GuideItem }) {
           </div>
           <div className="flex flex-col items-center p-5">
             <div
-              className="grid h-20 w-20 place-items-center rounded-full border-[3px] border-dashed border-mist bg-canvas"
+              className="grid h-20 w-20 place-items-center rounded-full border-[3px] border-dashed border-mist bg-white"
               aria-hidden="true"
             >
               <SubjectIcon kind="heart" size={40} />
@@ -190,7 +190,7 @@ function ParentBadge({ item }: { item: GuideItem }) {
 function Bubble({ item }: { item: GuideItem }) {
   // a speech bubble with its tail bottom-left — how to reach us
   return (
-    <div className="board-item relative rounded-2xl border-[3px] border-saigon bg-white shadow-[0_6px_0_#0d1b2a]">
+    <div className="board-item relative rounded-2xl border-[3px] border-ink-deep bg-white text-ink shadow-[0_6px_0_#ffd166]">
       <span className={TAIL.left} aria-hidden="true" />
       <div className="px-6 py-5">
         <h3 className="text-lg font-semibold">{item.title}</h3>
@@ -217,7 +217,7 @@ function QuickFaq({ item }: { item: GuideItem }) {
             <div
               key={faq.q}
               data-open={isOpen}
-              className="faq-item relative rounded-2xl border-[3px] border-saigon bg-white shadow-[0_6px_0_#0d1b2a]"
+              className="faq-item relative rounded-2xl border-[3px] border-ink-deep bg-white text-ink shadow-[0_6px_0_#ffd166]"
             >
               <span className={i % 2 === 0 ? TAIL.left : TAIL.right} aria-hidden="true" />
               <button
@@ -369,18 +369,18 @@ export default function ParentsGuide() {
       </div>
 
       <header className="mx-auto max-w-5xl px-4 pt-32 pb-10 text-center md:pt-40">
-        <p className="guide-line mb-3 text-sm font-semibold text-saigon">For parents ✦</p>
+        <p className="guide-line mb-3 text-sm font-semibold text-sun">For parents ✦</p>
         <h1 className="guide-line text-5xl font-bold leading-tight md:text-7xl">
-          The <span className="text-saigon">parents&apos;</span> guide
+          The <span className="text-sun">parents&apos;</span> guide
         </h1>
-        <p className="guide-line mx-auto mt-5 max-w-2xl text-lg font-medium text-ink/70 md:text-xl">
+        <p className="guide-line mx-auto mt-5 max-w-2xl text-lg font-medium text-white/75 md:text-xl">
           Everything you need to plan the day — and the one rule we ask every family to keep.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-3">
           {CHIPS.map((chip) => (
             <span
               key={chip}
-              className="board-chip rounded-full border-2 border-saigon bg-white px-4 py-1.5 text-sm font-semibold text-saigon shadow-[0_3px_0_#cbd8ee]"
+              className="board-chip rounded-full border-2 border-ink-deep bg-white px-4 py-1.5 text-sm font-semibold text-saigon shadow-[0_3px_0_#ffd166]"
             >
               {chip}
             </span>
@@ -390,7 +390,7 @@ export default function ParentsGuide() {
 
       {/* the noticeboard: a sky-blue cork face in a screwed-down frame, with
           every part of the guide pinned to it as its own object */}
-      <div className="board relative mx-auto max-w-6xl rounded-3xl border-[6px] border-saigon bg-[#c9d7ee] p-5 shadow-[inset_0_0_0_5px_#a8bfe2,0_10px_0_#0d1b2a] md:p-10">
+      <div className="board relative mx-auto max-w-6xl rounded-3xl border-[6px] border-ink-deep bg-[#c9d7ee] p-5 shadow-[inset_0_0_0_5px_#a8bfe2,0_10px_0_#ffd166] md:p-10">
         <Screws />
         <div className="grid gap-8 md:grid-cols-2 md:items-start md:gap-10">
           {PARENTS_GUIDE.map((item) => (
@@ -400,7 +400,7 @@ export default function ParentsGuide() {
       </div>
 
       <div className="mt-12 text-center">
-        <p className="text-lg font-medium text-ink/70">Still wondering about something?</p>
+        <p className="text-lg font-medium text-white/75">Still wondering about something?</p>
         <div className="mt-5 flex flex-wrap justify-center gap-4">
           <SiteLink href="/rules" className={GHOST_BUTTON}>
             Read the rules

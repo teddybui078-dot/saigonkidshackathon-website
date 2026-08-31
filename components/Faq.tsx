@@ -58,7 +58,7 @@ export default function Faq() {
     <section ref={sectionRef} id="faq" className="relative px-4 py-24">
       {/* big hook: a giant question mark leaning in from the right */}
       <span
-        className="anchor-wiggle pointer-events-none absolute right-12 top-1/4 -z-[1] hidden rotate-12 select-none text-[16rem] font-bold leading-none text-[#c9d7ee] lg:block"
+        className="anchor-wiggle pointer-events-none absolute right-12 top-1/4 -z-[1] hidden rotate-12 text-outline-white select-none text-[16rem] font-bold leading-none opacity-40 lg:block"
         aria-hidden="true"
       >
         ?
@@ -66,7 +66,7 @@ export default function Faq() {
       <div className="mx-auto max-w-3xl">
         <div className="relative text-center">
           <PixelGrid className="ambient-float absolute -top-8 right-0 hidden md:block" size={32} />
-          <p className="mb-3 text-sm font-semibold text-saigon">
+          <p className="mb-3 text-sm font-semibold text-sun">
             Good questions ✦
           </p>
           <h2 className="text-4xl font-bold leading-tight md:text-5xl">
@@ -81,12 +81,12 @@ export default function Faq() {
               <div
                 key={faq.q}
                 data-open={isOpen}
-                className="faq-item relative rounded-2xl border-[3px] border-saigon bg-white shadow-[0_6px_0_#cbd8ee]"
+                className="faq-item relative rounded-2xl border-[3px] border-ink-deep bg-white text-ink shadow-[0_6px_0_#ffd166]"
               >
                 {/* speech-bubble tail, alternating sides */}
                 <span
                   aria-hidden="true"
-                  className={`absolute -bottom-[13px] h-5 w-5 rotate-45 border-b-[3px] border-r-[3px] border-saigon bg-white ${
+                  className={`absolute -bottom-[13px] h-5 w-5 rotate-45 border-b-[3px] border-r-[3px] border-ink-deep bg-white ${
                     i % 2 === 0 ? "left-10" : "right-10"
                   }`}
                 />

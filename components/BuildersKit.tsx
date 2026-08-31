@@ -149,11 +149,11 @@ export default function BuildersKit() {
       </div>
       <div className="mx-auto max-w-5xl">
         <div className="text-center">
-          <p className="kit-line mb-3 text-sm font-semibold text-saigon">In your bag ✦</p>
+          <p className="kit-line mb-3 text-sm font-semibold text-sun">In your bag ✦</p>
           <h2 className="kit-line text-4xl font-bold leading-tight md:text-5xl">
-            Every builder gets a <span className="text-saigon">builders kit</span>
+            Every builder gets a <span className="text-sun">builders kit</span>
           </h2>
-          <p className="kit-line mt-4 font-medium text-ink/60">
+          <p className="kit-line mt-4 font-medium text-white/70">
             Snacks, stickers, a hat and wristbands — yours to keep.
           </p>
         </div>
@@ -178,7 +178,7 @@ export default function BuildersKit() {
               {/* outer div is the pop, this one drifts */}
               <div className="ambient-float flex flex-col items-center" data-amp="s">
                 {ART[item.id]}
-                <span className="kit-caption mt-2 rounded-full border-2 border-saigon bg-white px-3 py-1 text-xs font-bold shadow-[0_3px_0_#cbd8ee]">
+                <span className="kit-caption mt-2 rounded-full border-2 border-ink-deep bg-white px-3 py-1 text-xs font-bold text-ink shadow-[0_3px_0_#ffd166]">
                   {item.name}
                 </span>
               </div>
@@ -196,10 +196,10 @@ export default function BuildersKit() {
         </div>
 
         {/* the same four things in plain words, so nobody has to hunt */}
-        <dl className="mt-8 grid grid-cols-2 gap-4 text-center text-sm font-medium text-ink/65 md:grid-cols-4">
+        <dl className="mt-8 grid grid-cols-2 gap-4 text-center text-sm font-medium text-white/70 md:grid-cols-4">
           {KIT.map((item) => (
             <div key={item.id}>
-              <dt className="font-bold text-ink">{item.name}</dt>
+              <dt className="font-bold text-white">{item.name}</dt>
               <dd className="mt-1">{item.blurb}</dd>
             </div>
           ))}

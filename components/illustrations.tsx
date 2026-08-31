@@ -423,7 +423,7 @@ export function KitBadge({ kind, className = "", size = 120 }: { kind: KitKind; 
   // in the middle — the "logo" of each thing in the kit
   return (
     <span
-      className={`relative grid shrink-0 place-items-center rounded-full border-4 border-saigon bg-white shadow-[0_6px_0_#0d1b2a] ${className}`}
+      className={`relative grid shrink-0 place-items-center rounded-full border-4 border-ink-deep bg-white shadow-[0_6px_0_#ffd166] ${className}`}
       style={{ width: size, height: size }}
       aria-hidden="true"
     >

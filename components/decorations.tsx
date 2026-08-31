@@ -22,9 +22,9 @@ export function PixelGrid({
       aria-hidden="true"
       {...rest}
     >
-      <rect x="14" y="0" width="10" height="10" rx="2" fill={BLUE} />
-      <rect x="0" y="12" width="10" height="10" rx="2" fill={BLUE} />
-      <rect x="28" y="12" width="10" height="10" rx="2" fill={BLUE} />
+      <rect x="14" y="0" width="10" height="10" rx="2" fill={SKY_LIGHT} />
+      <rect x="0" y="12" width="10" height="10" rx="2" fill={SKY_LIGHT} />
+      <rect x="28" y="12" width="10" height="10" rx="2" fill={SKY_LIGHT} />
       <rect x="12" y="26" width="10" height="10" rx="2" fill={YELLOW} />
     </svg>
   );

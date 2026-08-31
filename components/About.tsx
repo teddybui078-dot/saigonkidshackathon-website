@@ -177,12 +177,12 @@ export default function About() {
           <div className="about-billboard relative">
             <div className="mx-12 flex justify-around" aria-hidden="true">
               {Array.from({ length: 4 }).map((_, i) => (
-                <span key={i} className="relative h-5 w-12 rounded-t-full bg-saigon-deep">
+                <span key={i} className="relative h-5 w-12 rounded-t-full bg-space-light">
                   <span className="absolute inset-x-3.5 bottom-0 h-2 rounded-t-full bg-energy" />
                 </span>
               ))}
             </div>
-            <div className="relative rounded-2xl border-[6px] border-saigon bg-white px-8 py-10 shadow-[inset_0_0_0_5px_#c9d7ee,0_10px_0_#0d1b2a] md:px-12 md:py-14">
+            <div className="relative rounded-2xl border-[6px] border-ink-deep bg-white px-8 py-10 text-ink shadow-[inset_0_0_0_5px_#c9d7ee,0_10px_0_#ffd166] md:px-12 md:py-14">
               <Screws />
               {/* a marquee arrow: blue sign, chasing bulbs, pointing at the story */}
               <p
@@ -212,8 +212,8 @@ export default function About() {
               </p>
             </div>
             <div className="mx-16 flex justify-between" aria-hidden="true">
-              <span className="h-20 w-4 rounded-b-sm bg-saigon" />
-              <span className="h-20 w-4 rounded-b-sm bg-saigon" />
+              <span className="h-20 w-4 rounded-b-sm bg-space-light" />
+              <span className="h-20 w-4 rounded-b-sm bg-space-light" />
             </div>
           </div>
 
@@ -226,8 +226,8 @@ export default function About() {
                 className="about-card relative md:min-h-[26rem] motion-safe:md:col-start-1 motion-safe:md:row-start-1"
               >
                 {/* paper layers: shadow, outline, ruled face — all torn along the bottom */}
-                <span className="zigzag-bottom absolute inset-x-0 -bottom-1.5 top-1.5 bg-[#c9d7ee]" aria-hidden="true" />
-                <span className="zigzag-bottom absolute inset-0 bg-saigon" aria-hidden="true" />
+                <span className="zigzag-bottom absolute inset-x-0 -bottom-1.5 top-1.5 bg-[#ffd166]" aria-hidden="true" />
+                <span className="zigzag-bottom absolute inset-0 bg-ink-deep" aria-hidden="true" />
                 <span className="zigzag-bottom paper-ruled absolute inset-[3px] bottom-[5px]" aria-hidden="true" />
                 <Pushpin className="absolute -top-3 left-5" />
                 <PixelGrid className="absolute bottom-7 right-4 opacity-60" size={16} />
@@ -242,7 +242,7 @@ export default function About() {
         </div>
 
         {/* a riveted control panel: brushed metal, screws, domed push-buttons */}
-        <div className="about-panel metal-brushed relative mt-14 rounded-3xl border-4 border-saigon px-6 pb-9 pt-10 shadow-[0_10px_0_#0d1b2a] md:px-10">
+        <div className="about-panel metal-brushed relative mt-14 rounded-3xl border-4 border-ink-deep px-6 pb-9 pt-10 text-ink shadow-[0_10px_0_#ffd166] md:px-10">
           <Screws />
           <div className="absolute right-8 top-3 flex items-center gap-2 text-[10px] font-semibold tracking-wide text-ink/50">
             <Led className="motion-safe:animate-led-blink" />

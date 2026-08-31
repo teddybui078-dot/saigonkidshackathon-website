@@ -107,11 +107,11 @@ export default function Partnership() {
 
       {/* pinned: the heading and the three lockups beneath it */}
       <div className="partners-pin mx-auto max-w-5xl text-center">
-        <p className="partners-line mb-3 text-sm font-semibold text-saigon">The partnership ✦</p>
+        <p className="partners-line mb-3 text-sm font-semibold text-sun">The partnership ✦</p>
         <h2 className="partners-line text-4xl font-bold leading-tight md:text-5xl">
-          Three teams, <span className="text-saigon">one big day</span>
+          Three teams, <span className="text-sun">one big day</span>
         </h2>
-        <p className="partners-line mt-4 font-medium text-ink/60">The partnership that makes it happen.</p>
+        <p className="partners-line mt-4 font-medium text-white/70">The partnership that makes it happen.</p>
 
         {/* plain lockups: a logo slot and a name, a × between each pair.
             no box — the type is the object here */}
@@ -128,7 +128,7 @@ export default function Partnership() {
               )}
               <div className="partner-row flex flex-col items-center gap-3 md:flex-row md:gap-8">
                 <LogoSlot partner={partner} size={120} />
-                <p className="text-balance text-4xl font-bold leading-[1.05] text-saigon sm:text-5xl md:text-6xl lg:text-7xl">
+                <p className="text-balance text-4xl font-bold leading-[1.05] text-white sm:text-5xl md:text-6xl lg:text-7xl">
                   {partner.name}
                 </p>
               </div>

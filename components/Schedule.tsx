@@ -129,7 +129,7 @@ export default function Schedule() {
       </div>
       <div className="mx-auto max-w-5xl">
         <div className="text-center">
-          <p className="mb-3 text-sm font-semibold text-saigon">
+          <p className="mb-3 text-sm font-semibold text-sun">
             March 6, 2027 ✦
           </p>
           <h2 className="text-5xl font-bold leading-tight md:text-7xl">
@@ -140,11 +140,11 @@ export default function Schedule() {
         <div className="schedule-list relative mt-20">
           {/* the pole, with a finial on top — draws itself as you scroll */}
           <div
-            className="schedule-spine absolute left-1/2 top-0 h-full w-2 -translate-x-1/2 rounded-full bg-saigon"
+            className="schedule-spine absolute left-1/2 top-0 h-full w-2 -translate-x-1/2 rounded-full bg-space-light"
             aria-hidden="true"
           />
           <span
-            className="absolute -top-4 left-1/2 h-5 w-5 -translate-x-1/2 rounded-full border-[3px] border-saigon bg-energy"
+            className="absolute -top-4 left-1/2 h-5 w-5 -translate-x-1/2 rounded-full border-[3px] border-ink-deep bg-energy"
             aria-hidden="true"
           />
 
@@ -158,7 +158,7 @@ export default function Schedule() {
               >
                 {/* bracket arm out from the pole, and the collar it bolts to */}
                 <span
-                  className={`schedule-arm absolute top-0.5 hidden h-1.5 bg-saigon md:block ${
+                  className={`schedule-arm absolute top-0.5 hidden h-1.5 bg-space-light md:block ${
                     i % 2 === 0
                       ? "right-0 w-[calc(50%_+_1.25rem)] rounded-l-full"
                       : "left-0 w-[calc(50%_+_1.25rem)] rounded-r-full"
@@ -166,7 +166,7 @@ export default function Schedule() {
                   aria-hidden="true"
                 />
                 <span
-                  className={`schedule-collar absolute -top-1 hidden h-4 w-5 rounded-sm border-[3px] border-saigon bg-energy md:block ${
+                  className={`schedule-collar absolute -top-1 hidden h-4 w-5 rounded-sm border-[3px] border-ink-deep bg-energy md:block ${
                     i % 2 === 0 ? "-right-2.5" : "-left-2.5"
                   }`}
                   aria-hidden="true"
@@ -176,14 +176,14 @@ export default function Schedule() {
                 <div className="schedule-lantern">
                 <div className="ambient-hang mx-auto flex max-w-md flex-col items-center md:max-w-none">
                   <Hook />
-                  <div className="w-2/3 rounded-t-xl bg-saigon px-3 py-1.5 text-center text-base font-bold text-energy">
+                  <div className="w-2/3 rounded-t-xl bg-space-light px-3 py-1.5 text-center text-base font-bold text-sun">
                     {slot.time}
                   </div>
                   <div className="lantern-body w-full px-12 py-7 text-center">
                     <h3 className="text-2xl font-semibold md:text-3xl">{slot.title}</h3>
-                    <p className="mt-2 text-lg font-medium leading-snug text-ink/65">{slot.body}</p>
+                    <p className="mt-2 text-lg font-medium leading-snug text-white/75">{slot.body}</p>
                   </div>
-                  <div className="h-3 w-2/3 rounded-b-xl bg-saigon" aria-hidden="true" />
+                  <div className="h-3 w-2/3 rounded-b-xl bg-space-light" aria-hidden="true" />
                   <Tassel className="h-11 w-7" />
                 </div>
                 </div>

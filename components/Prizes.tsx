@@ -74,11 +74,11 @@ const CONFETTI = [
 
 const CONFETTI_KIND: Record<(typeof CONFETTI)[number]["kind"], string> = {
   "square-yellow": "block h-3 w-3 rounded-[3px] bg-energy",
-  "square-blue": "block h-3 w-3 rounded-[3px] bg-saigon",
-  "square-white": "block h-3 w-3 rounded-[3px] border-2 border-saigon bg-white",
+  "square-blue": "block h-3 w-3 rounded-[3px] bg-flare",
+  "square-white": "block h-3 w-3 rounded-[3px] border-2 border-ink-deep bg-white",
   "dot-yellow": "block h-3 w-3 rounded-full bg-energy",
-  "dot-blue": "block h-3 w-3 rounded-full bg-saigon",
-  "dot-white": "block h-3 w-3 rounded-full border-2 border-saigon bg-white",
+  "dot-blue": "block h-3 w-3 rounded-full bg-flare",
+  "dot-white": "block h-3 w-3 rounded-full border-2 border-ink-deep bg-white",
 };
 
 export default function Prizes() {
@@ -291,11 +291,11 @@ export default function Prizes() {
       {/* the pinned block: heading, the stage, and the captions under it */}
       <div className="prizes-pin mx-auto max-w-5xl">
         <div className="text-center">
-          <p className="prizes-line mb-3 text-sm font-semibold text-saigon">Podium &amp; prizes ✦</p>
+          <p className="prizes-line mb-3 text-sm font-semibold text-sun">Podium &amp; prizes ✦</p>
           <h2 className="prizes-line text-4xl font-bold leading-tight md:text-5xl">
-            Three teams take the <span className="text-saigon">podium</span>
+            Three teams take the <span className="text-sun">podium</span>
           </h2>
-          <p className="prizes-line mt-4 font-medium text-ink/60">
+          <p className="prizes-line mt-4 font-medium text-white/70">
             Every placing team goes home with medals and a prize for each member — and three solo
             awards go to individual builders.
           </p>
@@ -307,7 +307,7 @@ export default function Prizes() {
           {/* the back curtain — at rest the panels are tied back (the css
               state), the show closes them and draws them open again */}
           <div
-            className="curtain absolute inset-x-0 bottom-10 top-6 overflow-hidden rounded-t-3xl border-4 border-saigon bg-saigon-deep"
+            className="curtain absolute inset-x-0 bottom-10 top-6 overflow-hidden rounded-t-3xl border-4 border-ink-deep bg-saigon-deep"
             aria-hidden="true"
           >
             <Screws className="opacity-60" />
@@ -363,7 +363,7 @@ export default function Prizes() {
                 </div>
                 {/* the clip box: the step rises up out of this */}
                 <div className={CLIP[award.place]}>
-                  <div className="podium-step relative h-full w-full rounded-t-2xl border-4 border-saigon-deep border-t-[10px] border-t-energy bg-saigon shadow-[inset_0_-6px_0_#0d1b2a]">
+                  <div className="podium-step relative h-full w-full rounded-t-2xl border-4 border-ink-deep border-t-[10px] border-t-energy bg-space-light shadow-[inset_0_-6px_0_#0d1b2a]">
                     <Screws className="opacity-70" />
                     {/* the ordinal, big and hollow, over an engraved name plate */}
                     <div className="flex h-full flex-col items-center justify-center gap-2 pb-8">
@@ -388,7 +388,7 @@ export default function Prizes() {
 
           {/* the boards */}
           <div
-            className="stage-floor relative z-10 h-10 rounded-b-2xl border-4 border-t-0 border-saigon shadow-[0_6px_0_#0d1b2a]"
+            className="stage-floor relative z-10 h-10 rounded-b-2xl border-4 border-t-0 border-ink-deep shadow-[0_6px_0_#ffd166]"
             aria-hidden="true"
           />
         </div>
@@ -398,7 +398,7 @@ export default function Prizes() {
           {PODIUM.map((award) => (
             <div key={award.place} className={CAPTION[award.place]}>
               <h3 className="font-bold">{award.name}</h3>
-              <ul className="mt-1 space-y-0.5 text-sm font-medium text-ink/70">
+              <ul className="mt-1 space-y-0.5 text-sm font-medium text-white/75">
                 {award.wins.map((win) => (
                   <li key={win} className="flex items-start justify-center gap-1.5">
                     <span className="mt-1.5 h-2 w-2 shrink-0 rounded-[2px] bg-energy" aria-hidden="true" />
@@ -406,7 +406,7 @@ export default function Prizes() {
                   </li>
                 ))}
               </ul>
-              <p className="mt-2 text-xs font-semibold text-ink/70">{PRIZE_TBA}</p>
+              <p className="mt-2 text-xs font-semibold text-white/75">{PRIZE_TBA}</p>
             </div>
           ))}
         </div>
@@ -415,11 +415,11 @@ export default function Prizes() {
       {/* the solo awards: three rosettes hanging off one sagging string */}
       <div className="mx-auto max-w-5xl">
         <div className="text-center">
-          <p className="mt-24 text-sm font-semibold text-saigon">Solo awards ✦</p>
+          <p className="mt-24 text-sm font-semibold text-sun">Solo awards ✦</p>
           <h3 className="mt-3 text-2xl font-bold md:text-3xl">
             Three awards for <span className="text-energy">builders of one</span>
           </h3>
-          <p className="mt-3 font-medium text-ink/60">
+          <p className="mt-3 font-medium text-white/70">
             No medals or trophies here — just a prize, for the individual builders who stood out.
           </p>
         </div>
@@ -434,7 +434,7 @@ export default function Prizes() {
             fill="none"
             aria-hidden="true"
           >
-            <path d="M0 8 Q300 40 600 8" stroke="#191970" strokeWidth="3" vectorEffect="non-scaling-stroke" />
+            <path d="M0 8 Q300 40 600 8" stroke="#ffd166" strokeWidth="3" vectorEffect="non-scaling-stroke" />
           </svg>
           <div className="solo-grid grid grid-cols-1 gap-8 md:-mt-6 md:grid-cols-3">
             {SOLO_AWARDS.map((award) => (
@@ -443,7 +443,7 @@ export default function Prizes() {
                 <div className="ambient-hang flex flex-col items-center">
                   <Hook />
                   <Rosette symbol={award.symbol} size={80} />
-                  <div className="mt-2 w-full max-w-[16rem] rounded-xl border-[3px] border-saigon bg-white p-4 text-center shadow-[0_6px_0_#cbd8ee]">
+                  <div className="mt-2 w-full max-w-[16rem] rounded-xl border-[3px] border-ink-deep bg-white p-4 text-center text-ink shadow-[0_6px_0_#ffd166]">
                     <h4 className="text-lg font-bold">{award.name}</h4>
                     <p className="text-sm font-medium text-ink/65">{award.blurb}</p>
                     <PrizeTag className="mt-3">
