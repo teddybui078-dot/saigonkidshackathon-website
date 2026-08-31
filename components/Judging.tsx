@@ -5,7 +5,8 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Sparkle, FlightArc, SparkleCross } from "./decorations";
 import { ChalkScribble } from "./space";
-import { DrawnBg } from "./drawn";
+import { DrawnPaddleBg } from "./drawn";
+import { CoilStake } from "./parts";
 import SiteLink from "./SiteLink";
 import { RUBRIC, RUBRIC_TOTAL, RUBRIC_COUNT_WORD, TIE_BREAKERS, JUDGING_LAB, type Criterion } from "./rubric";
 import { RULES } from "./rules";
@@ -24,6 +25,19 @@ const PADDLE: Record<number, { card: string; number: string }> = {
   10: { card: "w-[6.5rem]", number: "text-3xl" },
 };
 const paddleFor = (c: Criterion) => PADDLE[c.pts] ?? PADDLE[15];
+
+/* each paddle leans its own way on its stick, and no two sticks were
+   cut the same length — full strings so tailwind sees them */
+const PADDLE_TILT = [
+  "-rotate-2",
+  "rotate-[3deg]",
+  "-rotate-[1.5deg]",
+  "rotate-2",
+  "-rotate-[2.5deg]",
+  "rotate-[1.5deg]",
+  "-rotate-[3deg]",
+];
+const STICK_LENGTH = ["h-14", "h-10", "h-12", "h-14", "h-10", "h-12", "h-14"];
 
 export default function Judging() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -104,12 +118,13 @@ export default function Judging() {
           <ol className="grid grid-cols-2 items-end justify-items-center gap-x-4 gap-y-10 sm:grid-cols-4 md:grid-cols-7 md:gap-x-3">
             {RUBRIC.map((c) => {
               const p = paddleFor(c);
+              const i = RUBRIC.indexOf(c);
               return (
                 <li key={c.id} className="judge-paddle flex flex-col items-center">
                   {/* outer li is the raise, this one sways from the stick's base */}
                   <div className="ambient-sway flex flex-col items-center">
-                    <div className={`${p.card} relative px-2 pb-3 pt-4 text-center text-ink`}>
-                      <DrawnBg aspect="square" seed={RUBRIC.indexOf(c)} tone="paper" />
+                    <div className={`${p.card} ${PADDLE_TILT[i]} relative px-2 pb-3 pt-4 text-center text-ink`}>
+                      <DrawnPaddleBg shape={i} tone="paper" />
                       <span className={`${p.number} relative block font-bold leading-none text-saigon`} aria-hidden="true">
                         {c.pts}
                       </span>
@@ -124,7 +139,7 @@ export default function Judging() {
                         {c.title}
                       </span>
                     </div>
-                    <span className="h-14 w-2.5 rounded-b-md bg-energy border border-ink-deep" aria-hidden="true" />
+                    <span className={`${STICK_LENGTH[i]} w-2.5 rounded-b-md bg-energy border border-ink-deep`} aria-hidden="true" />
                   </div>
                   {/* on phones the note sits right under its paddle */}
                   <p className="mt-3 max-w-[11rem] text-center text-sm font-medium leading-5 text-white/70 md:hidden">
@@ -154,13 +169,17 @@ export default function Judging() {
 
         {/* the total, the stamp, the tie-breakers, the rulebook */}
         <div className="mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-6">
-          <div className="flex items-center gap-4">
-            <span className="judge-badge grid h-24 w-24 place-items-center rounded-full border-4 border-ink-deep bg-energy text-center shadow-[0_6px_0_#d99a00]">
-              <span className="block text-3xl font-bold leading-none">
-                {RUBRIC_TOTAL}
-                <span className="mt-1 block text-[10px] font-bold uppercase tracking-widest text-ink/60">points</span>
+          <div className="flex items-end gap-4">
+            {/* the total rides a springy staked aerial, like it bounced up there */}
+            <div className="judge-badge flex flex-col items-center">
+              <span className="relative z-10 grid h-24 w-24 place-items-center rounded-full border-4 border-ink-deep bg-energy text-center shadow-[0_6px_0_#d99a00]">
+                <span className="block text-3xl font-bold leading-none">
+                  {RUBRIC_TOTAL}
+                  <span className="mt-1 block text-[10px] font-bold uppercase tracking-widest text-ink/60">points</span>
+                </span>
               </span>
-            </span>
+              <CoilStake className="-mt-2" />
+            </div>
             <span
               className="stamp -rotate-6 text-sun [mix-blend-mode:normal]"
               style={{ "--stamp-gap": "#0d1b2a" } as React.CSSProperties}

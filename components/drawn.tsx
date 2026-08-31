@@ -218,6 +218,86 @@ export function DrawnDiscBg({
   );
 }
 
+/* seven score paddles, each its own silhouette — a blob, a chunky square,
+   a clipped tag, an octagon, a pinched drum, a notched ticket, a leaning
+   cut. same drawn-twice recipe, one gloss pass each; the judges clearly
+   sawed their own boards. */
+const PADDLE_SHAPES: { d: string; light: string; dark: string }[] = [
+  {
+    d: "M150 10 Q234 12 268 40 Q292 64 290 150 Q288 234 264 262 Q234 290 150 290 Q68 290 38 262 Q12 236 12 150 Q12 66 40 38 Q70 10 150 10 Z",
+    light: "M84 40 Q150 22 220 42",
+    dark: "M92 266 Q156 282 214 262",
+  },
+  {
+    d: "M38 24 Q150 12 262 22 Q284 24 286 46 Q294 150 286 256 Q284 278 262 280 Q152 290 40 282 Q18 280 16 258 Q8 152 16 46 Q18 26 38 24 Z",
+    light: "M58 36 Q152 24 244 34",
+    dark: "M64 268 Q154 278 238 268",
+  },
+  {
+    d: "M96 18 Q176 12 260 20 Q282 22 284 44 Q292 152 284 258 Q282 278 260 280 Q152 290 42 282 Q20 280 18 258 Q10 162 16 78 Q17 62 30 52 L78 24 Q86 18 96 18 Z",
+    light: "M104 34 Q184 24 250 34",
+    dark: "M62 268 Q154 278 240 268",
+  },
+  {
+    d: "M86 20 L218 18 Q230 18 238 26 L278 62 Q284 70 284 80 L282 220 Q282 230 274 238 L236 276 Q228 282 218 282 L84 284 Q74 284 66 276 L26 240 Q20 232 20 222 L22 82 Q22 72 28 64 L70 26 Q76 20 86 20 Z",
+    light: "M92 34 Q152 26 212 32",
+    dark: "M94 268 Q154 276 210 266",
+  },
+  {
+    d: "M40 30 Q150 16 260 30 Q278 32 277 50 Q268 150 277 252 Q278 270 260 272 Q150 286 40 272 Q22 270 23 252 Q32 150 23 50 Q22 32 40 30 Z",
+    light: "M62 42 Q152 30 240 40",
+    dark: "M66 260 Q152 272 236 260",
+  },
+  {
+    d: "M60 20 Q150 12 240 20 Q242 42 264 44 Q272 150 264 256 Q242 258 240 280 Q150 288 60 280 Q58 258 36 256 Q28 152 36 44 Q58 42 60 20 Z",
+    light: "M76 34 Q152 24 226 32",
+    dark: "M78 268 Q152 276 224 266",
+  },
+  {
+    d: "M34 18 Q150 6 258 34 Q280 40 281 58 Q288 152 282 250 Q280 268 260 270 Q150 284 44 278 Q22 276 20 254 Q12 150 18 44 Q20 22 34 18 Z",
+    light: "M56 34 Q150 20 236 42",
+    dark: "M62 264 Q152 276 240 262",
+  },
+];
+
+export function DrawnPaddleBg({
+  shape = 0,
+  tone = "paper",
+  shadow = "sun",
+  className = "",
+}: {
+  shape?: number;
+  tone?: DrawnTone;
+  shadow?: DrawnShadow;
+  className?: string;
+}) {
+  const s = PADDLE_SHAPES[shape % PADDLE_SHAPES.length];
+  return (
+    <svg
+      aria-hidden="true"
+      focusable="false"
+      className={`absolute inset-0 h-full w-full ${className}`}
+      viewBox="0 0 300 300"
+      preserveAspectRatio="none"
+      fill="none"
+    >
+      {shadow !== "none" && (
+        <path d={s.d} transform="translate(9 10)" fill={shadow === "sun" ? SUN : FLARE} />
+      )}
+      <path
+        d={s.d}
+        fill={TONE[tone]}
+        stroke={STROKE}
+        strokeWidth={5}
+        strokeLinejoin="round"
+        vectorEffect="non-scaling-stroke"
+      />
+      <path d={s.light} stroke={PAPER} strokeWidth={4} strokeLinecap="round" opacity={0.35} vectorEffect="non-scaling-stroke" />
+      <path d={s.dark} stroke={SPACE_DARK} strokeWidth={4} strokeLinecap="round" opacity={0.35} vectorEffect="non-scaling-stroke" />
+    </svg>
+  );
+}
+
 /* a giant lego brick for the podium: three drawn studs on top, a wobbly
    body, the usual thrown shadow. the winner gets the lacquer. */
 const LEGO_TONE = {

@@ -171,6 +171,40 @@ export function Led({ className = "" }: { className?: string }) {
   );
 }
 
+/* ————— stakes ————— */
+
+export function CoilStake({ className = "" }: { className?: string }) {
+  // a springy aerial for a mounted sign: three coil loops on a stake,
+  // drawn twice so the coil keeps its ink
+  return (
+    <svg
+      className={className}
+      width={48}
+      height={96}
+      viewBox="0 0 48 96"
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M10 14 C 42 6 46 24 24 28 C 2 32 2 48 24 51 C 46 54 44 68 24 70"
+        stroke={BLUE}
+        strokeWidth={9}
+        strokeLinecap="round"
+        fill="none"
+      />
+      <path
+        d="M10 14 C 42 6 46 24 24 28 C 2 32 2 48 24 51 C 46 54 44 68 24 70"
+        stroke={YELLOW}
+        strokeWidth={4.5}
+        strokeLinecap="round"
+        fill="none"
+      />
+      <path d="M24 70 L24 92" stroke={BLUE} strokeWidth={9} strokeLinecap="round" />
+      <path d="M24 71 L24 90" stroke={SPACE_LIGHT} strokeWidth={4.5} strokeLinecap="round" />
+    </svg>
+  );
+}
+
 /* ————— rings ————— */
 
 export function BinderRing({ className = "", size = 28 }: { className?: string; size?: number }) {
