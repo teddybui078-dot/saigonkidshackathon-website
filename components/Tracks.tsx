@@ -4,6 +4,8 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { PixelGrid, Sparkle, PixelPlanet, FlightArc } from "./decorations";
+import { DrawnBg } from "./drawn";
+import { EVENT } from "./event";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -175,20 +177,21 @@ export default function Tracks() {
 
           {/* the cover, hinged on the spine. its back face is the left page */}
           <div className="track-cover order-1 motion-safe:md:absolute motion-safe:md:inset-y-0 motion-safe:md:left-1/2 motion-safe:md:w-1/2 motion-safe:md:origin-left motion-safe:md:transform-3d motion-safe:md:rotate-y-180">
-            {/* cover front: spine strip, elastic band, label sticker */}
+            {/* cover front: a drawn space-blue board with the label sticker */}
             <div
               aria-hidden="true"
-              className="absolute inset-0 hidden overflow-hidden rounded-r-2xl border-[3px] border-ink-deep bg-space-light backface-hidden rotate-y-0 shadow-[0_10px_0_#ffd166] motion-safe:md:block"
+              className="absolute inset-0 hidden backface-hidden rotate-y-0 motion-safe:md:block"
             >
-              <span className="absolute inset-y-0 left-0 w-4 bg-saigon-deep" />
-              <span className="absolute inset-y-0 right-8 w-2.5 bg-energy" />
+              <DrawnBg aspect="tall" seed={1} tone="spaceLight" />
+              <span className="absolute inset-y-4 left-2 w-1 rounded-full bg-ink-deep/30" />
+              <span className="absolute inset-y-4 right-9 w-2.5 rounded-full border-2 border-ink-deep bg-energy" />
               <div className="absolute left-14 right-20 top-16 rounded-lg bg-white px-6 py-6 text-ink shadow-[0_4px_0_#0d1b2a]">
                 <PixelGrid size={24} />
                 <p className="mt-4 text-sm font-bold tracking-widest text-saigon/70">Theme notebook</p>
-                <p className="mt-1 text-3xl font-bold leading-tight text-ink">Saigon Kids Hackathon</p>
-                <p className="mt-3 text-base font-semibold text-ink/60">March 6, 2027</p>
+                <p className="mt-1 text-3xl font-bold leading-tight text-ink">{EVENT.name}</p>
+                <p className="mt-3 text-base font-semibold text-ink/60">{EVENT.date}</p>
               </div>
-              <span className="absolute bottom-10 left-14 text-sm font-semibold text-white/70">scroll to open ↓</span>
+              <span className="absolute bottom-10 left-14 text-sm font-semibold text-white/80">scroll to open ↓</span>
             </div>
             {/* left page: track 1 */}
             <div className="track-page paper-ruled text-ink relative min-h-[22rem] overflow-hidden rounded-2xl border-[3px] border-ink-deep shadow-[6px_6px_0_#ffd166] motion-safe:md:absolute motion-safe:md:inset-0 motion-safe:md:min-h-0 motion-safe:md:rounded-r-none motion-safe:md:border-r-0 motion-safe:md:shadow-none motion-safe:md:backface-hidden motion-safe:md:rotate-y-180">
@@ -197,11 +200,15 @@ export default function Tracks() {
             </div>
           </div>
 
-          {/* spine */}
+          {/* the spine is a lego rail — studs clip the two pages together */}
           <div
             aria-hidden="true"
-            className="absolute inset-y-0 left-1/2 hidden w-3 -translate-x-1/2 rounded-full bg-saigon-deep motion-safe:md:block"
-          />
+            className="absolute inset-y-2 left-1/2 hidden w-3 -translate-x-1/2 flex-col items-center justify-evenly rounded-full bg-space-light motion-safe:md:flex"
+          >
+            {Array.from({ length: 6 }).map((_, i) => (
+              <span key={i} className="h-3.5 w-3.5 rounded-[4px] border-2 border-ink-deep bg-energy" />
+            ))}
+          </div>
         </div>
       </div>
     </section>
