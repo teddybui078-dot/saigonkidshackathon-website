@@ -4,7 +4,8 @@ import { useEffect, useLayoutEffect, useRef, useState, type KeyboardEvent } from
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { FloatingLaptop, PixelStack, Sparkle } from "./decorations";
-import { Screws, SubjectIcon, type SubjectKind } from "./parts";
+import { SubjectIcon, type SubjectKind } from "./parts";
+import { DrawnBg } from "./drawn";
 import { PrizeTag } from "./illustrations";
 import SiteLink from "./SiteLink";
 import { EVENT, AGES, GRADES, TEAM_SIZE, FEE_COVERS } from "./event";
@@ -290,9 +291,9 @@ export default function ImportantInfo() {
 
           {/* the card box: sky-blue tin, four screws, a riveted label plate
               on the front lip */}
-          <div className="info-box relative rounded-2xl border-4 border-ink-deep bg-[#c9d7ee] p-4 text-ink shadow-[0_8px_0_#ffd166] md:p-6">
-            <Screws />
-            <span className="metal-brushed absolute -bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md border-2 border-saigon px-3 py-0.5 text-[10px] font-bold tracking-widest text-ink/70">
+          <div className="info-box relative p-6 text-ink md:p-9">
+            <DrawnBg aspect="wide" seed={2} tone="sky" bolts />
+            <span className="metal-brushed absolute -bottom-3 left-1/2 z-10 -translate-x-1/2 whitespace-nowrap rounded-md border-2 border-saigon px-3 py-0.5 text-[10px] font-bold tracking-widest text-ink/70">
               <span
                 className="absolute left-1 top-1/2 h-1.5 w-1.5 -translate-y-1/2 rounded-full border border-saigon bg-[#a8bfe2]"
                 aria-hidden="true"
