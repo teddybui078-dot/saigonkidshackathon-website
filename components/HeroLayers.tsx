@@ -17,6 +17,7 @@ import {
   SkySwirls,
   RingedPlanet,
   SwirlPlanet,
+  CraterMoon,
   Landmark81,
   KidAstronaut,
   Foliage,
@@ -133,11 +134,21 @@ export function HeroCelestial() {
           transform would slide them out from behind the board */}
       <RingedPlanet
         clipId="hero-ringed-planet"
-        className="absolute left-[24%] top-[30%] hidden w-44 md:block lg:w-52"
+        className="absolute left-[17%] top-[30%] hidden w-44 md:block lg:w-52"
       />
       <SwirlPlanet
         clipId="hero-swirl-planet"
-        className="absolute right-[26%] top-[38%] hidden w-44 md:block lg:w-48"
+        className="absolute right-[22%] top-[46%] hidden w-44 md:block lg:w-48"
+      />
+      {/* the deeper crowd: a pale moon and two far, faded neighbours */}
+      <CraterMoon className="absolute left-[8%] top-[11%] w-24 md:left-[10%] md:w-32" />
+      <RingedPlanet
+        clipId="hero-ringed-planet-far"
+        className="absolute right-[8%] top-[24%] hidden w-20 opacity-60 lg:block"
+      />
+      <SwirlPlanet
+        clipId="hero-swirl-planet-far"
+        className="absolute left-[30%] top-[9%] hidden w-20 opacity-50 lg:block"
       />
     </HeroLayerShell>
   );

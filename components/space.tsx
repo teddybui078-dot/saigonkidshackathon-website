@@ -202,6 +202,32 @@ export function SignBoard({ className = "", width = 780, ...rest }: SpaceArtProp
   );
 }
 
+/* ————— the crater moon ————— */
+
+/* a small pale moon, cratered like the terrain below — the sky's quiet
+   cousin of the ground the scene stands on */
+export function CraterMoon({ className = "", width = 160, ...rest }: SpaceArtProps) {
+  return (
+    <svg
+      className={className}
+      width={width}
+      height={width}
+      viewBox="0 0 160 160"
+      fill="none"
+      aria-hidden="true"
+      focusable="false"
+      {...rest}
+    >
+      <circle cx={80} cy={80} r={64} fill={CANVAS} stroke={STROKE} strokeWidth={5} />
+      <ellipse cx={58} cy={62} rx={16} ry={13} fill={MIST} stroke={STROKE} strokeWidth={3} strokeOpacity={0.5} />
+      <ellipse cx={102} cy={96} rx={12} ry={10} fill={MIST} stroke={STROKE} strokeWidth={3} strokeOpacity={0.5} />
+      <ellipse cx={76} cy={118} rx={8} ry={6} fill={MIST} stroke={STROKE} strokeWidth={2.5} strokeOpacity={0.5} />
+      <circle cx={112} cy={52} r={6} fill={MIST} />
+      <path d="M40 40 Q56 26 78 24" stroke={PAPER} strokeWidth={4} strokeLinecap="round" opacity={0.7} />
+    </svg>
+  );
+}
+
 /* ————— the swirl planet ————— */
 
 /* a dark quiet planet, brushed with wind-bands like the sky behind it.
