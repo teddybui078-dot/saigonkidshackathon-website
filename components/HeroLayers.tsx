@@ -15,6 +15,8 @@ import {
   ChalkStar,
   OrbitArc,
   SkySwirls,
+  RingedPlanet,
+  SwirlPlanet,
   LanternString,
   Lantern,
   Landmark81,
@@ -133,6 +135,17 @@ export function HeroCelestial() {
       >
         <CodingSatellite className="float-fast h-auto w-full" />
       </div>
+      {/* two planets tucked behind the sign so the frame crops them.
+          deliberately static — no hero-float, no drift — because any
+          transform would slide them out from behind the board */}
+      <RingedPlanet
+        clipId="hero-ringed-planet"
+        className="absolute left-[24%] top-[30%] hidden w-44 md:block lg:w-52"
+      />
+      <SwirlPlanet
+        clipId="hero-swirl-planet"
+        className="absolute right-[26%] top-[38%] hidden w-44 md:block lg:w-48"
+      />
     </HeroLayerShell>
   );
 }

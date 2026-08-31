@@ -142,6 +142,53 @@ export function SignBoard({ className = "", width = 780, ...rest }: SpaceArtProp
   );
 }
 
+/* ————— the swirl planet ————— */
+
+/* a dark quiet planet, brushed with wind-bands like the sky behind it.
+   made to sit half-hidden behind the sign; clipId must be unique per
+   instance or the clips collide */
+export function SwirlPlanet({
+  className = "",
+  width = 200,
+  clipId = "swirl-planet-clip",
+  ...rest
+}: SpaceArtProps & { clipId?: string }) {
+  return (
+    <svg
+      className={className}
+      width={width}
+      height={width}
+      viewBox="0 0 200 200"
+      fill="none"
+      aria-hidden="true"
+      focusable="false"
+      {...rest}
+    >
+      <defs>
+        <clipPath id={clipId}>
+          <circle cx="100" cy="100" r="86" />
+        </clipPath>
+      </defs>
+      <circle
+        cx="100"
+        cy="100"
+        r="86"
+        fill={SPACE_LIGHT}
+        stroke={STROKE}
+        strokeWidth="6"
+        strokeLinejoin="round"
+      />
+      <g clipPath={`url(#${clipId})`} strokeLinecap="round" fill="none">
+        <path d="M4 62 C 40 48, 84 70, 124 58 C 152 50, 178 56, 200 66" stroke={SPACE_DARK} strokeWidth="16" opacity="0.55" />
+        <path d="M-2 106 C 44 92, 92 114, 136 102 C 164 95, 186 100, 204 108" stroke={SPACE_DARK} strokeWidth="12" opacity="0.45" />
+        <path d="M8 146 C 48 134, 96 152, 140 142 C 166 136, 186 140, 200 146" stroke={SUN} strokeWidth="7" opacity="0.5" />
+        <path d="M30 34 C 62 26, 98 38, 132 30" stroke={PAPER} strokeWidth="4" opacity="0.4" />
+      </g>
+      <circle cx="100" cy="100" r="94" stroke={PAPER} strokeWidth="2" strokeOpacity="0.3" />
+    </svg>
+  );
+}
+
 /* ————— the sky swirls ————— */
 
 /* broad wind-bands brushed across the sky, cresting with the orbit track
@@ -196,8 +243,14 @@ export function SkySwirls({ className = "", width = 1440, ...rest }: SpaceArtPro
 
 /* ————— the props ————— */
 
-/* a saturn: a tilted ring passes behind the body, then in front of it */
-export function RingedPlanet({ className = "", width = 220, ...rest }: SpaceArtProps) {
+/* a saturn: a tilted ring passes behind the body, then in front of it.
+   clipId must be unique per instance or the clips collide */
+export function RingedPlanet({
+  className = "",
+  width = 220,
+  clipId = "ringed-planet-clip",
+  ...rest
+}: SpaceArtProps & { clipId?: string }) {
   return (
     <svg
       className={className}
@@ -210,7 +263,7 @@ export function RingedPlanet({ className = "", width = 220, ...rest }: SpaceArtP
       {...rest}
     >
       <defs>
-        <clipPath id="ringed-planet-clip">
+        <clipPath id={clipId}>
           <circle cx="110" cy="80" r="52" />
         </clipPath>
       </defs>
@@ -239,7 +292,7 @@ export function RingedPlanet({ className = "", width = 220, ...rest }: SpaceArtP
         strokeWidth="6"
         strokeLinejoin="round"
       />
-      <g clipPath="url(#ringed-planet-clip)">
+      <g clipPath={`url(#${clipId})`}>
         <path
           d="M 52 66 C 70 60, 88 72, 108 66 C 128 60, 146 70, 170 64"
           stroke={SUN}
