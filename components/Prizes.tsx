@@ -4,9 +4,10 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Sparkle, PixelGrid, PixelStack } from "./decorations";
-import { Screws, Hook } from "./parts";
+import { Hook } from "./parts";
 import { Trophy, Medal, Rosette, PrizeTag } from "./illustrations";
 import { TEAM_AWARDS, SOLO_AWARDS, PRIZE_TBA, type TeamAward } from "./awards";
+import { DrawnBg, LegoStep } from "./drawn";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,6 +18,16 @@ const COLUMN: Record<TeamAward["place"], string> = {
   1: "order-2 flex flex-col items-center",
   2: "order-1 flex flex-col items-center",
   3: "order-3 flex flex-col items-center",
+};
+const STEP_TONE: Record<TeamAward["place"], "flare" | "sun" | "paper"> = {
+  1: "flare",
+  2: "sun",
+  3: "paper",
+};
+const ORDINAL: Record<TeamAward["place"], string> = {
+  1: "text-outline-white",
+  2: "text-outline-white",
+  3: "text-outline-blue",
 };
 const CAPTION: Record<TeamAward["place"], string> = {
   1: "podium-caption order-2",
@@ -223,11 +234,11 @@ export default function Prizes() {
                 </div>
                 {/* the clip box: the step rises up out of this */}
                 <div className={CLIP[award.place]}>
-                  <div className="podium-step relative h-full w-full rounded-t-2xl border-4 border-ink-deep border-t-[10px] border-t-energy bg-space-light shadow-[inset_0_-6px_0_#0d1b2a]">
-                    <Screws className="opacity-70" />
-                    {/* the ordinal, big and hollow, over an engraved name plate */}
-                    <div className="flex h-full flex-col items-center justify-center gap-2 pb-8">
-                      <span className="text-outline-white text-4xl font-bold leading-none md:text-6xl">
+                  <div className="podium-step relative h-full w-full">
+                    <LegoStep tone={STEP_TONE[award.place]} />
+                    {/* the ordinal, big and hollow, over a moulded name plate */}
+                    <div className="relative flex h-full flex-col items-center justify-center gap-2 pb-8 pt-4">
+                      <span className={`${ORDINAL[award.place]} text-4xl font-bold leading-none md:text-6xl`}>
                         {award.ordinal}
                       </span>
                       <span className="podium-plate metal-brushed rounded-md border-2 border-saigon px-2 py-0.5 text-[9px] font-bold uppercase tracking-widest text-ink/70 md:text-[11px]">
@@ -298,13 +309,16 @@ export default function Prizes() {
                 <div className="ambient-hang flex flex-col items-center">
                   <Hook />
                   <Rosette symbol={award.symbol} size={80} />
-                  <div className="mt-2 w-full max-w-[16rem] rounded-xl border-[3px] border-ink-deep bg-white p-4 text-center text-ink shadow-[0_6px_0_#ffd166]">
+                  <div className="relative mt-2 w-full max-w-[16rem] p-4 text-center text-ink">
+                    <DrawnBg aspect="square" seed={SOLO_AWARDS.indexOf(award)} tone="paper" />
+                    <div className="relative">
                     <h4 className="text-lg font-bold">{award.name}</h4>
                     <p className="text-sm font-medium text-ink/65">{award.blurb}</p>
                     <PrizeTag className="mt-3">
                       <span className="text-xs">{award.prize}</span>
                     </PrizeTag>
                   </div>
+                    </div>
                 </div>
               </div>
             ))}

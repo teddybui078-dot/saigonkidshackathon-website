@@ -221,6 +221,49 @@ export function DrawnDisc({
   );
 }
 
+/* a giant lego brick for the podium: three drawn studs on top, a wobbly
+   body, the usual thrown shadow. the winner gets the lacquer. */
+const LEGO_TONE = {
+  flare: { body: FLARE, stud: FLARE, shadow: SUN },
+  sun: { body: SUN, stud: SUN, shadow: FLARE },
+  paper: { body: PAPER, stud: PAPER, shadow: SUN },
+} as const;
+
+export function LegoStep({
+  tone = "paper",
+  className = "",
+}: {
+  tone?: keyof typeof LEGO_TONE;
+  className?: string;
+}) {
+  const t = LEGO_TONE[tone];
+  const body =
+    "M16 40 Q150 34 284 38 Q292 39 293 50 Q296 130 292 202 Q291 212 280 213 Q150 218 22 214 Q11 213 10 202 Q7 128 12 50 Q13 41 16 40 Z";
+  const studs = [
+    "M40 12 Q66 8 90 11 Q95 12 95 18 L94 44 L38 44 L37 18 Q37 13 40 12 Z",
+    "M124 10 Q150 7 174 10 Q179 11 179 17 L178 44 L122 44 L121 16 Q121 11 124 10 Z",
+    "M208 12 Q234 9 258 12 Q263 13 263 19 L262 44 L206 44 L205 18 Q205 13 208 12 Z",
+  ];
+  return (
+    <svg
+      aria-hidden="true"
+      focusable="false"
+      className={`absolute inset-0 h-full w-full ${className}`}
+      viewBox="0 0 300 220"
+      preserveAspectRatio="none"
+      fill="none"
+    >
+      <path d={body} transform="translate(8 9)" fill={t.shadow} />
+      {studs.map((d, i) => (
+        <path key={i} d={d} fill={t.stud} stroke={STROKE} strokeWidth={4} strokeLinejoin="round" vectorEffect="non-scaling-stroke" />
+      ))}
+      <path d={body} fill={t.body} stroke={STROKE} strokeWidth={5} strokeLinejoin="round" vectorEffect="non-scaling-stroke" />
+      <path d="M30 54 Q150 48 270 52" stroke={PAPER} strokeWidth={4} strokeLinecap="round" opacity={0.35} vectorEffect="non-scaling-stroke" />
+      <path d="M40 200 Q160 206 262 202" stroke={SPACE_DARK} strokeWidth={4} strokeLinecap="round" opacity={0.35} vectorEffect="non-scaling-stroke" />
+    </svg>
+  );
+}
+
 /* a speech-bubble tail, drawn separately and tucked under a panel's edge */
 export function DrawnTail({
   side = "left",
