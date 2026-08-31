@@ -1,54 +1,122 @@
-/* layer 5 — the only part of the hero you can read or click: the logo as
-   the title, floating free over the stars, and a sticker card under it
-   with the date, the one-line pitch and the two buttons. every number
-   comes from event.ts */
+/* layer 5 — the sign the hero hangs its name on: two cords down from the
+   lantern string, a bamboo pole with a lotus on top, the red-lacquer
+   frame, the logo on the white board (the riveted rail overlaps the
+   file's cut bottom edge), the plaque with the facts and the buttons,
+   and the tag swinging underneath with the astronaut hanging off it.
+   every number comes from event.ts */
 
 import Image from "next/image";
 import SiteLink from "./SiteLink";
 import { HERO_LAYER } from "./hero-layers";
+import { KidAstronaut, LotusFinial } from "./space";
 import { EVENT, AGES } from "./event";
 
 export default function HeroUi() {
   return (
     <div
-      className="relative flex w-full max-w-3xl flex-col items-center text-center"
+      className="relative flex w-full flex-col items-center"
       style={{ zIndex: HERO_LAYER.ui }}
     >
-      {/* the logo is the title — shown as-is, never shadowed or recoloured */}
-      <h1 className="hero-logo m-0 w-[min(72vw,380px)]">
-        <Image
-          src="/logo-v2.png"
-          alt={EVENT.name}
-          width={512}
-          height={341}
-          loading="eager"
-          fetchPriority="high"
-          sizes="(min-width: 640px) 380px, 72vw"
-          className="h-auto w-full"
-        />
-      </h1>
-
-      <div className="hero-sticker sticker-card mt-6 w-full max-w-xl px-6 py-7 sm:px-10 sm:py-8">
-        <div className="hero-fade flex flex-wrap items-center justify-center gap-3">
-          <span className="badge-date text-sm sm:text-base">
-            <span className="sm:hidden">{EVENT.date}</span>
-            <span className="hidden sm:inline">{EVENT.dateLong}</span> · {EVENT.city}
+      {/* the whole hanging assembly bobs together — gsap, translate only */}
+      <div className="hero-sign flex w-[88vw] max-w-[420px] flex-col items-center sm:max-w-[500px] md:w-[min(44vw,560px)] md:max-w-none">
+        {/* the two cords up to the string, knots resting on it */}
+        <div className="relative -mb-1 flex w-1/2 items-start justify-between" aria-hidden="true">
+          <span className="flex flex-col items-center">
+            <span className="sign-knot" />
+            <span className="cord-stretch sign-cord h-8 md:h-10" />
           </span>
-          <span className="badge-hollow text-sm text-sun sm:text-base">✦ registration opens soon</span>
+          <span className="flex flex-col items-center">
+            <span className="sign-knot" />
+            <span className="cord-stretch sign-cord h-8 md:h-10" />
+          </span>
         </div>
 
-        <p className="hero-fade mt-5 text-lg font-medium text-white/90 md:text-xl">
-          one big day of building, coding and playing — for {EVENT.spots} young makers aged{" "}
-          {AGES}.
-        </p>
+        {/* the bamboo pole with its lotus riding on top */}
+        <div className="relative w-[106%]" aria-hidden="true">
+          <LotusFinial className="lotus-breathe absolute -top-9 left-1/2 w-12 -translate-x-1/2 md:-top-11 md:w-14" />
+          <div className="sign-pole" />
+        </div>
 
-        <div className="hero-fade mt-6 flex flex-wrap items-center justify-center gap-3">
-          <SiteLink href="/#about" className="cta-primary">
-            what is it?
-          </SiteLink>
-          <SiteLink href="/rules" className="cta-secondary">
-            the rules
-          </SiteLink>
+        {/* the red-lacquer frame */}
+        <div className="sign-frame mt-2 w-full">
+          {/* brass corner bolts on the lacquer rail, one a little crooked */}
+          <span className="sign-bolt left-1.5 top-1.5" aria-hidden="true" />
+          <span className="sign-bolt right-1.5 top-1.5 rotate-12" aria-hidden="true" />
+          <span className="sign-bolt bottom-1.5 left-1.5" aria-hidden="true" />
+          <span className="sign-bolt bottom-1.5 right-1.5" aria-hidden="true" />
+
+          <div className="sign-inner">
+            {/* the white board: the logo, shown as-is, never touched */}
+            <h1 className="m-0 bg-white px-6 pb-0.5 pt-4 sm:px-8 sm:pt-5">
+              <Image
+                src="/logo-v2.png"
+                alt={EVENT.name}
+                width={512}
+                height={341}
+                loading="eager"
+                fetchPriority="high"
+                sizes="(min-width: 768px) 480px, 76vw"
+                className="mx-auto h-auto w-full max-w-[400px]"
+              />
+            </h1>
+
+            {/* the riveted rail — it overlaps the bubble's cut bottom edge */}
+            <div className="sign-rail" aria-hidden="true">
+              <span className="sign-rivet left-[12%]" />
+              <span className="sign-rivet left-1/2 -translate-x-1/2" />
+              <span className="sign-rivet right-[12%]" />
+            </div>
+
+            {/* the plaque: date, pitch, buttons */}
+            <div className="bg-[#c9d7ee] px-5 pb-5 pt-4 text-center sm:px-8">
+              <p className="hero-fade m-0">
+                <span className="badge-date text-xs sm:text-base">
+                  <span className="sign-led motion-safe:animate-led-blink" aria-hidden="true" />
+                  <span className="sm:hidden">{EVENT.date.toLowerCase()}</span>
+                  <span className="hidden sm:inline">{EVENT.dateLong.toLowerCase()}</span>
+                  {" "}· {EVENT.city.toLowerCase()}
+                </span>
+              </p>
+              <p className="hero-fade mx-auto mt-3.5 max-w-md text-base font-medium leading-snug text-ink md:text-lg">
+                one big day of building, coding and playing — for {EVENT.spots} young makers
+                aged {AGES}.
+              </p>
+              <div className="hero-fade mt-4 flex flex-wrap items-center justify-center gap-3">
+                <SiteLink href="/#about" className="cta-primary">
+                  what is it?
+                </SiteLink>
+                <SiteLink href="/rules" className="cta-secondary text-ink">
+                  the rules
+                </SiteLink>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* the tag on its rings, and the astronaut hanging off it */}
+        <div className="hero-tag-wrap relative -mt-1 flex flex-col items-center [transform-origin:50%_0]">
+          <div className="flex w-56 items-start justify-between px-6" aria-hidden="true">
+            <span className="sign-cord h-5" />
+            <span className="sign-cord h-5" />
+          </div>
+          <div className="relative">
+            <span
+              className="sign-tag swing-hang text-sm sm:text-base"
+              style={{ "--swing": "5deg", "--swing-time": "3.2s" } as React.CSSProperties}
+            >
+              <span className="sign-led motion-safe:animate-led-blink" aria-hidden="true" />
+              registration opens soon
+            </span>
+            {/* the keychain: a rope off the tag's left end, a kid on it */}
+            <div
+              className="swing-hang absolute left-1 top-[80%] hidden w-24 md:block"
+              style={{ "--swing": "6deg", "--swing-time": "4.6s" } as React.CSSProperties}
+              aria-hidden="true"
+            >
+              <span className="mx-auto block h-10 w-1 rounded-full bg-ink-deep" />
+              <KidAstronaut className="-mt-2 h-auto w-full -translate-x-[27%]" />
+            </div>
+          </div>
         </div>
       </div>
     </div>

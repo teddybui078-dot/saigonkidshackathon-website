@@ -530,6 +530,16 @@ body {
     font-weight: 600;
   }
 
+  /* the small red status light on the badge and the tag */
+  .sign-led {
+    display: inline-block;
+    width: 0.6rem;
+    height: 0.6rem;
+    border: 2px solid var(--stroke-ink);
+    border-radius: 9999px;
+    background: var(--accent-red);
+  }
+
   .sign-tag::after {
     content: "";
     position: absolute;
