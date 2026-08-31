@@ -182,7 +182,7 @@ export default function Tracks() {
               aria-hidden="true"
               className="absolute inset-0 hidden backface-hidden rotate-y-0 motion-safe:md:block"
             >
-              <DrawnBg aspect="tall" seed={1} tone="spaceLight" />
+              <DrawnBg aspect="tall" seed={4} tone="spaceLight" />
               <span className="absolute inset-y-4 left-2 w-1 rounded-full bg-ink-deep/30" />
               <span className="absolute inset-y-4 right-9 w-2.5 rounded-full border-2 border-ink-deep bg-energy" />
               <div className="absolute left-14 right-20 top-16 rounded-lg bg-white px-6 py-6 text-ink shadow-[0_4px_0_#0d1b2a]">

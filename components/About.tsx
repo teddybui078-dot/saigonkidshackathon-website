@@ -184,7 +184,7 @@ export default function About() {
               ))}
             </div>
             <div className="relative text-ink">
-              <DrawnBg aspect="wide" seed={0} tone="paper" bolts />
+              <DrawnBg aspect="wide" seed={3} tone="paper" bolts />
               <div className="relative z-10 px-8 py-10 md:px-12 md:py-14">
               {/* a marquee arrow: blue sign, chasing bulbs, pointing at the story */}
               <p
