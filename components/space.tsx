@@ -639,3 +639,958 @@ export function MoonTerrain({ className = "", width = 1440, ...rest }: SpaceArtP
     </svg>
   );
 }
+
+
+/* ————— the street: saigon props for the lantern-sign hero ————— */
+
+export function LotusFinial({ className = "", width = 84, ...rest }: SpaceArtProps) {
+  const petal = "M 42 44 C 34 38, 32 18, 42 8 C 52 17, 50 37, 42 44 Z";
+  return (
+    <svg
+      className={className}
+      width={width}
+      height={width * (64 / 84)}
+      viewBox="0 0 84 64"
+      fill="none"
+      aria-hidden="true"
+      focusable="false"
+      {...rest}
+    >
+      <g transform="rotate(-60 42 46)">
+        <path d={petal} fill={FLARE} stroke={STROKE} strokeWidth="3" strokeLinejoin="round" strokeLinecap="round" />
+      </g>
+      <g transform="rotate(60 42 46)">
+        <path d={petal} fill={FLARE} stroke={STROKE} strokeWidth="3" strokeLinejoin="round" strokeLinecap="round" />
+      </g>
+      <g transform="rotate(-30 42 46)">
+        <path d={petal} fill={FLARE} stroke={STROKE} strokeWidth="3" strokeLinejoin="round" strokeLinecap="round" />
+      </g>
+      <g transform="rotate(30 42 46)">
+        <path d={petal} fill={FLARE} stroke={STROKE} strokeWidth="3" strokeLinejoin="round" strokeLinecap="round" />
+      </g>
+      <path d={petal} fill={FLARE} stroke={STROKE} strokeWidth="3" strokeLinejoin="round" strokeLinecap="round" />
+      <path
+        d="M 39.5 19 C 39 15.5, 40 12.5, 42 10.5"
+        stroke={PAPER}
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        opacity="0.7"
+      />
+      <path
+        d="M 40 55 C 32 51, 24 53, 20 59 C 27 62, 35 60, 40 55 Z"
+        fill={SPACE_LIGHT}
+        stroke={STROKE}
+        strokeWidth="3"
+        strokeLinejoin="round"
+        strokeLinecap="round"
+      />
+      <path
+        d="M 44 55 C 52 51, 60 53, 64 59 C 57 62, 49 60, 44 55 Z"
+        fill={SPACE_LIGHT}
+        stroke={STROKE}
+        strokeWidth="3"
+        strokeLinejoin="round"
+        strokeLinecap="round"
+      />
+      <path
+        d="M 37 53 C 36 57, 37 60, 39.5 61.5 C 41 62.2, 43 62.2, 44.5 61.5 C 47 60, 48 57, 47 53 C 43.5 55.5, 40.5 55.5, 37 53 Z"
+        fill={YELLOW}
+        stroke={STROKE}
+        strokeWidth="3"
+        strokeLinejoin="round"
+        strokeLinecap="round"
+      />
+      <circle cx="42" cy="46" r="9" fill={SUN} stroke={STROKE} strokeWidth="3" strokeLinejoin="round" />
+      <path
+        d="M 38 43 C 38.5 41.5, 40 40.5, 41.5 40.5"
+        stroke={PAPER}
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        opacity="0.7"
+      />
+    </svg>
+  );
+}
+
+export function Lantern({ className = "", width = 64, ...rest }: SpaceArtProps) {
+  return (
+    <svg
+      className={className}
+      width={width}
+      height={width * (200 / 120)}
+      viewBox="0 0 120 200"
+      fill="none"
+      aria-hidden="true"
+      focusable="false"
+      {...rest}
+    >
+      <circle cx="60" cy="8" r="5" stroke={STROKE} strokeWidth="4" strokeLinejoin="round" />
+      <path
+        d="M 60 13 Q 61.5 20.5 60 28"
+        stroke={STROKE}
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <rect
+        x="38"
+        y="28"
+        width="44"
+        height="12"
+        rx="5"
+        fill={SUN}
+        stroke={STROKE}
+        strokeWidth="3"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M 60 40 C 86 41, 103 62, 103 88 C 103 115, 85 136, 60 136 C 35 135, 17 114, 17 88 C 17 61, 34 40, 60 40 Z"
+        fill={FLARE}
+        stroke={STROKE}
+        strokeWidth="4"
+        strokeLinejoin="round"
+        strokeLinecap="round"
+      />
+      <g className="lantern-glow">
+        <ellipse cx="60" cy="88" rx="26" ry="32" fill={SUN} />
+      </g>
+      <path
+        d="M 38 48 C 31 70, 31 106, 38 128"
+        stroke={SPACE_DARK}
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M 49 42 C 45 70, 45 106, 49 134"
+        stroke={SPACE_DARK}
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M 60 40 C 60.5 72, 59.5 104, 60 136"
+        stroke={SPACE_DARK}
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M 71 42 C 75 70, 75 106, 71 134"
+        stroke={SPACE_DARK}
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M 82 48 C 89 70, 89 106, 82 128"
+        stroke={SPACE_DARK}
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M 40 60 Q 43 51 51 46"
+        stroke={PAPER}
+        strokeWidth="5"
+        strokeLinecap="round"
+        opacity="0.7"
+      />
+      <rect
+        x="46"
+        y="134"
+        width="28"
+        height="12"
+        rx="4"
+        fill={SUN}
+        stroke={STROKE}
+        strokeWidth="3"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M 55 158 Q 52 174 54 189"
+        stroke={SUN}
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M 60 159 Q 61.5 176 60 191"
+        stroke={SUN}
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M 65 158 Q 68 174 66 189"
+        stroke={SUN}
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M 60 146 L 66.5 153 L 60 160.5 L 53.5 153 Z"
+        fill={SPACE}
+        stroke={STROKE}
+        strokeWidth="3"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+export function LanternString({ className = "", width = 1440, ...rest }: SpaceArtProps) {
+  return (
+    <svg
+      className={className}
+      width={width}
+      height={width * (220 / 1440)}
+      viewBox="0 0 1440 220"
+      preserveAspectRatio="none"
+      fill="none"
+      aria-hidden="true"
+      focusable="false"
+      {...rest}
+    >
+      <path
+        className="string-path"
+        d="M-20 40 C230 118 470 150 720 150 C970 150 1210 118 1460 40"
+        stroke={STROKE}
+        strokeWidth={4}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        vectorEffect="non-scaling-stroke"
+      />
+      <path
+        d="M-20 44 C230 122 470 154 720 154 C970 154 1210 122 1460 44"
+        stroke={SUN}
+        strokeWidth={2}
+        opacity={0.7}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        vectorEffect="non-scaling-stroke"
+      />
+      <path
+        d="M170 87 L170 95 M300 112 L300 120 M430 130 L430 138 M1010 130 L1010 138 M1160 109 L1160 117"
+        stroke={STROKE}
+        strokeWidth={4}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        vectorEffect="non-scaling-stroke"
+      />
+    </svg>
+  );
+}
+
+/* landmark 81 as a bundle of bamboo culms on a podium — the grounded anchor */
+export function Landmark81({ className = "", width = 360, ...rest }: SpaceArtProps) {
+  return (
+    <svg
+      className={className}
+      width={width}
+      height={width * (900 / 360)}
+      viewBox="0 0 360 900"
+      fill="none"
+      aria-hidden="true"
+      focusable="false"
+      {...rest}
+    >
+      <path
+        d="M20 858Q17 676 20 494A14 14 0 0 1 48 494Q51 676 48 858Z"
+        fill={SPACE_LIGHT}
+        stroke={STROKE}
+        strokeWidth="4"
+        strokeLinejoin="round"
+        strokeLinecap="round"
+      />
+      <path
+        d="M62 858Q59 608 62 357A17 17 0 0 1 96 357Q99 608 96 858Z"
+        fill={SPACE_LIGHT}
+        stroke={STROKE}
+        strokeWidth="4"
+        strokeLinejoin="round"
+        strokeLinecap="round"
+      />
+      <path
+        d="M110 858Q107 539 110 220A20 20 0 0 1 150 220Q153 539 150 858Z"
+        fill={SPACE_LIGHT}
+        stroke={STROKE}
+        strokeWidth="4"
+        strokeLinejoin="round"
+        strokeLinecap="round"
+      />
+      <path
+        d="M160 858Q156 489 160 120A24 24 0 0 1 208 120Q212 489 208 858Z"
+        fill={SPACE_LIGHT}
+        stroke={STROKE}
+        strokeWidth="4"
+        strokeLinejoin="round"
+        strokeLinecap="round"
+      />
+      <path
+        d="M214 858Q211 549 214 240A20 20 0 0 1 254 240Q257 549 254 858Z"
+        fill={SPACE_LIGHT}
+        stroke={STROKE}
+        strokeWidth="4"
+        strokeLinejoin="round"
+        strokeLinecap="round"
+      />
+      <path
+        d="M262 858Q259 618 262 377A17 17 0 0 1 296 377Q299 618 296 858Z"
+        fill={SPACE_LIGHT}
+        stroke={STROKE}
+        strokeWidth="4"
+        strokeLinejoin="round"
+        strokeLinecap="round"
+      />
+      <path
+        d="M306 858Q303 686 306 514A14 14 0 0 1 334 514Q337 686 334 858Z"
+        fill={SPACE_LIGHT}
+        stroke={STROKE}
+        strokeWidth="4"
+        strokeLinejoin="round"
+        strokeLinecap="round"
+      />
+      <path
+        d="M41 856V496Q41 486 46 492V856ZM88 856V356Q88 346 94 352V856ZM140 856V216Q140 206 148 212V856ZM196 856V112Q196 100 206 108V856ZM244 856V236Q244 226 252 232V856ZM288 856V376Q288 366 294 372V856ZM327 856V516Q327 506 332 512V856Z"
+        fill={SPACE_DARK}
+        opacity="0.5"
+      />
+      <path
+        d="M20 540h28M20 544h28M20 600h28M20 604h28M20 660h28M20 664h28M20 720h28M20 724h28M20 780h28M20 784h28M62 400h34M62 404h34M62 460h34M62 464h34M62 520h34M62 524h34M62 580h34M62 584h34M62 640h34M62 644h34M62 700h34M62 704h34M62 760h34M62 764h34M110 260h40M110 264h40M110 320h40M110 324h40M110 380h40M110 384h40M110 440h40M110 444h40M110 500h40M110 504h40M110 560h40M110 564h40M110 620h40M110 624h40M110 680h40M110 684h40M110 740h40M110 744h40M110 800h40M110 804h40M160 160h48M160 164h48M160 220h48M160 224h48M160 280h48M160 284h48M160 340h48M160 344h48M160 400h48M160 404h48M160 460h48M160 464h48M160 520h48M160 524h48M160 580h48M160 584h48M160 640h48M160 644h48M160 700h48M160 704h48M160 760h48M160 764h48M214 280h40M214 284h40M214 340h40M214 344h40M214 400h40M214 404h40M214 460h40M214 464h40M214 520h40M214 524h40M214 580h40M214 584h40M214 640h40M214 644h40M214 700h40M214 704h40M214 760h40M214 764h40M262 420h34M262 424h34M262 480h34M262 484h34M262 540h34M262 544h34M262 600h34M262 604h34M262 660h34M262 664h34M262 720h34M262 724h34M262 780h34M262 784h34M306 560h28M306 564h28M306 620h28M306 624h28M306 680h28M306 684h28M306 740h28M306 744h28M306 800h28M306 804h28"
+        stroke={STROKE}
+        strokeWidth="3"
+        strokeLinecap="round"
+      />
+      <path
+        d="M24 542h5M24 602h5M24 662h5M24 722h5M24 782h5M66 402h5M66 462h5M66 522h5M66 582h5M66 642h5M66 702h5M66 762h5M114 262h6M114 322h6M114 382h6M114 442h6M114 502h6M114 562h6M114 622h6M114 682h6M114 742h6M114 802h6M164 162h6M164 222h6M164 282h6M164 342h6M164 402h6M164 462h6M164 522h6M164 582h6M164 642h6M164 702h6M164 762h6M218 282h6M218 342h6M218 402h6M218 462h6M218 522h6M218 582h6M218 642h6M218 702h6M218 762h6M266 422h5M266 482h5M266 542h5M266 602h5M266 662h5M266 722h5M266 782h5M310 562h5M310 622h5M310 682h5M310 742h5M310 802h5"
+        stroke={PAPER}
+        strokeWidth="2"
+        strokeOpacity="0.7"
+        strokeLinecap="round"
+      />
+      <g className="tower-windows">
+        <rect x="26" y="556" width="6" height="10" rx="1.5" fill={SUN} />
+        <rect x="36" y="616" width="6" height="10" rx="1.5" fill={SUN} />
+        <rect x="26" y="676" width="6" height="10" rx="1.5" fill={SUN} />
+        <rect x="36" y="736" width="6" height="10" rx="1.5" fill={SUN} />
+        <rect x="69" y="416" width="6" height="10" rx="1.5" fill={SUN} />
+        <rect x="81" y="476" width="6" height="10" rx="1.5" fill={SUN} />
+        <rect x="69" y="536" width="6" height="10" rx="1.5" fill={SUN} />
+        <rect x="81" y="656" width="6" height="10" rx="1.5" fill={SUN} />
+        <rect x="69" y="716" width="6" height="10" rx="1.5" fill={SUN} />
+      </g>
+      <g className="tower-windows">
+        <rect x="118" y="272" width="6" height="10" rx="1.5" fill={SUN} />
+        <rect x="134" y="332" width="6" height="10" rx="1.5" fill={SUN} />
+        <rect x="118" y="392" width="6" height="10" rx="1.5" fill={SUN} />
+        <rect x="134" y="452" width="6" height="10" rx="1.5" fill={SUN} />
+        <rect x="118" y="512" width="6" height="10" rx="1.5" fill={SUN} />
+        <rect x="134" y="572" width="6" height="10" rx="1.5" fill={SUN} />
+        <rect x="118" y="692" width="6" height="10" rx="1.5" fill={SUN} />
+        <rect x="134" y="752" width="6" height="10" rx="1.5" fill={SUN} />
+      </g>
+      <g className="tower-windows">
+        <rect x="170" y="178" width="6" height="10" rx="1.5" fill={SUN} />
+        <rect x="190" y="238" width="6" height="10" rx="1.5" fill={SUN} />
+        <rect x="170" y="298" width="6" height="10" rx="1.5" fill={SUN} />
+        <rect x="190" y="358" width="6" height="10" rx="1.5" fill={SUN} />
+        <rect x="170" y="418" width="6" height="10" rx="1.5" fill={SUN} />
+      </g>
+      <g className="tower-windows">
+        <rect x="190" y="478" width="6" height="10" rx="1.5" fill={SUN} />
+        <rect x="170" y="538" width="6" height="10" rx="1.5" fill={SUN} />
+        <rect x="190" y="598" width="6" height="10" rx="1.5" fill={SUN} />
+        <rect x="170" y="658" width="6" height="10" rx="1.5" fill={SUN} />
+        <rect x="190" y="718" width="6" height="10" rx="1.5" fill={SUN} />
+        <rect x="170" y="778" width="6" height="10" rx="1.5" fill={SUN} />
+      </g>
+      <g className="tower-windows">
+        <rect x="222" y="292" width="6" height="10" rx="1.5" fill={SUN} />
+        <rect x="238" y="352" width="6" height="10" rx="1.5" fill={SUN} />
+        <rect x="222" y="412" width="6" height="10" rx="1.5" fill={SUN} />
+        <rect x="238" y="472" width="6" height="10" rx="1.5" fill={SUN} />
+        <rect x="222" y="532" width="6" height="10" rx="1.5" fill={SUN} />
+        <rect x="238" y="652" width="6" height="10" rx="1.5" fill={SUN} />
+        <rect x="222" y="712" width="6" height="10" rx="1.5" fill={SUN} />
+      </g>
+      <g className="tower-windows">
+        <rect x="269" y="432" width="6" height="10" rx="1.5" fill={SUN} />
+        <rect x="281" y="492" width="6" height="10" rx="1.5" fill={SUN} />
+        <rect x="269" y="552" width="6" height="10" rx="1.5" fill={SUN} />
+        <rect x="281" y="672" width="6" height="10" rx="1.5" fill={SUN} />
+        <rect x="269" y="732" width="6" height="10" rx="1.5" fill={SUN} />
+        <rect x="312" y="572" width="6" height="10" rx="1.5" fill={SUN} />
+        <rect x="322" y="632" width="6" height="10" rx="1.5" fill={SUN} />
+        <rect x="312" y="692" width="6" height="10" rx="1.5" fill={SUN} />
+        <rect x="322" y="752" width="6" height="10" rx="1.5" fill={SUN} />
+      </g>
+      <path
+        d="M118 240C120 230 124 222 130 216"
+        stroke={PAPER}
+        strokeWidth="4"
+        strokeOpacity="0.7"
+        strokeLinecap="round"
+      />
+      <path
+        d="M168 176C169 166 172 158 177 152"
+        stroke={PAPER}
+        strokeWidth="4"
+        strokeOpacity="0.7"
+        strokeLinecap="round"
+      />
+      <path
+        d="M222 258C224 248 228 240 234 234"
+        stroke={PAPER}
+        strokeWidth="4"
+        strokeOpacity="0.7"
+        strokeLinecap="round"
+      />
+      <path
+        d="M184 98C183 78 184 58 184 38"
+        stroke={STROKE}
+        strokeWidth="4"
+        strokeLinecap="round"
+      />
+      <circle
+        className="tower-beacon"
+        cx="184"
+        cy="38"
+        r="8"
+        fill={FLARE}
+        stroke={STROKE}
+        strokeWidth="3"
+      />
+      <rect
+        x="162"
+        y="120"
+        width="44"
+        height="30"
+        rx="6"
+        fill={PAPER}
+        stroke={STROKE}
+        strokeWidth="3"
+        strokeLinejoin="round"
+      />
+      <circle cx="175" cy="129" r="4.5" stroke={SPACE} strokeWidth="3" />
+      <circle cx="175" cy="139" r="5.5" stroke={SPACE} strokeWidth="3" />
+      <path
+        d="M187 128L193 124V144"
+        stroke={SPACE}
+        strokeWidth="4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <g className="tower-cloud" opacity="0.85">
+        <ellipse cx="150" cy="398" rx="75" ry="18" fill={MIST} />
+        <ellipse cx="235" cy="412" rx="55" ry="14" fill={MIST} />
+      </g>
+      <rect
+        x="12"
+        y="856"
+        width="336"
+        height="26"
+        rx="8"
+        fill={SKY_LIGHT}
+        stroke={STROKE}
+        strokeWidth="3"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+export function RobotCyclo({ className = "", width = 520, ...rest }: SpaceArtProps) {
+  return (
+    <svg
+      className={className}
+      width={width}
+      height={width * (420 / 520)}
+      viewBox="0 0 520 420"
+      fill="none"
+      aria-hidden="true"
+      focusable="false"
+      {...rest}
+    >
+      <path d="M 88 112 Q 84 172 94 232" stroke={STROKE} strokeWidth="3.5" strokeLinecap="round" />
+      <path d="M 184 126 Q 182 164 182 204" stroke={STROKE} strokeWidth="3.5" strokeLinecap="round" />
+      <path d="M 280 112 Q 286 172 278 230" stroke={STROKE} strokeWidth="3.5" strokeLinecap="round" />
+      <circle cx="430" cy="320" r="59" stroke={STROKE} strokeWidth="5" />
+      <circle cx="430" cy="320" r="53" stroke={SPACE_DARK} strokeWidth="10" />
+      <g className="cyclo-wheel">
+        <circle cx="430" cy="320" r="47" fill={PAPER} stroke={STROKE} strokeWidth="5" strokeLinejoin="round" />
+        <path d="M 387 320 L 473 320" stroke={STROKE} strokeWidth="3.5" strokeLinecap="round" />
+        <path d="M 430 277 L 430 363" stroke={STROKE} strokeWidth="3.5" strokeLinecap="round" />
+        <path d="M 400 290 L 460 350" stroke={STROKE} strokeWidth="3.5" strokeLinecap="round" />
+        <path d="M 400 350 L 460 290" stroke={STROKE} strokeWidth="3.5" strokeLinecap="round" />
+        <circle cx="430" cy="320" r="10" fill={SUN} stroke={STROKE} strokeWidth="4" />
+      </g>
+      <path
+        d="M 250 302 C 302 298 334 278 354 248 C 392 262 416 290 430 320"
+        stroke={STROKE}
+        strokeWidth="6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path d="M 364 250 Q 382 286 414 310" stroke={STROKE} strokeWidth="5" strokeLinecap="round" />
+      <path d="M 388 250 Q 424 292 446 330" stroke={STROKE} strokeWidth="5" strokeLinecap="round" />
+      <path d="M 414 310 L 446 330" stroke={STROKE} strokeWidth="4" strokeLinecap="round" />
+      <rect x="348" y="248" width="52" height="14" rx="7" fill={SPACE_DARK} stroke={STROKE} strokeWidth="4" strokeLinejoin="round" />
+      <g transform="translate(436 288) rotate(22)">
+        <path d="M 42 4 L 54 -2 L 54 24 L 42 18 Z" fill={SPACE_DARK} stroke={STROKE} strokeWidth="4" strokeLinejoin="round" />
+        <path
+          d="M 12 0 Q -4 11 12 22 L 34 22 Q 44 20 46 11 Q 44 2 34 0 Z"
+          fill={FLARE}
+          stroke={STROKE}
+          strokeWidth="4"
+          strokeLinejoin="round"
+        />
+      </g>
+      <g transform="translate(428 314) rotate(40)">
+        <path d="M 42 4 L 54 -2 L 54 24 L 42 18 Z" fill={SPACE_DARK} stroke={STROKE} strokeWidth="4" strokeLinejoin="round" />
+        <path
+          d="M 12 0 Q -4 11 12 22 L 34 22 Q 44 20 46 11 Q 44 2 34 0 Z"
+          fill={FLARE}
+          stroke={STROKE}
+          strokeWidth="4"
+          strokeLinejoin="round"
+        />
+      </g>
+      <g className="hero-flame">
+        <path
+          d="M 480 294 Q 502 294 514 314 Q 500 328 478 320 Q 474 306 480 294 Z"
+          fill={FLARE}
+          stroke={STROKE}
+          strokeWidth="4"
+          strokeLinejoin="round"
+        />
+        <path d="M 482 300 Q 498 301 505 313 Q 494 320 481 314 Z" fill={SUN} />
+        <path d="M 484 305 Q 493 306 497 312 Q 490 316 483 311 Z" fill={PAPER} />
+        <path
+          d="M 462 336 Q 486 346 492 370 Q 470 376 454 358 Q 454 344 462 336 Z"
+          fill={FLARE}
+          stroke={STROKE}
+          strokeWidth="4"
+          strokeLinejoin="round"
+        />
+        <path d="M 465 343 Q 480 351 484 363 Q 469 364 459 352 Z" fill={SUN} />
+        <path d="M 467 349 Q 475 353 477 359 Q 469 359 464 352 Z" fill={PAPER} />
+      </g>
+      <rect x="336" y="178" width="76" height="76" rx="12" fill={PAPER} stroke={STROKE} strokeWidth="4" strokeLinejoin="round" />
+      <rect x="350" y="196" width="48" height="38" rx="6" fill={SPACE} stroke={STROKE} strokeWidth="3.5" strokeLinejoin="round" />
+      <path
+        d="M 366 208 L 359 215 L 366 222 M 382 208 L 389 215 L 382 222 M 379 206 L 369 224"
+        stroke={SUN}
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <rect x="344" y="116" width="62" height="58" rx="10" fill={PAPER} stroke={STROKE} strokeWidth="4" strokeLinejoin="round" />
+      <circle cx="362" cy="140" r="7" fill={SUN} stroke={STROKE} strokeWidth="3.5" />
+      <circle cx="388" cy="140" r="7" fill={SUN} stroke={STROKE} strokeWidth="3.5" />
+      <path d="M 360 156 Q 375 165 390 156" stroke={STROKE} strokeWidth="4" strokeLinecap="round" />
+      <path d="M 375 116 Q 373 106 375 98" stroke={STROKE} strokeWidth="4" strokeLinecap="round" />
+      <circle className="cyclo-led" cx="375" cy="92" r="7" fill={FLARE} stroke={STROKE} strokeWidth="3.5" />
+      <circle cx="110" cy="300" r="80" stroke={STROKE} strokeWidth="5" />
+      <circle cx="110" cy="300" r="72" stroke={SPACE_DARK} strokeWidth="13" />
+      <g className="cyclo-wheel">
+        <circle cx="110" cy="300" r="64" fill={PAPER} stroke={STROKE} strokeWidth="5" strokeLinejoin="round" />
+        <path d="M 52 300 L 168 300" stroke={STROKE} strokeWidth="3.5" strokeLinecap="round" />
+        <path d="M 110 242 L 110 358" stroke={STROKE} strokeWidth="3.5" strokeLinecap="round" />
+        <path d="M 69 259 L 151 341" stroke={STROKE} strokeWidth="3.5" strokeLinecap="round" />
+        <path d="M 69 341 L 151 259" stroke={STROKE} strokeWidth="3.5" strokeLinecap="round" />
+        <circle cx="110" cy="300" r="12" fill={SUN} stroke={STROKE} strokeWidth="4" />
+      </g>
+      <path d="M 110 300 Q 180 290 250 300" stroke={STROKE} strokeWidth="6" strokeLinecap="round" />
+      <circle cx="250" cy="300" r="80" stroke={STROKE} strokeWidth="5" />
+      <circle cx="250" cy="300" r="72" stroke={SPACE_DARK} strokeWidth="13" />
+      <g className="cyclo-wheel">
+        <circle cx="250" cy="300" r="64" fill={PAPER} stroke={STROKE} strokeWidth="5" strokeLinejoin="round" />
+        <path d="M 192 300 L 308 300" stroke={STROKE} strokeWidth="3.5" strokeLinecap="round" />
+        <path d="M 250 242 L 250 358" stroke={STROKE} strokeWidth="3.5" strokeLinecap="round" />
+        <path d="M 209 259 L 291 341" stroke={STROKE} strokeWidth="3.5" strokeLinecap="round" />
+        <path d="M 209 341 L 291 259" stroke={STROKE} strokeWidth="3.5" strokeLinecap="round" />
+        <circle cx="250" cy="300" r="12" fill={SUN} stroke={STROKE} strokeWidth="4" />
+      </g>
+      <path
+        d="M 252 262 Q 246 200 266 162 Q 292 170 290 216 Q 288 246 282 262 Z"
+        fill={SUN}
+        stroke={STROKE}
+        strokeWidth="4"
+        strokeLinejoin="round"
+      />
+      <rect x="92" y="228" width="176" height="40" rx="16" fill={SUN} stroke={STROKE} strokeWidth="4" strokeLinejoin="round" />
+      <path d="M 102 233 Q 180 226 258 233" stroke={FLARE} strokeWidth="5" strokeLinecap="round" />
+      <rect x="118" y="150" width="120" height="84" rx="10" fill={SPACE_DARK} stroke={STROKE} strokeWidth="4" strokeLinejoin="round" />
+      <rect x="130" y="162" width="96" height="60" rx="6" fill={SPACE} />
+      <path
+        d="M 158 180 L 146 192 L 158 204 M 198 180 L 210 192 L 198 204 M 188 178 L 168 206"
+        stroke={SUN}
+        strokeWidth="4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <rect className="laptop-cursor" x="214" y="200" width="6" height="12" fill={PAPER} />
+      <path d="M 304 234 Q 296 206 314 194" stroke={STROKE} strokeWidth="6" strokeLinecap="round" />
+      <path d="M 340 198 L 322 212 L 306 202" stroke={STROKE} strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M 342 212 L 326 228 L 308 216" stroke={STROKE} strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
+      <path
+        d="M 72 110 Q 184 52 296 110 Q 262 130 222 112 Q 184 134 146 112 Q 108 130 72 110 Z"
+        fill={FLARE}
+        stroke={STROKE}
+        strokeWidth="4"
+        strokeLinejoin="round"
+      />
+      <path d="M 112 100 Q 132 90 152 85" stroke={PAPER} strokeWidth="4" strokeLinecap="round" opacity="0.7" />
+      <path d="M 98 108 Q 104 101 114 96" stroke={PAPER} strokeWidth="4" strokeLinecap="round" opacity="0.7" />
+      <path d="M 54 252 Q 62 240 74 232" stroke={PAPER} strokeWidth="4.5" strokeLinecap="round" opacity="0.7" />
+    </svg>
+  );
+}
+
+export function Foliage({ className = "", width = 640, ...rest }: SpaceArtProps) {
+  return (
+    <svg
+      className={className}
+      width={width}
+      height={width * (520 / 640)}
+      viewBox="0 0 640 520"
+      fill="none"
+      aria-hidden="true"
+      focusable="false"
+      {...rest}
+    >
+      <g className="frond">
+        <path
+          d="M 598 498 C 640 360 590 180 340 96"
+          stroke={STROKE}
+          strokeWidth="9"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M 606 470 Q 581 458 556 470 Q 581 482 606 470 Z M 610 433 Q 630 420 638 398 Q 618 410 610 433 Z M 609 400 Q 580 398 556 412 Q 584 414 609 400 Z M 608 366 Q 628 354 636 332 Q 616 344 608 366 Z M 601 333 Q 572 332 548 346 Q 576 348 601 333 Z M 589 299 Q 616 289 634 266 Q 606 276 589 299 Z M 574 268 Q 545 267 520 282 Q 549 283 574 268 Z M 551 234 Q 577 221 592 196 Q 566 209 551 234 Z M 527 207 Q 498 208 474 224 Q 503 223 527 207 Z M 492 175 Q 514 159 524 134 Q 502 149 492 175 Z M 462 152 Q 434 155 412 172 Q 440 169 462 152 Z M 430 133 Q 448 115 452 90 Q 434 107 430 133 Z M 398 118 Q 371 122 350 140 Q 377 136 398 118 Z M 362 102 Q 352 78 330 64 Q 340 88 362 102 Z"
+          fill={SPACE}
+          stroke={STROKE}
+          strokeWidth="4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M 598 498 C 640 360 590 180 340 96"
+          stroke={SPACE}
+          strokeWidth="5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </g>
+      <g className="leaf-b">
+        <path
+          d="M 601 501 C 590 448 574 392 556 336"
+          stroke={SPACE_LIGHT}
+          strokeWidth="8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M 558 338 Q 570 155 432 44 Q 424 225 558 338 Z"
+          fill={SPACE_DARK}
+          stroke={STROKE}
+          strokeWidth="4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M 558 338 Q 496 190 436 48"
+          stroke={SPACE_LIGHT}
+          strokeWidth="5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M 533 279 Q 545 262 549 242 M 509 221 Q 520 202 528 181 M 484 163 Q 494 146 500 127 M 460 105 Q 464 92 466 81 M 521 250 Q 503 248 489 238 M 497 192 Q 481 192 467 185 M 472 134 Q 458 135 447 130 M 448 77 Q 442 74 438 68"
+          stroke={SPACE_LIGHT}
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M 452 84 Q 462 100 470 116"
+          stroke={PAPER}
+          strokeWidth="4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          opacity="0.7"
+        />
+      </g>
+      <g className="leaf-a">
+        <path
+          d="M 601 501 C 548 468 480 424 434 380"
+          stroke={SPACE_LIGHT}
+          strokeWidth="8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M 432 382 Q 325 155 84 108 Q 150 290 290 336 L 318 310 L 352 350 Q 400 368 432 382 Z"
+          fill={SPACE_DARK}
+          stroke={STROKE}
+          strokeWidth="4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M 432 382 Q 270 240 90 112"
+          stroke={SPACE_LIGHT}
+          strokeWidth="5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M 366 326 Q 362 300 350 278 M 300 271 Q 297 244 285 214 M 231 217 Q 228 192 217 164 M 161 164 Q 158 148 150 133 M 333 298 Q 315 316 288 326 M 266 244 Q 248 262 224 271 M 196 190 Q 180 205 156 213 M 126 138 Q 116 146 104 150"
+          stroke={SPACE_LIGHT}
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M 190 180 Q 220 172 248 178"
+          stroke={PAPER}
+          strokeWidth="4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          opacity="0.7"
+        />
+        <path
+          d="M 270 218 Q 294 212 318 218"
+          stroke={PAPER}
+          strokeWidth="4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          opacity="0.7"
+        />
+      </g>
+    </svg>
+  );
+}
+
+export function BrickPile({ className = "", width = 260, ...rest }: SpaceArtProps) {
+  return (
+    <svg
+      className={className}
+      width={width}
+      height={width * (160 / 260)}
+      viewBox="0 0 260 160"
+      fill="none"
+      aria-hidden="true"
+      focusable="false"
+      {...rest}
+    >
+      <g stroke={STROKE} strokeWidth="3.5" strokeLinejoin="round" strokeLinecap="round">
+        <path d="M 4 152 Q 120 156 252 151" />
+        <path
+          fill={YELLOW}
+          d="M 13 123 Q 36 121 59 124 Q 64 124 64 129 L 64 145 Q 64 150 59 150 Q 36 152 13 149 Q 8 149 8 144 L 8 128 Q 8 123 13 123 Z"
+        />
+        <rect x="16" y="117" width="8" height="6" rx="2" fill={YELLOW} />
+        <rect x="32" y="117" width="8" height="6" rx="2" fill={YELLOW} />
+        <rect x="48" y="118" width="8" height="6" rx="2" fill={YELLOW} />
+        <path
+          fill={SUN}
+          d="M 69 121 Q 92 119 115 121 Q 120 121 120 126 L 120 142 Q 120 147 115 147 Q 92 149 69 147 Q 64 147 64 142 L 64 126 Q 64 121 69 121 Z"
+        />
+        <rect x="72" y="115" width="8" height="6" rx="2" fill={SUN} />
+        <rect x="88" y="115" width="8" height="6" rx="2" fill={SUN} />
+        <rect x="104" y="115" width="8" height="6" rx="2" fill={SUN} />
+        <path
+          fill={YELLOW}
+          d="M 125 124 Q 148 121 171 122 Q 176 122 176 127 L 176 143 Q 176 148 171 148 Q 148 151 125 149 Q 120 149 120 144 L 120 129 Q 120 124 125 124 Z"
+        />
+        <rect x="128" y="118" width="8" height="6" rx="2" fill={YELLOW} />
+        <rect x="144" y="117" width="8" height="6" rx="2" fill={YELLOW} />
+        <rect x="160" y="117" width="8" height="6" rx="2" fill={YELLOW} />
+        <path
+          fill={SUN}
+          d="M 181 122 Q 204 120 227 123 Q 232 123 232 128 L 232 144 Q 232 149 227 149 Q 204 150 181 148 Q 176 148 176 143 L 176 127 Q 176 122 181 122 Z"
+        />
+        <rect x="184" y="116" width="8" height="6" rx="2" fill={SUN} />
+        <rect x="200" y="116" width="8" height="6" rx="2" fill={SUN} />
+        <rect x="216" y="117" width="8" height="6" rx="2" fill={SUN} />
+        <path
+          fill={SUN}
+          d="M 41 96 Q 64 94 87 97 Q 92 97 92 102 L 92 117 Q 92 122 87 122 Q 64 124 41 121 Q 36 121 36 116 L 36 101 Q 36 96 41 96 Z"
+        />
+        <rect x="44" y="90" width="8" height="6" rx="2" fill={SUN} />
+        <rect x="60" y="90" width="8" height="6" rx="2" fill={SUN} />
+        <rect x="76" y="90" width="8" height="6" rx="2" fill={SUN} />
+        <path
+          fill={FLARE}
+          d="M 99 94 Q 122 92 145 95 Q 150 95 150 100 L 150 115 Q 150 120 145 120 Q 122 122 99 120 Q 94 120 94 115 L 94 99 Q 94 94 99 94 Z"
+        />
+        <rect x="102" y="88" width="8" height="6" rx="2" fill={FLARE} />
+        <rect x="118" y="88" width="8" height="6" rx="2" fill={FLARE} />
+        <rect x="134" y="88" width="8" height="6" rx="2" fill={FLARE} />
+        <path d="M 103 101 Q 110 100 117 101" stroke={PAPER} strokeOpacity="0.7" />
+        <path
+          fill={YELLOW}
+          d="M 155 96 Q 178 94 201 95 Q 206 95 206 100 L 206 116 Q 206 121 201 121 Q 178 123 155 122 Q 150 122 150 117 L 150 101 Q 150 96 155 96 Z"
+        />
+        <rect x="158" y="90" width="8" height="6" rx="2" fill={YELLOW} />
+        <rect x="174" y="89" width="8" height="6" rx="2" fill={YELLOW} />
+        <rect x="190" y="89" width="8" height="6" rx="2" fill={YELLOW} />
+        <path
+          fill={YELLOW}
+          d="M 71 69 Q 94 67 117 70 Q 122 70 122 75 L 122 90 Q 122 95 117 95 Q 94 97 71 95 Q 66 95 66 90 L 66 74 Q 66 69 71 69 Z"
+        />
+        <rect x="74" y="63" width="8" height="6" rx="2" fill={YELLOW} />
+        <rect x="90" y="63" width="8" height="6" rx="2" fill={YELLOW} />
+        <rect x="106" y="63" width="8" height="6" rx="2" fill={YELLOW} />
+        <path
+          fill={SUN}
+          d="M 127 68 Q 150 66 173 69 Q 178 69 178 74 L 178 89 Q 178 94 173 94 Q 150 96 127 94 Q 122 94 122 89 L 122 73 Q 122 68 127 68 Z"
+        />
+        <rect x="130" y="62" width="8" height="6" rx="2" fill={SUN} />
+        <rect x="146" y="62" width="8" height="6" rx="2" fill={SUN} />
+        <rect x="162" y="63" width="8" height="6" rx="2" fill={SUN} />
+        <g className="brick-free">
+          <rect x="102" y="11" width="8" height="6" rx="2" fill={SUN} />
+          <rect x="118" y="11" width="8" height="6" rx="2" fill={SUN} />
+          <rect x="134" y="11" width="8" height="6" rx="2" fill={SUN} />
+          <path
+            fill={SUN}
+            d="M 99 17 Q 122 15 145 18 Q 150 18 150 23 L 150 38 Q 150 43 145 43 Q 122 45 99 43 Q 94 43 94 38 L 94 22 Q 94 17 99 17 Z"
+          />
+          <path d="M 103 24 Q 110 23 117 24" stroke={PAPER} strokeOpacity="0.7" />
+        </g>
+        <path
+          fill={MIST}
+          strokeWidth="3"
+          d="M 207 98 Q 219 93 231 92 Q 235 91 236 95 Q 244 118 247 138 Q 248 142 244 143 Q 232 148 220 149 Q 216 150 215 146 Q 206 124 204 103 Q 203 99 207 98 Z"
+        />
+        <g fill={SPACE_DARK} stroke="none">
+          <circle cx="222" cy="135" r="2" />
+          <circle cx="220" cy="128" r="2" />
+          <circle cx="218" cy="121" r="2" />
+          <circle cx="216" cy="114" r="2" />
+          <circle cx="214" cy="107" r="2" />
+          <circle cx="233" cy="132" r="2" />
+          <circle cx="231" cy="125" r="2" />
+          <circle cx="229" cy="118" r="2" />
+          <circle cx="227" cy="111" r="2" />
+          <circle cx="225" cy="104" r="2" />
+        </g>
+        <circle className="board-led" cx="218" cy="99" r="4" fill={FLARE} strokeWidth="3" />
+        <path d="M 227 93 Q 236 78 250 80" strokeWidth="2.5" />
+        <path d="M 214 96 Q 202 82 210 70" strokeWidth="2.5" />
+      </g>
+    </svg>
+  );
+}
+
+export function SaigonSkyline({ className = "", width = 1440, ...rest }: SpaceArtProps) {
+  return (
+    <svg
+      className={className}
+      width={width}
+      height={width * (240 / 1440)}
+      viewBox="0 0 1440 240"
+      fill="none"
+      aria-hidden="true"
+      focusable="false"
+      {...rest}
+    >
+      {/* farthest blocks, palest */}
+      <g fill={SKY_LIGHT} opacity="0.5">
+        <path d="M168 240 L170 158 Q205 153 238 157 L240 240 Z" />
+        <path d="M762 240 L764 152 Q800 147 836 151 L838 240 Z" />
+      </g>
+      {/* mid-distance stepped blocks and the pagoda */}
+      <g fill={MIST} opacity="0.7">
+        <path d="M56 240 L58 184 Q80 180 102 183 L104 208 L136 210 L138 240 Z" />
+        <path d="M258 240 L260 194 Q296 190 330 193 L332 240 Z" />
+        <path d="M452 240 L454 174 Q470 170 486 173 L488 196 L518 198 L520 240 Z" />
+        <path d="M574 240 L576 184 Q600 179 624 184 L626 240 Z" />
+        <path d="M560 208 Q600 197 640 208 Q600 217 560 208 Z" />
+        <path d="M566 186 Q600 175 634 186 Q600 193 566 186 Z" />
+        <path d="M664 240 L666 198 Q702 193 738 197 L740 240 Z" />
+        <path d="M948 240 L950 200 L976 198 L978 176 Q1004 171 1028 176 L1030 240 Z" />
+        <path d="M1058 240 L1060 168 Q1098 163 1136 168 L1138 240 Z" />
+        <path d="M1162 240 L1164 192 Q1205 187 1246 192 L1248 240 Z" />
+        <path d="M1282 240 L1284 176 Q1310 171 1334 175 L1336 202 L1376 204 L1378 240 Z" />
+      </g>
+      {/* the two landmarks, nearest of the silhouettes */}
+      <g opacity="0.9">
+        <path d="M338 240 L340 186 Q384 180 428 185 L430 240 Z" fill={MIST} />
+        <path d="M352 200 C351 172 352 146 354 130 Q380 124 406 129 C408 148 408 174 408 200 Z" fill={MIST} />
+        <path d="M344 134 Q380 90 416 134 Q380 126 344 134 Z" fill={MIST} />
+        <circle cx="380" cy="158" r="10" fill={SKY_LIGHT} />
+        <path d="M380 151 L380 158 L386 160" stroke={SPACE_DARK} strokeWidth="2.5" strokeLinejoin="round" strokeLinecap="round" />
+        <path d="M850 240 C854 190 862 140 872 108 Q876 92 888 90 Q900 92 904 108 C914 140 922 190 926 240 Z" fill={MIST} />
+        <path d="M873 128 Q846 119 828 124 Q846 133 874 137 Z" fill={MIST} />
+      </g>
+    </svg>
+  );
+}
+
+export function ChalkStar({ className = "", width = 32, ...rest }: SpaceArtProps) {
+  return (
+    <svg
+      className={className}
+      width={width}
+      height={width * (48 / 48)}
+      viewBox="0 0 48 48"
+      fill="none"
+      aria-hidden="true"
+      focusable="false"
+      {...rest}
+    >
+      <path
+        d="M23 3 Q26 19 41 25 Q27 28 25 44 Q22 29 7 24 Q20 19 23 3 Z"
+        fill="none"
+        stroke={PAPER}
+        strokeWidth={2.5}
+        strokeLinejoin="round"
+        strokeLinecap="round"
+      />
+      <path
+        d="M29 8 Q32 6 35 5"
+        fill="none"
+        stroke={PAPER}
+        strokeWidth={2.5}
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+export function OrbitArc({ className = "", width = 1440, ...rest }: SpaceArtProps) {
+  return (
+    <svg
+      className={className}
+      width={width}
+      height={width * (900 / 1440)}
+      viewBox="0 0 1440 900"
+      fill="none"
+      preserveAspectRatio="xMidYMid slice"
+      aria-hidden="true"
+      focusable="false"
+      {...rest}
+    >
+      <circle
+        className="orbit-arc"
+        cx={720}
+        cy={1150}
+        r={780}
+        stroke={PAPER}
+        strokeWidth={3}
+        strokeDasharray="3 12"
+        strokeLinecap="round"
+        opacity={0.45}
+        vectorEffect="non-scaling-stroke"
+      />
+      <circle cx={122.5} cy={648.6} r={2} fill={PAPER} opacity={0.6} />
+      <circle cx={720} cy={370} r={2} fill={PAPER} opacity={0.6} />
+      <circle cx={1317.5} cy={648.6} r={2} fill={PAPER} opacity={0.6} />
+    </svg>
+  );
+}
