@@ -1,8 +1,9 @@
 /* layer 5 — the sign the hero hangs its name on: two cords down from the
    lantern string, a bamboo pole with a lotus on top, the red-lacquer
-   frame, the hand-drawn wordmark on the white board, the plaque with the
-   facts and the buttons, and the tag swinging underneath with the
-   astronaut hanging off it. every number comes from event.ts */
+   frame, the hand-drawn wordmark on the white board, and the tag swinging
+   underneath with the astronaut hanging off it. the sign is pure
+   illustration — the facts and the buttons sit below it, on the sky.
+   every number comes from event.ts */
 
 import SiteLink from "./SiteLink";
 import { HERO_LAYER } from "./hero-layers";
@@ -50,30 +51,6 @@ export default function HeroUi() {
               <span className="sr-only">{EVENT.name}</span>
               <Wordmark className="mx-auto h-auto w-full max-w-[440px]" />
             </h1>
-
-            {/* the plaque: date, pitch, buttons */}
-            <div className="bg-[#c9d7ee] px-5 pb-5 pt-4 text-center sm:px-8">
-              <p className="hero-fade m-0">
-                <span className="badge-date text-xs sm:text-base">
-                  <span className="sign-led motion-safe:animate-led-blink" aria-hidden="true" />
-                  <span className="sm:hidden">{EVENT.date.toLowerCase()}</span>
-                  <span className="hidden sm:inline">{EVENT.dateLong.toLowerCase()}</span>
-                  {" "}· {EVENT.city.toLowerCase()}
-                </span>
-              </p>
-              <p className="hero-fade mx-auto mt-3.5 max-w-md text-base font-medium leading-snug text-ink md:text-lg">
-                one big day of building, coding and playing — for {EVENT.spots} young makers
-                aged {AGES}.
-              </p>
-              <div className="hero-fade mt-4 flex flex-wrap items-center justify-center gap-3">
-                <SiteLink href="/#about" className="cta-primary">
-                  what is it?
-                </SiteLink>
-                <SiteLink href="/rules" className="cta-secondary text-ink">
-                  the rules
-                </SiteLink>
-              </div>
-            </div>
           </div>
         </div>
 
@@ -93,14 +70,39 @@ export default function HeroUi() {
             </span>
             {/* the keychain: a rope off the tag's left end, a kid on it */}
             <div
-              className="swing-hang absolute left-1 top-[80%] hidden w-24 md:block"
+              className="swing-hang absolute left-1 top-[72%] hidden w-24 md:block"
               style={{ "--swing": "6deg", "--swing-time": "4.6s" } as React.CSSProperties}
               aria-hidden="true"
             >
-              <span className="mx-auto block h-10 w-1 rounded-full bg-ink-deep" />
+              <span className="mx-auto block h-7 w-1 rounded-full bg-ink-deep" />
               <KidAstronaut className="-mt-2 h-auto w-full -translate-x-[27%]" />
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* the facts and the buttons — out of the art, on the sky. no
+          data-speed and outside .hero-sign, so they neither bob nor drift */}
+      <div className="hero-actions mt-16 flex flex-col items-center px-4 text-center text-white md:mt-24">
+        <p className="hero-fade m-0">
+          <span className="badge-date text-xs sm:text-base">
+            <span className="sign-led motion-safe:animate-led-blink" aria-hidden="true" />
+            <span className="sm:hidden">{EVENT.date.toLowerCase()}</span>
+            <span className="hidden sm:inline">{EVENT.dateLong.toLowerCase()}</span>
+            {" "}· {EVENT.city.toLowerCase()}
+          </span>
+        </p>
+        <p className="hero-fade mx-auto mt-3.5 max-w-md text-base font-medium leading-snug text-white/90 md:text-lg">
+          one big day of building, coding and playing — for {EVENT.spots} young makers
+          aged {AGES}.
+        </p>
+        <div className="hero-fade mt-4 flex flex-wrap items-center justify-center gap-3">
+          <SiteLink href="/#about" className="cta-primary">
+            what is it?
+          </SiteLink>
+          <SiteLink href="/rules" className="cta-secondary">
+            the rules
+          </SiteLink>
         </div>
       </div>
     </div>
