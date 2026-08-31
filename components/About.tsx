@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { PixelGrid, Sparkle, FloatingLaptop, PixelBulb, PixelStack, FlightArc, PixelTrophy } from "./decorations";
-import { Screws, DomeButton, Led, Pushpin } from "./parts";
+import { Screws, DomeButton, Led, Pushpin, Scuffs } from "./parts";
 import { DrawnBg, DrawnDiscBg } from "./drawn";
 import { PartyPopper } from "./illustrations";
 import { EVENT } from "./event";
@@ -245,6 +245,9 @@ export default function About() {
         {/* a riveted control panel: brushed metal, screws, domed push-buttons */}
         <div className="about-panel metal-brushed relative mt-14 rounded-3xl border-4 border-ink-deep px-6 pb-9 pt-10 text-ink shadow-[0_10px_0_#ffd166] md:px-10">
           <Screws />
+          {/* the panel has been carried around a bit */}
+          <Scuffs seed={0} className="absolute left-12 top-4 hidden md:block" />
+          <Scuffs seed={2} size={56} className="absolute bottom-5 right-14 rotate-[8deg] hidden md:block" />
           <div className="absolute right-8 top-3 flex items-center gap-2 text-[10px] font-semibold tracking-wide text-ink/50">
             <Led className="motion-safe:animate-led-blink" />
             on

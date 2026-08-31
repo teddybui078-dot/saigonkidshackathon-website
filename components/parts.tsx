@@ -4,7 +4,7 @@
    size — anything that must stretch with content is css, not svg. */
 
 import Image from "next/image";
-import { BLUE, YELLOW, SKY_DEEP, METAL, SUN, SPACE_LIGHT } from "./palette";
+import { BLUE, YELLOW, SKY_DEEP, METAL, SUN, SPACE_LIGHT, PAPER } from "./palette";
 import type { Partner } from "./partners";
 
 /* ————— fasteners ————— */
@@ -67,6 +67,54 @@ export function Pushpin({ className = "", size = 26 }: { className?: string; siz
       <path d="M14 20 L14 34" stroke={BLUE} strokeWidth="3" strokeLinecap="round" />
       <circle cx="14" cy="12" r="10" fill={YELLOW} stroke={BLUE} strokeWidth="3" />
       <circle cx="10.5" cy="8.5" r="2.5" fill="#fff" opacity="0.7" />
+    </svg>
+  );
+}
+
+/* ————— wear ————— */
+
+/* hand-scratched marks for hard surfaces — metal, lacquer, plastic.
+   three arrangements picked by seed: parallel ticks with a stray comma,
+   an L-scratch with a lone tick, three short rain ticks. the way worked
+   surfaces actually look. */
+const SCUFF_MARKS = [
+  ["M8 30 L24 14", "M16 36 L32 20", "M62 12 Q68 8 72 14"],
+  ["M10 12 L28 10 L32 26", "M58 32 L74 20"],
+  ["M8 26 L18 12", "M30 32 L42 16", "M56 24 L64 12"],
+];
+
+export function Scuffs({
+  className = "",
+  seed = 0,
+  size = 72,
+  color = PAPER,
+}: {
+  className?: string;
+  seed?: number;
+  size?: number;
+  color?: string;
+}) {
+  const marks = SCUFF_MARKS[seed % SCUFF_MARKS.length];
+  return (
+    <svg
+      className={`pointer-events-none ${className}`}
+      width={size}
+      height={size * (44 / 84)}
+      viewBox="0 0 84 44"
+      fill="none"
+      aria-hidden="true"
+    >
+      {marks.map((d) => (
+        <path
+          key={d}
+          d={d}
+          stroke={color}
+          strokeWidth={3.5}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          opacity={0.55}
+        />
+      ))}
     </svg>
   );
 }
