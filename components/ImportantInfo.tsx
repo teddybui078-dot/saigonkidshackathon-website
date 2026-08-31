@@ -5,20 +5,19 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { FloatingLaptop, PixelStack, Sparkle } from "./decorations";
 import { Screws, SubjectIcon, type SubjectKind } from "./parts";
-import { PrizeTag } from "./illustrations";
 import SiteLink from "./SiteLink";
-import { EVENT, AGES, GRADES, TEAM_SIZE, FEE_COVERS } from "./event";
+import { AGES, GRADES, TEAM_SIZE } from "./event";
 import { RULES } from "./rules";
-import { ON_SITE_RULE, CHAPERONE_RULE } from "./parents";
+import { ON_SITE_RULE } from "./parents";
 
 gsap.registerPlugin(ScrollTrigger);
 
-type TabKey = "fees" | "requirements" | "parents" | "rules";
+type TabKey = "requirements" | "fees" | "parents" | "rules";
 
 /* the four dividers, in the order they stand in the box */
 const TABS: { key: TabKey; label: string; icon: SubjectKind }[] = [
-  { key: "fees", label: "Fees", icon: "gear" },
   { key: "requirements", label: "Requirements", icon: "list" },
+  { key: "fees", label: "Fees", icon: "gear" },
   { key: "parents", label: "Parents", icon: "heart" },
   { key: "rules", label: "Rules", icon: "book" },
 ];
@@ -73,16 +72,6 @@ function Panel({
   );
 }
 
-function SquareBullet() {
-  // a small yellow square in place of a dot
-  return (
-    <span
-      className="mt-2.5 h-2.5 w-2.5 shrink-0 rounded-[3px] border-2 border-saigon bg-energy"
-      aria-hidden="true"
-    />
-  );
-}
-
 function CheckSquare() {
   // a ticked box on the checklist
   return (
@@ -107,9 +96,9 @@ export default function ImportantInfo() {
   const sectionRef = useRef<HTMLElement>(null);
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const deckRef = useRef<HTMLDivElement>(null);
-  const [active, setActive] = useState<TabKey>("fees");
+  const [active, setActive] = useState<TabKey>("requirements");
   // the card that was last dealt — the first mount deals nothing
-  const lastActive = useRef<TabKey>("fees");
+  const lastActive = useRef<TabKey>("requirements");
   // how tall the deck was before the switch, so it can glide to the new card
   const deckHeight = useRef<number | null>(null);
 
@@ -249,7 +238,8 @@ export default function ImportantInfo() {
             The <span className="text-saigon">important</span> information
           </h2>
           <p className="info-line mt-4 font-medium text-ink/60">
-            Fees, requirements, what parents need to know, and the rules — all in one box.
+            Requirements, how paying works, what parents need to know, and the rules — all in one
+            box.
           </p>
         </div>
 
@@ -317,36 +307,6 @@ export default function ImportantInfo() {
 
               {/* the deck: clipped while it glides between card heights */}
               <div ref={deckRef} className="info-deck relative overflow-hidden">
-              <Panel id="fees" title="Fees" active={active === "fees"}>
-                {/* the price on a luggage tag, hung from a short string */}
-                <div className="relative inline-block pt-4">
-                  <span
-                    className="absolute left-[18px] top-0 h-5 w-[3px] rounded-full bg-saigon"
-                    aria-hidden="true"
-                  />
-                  <PrizeTag className="-rotate-1 [filter:drop-shadow(0_4px_0_#01337f)]">
-                    <span className="text-lg font-bold">{EVENT.fee.display} per builder</span>
-                  </PrizeTag>
-                </div>
-                <p className="mt-6 text-xs font-semibold uppercase tracking-widest text-ink/50">
-                  What it covers
-                </p>
-                <ul className="mt-2 space-y-1">
-                  {FEE_COVERS.map((item) => (
-                    <li key={item} className="flex items-start gap-3 text-base font-medium leading-7 text-ink/70 md:text-lg">
-                      <SquareBullet />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                <p className="mt-5 text-base font-medium leading-7 text-ink/70 md:text-lg">
-                  How and when to pay comes with your registration confirmation.
-                </p>
-                <p className="mt-2 text-base font-medium leading-7 text-ink/70 md:text-lg">
-                  Registration opens soon.
-                </p>
-              </Panel>
-
               <Panel id="requirements" title="Requirements" active={active === "requirements"}>
                 <p className="text-base font-medium leading-7 text-ink/70 md:text-lg">
                   Tick these off and you&apos;re eligible.
@@ -361,6 +321,21 @@ export default function ImportantInfo() {
                 </ul>
               </Panel>
 
+              {/* the price and what it covers lead the page now — this tab is
+                  only the practical part: when you actually pay */}
+              <Panel id="fees" title="Fees" active={active === "fees"}>
+                <p className="text-base font-medium leading-7 text-ink/70 md:text-lg">
+                  How and when to pay comes with your registration confirmation — there is nothing
+                  to send before then.
+                </p>
+                <p className="mt-3 text-base font-medium leading-7 text-ink/70 md:text-lg">
+                  Registration opens soon.
+                </p>
+                <SiteLink href="/#essentials" className={PILL}>
+                  See the fee and what it covers ↑
+                </SiteLink>
+              </Panel>
+
               <Panel id="parents" title="Parents" active={active === "parents"}>
                 <p className="text-base font-medium leading-7 text-ink/70 md:text-lg">
                   Here&apos;s what the day looks like from the family side.
@@ -371,11 +346,6 @@ export default function ImportantInfo() {
                     Stays on site — all day
                   </span>
                   <p className="mt-3 text-base font-semibold leading-7 text-ink md:text-lg">{ON_SITE_RULE}</p>
-                  <p className="mt-2 text-base font-medium leading-7 text-ink/70 md:text-lg">{CHAPERONE_RULE}</p>
-                  <p className="mt-2 text-base font-medium leading-7 text-ink/70 md:text-lg">
-                    Why: if a child feels unwell or anything unexpected happens, an adult who
-                    knows them is already on site.
-                  </p>
                 </div>
                 <SiteLink href="/parents" className={PILL}>
                   Read the parents&apos; guide →
