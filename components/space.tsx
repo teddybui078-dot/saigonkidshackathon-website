@@ -784,52 +784,6 @@ export function KidAstronaut({ className = "", width = 200, ...rest }: SpaceArtP
   );
 }
 
-/* a satellite whose screen shows the code mark; its signal arcs blink */
-export function CodingSatellite({ className = "", width = 260, ...rest }: SpaceArtProps) {
-  return (
-    <svg
-      className={className}
-      width={width}
-      height={width * (200 / 260)}
-      viewBox="0 0 260 200"
-      fill="none"
-      aria-hidden="true"
-      focusable="false"
-      {...rest}
-    >
-      <g className="hero-signal">
-        <path d="M172 52 C178 46 186 44 194 46" stroke={SUN} strokeWidth={4} strokeLinecap="round" />
-        <path d="M176 38 C186 30 200 28 212 34" stroke={SUN} strokeWidth={4} strokeLinecap="round" />
-      </g>
-      <path d="M96 112 C90 110 84 110 78 112" stroke={STROKE} strokeWidth={5} strokeLinecap="round" />
-      <path d="M164 112 C170 110 176 110 182 112" stroke={STROKE} strokeWidth={5} strokeLinecap="round" />
-      <path d="M12 88 C34 85 58 85 80 88 C82 104 82 120 80 136 C58 138 34 138 12 136 C10 120 10 104 12 88 Z" fill={SPACE_LIGHT} stroke={STROKE} strokeWidth={5} strokeLinejoin="round" />
-      <path d="M35 87 C34 103 34 119 35 137" stroke={SUN} strokeWidth={2} strokeLinecap="round" />
-      <path d="M58 87 C57 103 57 119 58 137" stroke={SUN} strokeWidth={2} strokeLinecap="round" />
-      <path d="M12 112 C34 110 58 110 80 112" stroke={SUN} strokeWidth={2} strokeLinecap="round" />
-      <path d="M38 90 C44 89 50 89 55 90 C56 96 56 103 55 109 C50 110 44 110 38 109 C37 103 37 96 38 90 Z" fill={SUN} />
-      <path d="M180 88 C202 85 226 85 248 88 C250 104 250 120 248 136 C226 138 202 138 180 136 C178 120 178 104 180 88 Z" fill={SPACE_LIGHT} stroke={STROKE} strokeWidth={5} strokeLinejoin="round" />
-      <path d="M203 87 C202 103 202 119 203 137" stroke={SUN} strokeWidth={2} strokeLinecap="round" />
-      <path d="M226 87 C225 103 225 119 226 137" stroke={SUN} strokeWidth={2} strokeLinecap="round" />
-      <path d="M180 112 C202 110 226 110 248 112" stroke={SUN} strokeWidth={2} strokeLinecap="round" />
-      <path d="M206 114 C212 113 218 113 223 114 C224 120 224 127 223 133 C218 134 212 134 206 133 C205 127 205 120 206 114 Z" fill={SUN} />
-      <path d="M130 66 C131 58 131 50 130 42" stroke={STROKE} strokeWidth={5} strokeLinecap="round" />
-      <ellipse cx="146" cy="50" rx="24" ry="11" transform="rotate(-25 146 50)" fill={PAPER} stroke={STROKE} strokeWidth={5} />
-      <path d="M150 48 C158 44 166 42 172 44" stroke={STROKE} strokeWidth={4} strokeLinecap="round" />
-      <circle cx="172" cy="46" r="6" fill={FLARE} stroke={STROKE} strokeWidth={4} />
-      <path d="M96 68 C118 63 142 63 164 68 C168 88 168 112 164 132 C142 137 118 137 96 132 C92 112 92 88 96 68 Z" fill={PAPER} stroke={STROKE} strokeWidth={6} strokeLinejoin="round" />
-      <path d="M108 82 C122 80 138 80 152 82 C154 94 154 106 152 118 C138 120 122 120 108 118 C106 106 106 94 108 82 Z" fill={SPACE} stroke={STROKE} strokeWidth={4} strokeLinejoin="round" />
-      <path d="M122 92 C118 94 115 97 114 100 C115 103 118 106 122 108" stroke={SUN} strokeWidth={4} strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M138 92 C142 94 145 97 146 100 C145 103 142 106 138 108" stroke={SUN} strokeWidth={4} strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M134 90 C131 96 129 104 126 110" stroke={SUN} strokeWidth={4} strokeLinecap="round" />
-      <path d="M102 74 C106 72 111 71 116 72" stroke={PAPER} strokeWidth={4} strokeLinecap="round" opacity={0.7} />
-      <path d="M100 124 C99 121 99 118 100 115" stroke={PAPER} strokeWidth={4} strokeLinecap="round" opacity={0.7} />
-      <path d="M22 92 C26 91 30 91 33 92" stroke={PAPER} strokeWidth={3} strokeLinecap="round" opacity={0.7} />
-      <path d="M190 92 C194 91 198 91 201 92" stroke={PAPER} strokeWidth={3} strokeLinecap="round" opacity={0.7} />
-    </svg>
-  );
-}
-
 /* the cratered ground along the bottom edge; stretched by the caller */
 export function MoonTerrain({ className = "", width = 1440, ...rest }: SpaceArtProps) {
   return (
@@ -1124,15 +1078,7 @@ export function Landmark81({ className = "", width = 360, ...rest }: SpaceArtPro
         strokeWidth="4"
         strokeLinecap="round"
       />
-      <circle
-        className="tower-beacon"
-        cx="184"
-        cy="38"
-        r="8"
-        fill={FLARE}
-        stroke={STROKE}
-        strokeWidth="3"
-      />
+      <circle cx="184" cy="38" r="8" fill={FLARE} stroke={STROKE} strokeWidth="3" />
       <rect
         x="162"
         y="120"
@@ -1635,34 +1581,3 @@ export function ChalkStar({ className = "", width = 32, ...rest }: SpaceArtProps
   );
 }
 
-export function OrbitArc({ className = "", width = 1440, ...rest }: SpaceArtProps) {
-  return (
-    <svg
-      className={className}
-      width={width}
-      height={width * (900 / 1440)}
-      viewBox="0 0 1440 900"
-      fill="none"
-      preserveAspectRatio="xMidYMid slice"
-      aria-hidden="true"
-      focusable="false"
-      {...rest}
-    >
-      <circle
-        className="orbit-arc"
-        cx={720}
-        cy={1150}
-        r={780}
-        stroke={PAPER}
-        strokeWidth={3}
-        strokeDasharray="3 12"
-        strokeLinecap="round"
-        opacity={0.45}
-        vectorEffect="non-scaling-stroke"
-      />
-      <circle cx={122.5} cy={648.6} r={2} fill={PAPER} opacity={0.6} />
-      <circle cx={720} cy={370} r={2} fill={PAPER} opacity={0.6} />
-      <circle cx={1317.5} cy={648.6} r={2} fill={PAPER} opacity={0.6} />
-    </svg>
-  );
-}

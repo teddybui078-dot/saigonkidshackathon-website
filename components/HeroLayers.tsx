@@ -12,10 +12,8 @@ import {
   GrainFilter,
   ChalkFilter,
   EarthHorizon,
-  CodingSatellite,
   MoonTerrain,
   ChalkStar,
-  OrbitArc,
   SkySwirls,
   RingedPlanet,
   SwirlPlanet,
@@ -96,8 +94,6 @@ export function HeroCanvas() {
           />
         );
       })}
-      {/* the satellite's dotted track, crawling forever */}
-      <OrbitArc className="absolute inset-0 h-full w-full" />
       {/* chalk stars, winking off-beat */}
       {CHALK_STARS.map((s, i) => (
         <ChalkStar
@@ -121,7 +117,7 @@ export function HeroCanvas() {
   );
 }
 
-/* layer 1 — the earth on the horizon, the satellite, the planets */
+/* layer 1 — the earth on the horizon and the planets */
 export function HeroCelestial() {
   return (
     <HeroLayerShell layer="celestial">
@@ -131,12 +127,6 @@ export function HeroCelestial() {
       >
         {/* overflow-visible lets the disc keep its curve past the drawing box */}
         <EarthHorizon className="h-auto w-full overflow-visible" />
-      </div>
-      <div
-        className="hero-float absolute left-[24%] top-[44%] hidden w-24 lg:block"
-        data-speed={PARALLAX.far}
-      >
-        <CodingSatellite className="float-fast h-auto w-full" />
       </div>
       {/* two planets tucked behind the sign so the frame crops them.
           deliberately static — no hero-float, no drift — because any
