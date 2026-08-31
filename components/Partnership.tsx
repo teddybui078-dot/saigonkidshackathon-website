@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { FlightArc, PixelGrid, Sparkle } from "./decorations";
+import { FloatBrick } from "./space";
 import { LogoSlot } from "./parts";
 import { PARTNERS } from "./partners";
 
@@ -115,6 +116,10 @@ export default function Partnership() {
 
         {/* plain lockups: a logo slot and a name, a × between each pair.
             no box — the type is the object here */}
+        <FloatBrick
+          className="ambient-float pointer-events-none absolute right-[10%] top-24 hidden w-14 rotate-[7deg] lg:block"
+          aria-hidden="true"
+        />
         <div className="partners-rows mt-12 flex flex-col items-center">
           {PARTNERS.map((partner, i) => (
             <div key={partner.name} className="contents">
