@@ -5,7 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Sparkle, PixelGrid, PixelStack } from "./decorations";
 import { Screws, Hook } from "./parts";
-import { Trophy, Medal, Rosette, PrizeTag, Bunting, Spotlight, Starburst } from "./illustrations";
+import { Trophy, Medal, Rosette, PrizeTag } from "./illustrations";
 import { TEAM_AWARDS, SOLO_AWARDS, PRIZE_TBA, type TeamAward } from "./awards";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -44,234 +44,91 @@ const TOPPER: Record<TeamAward["place"], React.ReactNode> = {
   3: <Medal tone="bronze" size={60} />,
 };
 
-/* where on the pinned timeline each step starts rising: third first, then
-   second, then the winner takes the longest */
-const RISE: Record<TeamAward["place"], { at: number; duration: number }> = {
-  3: { at: 0.6, duration: 1 },
-  2: { at: 1.0, duration: 1 },
-  1: { at: 1.4, duration: 1.2 },
-};
-
-/* the confetti burst around the trophy: where each piece lands (px from
-   the burst's centre) and what it is. literal, so the server and the
-   browser draw the same thing */
-const CONFETTI = [
-  { x: -96, y: -70, r: 20, kind: "square-yellow" },
-  { x: -70, y: -118, r: -30, kind: "dot-blue" },
-  { x: -36, y: -140, r: 12, kind: "square-white" },
-  { x: 8, y: -152, r: 40, kind: "dot-yellow" },
-  { x: 52, y: -134, r: -18, kind: "square-blue" },
-  { x: 92, y: -100, r: 25, kind: "dot-white" },
-  { x: 112, y: -56, r: -40, kind: "square-yellow" },
-  { x: -120, y: -22, r: 8, kind: "dot-yellow" },
-  { x: 124, y: -8, r: -12, kind: "square-blue" },
-  { x: -84, y: 10, r: 32, kind: "square-white" },
-  { x: 76, y: 24, r: -26, kind: "dot-blue" },
-  { x: -48, y: -92, r: -8, kind: "dot-white" },
-  { x: 30, y: -108, r: 16, kind: "square-yellow" },
-  { x: -14, y: -60, r: 0, kind: "dot-blue" },
-] as const;
-
-const CONFETTI_KIND: Record<(typeof CONFETTI)[number]["kind"], string> = {
-  "square-yellow": "block h-3 w-3 rounded-[3px] bg-energy",
-  "square-blue": "block h-3 w-3 rounded-[3px] bg-saigon",
-  "square-white": "block h-3 w-3 rounded-[3px] border-2 border-saigon bg-white",
-  "dot-yellow": "block h-3 w-3 rounded-full bg-energy",
-  "dot-blue": "block h-3 w-3 rounded-full bg-saigon",
-  "dot-white": "block h-3 w-3 rounded-full border-2 border-saigon bg-white",
-};
-
 export default function Prizes() {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
+    // nothing here follows the scrollbar: the podium builds itself once as
+    // it comes into view and then stands still
     const mm = gsap.matchMedia();
-    mm.add(
-      {
-        motionOK: "(prefers-reduced-motion: no-preference)",
-        desktop: "(min-width: 48rem)", // tailwind's md — keeps css and gsap in step
-        tall: "(min-height: 52rem)", // room for the whole stage under the navbar while pinned
-      },
-      (ctx) => {
-        const { motionOK, desktop, tall } = ctx.conditions as Record<string, boolean>;
-        const section = sectionRef.current;
-        if (!section || !motionOK) return;
 
-        const pinEl = section.querySelector<HTMLElement>(".prizes-pin");
-        const stage = section.querySelector<HTMLElement>(".podium-stage");
-        const curtains = gsap.utils.toArray<HTMLElement>(".curtain-panel", section);
-        const starburst = section.querySelector<HTMLElement>(".starburst");
-        const bunting = section.querySelector<HTMLElement>(".bunting");
-        const spotL = section.querySelector<HTMLElement>(".spotlight-l");
-        const spotR = section.querySelector<HTMLElement>(".spotlight-r");
-        const steps = gsap.utils.toArray<HTMLElement>(".podium-step", section);
-        const toppers = gsap.utils.toArray<HTMLElement>(".podium-topper", section);
-        const trophyTopper = section.querySelector<HTMLElement>(".podium-topper-trophy");
-        const medalToppers = gsap.utils.toArray<HTMLElement>(".podium-topper-medal", section);
-        const confetti = gsap.utils.toArray<HTMLElement>(".confetti", section);
-        const tags = gsap.utils.toArray<HTMLElement>(".podium-tag", section);
-        const plates = gsap.utils.toArray<HTMLElement>(".podium-plate", section);
-        const captions = gsap.utils.toArray<HTMLElement>(".podium-caption", section);
+    mm.add("(prefers-reduced-motion: no-preference)", () => {
+      const section = sectionRef.current;
+      if (!section) return;
 
-        // the confetti rests where the css puts it; the burst flies it there
-        // from the centre
-        const confettiFrom = {
-          x: (i: number) => -CONFETTI[i].x,
-          y: (i: number) => -CONFETTI[i].y,
-          rotation: 0,
-          scale: 0,
-        };
-        const confettiTo = {
-          x: 0,
-          y: 0,
-          rotation: (i: number) => CONFETTI[i].r,
-          scale: 1,
-          duration: 0.6,
-          stagger: 0.03,
-          ease: "back.out(2)",
-        };
+      const block = section.querySelector<HTMLElement>(".prizes-block");
+      const stage = section.querySelector<HTMLElement>(".podium-stage");
+      const gridEl = section.querySelector<HTMLElement>(".solo-grid");
 
-        // the heading arrives once, before the pin begins
-        gsap.from(gsap.utils.toArray<HTMLElement>(".prizes-line", section), {
-          y: 40,
-          opacity: 0,
-          duration: 0.7,
-          stagger: 0.12,
-          ease: "power3.out",
-          scrollTrigger: { trigger: pinEl ?? section, start: "top 85%" },
-        });
+      // the heading arrives first
+      gsap.from(gsap.utils.toArray<HTMLElement>(".prizes-line", section), {
+        y: 40,
+        opacity: 0,
+        duration: 0.7,
+        stagger: 0.12,
+        ease: "power3.out",
+        scrollTrigger: { trigger: block ?? section, start: "top 85%" },
+      });
 
-        if (pinEl && desktop && tall) {
-          // pin the stage and run the show as you scroll: the bunting drops
-          // and the spotlights swing on, the curtains part on a starburst,
-          // the steps rise third-second-first, the trophy and medals land,
-          // confetti bursts, and the plates and tags come last
-          gsap.set([...steps, ...toppers, ...tags, ...curtains, ...confetti], { willChange: "transform" });
-          const tl = gsap.timeline({
-            scrollTrigger: {
-              trigger: pinEl,
-              pin: true,
-              scrub: 0.5,
-              anticipatePin: 1,
-              invalidateOnRefresh: true,
-              // functions so a resize re-measures: centre the block, but never
-              // tuck it under the fixed navbar
-              start: () =>
-                "top " + Math.max(88, Math.round((window.innerHeight - pinEl.offsetHeight) / 2)),
-              end: () => "+=" + 2.6 * window.innerHeight,
-            },
-          });
-          if (bunting) tl.from(bunting, { y: -40, opacity: 0, duration: 0.6, ease: "power2.out" }, 0);
-          if (spotL) {
-            tl.fromTo(
-              spotL,
-              { rotation: -40 },
-              { rotation: -18, duration: 0.7, ease: "power2.out", transformOrigin: "50% 10%" },
-              0
-            );
-          }
-          if (spotR) {
-            tl.fromTo(
-              spotR,
-              { rotation: 40 },
-              { rotation: 18, duration: 0.7, ease: "power2.out", transformOrigin: "50% 10%" },
-              0
-            );
-          }
-          tl.fromTo(curtains, { scaleX: 1 }, { scaleX: 0.08, duration: 1, ease: "power2.inOut" }, 0.2);
-          if (starburst) {
-            tl.fromTo(
-              starburst,
-              { scale: 0.6, opacity: 0 },
-              { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(1.5)" },
-              0.9
-            );
-          }
-          steps.forEach((step, i) => {
-            const rise = RISE[PODIUM[i].place];
-            // each step rises from inside its own clip box
-            tl.fromTo(step, { yPercent: 100 }, { yPercent: 0, ease: "power2.out", duration: rise.duration }, rise.at);
-          });
-          if (trophyTopper) {
-            tl.from(trophyTopper, { y: -180, opacity: 0, ease: "bounce.out", duration: 1 }, 2.4);
-          }
-          tl.from(
-            medalToppers,
-            {
-              y: -140,
-              opacity: 0,
-              rotation: (i: number) => (i ? 12 : -12),
-              ease: "back.out(1.6)",
-              duration: 0.8,
-              stagger: 0.15,
-            },
-            2.5
-          );
-          tl.fromTo(confetti, confettiFrom, confettiTo, 3.1);
-          tl.from(plates, { y: 12, opacity: 0, duration: 0.4, stagger: 0.08 }, 3.2);
-          tl.from(
-            tags,
-            { rotation: -35, opacity: 0, transformOrigin: "50% 0%", duration: 0.5, stagger: 0.1, ease: "back.out(2)" },
-            3.25
-          );
-          tl.from(captions, { y: 20, opacity: 0, stagger: 0.1, duration: 0.5 }, 3.3);
-          tl.to({}, { duration: 0.4 }); // hold on the finished stage before letting go
-        } else {
-          // small screens or short windows: the curtain opens once as the
-          // stage comes into view, then the steps rise, the hardware drops
-          // on and the confetti pops
-          const trigger = stage ?? section;
-          gsap.fromTo(
-            curtains,
-            { scaleX: 1 },
-            { scaleX: 0.08, duration: 0.9, ease: "power2.inOut", scrollTrigger: { trigger, start: "top 75%" } }
-          );
-          if (starburst) {
-            gsap.from(starburst, {
-              scale: 0.6,
-              opacity: 0,
-              duration: 0.5,
-              delay: 0.6,
-              ease: "back.out(1.5)",
-              scrollTrigger: { trigger, start: "top 75%" },
-            });
-          }
-          gsap.from(steps, {
-            yPercent: 100,
-            stagger: 0.15,
-            duration: 0.8,
-            delay: 0.4,
-            ease: "power2.out",
-            scrollTrigger: { trigger, start: "top 75%" },
-          });
-          gsap.from(toppers, {
-            y: -60,
-            opacity: 0,
-            stagger: 0.12,
-            delay: 1,
-            ease: "back.out(1.6)",
-            scrollTrigger: { trigger, start: "top 75%" },
-          });
-          gsap.fromTo(confetti, confettiFrom, {
-            ...confettiTo,
-            delay: 1.5,
-            scrollTrigger: { trigger, start: "top 75%" },
-          });
-        }
+      // then the steps rise out of their clip boxes, the hardware lands on
+      // top, and the plates, tags and captions follow it down
+      const at = { trigger: stage ?? section, start: "top 80%" };
 
-        // the solo awards drop onto their string, each with a little tilt
-        const gridEl = section.querySelector<HTMLElement>(".solo-grid");
-        gsap.from(gsap.utils.toArray<HTMLElement>(".solo-award", section), {
-          y: -60,
-          opacity: 0,
-          rotation: (i: number) => (i % 2 ? 6 : -6),
-          stagger: 0.15,
-          duration: 0.7,
-          ease: "back.out(1.4)",
-          scrollTrigger: { trigger: gridEl ?? section, start: "top 80%" },
-        });
-      }
-    );
+      gsap.from(gsap.utils.toArray<HTMLElement>(".podium-step", section), {
+        yPercent: 100,
+        stagger: 0.15,
+        duration: 0.8,
+        ease: "power2.out",
+        scrollTrigger: at,
+      });
+      gsap.from(gsap.utils.toArray<HTMLElement>(".podium-topper", section), {
+        y: -60,
+        opacity: 0,
+        stagger: 0.12,
+        duration: 0.6,
+        delay: 0.5,
+        ease: "back.out(1.6)",
+        scrollTrigger: at,
+      });
+      gsap.from(gsap.utils.toArray<HTMLElement>(".podium-plate", section), {
+        y: 12,
+        opacity: 0,
+        duration: 0.4,
+        stagger: 0.08,
+        delay: 0.9,
+        scrollTrigger: at,
+      });
+      gsap.from(gsap.utils.toArray<HTMLElement>(".podium-tag", section), {
+        rotation: -35,
+        opacity: 0,
+        transformOrigin: "50% 0%",
+        duration: 0.5,
+        stagger: 0.1,
+        delay: 0.95,
+        ease: "back.out(2)",
+        scrollTrigger: at,
+      });
+      gsap.from(gsap.utils.toArray<HTMLElement>(".podium-caption", section), {
+        y: 20,
+        opacity: 0,
+        stagger: 0.1,
+        duration: 0.5,
+        delay: 1,
+        scrollTrigger: at,
+      });
+
+      // the solo awards drop onto their string, each with a little tilt
+      gsap.from(gsap.utils.toArray<HTMLElement>(".solo-award", section), {
+        y: -60,
+        opacity: 0,
+        rotation: (i: number) => (i % 2 ? 6 : -6),
+        stagger: 0.15,
+        duration: 0.7,
+        ease: "back.out(1.4)",
+        scrollTrigger: { trigger: gridEl ?? section, start: "top 80%" },
+      });
+    });
+
     return () => mm.revert();
   }, []);
 
@@ -288,8 +145,8 @@ export default function Prizes() {
         <PixelGrid className="ambient-float" size={72} />
       </div>
 
-      {/* the pinned block: heading, the stage, and the captions under it */}
-      <div className="prizes-pin mx-auto max-w-5xl">
+      {/* heading, the stage, and the captions under it */}
+      <div className="prizes-block mx-auto max-w-5xl">
         <div className="text-center">
           <p className="prizes-line mb-3 text-sm font-semibold text-saigon">Podium &amp; prizes ✦</p>
           <h2 className="prizes-line text-4xl font-bold leading-tight md:text-5xl">
@@ -301,64 +158,21 @@ export default function Prizes() {
           </p>
         </div>
 
-        {/* the stage: a back curtain in a screwed frame, spotlights in the
-            corners, bunting across the top, the podium on the boards */}
+        {/* the stage: one bolted back panel, the podium standing on the boards */}
         <div className="podium-stage relative mx-auto mt-10 max-w-4xl pt-14 md:pt-16">
-          {/* the back curtain — at rest the panels are tied back (the css
-              state), the show closes them and draws them open again */}
           <div
-            className="curtain absolute inset-x-0 bottom-10 top-6 overflow-hidden rounded-t-3xl border-4 border-saigon bg-saigon-deep"
+            className="absolute inset-x-0 bottom-10 top-6 rounded-t-3xl border-4 border-saigon bg-saigon-deep"
             aria-hidden="true"
           >
             <Screws className="opacity-60" />
-            <div className="starburst absolute left-1/2 top-2 -translate-x-1/2">
-              <Starburst className="anchor-wobble" size={230} />
-            </div>
-            <span className="curtain-panel curtain-pleats absolute inset-y-0 left-0 w-1/2 origin-left [transform:scaleX(0.08)]" />
-            <span className="curtain-panel curtain-pleats absolute inset-y-0 right-0 w-1/2 origin-right [transform:scaleX(0.08)]" />
-            <span className="absolute left-[2%] top-[42%] h-9 w-[6%] rounded-full border-2 border-saigon bg-energy" />
-            <span className="absolute right-[2%] top-[42%] h-9 w-[6%] rounded-full border-2 border-saigon bg-energy" />
           </div>
-
-          {/* the lamps, aimed at first place; gsap swings them from the head */}
-          <div
-            className="spotlight-l pointer-events-none absolute left-1 top-0 z-20 origin-[50%_10%] [transform:rotate(-18deg)] md:left-4"
-            aria-hidden="true"
-          >
-            <Spotlight width={80} />
-          </div>
-          <div
-            className="spotlight-r pointer-events-none absolute right-1 top-0 z-20 origin-[50%_10%] [transform:rotate(18deg)] md:right-4"
-            aria-hidden="true"
-          >
-            <Spotlight width={80} />
-          </div>
-
-          <Bunting className="bunting pointer-events-none absolute inset-x-4 top-0 z-20 h-12 w-[calc(100%-2rem)] md:h-14" />
 
           {/* the steps are the picture; the captions under them carry the words */}
           <div className="relative z-10 grid grid-cols-3 items-end gap-3 px-6 md:gap-6 md:px-12" aria-hidden="true">
             {PODIUM.map((award) => (
               <div key={award.place} className={COLUMN[award.place]}>
                 {/* what stands on the step — above the clip box, so it is never cut off */}
-                <div
-                  className={
-                    award.trophy
-                      ? "podium-topper podium-topper-trophy relative z-10 -mb-3 flex items-end justify-center"
-                      : "podium-topper podium-topper-medal relative z-10 -mb-3 flex items-end justify-center"
-                  }
-                >
-                  {award.trophy && (
-                    // the burst: every piece rests where its css puts it, and
-                    // flies there from the middle when the trophy lands
-                    <div className="confetti-burst pointer-events-none absolute left-1/2 top-10 h-0 w-0">
-                      {CONFETTI.map((c, i) => (
-                        <span key={i} className="confetti absolute" style={{ left: c.x - 6, top: c.y - 6 }}>
-                          <span className={`ambient-twinkle ${CONFETTI_KIND[c.kind]}`} />
-                        </span>
-                      ))}
-                    </div>
-                  )}
+                <div className="podium-topper relative z-10 -mb-3 flex items-end justify-center">
                   {TOPPER[award.place]}
                 </div>
                 {/* the clip box: the step rises up out of this */}
