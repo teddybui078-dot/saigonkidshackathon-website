@@ -3,7 +3,8 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Sparkle, CodeMark, PixelStack, PixelPlanet } from "./decorations";
+import { Sparkle, CodeMark, PixelPlanet } from "./decorations";
+import { MoonTerrain, BrickPile } from "./space";
 import { PARTNERS } from "./partners";
 import { EVENT } from "./event";
 import SiteLink from "./SiteLink";
@@ -51,11 +52,16 @@ export default function Footer() {
   return (
     <footer
       ref={footerRef}
-      className="relative mt-12 overflow-hidden rounded-t-[3rem] bg-saigon px-4 pb-10 pt-20 text-white"
+      className="relative mt-24 overflow-hidden bg-space-dark px-4 pb-10 pt-28 text-white"
     >
-      {/* big hooks: brick pile and a ghost planet in the corners */}
+      {/* the moon's surface crests the footer — the page lands where the
+          hero's street stood */}
+      <div className="pointer-events-none absolute inset-x-0 -top-1" aria-hidden="true">
+        <MoonTerrain className="h-16 w-full md:h-20" />
+      </div>
+      {/* big hooks: the brick pile and a ghost planet in the corners */}
       <div className="anchor-drift pointer-events-none absolute bottom-6 left-6 hidden lg:block">
-        <PixelStack width={230} />
+        <BrickPile width={230} />
       </div>
       <div className="anchor-drift pointer-events-none absolute right-8 top-10 opacity-25 hidden lg:block">
         <PixelPlanet className="anchor-wobble" size={320} />
