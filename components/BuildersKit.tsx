@@ -3,9 +3,9 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Sparkle, PixelGrid, CodeMark } from "./decorations";
+import { Sparkle, PixelGrid, CodeMark, SparkleCross } from "./decorations";
 import { ToteBag, KitBadge } from "./illustrations";
-import { FloatBrick } from "./space";
+import { FloatBrick, ChalkScribble } from "./space";
 import { FLARE } from "./palette";
 import { KIT, type KitItem } from "./kit";
 
@@ -149,6 +149,11 @@ export default function BuildersKit() {
       <div className="pointer-events-none absolute bottom-20 right-16 -z-[1] hidden lg:block">
         <CodeMark className="ambient-float" size={150} />
       </div>
+      {/* a chalk zigzag skipping off the bag */}
+      <div className="pointer-events-none absolute left-[18%] bottom-32 -z-[1] hidden -rotate-[6deg] lg:block">
+        <ChalkScribble kind="zigzag" width={88} />
+      </div>
+      <SparkleCross className="pointer-events-none absolute right-[26%] top-24 -z-[1] hidden lg:block" size={20} />
       <div className="mx-auto max-w-5xl">
         <div className="text-center">
           <p className="kit-line mb-3 text-sm font-semibold text-sun">In your bag ✦</p>

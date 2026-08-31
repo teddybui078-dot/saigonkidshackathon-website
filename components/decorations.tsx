@@ -1,7 +1,37 @@
 /* lightweight vector accents echoing the logo: pixel clusters, sparkles,
    orbit swooshes, and code marks. colors are fixed to the brand palette. */
 
-import { BLUE, YELLOW, SKY_LIGHT } from "./palette";
+import { BLUE, YELLOW, SKY_LIGHT, PAPER } from "./palette";
+
+export function SparkleCross({
+  className = "",
+  size = 20,
+  ...rest
+}: {
+  className?: string;
+  size?: number;
+} & React.SVGProps<SVGSVGElement>) {
+  // a chalked plus, slightly off-square — the star's lazier sibling
+  return (
+    <svg
+      className={className}
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+      {...rest}
+    >
+      <path
+        d="M12 3 L12 21 M4 13 L20 11"
+        stroke={PAPER}
+        strokeWidth={2.5}
+        strokeLinecap="round"
+        opacity={0.7}
+      />
+    </svg>
+  );
+}
 
 export function PixelGrid({
   className = "",

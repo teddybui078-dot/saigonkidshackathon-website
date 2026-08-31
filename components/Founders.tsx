@@ -3,7 +3,8 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Sparkle, PixelHeart } from "./decorations";
+import { Sparkle, PixelHeart, SparkleCross } from "./decorations";
+import { ChalkScribble } from "./space";
 import { Lanyard } from "./parts";
 import { DrawnBg } from "./drawn";
 
@@ -45,6 +46,11 @@ export default function Founders() {
       <div className="anchor-drift pointer-events-none absolute left-8 top-1/4 -z-[1] hidden lg:block">
         <PixelHeart className="anchor-beat" size={280} />
       </div>
+      {/* a zigzag chalked in beside the heart */}
+      <div className="pointer-events-none absolute left-[22%] bottom-24 -z-[1] hidden rotate-[8deg] lg:block">
+        <ChalkScribble kind="zigzag" width={92} />
+      </div>
+      <SparkleCross className="pointer-events-none absolute right-[14%] top-24 -z-[1] hidden lg:block" size={22} />
       <div className="mx-auto max-w-4xl text-center">
         <p className="mb-3 text-sm font-semibold text-sun">The founders ✦</p>
         <h2 className="text-4xl font-bold leading-tight md:text-5xl">

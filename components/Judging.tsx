@@ -3,7 +3,8 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Sparkle, FlightArc } from "./decorations";
+import { Sparkle, FlightArc, SparkleCross } from "./decorations";
+import { ChalkScribble } from "./space";
 import { DrawnBg } from "./drawn";
 import SiteLink from "./SiteLink";
 import { RUBRIC, RUBRIC_TOTAL, RUBRIC_COUNT_WORD, TIE_BREAKERS, JUDGING_LAB, type Criterion } from "./rubric";
@@ -81,6 +82,11 @@ export default function Judging() {
       <div className="pointer-events-none absolute right-[12%] top-36 -z-[1] hidden lg:block">
         <Sparkle className="ambient-twinkle" size={30} />
       </div>
+      {/* the sky doodling around the scoreboard */}
+      <div className="pointer-events-none absolute left-[24%] top-16 -z-[1] hidden -rotate-6 lg:block">
+        <ChalkScribble kind="loop" width={110} />
+      </div>
+      <SparkleCross className="pointer-events-none absolute bottom-32 left-16 -z-[1] hidden lg:block" size={22} />
 
       <div className="mx-auto max-w-5xl">
         <div className="text-center">

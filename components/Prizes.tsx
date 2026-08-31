@@ -3,7 +3,8 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Sparkle, PixelGrid, PixelStack } from "./decorations";
+import { Sparkle, PixelGrid, PixelStack, SparkleCross } from "./decorations";
+import { ChalkScribble } from "./space";
 import { Hook } from "./parts";
 import { Trophy, Medal, Rosette, PrizeTag } from "./illustrations";
 import { TEAM_AWARDS, SOLO_AWARDS, PRIZE_TBA, type TeamAward } from "./awards";
@@ -189,6 +190,11 @@ export default function Prizes() {
       <div className="pointer-events-none absolute left-[12%] top-28 -z-[1] hidden lg:block">
         <PixelGrid className="ambient-float" size={72} />
       </div>
+      {/* a chalk spring bouncing beside the podium */}
+      <div className="pointer-events-none absolute right-[20%] top-[38%] -z-[1] hidden rotate-[10deg] lg:block">
+        <ChalkScribble kind="spring" width={104} />
+      </div>
+      <SparkleCross className="pointer-events-none absolute bottom-40 left-[22%] -z-[1] hidden lg:block" size={24} />
 
       {/* the pinned block: heading, the stage, and the captions under it */}
       <div className="prizes-pin mx-auto max-w-5xl">

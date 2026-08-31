@@ -1415,3 +1415,53 @@ export function ChalkStar({ className = "", width = 32, ...rest }: SpaceArtProps
   );
 }
 
+/* the sky doodling on itself between sections — a loop-de-loop, a
+   zigzag, a cursive spring. thin chalk, never near text. */
+const SCRIBBLES = {
+  loop: {
+    view: "0 0 100 52",
+    ratio: 52 / 100,
+    d: "M4 40 C 18 18 40 8 46 20 C 52 32 34 44 26 34 C 18 24 40 12 62 14 C 84 16 92 26 96 22",
+  },
+  zigzag: {
+    view: "0 0 96 44",
+    ratio: 44 / 96,
+    d: "M6 36 L20 12 L34 34 L48 10 L62 32 L76 8 L90 28",
+  },
+  spring: {
+    view: "0 0 96 48",
+    ratio: 48 / 96,
+    d: "M6 34 C 8 18 28 16 28 28 C 28 40 10 40 12 28 C 14 14 40 12 42 24 C 44 36 26 40 26 30 C 28 16 54 14 56 26 C 58 38 40 42 40 32 C 42 18 68 16 72 24 C 76 32 66 38 60 34",
+  },
+} as const;
+
+export function ChalkScribble({
+  kind = "loop",
+  className = "",
+  width = 96,
+  ...rest
+}: SpaceArtProps & { kind?: keyof typeof SCRIBBLES }) {
+  const s = SCRIBBLES[kind];
+  return (
+    <svg
+      className={className}
+      width={width}
+      height={width * s.ratio}
+      viewBox={s.view}
+      fill="none"
+      aria-hidden="true"
+      focusable="false"
+      {...rest}
+    >
+      <path
+        d={s.d}
+        stroke={PAPER}
+        strokeWidth={2.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        opacity={0.4}
+      />
+    </svg>
+  );
+}
+

@@ -3,7 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { PixelGrid } from "./decorations";
+import { PixelGrid, SparkleCross } from "./decorations";
+import { ChalkScribble } from "./space";
 import { DrawnBg, DrawnTail } from "./drawn";
 import { EVENT, AGES, GRADES, TEAM_SIZE } from "./event";
 
@@ -64,6 +65,11 @@ export default function Faq() {
       >
         ?
       </span>
+      {/* a chalk flick looping past the question mark */}
+      <div className="pointer-events-none absolute right-[24%] top-16 -z-[1] hidden -rotate-[4deg] lg:block">
+        <ChalkScribble kind="loop" width={100} />
+      </div>
+      <SparkleCross className="pointer-events-none absolute bottom-28 left-[14%] -z-[1] hidden lg:block" size={22} />
       <div className="mx-auto max-w-3xl">
         <div className="relative text-center">
           <PixelGrid className="ambient-float absolute -top-8 right-0 hidden md:block" size={32} />
