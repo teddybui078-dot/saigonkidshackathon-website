@@ -460,28 +460,6 @@ body {
     background: var(--text-white);
   }
 
-  /* the riveted rail dividing the boards — it sits OVER the logo's
-     bottom edge, which is what hides the source file's flat crop */
-  .sign-rail {
-    position: relative;
-    z-index: 1;
-    margin-top: -10px;
-    height: 20px;
-    border-block: 3px solid var(--stroke-ink);
-    background: var(--accent-red);
-  }
-
-  .sign-rivet {
-    position: absolute;
-    top: 50%;
-    width: 10px;
-    height: 10px;
-    translate: 0 -50%;
-    border: 2px solid var(--stroke-ink);
-    border-radius: 9999px;
-    background: var(--accent-yellow);
-  }
-
   /* a brass corner bolt with its slot */
   .sign-bolt {
     position: absolute;

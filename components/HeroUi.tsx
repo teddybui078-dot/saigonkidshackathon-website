@@ -1,14 +1,13 @@
 /* layer 5 — the sign the hero hangs its name on: two cords down from the
    lantern string, a bamboo pole with a lotus on top, the red-lacquer
-   frame, the logo on the white board (the riveted rail overlaps the
-   file's cut bottom edge), the plaque with the facts and the buttons,
-   and the tag swinging underneath with the astronaut hanging off it.
-   every number comes from event.ts */
+   frame, the hand-drawn wordmark on the white board, the plaque with the
+   facts and the buttons, and the tag swinging underneath with the
+   astronaut hanging off it. every number comes from event.ts */
 
-import Image from "next/image";
 import SiteLink from "./SiteLink";
 import { HERO_LAYER } from "./hero-layers";
 import { KidAstronaut, LotusFinial } from "./space";
+import { Wordmark } from "./Wordmark";
 import { EVENT, AGES } from "./event";
 
 export default function HeroUi() {
@@ -46,26 +45,11 @@ export default function HeroUi() {
           <span className="sign-bolt bottom-1.5 right-1.5" aria-hidden="true" />
 
           <div className="sign-inner">
-            {/* the white board: the logo, shown as-is, never touched */}
-            <h1 className="m-0 bg-white px-6 pb-0.5 pt-4 sm:px-8 sm:pt-5">
-              <Image
-                src="/logo-v2.png"
-                alt={EVENT.name}
-                width={512}
-                height={341}
-                loading="eager"
-                fetchPriority="high"
-                sizes="(min-width: 768px) 480px, 76vw"
-                className="mx-auto h-auto w-full max-w-[400px]"
-              />
+            {/* the white board: the name, painted by hand — never typeset */}
+            <h1 className="m-0 bg-white px-4 py-3 sm:px-6 sm:py-4">
+              <span className="sr-only">{EVENT.name}</span>
+              <Wordmark className="mx-auto h-auto w-full max-w-[440px]" />
             </h1>
-
-            {/* the riveted rail — it overlaps the bubble's cut bottom edge */}
-            <div className="sign-rail" aria-hidden="true">
-              <span className="sign-rivet left-[12%]" />
-              <span className="sign-rivet left-1/2 -translate-x-1/2" />
-              <span className="sign-rivet right-[12%]" />
-            </div>
 
             {/* the plaque: date, pitch, buttons */}
             <div className="bg-[#c9d7ee] px-5 pb-5 pt-4 text-center sm:px-8">
