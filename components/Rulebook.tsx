@@ -25,7 +25,7 @@ const CHIPS = [
    can see them. one line in the strip, wrapping in the column */
 const TOC_LINK = {
   active:
-    "inline-flex items-start gap-2 whitespace-nowrap rounded-full border-2 border-ink-deep px-3 py-1.5 text-sm font-semibold transition-colors bg-energy text-ink shadow-[0_3px_0_#d99a00] lg:whitespace-normal",
+    "inline-flex items-start gap-2 whitespace-nowrap rounded-full border-2 border-ink-deep px-3 py-1.5 text-sm font-semibold transition-colors bg-energy text-ink shadow-[0_2px_0_#d99a00] lg:whitespace-normal",
   inactive:
     "inline-flex items-start gap-2 whitespace-nowrap rounded-full border-2 border-ink-deep px-3 py-1.5 text-sm font-semibold transition-colors bg-white/70 text-ink/70 hover:bg-white lg:whitespace-normal",
 } as const;
@@ -149,7 +149,7 @@ export default function Rulebook() {
           {CHIPS.map((chip) => (
             <span
               key={chip}
-              className="rule-chip rounded-full border-2 border-ink-deep bg-white px-4 py-1.5 text-sm font-semibold text-saigon shadow-[0_3px_0_#ffd166]"
+              className="rule-chip rounded-full border-2 border-ink-deep bg-white px-4 py-1.5 text-sm font-semibold text-saigon shadow-[0_2px_0_#ffd166]"
             >
               {chip}
             </span>
@@ -200,7 +200,7 @@ export default function Rulebook() {
             <ol className="space-y-8">
               {RULES.map((rule) => (
                 <li key={rule.id} id={rule.id} tabIndex={-1} className="rule-sheet relative scroll-mt-28 outline-none">
-                  <article className="paper-punched relative rounded-2xl border-[3px] border-ink-deep py-8 pl-8 pr-6 text-ink shadow-[0_6px_0_#ffd166] md:pl-20 md:pr-10">
+                  <article className="paper-punched relative rounded-2xl border-[3px] border-ink-deep py-8 pl-8 pr-6 text-ink shadow-[0_4px_0_#ffd166] md:pl-20 md:pr-10">
                     {/* the number, big and hollow, in the top corner of the sheet */}
                     <span
                       className="text-outline-blue absolute right-6 top-4 select-none text-6xl font-bold leading-none md:text-7xl"

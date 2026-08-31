@@ -151,7 +151,7 @@ export default function Judging() {
           </ol>
 
           {/* the table the sticks are planted in */}
-          <div className="h-4 rounded-full bg-space-light shadow-[0_5px_0_#ffd166]" aria-hidden="true" />
+          <div className="h-4 rounded-full bg-space-light shadow-[0_4px_0_#ffd166]" aria-hidden="true" />
           <div className="mx-16 flex justify-between" aria-hidden="true">
             <span className="h-8 w-3 rounded-b-sm bg-space-light" />
             <span className="h-8 w-3 rounded-b-sm bg-space-light" />
@@ -172,7 +172,7 @@ export default function Judging() {
           <div className="flex items-end gap-4">
             {/* the total rides a springy staked aerial, like it bounced up there */}
             <div className="judge-badge flex flex-col items-center">
-              <span className="relative z-10 grid h-24 w-24 place-items-center rounded-full border-4 border-ink-deep bg-energy text-center shadow-[0_6px_0_#d99a00]">
+              <span className="relative z-10 grid h-24 w-24 place-items-center rounded-full border-[3px] border-ink-deep bg-energy text-center shadow-[0_4px_0_#d99a00]">
                 <span className="block text-3xl font-bold leading-none">
                   {RUBRIC_TOTAL}
                   <span className="mt-1 block text-[10px] font-bold uppercase tracking-widest text-ink/60">points</span>

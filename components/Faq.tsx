@@ -113,8 +113,8 @@ export default function Faq() {
                   <span
                     className={`grid h-9 w-9 shrink-0 place-items-center rounded-full border-2 border-saigon text-xl font-bold transition-transform duration-300 ${
                       isOpen
-                        ? "rotate-45 bg-saigon text-white shadow-[0_3px_0_#0d1b2a]"
-                        : "bg-energy text-ink shadow-[0_3px_0_#d99a00]"
+                        ? "rotate-45 bg-saigon text-white shadow-[0_2px_0_#0d1b2a]"
+                        : "bg-energy text-ink shadow-[0_2px_0_#d99a00]"
                     }`}
                     aria-hidden="true"
                   >

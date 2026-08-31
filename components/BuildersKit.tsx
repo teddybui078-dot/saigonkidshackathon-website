@@ -185,7 +185,7 @@ export default function BuildersKit() {
               {/* outer div is the pop, this one drifts */}
               <div className="ambient-float flex flex-col items-center" data-amp="s">
                 {ART[item.id]}
-                <span className="kit-caption mt-2 rounded-full border-2 border-ink-deep bg-white px-3 py-1 text-xs font-bold text-ink shadow-[0_3px_0_#ffd166]">
+                <span className="kit-caption mt-2 rounded-full border-2 border-ink-deep bg-white px-3 py-1 text-xs font-bold text-ink shadow-[0_2px_0_#ffd166]">
                   {item.name}
                 </span>
               </div>

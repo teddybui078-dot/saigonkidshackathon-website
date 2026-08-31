@@ -101,7 +101,7 @@ export default function Footer() {
         </p>
 
         <div className="footer-pop mt-8 flex justify-center">
-          <span className="rounded-full bg-energy px-7 py-3.5 text-base font-semibold text-ink shadow-[0_6px_0_#d99a00]">
+          <span className="rounded-full bg-energy px-7 py-3.5 text-base font-semibold text-ink shadow-[0_4px_0_#d99a00]">
             Registration opens soon
           </span>
         </div>

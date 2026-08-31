@@ -243,7 +243,7 @@ export default function About() {
         </div>
 
         {/* a riveted control panel: brushed metal, screws, domed push-buttons */}
-        <div className="about-panel metal-brushed relative mt-14 rounded-3xl border-4 border-ink-deep px-6 pb-9 pt-10 text-ink shadow-[0_10px_0_#ffd166] md:px-10">
+        <div className="about-panel metal-brushed relative mt-14 rounded-3xl border-[3px] border-ink-deep px-6 pb-9 pt-10 text-ink shadow-[0_7px_0_#ffd166] md:px-10">
           <Screws />
           {/* the panel has been carried around a bit */}
           <Scuffs seed={0} className="absolute left-12 top-4 hidden md:block" />

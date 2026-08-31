@@ -144,7 +144,7 @@ export default function Schedule() {
             aria-hidden="true"
           />
           <span
-            className="absolute -top-4 left-1/2 h-5 w-5 -translate-x-1/2 rounded-full border-[3px] border-ink-deep bg-energy"
+            className="absolute -top-4 left-1/2 h-5 w-5 -translate-x-1/2 rounded-full border-2 border-ink-deep bg-energy"
             aria-hidden="true"
           />
 
@@ -166,7 +166,7 @@ export default function Schedule() {
                   aria-hidden="true"
                 />
                 <span
-                  className={`schedule-collar absolute -top-1 hidden h-4 w-5 rounded-sm border-[3px] border-ink-deep bg-energy md:block ${
+                  className={`schedule-collar absolute -top-1 hidden h-4 w-5 rounded-sm border-2 border-ink-deep bg-energy md:block ${
                     i % 2 === 0 ? "-right-2.5" : "-left-2.5"
                   }`}
                   aria-hidden="true"

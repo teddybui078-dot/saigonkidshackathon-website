@@ -22,9 +22,9 @@ const NOTE_TILT = [-1.5, 1, -0.8, 1.2];
 
 /* the faq's plus button and bubble tail — full strings so tailwind sees them */
 const PLUS = {
-  open: "grid h-9 w-9 shrink-0 place-items-center rounded-full border-2 border-saigon text-xl font-bold transition-transform duration-300 rotate-45 bg-saigon text-white shadow-[0_3px_0_#0d1b2a]",
+  open: "grid h-9 w-9 shrink-0 place-items-center rounded-full border-2 border-saigon text-xl font-bold transition-transform duration-300 rotate-45 bg-saigon text-white shadow-[0_2px_0_#0d1b2a]",
   closed:
-    "grid h-9 w-9 shrink-0 place-items-center rounded-full border-2 border-saigon text-xl font-bold transition-transform duration-300 bg-energy text-ink shadow-[0_3px_0_#d99a00]",
+    "grid h-9 w-9 shrink-0 place-items-center rounded-full border-2 border-saigon text-xl font-bold transition-transform duration-300 bg-energy text-ink shadow-[0_2px_0_#d99a00]",
 };
 const TAIL = {
   left: "absolute -bottom-[13px] left-10 h-5 w-5 rotate-45 border-b-[3px] border-r-[3px] border-ink-deep bg-white",
@@ -40,7 +40,7 @@ function Notice({ item }: { item: GuideItem }) {
   // the rule, on a white card held by two pins with a stamp inked top-right
   const groups = item.body[item.body.length - 1];
   return (
-    <div className="board-item relative rounded-2xl border-4 border-ink-deep bg-white p-6 text-ink shadow-[0_8px_0_#ffd166] md:col-span-2 md:p-8">
+    <div className="board-item relative rounded-2xl border-[3px] border-ink-deep bg-white p-6 text-ink shadow-[0_6px_0_#ffd166] md:col-span-2 md:p-8">
       <Pushpin className="board-pin absolute -top-3 left-6" />
       <Pushpin className="board-pin absolute -top-3 right-6" />
       {/* the stamp rests at -6deg via transform (not the rotate property),
@@ -97,7 +97,7 @@ function AgendaTicket({ item }: { item: GuideItem }) {
   // a ticket strip: blue header band, one row per slot, a notch each side.
   // the wrapper carries the shadow — the notch mask would clip it off the card
   return (
-    <div className="board-item rounded-lg text-ink shadow-[0_6px_0_#ffd166]">
+    <div className="board-item rounded-lg text-ink shadow-[0_4px_0_#ffd166]">
       <div className="ticket-notched overflow-hidden rounded-lg border-[3px] border-ink-deep bg-white">
         <h3 className="bg-saigon px-5 py-2 text-xs font-bold uppercase tracking-widest text-white">{item.title}</h3>
         <ol>
@@ -122,7 +122,7 @@ function AgendaTicket({ item }: { item: GuideItem }) {
 function FeeTag({ item }: { item: GuideItem }) {
   // the fee on a luggage tag, sitting on a plain card
   return (
-    <div className="board-item relative rounded-2xl border-[3px] border-ink-deep bg-white p-6 text-ink shadow-[0_6px_0_#ffd166]">
+    <div className="board-item relative rounded-2xl border-[3px] border-ink-deep bg-white p-6 text-ink shadow-[0_4px_0_#ffd166]">
       <h3 className="text-xs font-semibold uppercase tracking-widest text-ink/50">{item.title}</h3>
       <div className="mt-3">
         <PrizeTag className="text-lg [&_span]:text-lg">{EVENT.fee.display} per builder</PrizeTag>
@@ -140,7 +140,7 @@ function Checklist({ item }: { item: GuideItem }) {
   // an index card: the title on the header rule, a checklist icon in the
   // corner, an empty check square before each line
   return (
-    <div className="board-item paper-index relative rounded-lg border-[3px] border-ink-deep p-6 pt-12 text-ink shadow-[0_6px_0_#ffd166]">
+    <div className="board-item paper-index relative rounded-lg border-[3px] border-ink-deep p-6 pt-12 text-ink shadow-[0_4px_0_#ffd166]">
       <h3 className="absolute left-6 top-3 text-xs font-bold uppercase tracking-widest text-saigon/70">{item.title}</h3>
       <SubjectIcon kind="list" size={28} className="absolute right-5 top-2" />
       <ul>
@@ -162,7 +162,7 @@ function ParentBadge({ item }: { item: GuideItem }) {
       {/* swings from the clip on hover — kept off the gsap wrapper */}
       <div className="mx-auto flex max-w-sm origin-top flex-col items-center transition-transform duration-300 hover:rotate-2">
         <Lanyard className="-mb-1" />
-        <div className="w-full rounded-xl border-[3px] border-ink-deep bg-white text-ink shadow-[0_6px_0_#ffd166]">
+        <div className="w-full rounded-xl border-[3px] border-ink-deep bg-white text-ink shadow-[0_4px_0_#ffd166]">
           {/* header band with the punched slot the clip goes through */}
           <div className="flex h-8 items-center justify-center gap-3 rounded-t-[9px] bg-saigon text-[11px] font-bold tracking-widest text-white">
             <span className="h-1.5 w-10 rounded-full bg-white/80" aria-hidden="true" />
@@ -191,7 +191,7 @@ function ParentBadge({ item }: { item: GuideItem }) {
 function Bubble({ item }: { item: GuideItem }) {
   // a speech bubble with its tail bottom-left — how to reach us
   return (
-    <div className="board-item relative rounded-2xl border-[3px] border-ink-deep bg-white text-ink shadow-[0_6px_0_#ffd166]">
+    <div className="board-item relative rounded-2xl border-[3px] border-ink-deep bg-white text-ink shadow-[0_4px_0_#ffd166]">
       <span className={TAIL.left} aria-hidden="true" />
       <div className="px-6 py-5">
         <h3 className="text-lg font-semibold">{item.title}</h3>
@@ -218,7 +218,7 @@ function QuickFaq({ item }: { item: GuideItem }) {
             <div
               key={faq.q}
               data-open={isOpen}
-              className="faq-item relative rounded-2xl border-[3px] border-ink-deep bg-white text-ink shadow-[0_6px_0_#ffd166]"
+              className="faq-item relative rounded-2xl border-[3px] border-ink-deep bg-white text-ink shadow-[0_4px_0_#ffd166]"
             >
               <span className={i % 2 === 0 ? TAIL.left : TAIL.right} aria-hidden="true" />
               <button
@@ -381,7 +381,7 @@ export default function ParentsGuide() {
           {CHIPS.map((chip) => (
             <span
               key={chip}
-              className="board-chip rounded-full border-2 border-ink-deep bg-white px-4 py-1.5 text-sm font-semibold text-saigon shadow-[0_3px_0_#ffd166]"
+              className="board-chip rounded-full border-2 border-ink-deep bg-white px-4 py-1.5 text-sm font-semibold text-saigon shadow-[0_2px_0_#ffd166]"
             >
               {chip}
             </span>
