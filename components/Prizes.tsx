@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Sparkle, PixelGrid, PixelStack, SparkleCross } from "./decorations";
+import { Sparkle, PixelStack } from "./decorations";
 import { ChalkScribble, KidAstronaut } from "./space";
 import { Hook, Screw } from "./parts";
 import { Trophy, Medal, Rosette, PrizeTag } from "./illustrations";
@@ -186,20 +186,16 @@ export default function Prizes() {
   return (
     <section ref={sectionRef} id="prizes" className="relative px-4 py-24">
       {/* big hooks: a brick pile in the corner, a sparkle, a pixel cluster by the heading */}
-      <div className="anchor-drift pointer-events-none absolute bottom-24 left-6 -z-[1] hidden lg:block">
-        <PixelStack width={190} />
+      <div className="anchor-drift pointer-events-none absolute bottom-24 left-6 -z-[1] hidden opacity-70 lg:block">
+        <PixelStack width={150} />
       </div>
       <div className="pointer-events-none absolute right-16 top-[30%] -z-[1] hidden lg:block">
-        <Sparkle className="ambient-twinkle" size={56} />
-      </div>
-      <div className="pointer-events-none absolute left-[12%] top-28 -z-[1] hidden lg:block">
-        <PixelGrid className="ambient-float" size={72} />
+        <Sparkle className="ambient-twinkle" size={36} />
       </div>
       {/* a chalk spring bouncing beside the podium */}
       <div className="pointer-events-none absolute right-[20%] top-[38%] -z-[1] hidden rotate-[10deg] lg:block">
-        <ChalkScribble kind="spring" width={104} />
+        <ChalkScribble kind="spring" width={90} />
       </div>
-      <SparkleCross className="pointer-events-none absolute bottom-40 left-[22%] -z-[1] hidden lg:block" size={24} />
 
       {/* the pinned block: heading, the stage, and the captions under it */}
       <div className="prizes-pin mx-auto max-w-5xl">

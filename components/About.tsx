@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { PixelGrid, Sparkle, FloatingLaptop, PixelBulb, PixelStack, FlightArc, PixelTrophy } from "./decorations";
+import { PixelGrid, Sparkle, FloatingLaptop, PixelBulb, PixelStack, PixelTrophy } from "./decorations";
 import { Screws, DomeButton, Led, Pushpin, Scuffs } from "./parts";
 import { DrawnBg, DrawnDiscBg } from "./drawn";
 import { PartyPopper } from "./illustrations";
@@ -154,21 +154,15 @@ export default function About() {
 
   return (
     <section ref={sectionRef} id="about" className="relative px-4 py-24">
-      {/* big hooks alternating around the content */}
-      <div className="anchor-drift pointer-events-none absolute left-4 top-10 -z-[1] hidden lg:block">
-        <PixelBulb size={112} />
+      {/* the curated few: a laptop, a brick stack, one sparkle */}
+      <div className="anchor-drift pointer-events-none absolute right-10 top-6 -z-[1] hidden opacity-70 lg:block">
+        <FloatingLaptop className="anchor-wobble" width={240} />
       </div>
-      <div className="anchor-drift pointer-events-none absolute right-10 top-6 -z-[1] hidden lg:block">
-        <FloatingLaptop className="anchor-wobble" width={300} />
-      </div>
-      <div className="anchor-drift pointer-events-none absolute bottom-28 left-8 -z-[1] hidden lg:block">
-        <PixelStack width={170} />
-      </div>
-      <div className="anchor-drift pointer-events-none absolute bottom-24 right-24 -z-[1] hidden lg:block">
-        <FlightArc width={220} color="#ffb703" />
+      <div className="anchor-drift pointer-events-none absolute bottom-28 left-8 -z-[1] hidden opacity-70 lg:block">
+        <PixelStack width={140} />
       </div>
       <div className="pointer-events-none absolute bottom-40 right-14 -z-[1] hidden lg:block">
-        <Sparkle className="ambient-twinkle" size={44} />
+        <Sparkle className="ambient-twinkle" size={32} />
       </div>
       <div className="mx-auto max-w-6xl">
         {/* the pinned pair: a billboard on the left, a stack of notes on the
@@ -286,7 +280,6 @@ export default function About() {
           </dl>
         </div>
 
-        <Sparkle className="ambient-twinkle absolute bottom-10 right-[8%] hidden lg:block" size={26} />
       </div>
     </section>
   );

@@ -64,7 +64,7 @@ export default function Footer() {
         <BrickPile width={230} />
       </div>
       <div className="anchor-drift pointer-events-none absolute right-8 top-10 opacity-25 hidden lg:block">
-        <PixelPlanet className="anchor-wobble" size={320} />
+        <PixelPlanet className="anchor-wobble" size={260} />
       </div>
       <div className="relative z-10 mx-auto max-w-4xl text-center">
         <Sparkle className="footer-pop ambient-twinkle mx-auto mb-6" size={30} />

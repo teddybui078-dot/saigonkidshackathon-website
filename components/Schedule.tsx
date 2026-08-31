@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Sparkle, PixelClock, PixelStack, CodeMark, PixelGrid } from "./decorations";
+import { Sparkle, PixelClock } from "./decorations";
 import { Hook, Tassel } from "./parts";
 import { AGENDA } from "./agenda";
 
@@ -112,20 +112,11 @@ export default function Schedule() {
   return (
     <section ref={sectionRef} id="schedule" className="relative px-4 py-24">
       {/* big hooks alternating down both sides of the day */}
-      <div className="anchor-drift pointer-events-none absolute left-8 top-[22%] -z-[1] hidden lg:block">
-        <PixelClock size={340} />
-      </div>
-      <div className="anchor-drift pointer-events-none absolute right-10 top-[45%] -z-[1] hidden lg:block">
-        <PixelStack width={200} />
-      </div>
-      <div className="anchor-drift pointer-events-none absolute left-14 top-[68%] -z-[1] hidden lg:block">
-        <CodeMark className="anchor-wobble" size={150} />
+      <div className="anchor-drift pointer-events-none absolute left-8 top-[22%] -z-[1] hidden opacity-70 lg:block">
+        <PixelClock size={280} />
       </div>
       <div className="pointer-events-none absolute right-16 top-[85%] -z-[1] hidden lg:block">
-        <Sparkle className="ambient-twinkle" size={64} />
-      </div>
-      <div className="anchor-drift pointer-events-none absolute right-32 top-[90%] -z-[1] hidden lg:block">
-        <PixelGrid size={80} />
+        <Sparkle className="ambient-twinkle" size={36} />
       </div>
       <div className="mx-auto max-w-5xl">
         <div className="text-center">

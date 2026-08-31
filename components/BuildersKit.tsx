@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Sparkle, PixelGrid, CodeMark, SparkleCross } from "./decorations";
+import { Sparkle, CodeMark } from "./decorations";
 import { ToteBag, KitBadge } from "./illustrations";
 import { FloatBrick, ChalkScribble } from "./space";
 import { FLARE } from "./palette";
@@ -141,19 +141,15 @@ export default function BuildersKit() {
     <section ref={sectionRef} id="kit" className="relative px-4 py-24">
       {/* big hooks in the corners: a sparkle, a pixel cluster, the code mark */}
       <div className="pointer-events-none absolute left-12 top-12 -z-[1] hidden lg:block">
-        <Sparkle className="ambient-twinkle" size={56} />
-      </div>
-      <div className="pointer-events-none absolute right-12 top-10 -z-[1] hidden lg:block">
-        <PixelGrid className="ambient-float" size={96} />
+        <Sparkle className="ambient-twinkle" size={36} />
       </div>
       <div className="pointer-events-none absolute bottom-20 right-16 -z-[1] hidden lg:block">
-        <CodeMark className="ambient-float" size={150} />
+        <CodeMark className="ambient-float" size={110} />
       </div>
       {/* a chalk zigzag skipping off the bag */}
       <div className="pointer-events-none absolute left-[18%] bottom-32 -z-[1] hidden -rotate-[6deg] lg:block">
-        <ChalkScribble kind="zigzag" width={88} />
+        <ChalkScribble kind="zigzag" width={80} />
       </div>
-      <SparkleCross className="pointer-events-none absolute right-[26%] top-24 -z-[1] hidden lg:block" size={20} />
       <div className="mx-auto max-w-5xl">
         <div className="text-center">
           <p className="kit-line mb-3 text-sm font-semibold text-sun">In your bag ✦</p>

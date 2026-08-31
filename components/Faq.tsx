@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { PixelGrid, SparkleCross } from "./decorations";
+import { PixelGrid } from "./decorations";
 import { ChalkScribble } from "./space";
 import { DrawnBubbleBg, DrawnTail, type TailKind } from "./drawn";
 import { EVENT, AGES, GRADES, TEAM_SIZE } from "./event";
@@ -64,19 +64,18 @@ export default function Faq() {
     <section ref={sectionRef} id="faq" className="relative px-4 py-24">
       {/* big hook: a giant question mark leaning in from the right */}
       <span
-        className="anchor-wiggle pointer-events-none absolute right-12 top-1/4 -z-[1] hidden rotate-12 text-outline-white select-none text-[16rem] font-bold leading-none opacity-40 lg:block"
+        className="anchor-wiggle pointer-events-none absolute right-12 top-1/4 -z-[1] hidden rotate-12 text-outline-white select-none text-[14rem] font-bold leading-none opacity-40 lg:block"
         aria-hidden="true"
       >
         ?
       </span>
       {/* a chalk flick looping past the question mark */}
       <div className="pointer-events-none absolute right-[24%] top-16 -z-[1] hidden -rotate-[4deg] lg:block">
-        <ChalkScribble kind="loop" width={100} />
+        <ChalkScribble kind="loop" width={85} />
       </div>
-      <SparkleCross className="pointer-events-none absolute bottom-28 left-[14%] -z-[1] hidden lg:block" size={22} />
       <div className="mx-auto max-w-3xl">
         <div className="relative text-center">
-          <PixelGrid className="ambient-float absolute -top-8 right-0 hidden md:block" size={32} />
+          <PixelGrid className="ambient-float absolute -top-8 right-0 hidden md:block" size={24} />
           <p className="mb-3 text-sm font-semibold text-sun">
             Good questions ✦
           </p>

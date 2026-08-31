@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Sparkle, FlightArc, SparkleCross } from "./decorations";
+import { Sparkle } from "./decorations";
 import { ChalkScribble } from "./space";
 import { DrawnPaddleBg } from "./drawn";
 import { CoilStake } from "./parts";
@@ -85,22 +85,18 @@ export default function Judging() {
     <section ref={sectionRef} id="judging" className="relative px-4 py-24">
       {/* big hooks: the score everyone is chasing, an arc, a sparkle */}
       <span
-        className="anchor-wiggle text-outline-white pointer-events-none absolute left-6 top-24 -z-[1] hidden select-none rotate-[-8deg] text-[13rem] font-bold leading-none lg:block"
+        className="anchor-wiggle text-outline-white pointer-events-none absolute left-6 top-24 -z-[1] hidden select-none rotate-[-8deg] text-[13rem] font-bold leading-none opacity-50 lg:block"
         aria-hidden="true"
       >
         {RUBRIC_TOTAL}
       </span>
-      <div className="anchor-drift pointer-events-none absolute bottom-24 right-16 -z-[1] hidden lg:block">
-        <FlightArc width={220} />
-      </div>
       <div className="pointer-events-none absolute right-[12%] top-36 -z-[1] hidden lg:block">
-        <Sparkle className="ambient-twinkle" size={30} />
+        <Sparkle className="ambient-twinkle" size={24} />
       </div>
       {/* the sky doodling around the scoreboard */}
       <div className="pointer-events-none absolute left-[24%] top-16 -z-[1] hidden -rotate-6 lg:block">
-        <ChalkScribble kind="loop" width={110} />
+        <ChalkScribble kind="loop" width={90} />
       </div>
-      <SparkleCross className="pointer-events-none absolute bottom-32 left-16 -z-[1] hidden lg:block" size={22} />
 
       <div className="mx-auto max-w-5xl">
         <div className="text-center">
