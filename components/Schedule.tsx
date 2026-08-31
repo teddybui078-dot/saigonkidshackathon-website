@@ -179,9 +179,9 @@ export default function Schedule() {
                   <div className="w-2/3 rounded-t-xl bg-space-light px-3 py-1.5 text-center text-base font-bold text-sun">
                     {slot.time}
                   </div>
-                  <div className="lantern-body w-full px-12 py-7 text-center">
+                  <div className="lantern-body w-full px-12 py-7 text-center text-ink">
                     <h3 className="text-2xl font-semibold md:text-3xl">{slot.title}</h3>
-                    <p className="mt-2 text-lg font-medium leading-snug text-white/75">{slot.body}</p>
+                    <p className="mt-2 text-lg font-medium leading-snug text-ink/70">{slot.body}</p>
                   </div>
                   <div className="h-3 w-2/3 rounded-b-xl bg-space-light" aria-hidden="true" />
                   <Tassel className="h-11 w-7" />
