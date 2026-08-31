@@ -202,6 +202,164 @@ export function SignBoard({ className = "", width = 780, ...rest }: SpaceArtProp
   );
 }
 
+/* ————— the constellations ————— */
+
+/* stars joined by thin chalk lines — the sky doodling on itself. the
+   "code" one draws the bracket mark the kids will type all day */
+export function Constellation({
+  className = "",
+  width = 160,
+  kind = "code",
+  ...rest
+}: SpaceArtProps & { kind?: "code" | "kite" }) {
+  if (kind === "kite") {
+    return (
+      <svg
+        className={className}
+        width={width}
+        height={width * (140 / 120)}
+        viewBox="0 0 120 140"
+        fill="none"
+        aria-hidden="true"
+        focusable="false"
+        {...rest}
+      >
+        <g stroke={PAPER} strokeWidth={2} opacity={0.4} strokeLinecap="round">
+          <path d="M60 14 L96 52 L60 92 L26 54 Z" />
+          <path d="M60 92 Q52 108 58 126" />
+        </g>
+        <g fill={PAPER}>
+          <circle cx={60} cy={14} r={3.5} />
+          <circle cx={96} cy={52} r={2.5} />
+          <circle cx={60} cy={92} r={3} />
+          <circle cx={26} cy={54} r={2.5} />
+          <circle cx={58} cy={126} r={2} opacity={0.7} />
+        </g>
+      </svg>
+    );
+  }
+  return (
+    <svg
+      className={className}
+      width={width}
+      height={width * (100 / 160)}
+      viewBox="0 0 160 100"
+      fill="none"
+      aria-hidden="true"
+      focusable="false"
+      {...rest}
+    >
+      <g stroke={PAPER} strokeWidth={2} opacity={0.4} strokeLinecap="round">
+        <path d="M44 24 L16 50 L44 78" />
+        <path d="M92 18 L68 84" />
+        <path d="M116 24 L144 50 L116 78" />
+      </g>
+      <g fill={PAPER}>
+        <circle cx={44} cy={24} r={3} />
+        <circle cx={16} cy={50} r={3.5} />
+        <circle cx={44} cy={78} r={2.5} />
+        <circle cx={92} cy={18} r={2.5} />
+        <circle cx={68} cy={84} r={3} />
+        <circle cx={116} cy={24} r={2.5} />
+        <circle cx={144} cy={50} r={3.5} />
+        <circle cx={116} cy={78} r={3} />
+      </g>
+    </svg>
+  );
+}
+
+/* ————— the comet ————— */
+
+/* one big gesture across the sky: a sun-bright head with a brushed
+   ribbon tail, the same stroke language as the wind-bands */
+export function Comet({ className = "", width = 320, ...rest }: SpaceArtProps) {
+  return (
+    <svg
+      className={className}
+      width={width}
+      height={width * (140 / 320)}
+      viewBox="0 0 320 140"
+      fill="none"
+      aria-hidden="true"
+      focusable="false"
+      {...rest}
+    >
+      <path
+        d="M20 30 C 100 26 190 48 266 82 C 224 78 182 74 152 68 C 106 56 54 42 20 30 Z"
+        fill={SUN}
+        opacity={0.3}
+      />
+      <path
+        d="M64 44 C 132 48 200 64 258 82 C 214 76 168 70 132 62 C 106 56 82 50 64 44 Z"
+        fill={PAPER}
+        opacity={0.4}
+      />
+      <circle cx={276} cy={88} r={14} fill={SUN} stroke={STROKE} strokeWidth={4} />
+      <path d="M268 80 Q272 76 278 77" stroke={PAPER} strokeWidth={3} strokeLinecap="round" opacity={0.8} />
+    </svg>
+  );
+}
+
+/* ————— the chalk laptop ————— */
+
+/* an open-stroke laptop doodled on the sky, the code mark on its
+   screen — drawn, never filled, like the chalk stars */
+export function ChalkLaptop({ className = "", width = 120, ...rest }: SpaceArtProps) {
+  return (
+    <svg
+      className={className}
+      width={width}
+      height={width * (100 / 120)}
+      viewBox="0 0 120 100"
+      fill="none"
+      aria-hidden="true"
+      focusable="false"
+      {...rest}
+    >
+      <g stroke={PAPER} strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round" opacity={0.75}>
+        <path d="M30 14 Q58 10 90 14 Q94 40 91 62 Q59 66 29 62 Q26 38 30 14 Z" />
+        <path d="M20 78 Q60 84 100 78 L91 63 Q59 67 29 63 Z" />
+        <path d="M46 82 Q60 84 74 82" />
+      </g>
+      <g stroke={SUN} strokeWidth={3} strokeLinecap="round" strokeLinejoin="round" opacity={0.9}>
+        <path d="M50 28 L42 38 L50 48" />
+        <path d="M68 28 L76 38 L68 48" />
+      </g>
+    </svg>
+  );
+}
+
+/* ————— the float brick ————— */
+
+/* a lone lego brick adrift, studs up — a piece of the pile below that
+   got away */
+export function FloatBrick({
+  className = "",
+  width = 72,
+  color = YELLOW,
+  ...rest
+}: SpaceArtProps & { color?: string }) {
+  return (
+    <svg
+      className={className}
+      width={width}
+      height={width * (56 / 80)}
+      viewBox="0 0 80 56"
+      fill="none"
+      aria-hidden="true"
+      focusable="false"
+      {...rest}
+    >
+      <g strokeLinejoin="round">
+        <rect x={16} y={10} width={18} height={12} rx={2} fill={color} stroke={STROKE} strokeWidth={3.5} />
+        <rect x={46} y={10} width={18} height={12} rx={2} fill={color} stroke={STROKE} strokeWidth={3.5} />
+        <rect x={8} y={20} width={64} height={28} rx={3} fill={color} stroke={STROKE} strokeWidth={4} />
+        <path d="M14 26 Q40 24 66 26" stroke={PAPER} strokeWidth={3} strokeLinecap="round" opacity={0.5} />
+      </g>
+    </svg>
+  );
+}
+
 /* ————— the crater moon ————— */
 
 /* a small pale moon, cratered like the terrain below — the sky's quiet

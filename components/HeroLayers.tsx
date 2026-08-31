@@ -6,7 +6,7 @@
 import { CHALK_ID, GRAIN_ID, PARALLAX } from "./hero-layers";
 import { STARFIELD, STAR_DEPTHS, type StarDepth } from "./starfield";
 import { Sparkle } from "./decorations";
-import { SUN, PAPER } from "./palette";
+import { SUN, PAPER, FLARE } from "./palette";
 import {
   HeroLayerShell,
   GrainFilter,
@@ -18,6 +18,10 @@ import {
   RingedPlanet,
   SwirlPlanet,
   CraterMoon,
+  Constellation,
+  Comet,
+  ChalkLaptop,
+  FloatBrick,
   Landmark81,
   KidAstronaut,
   Foliage,
@@ -114,6 +118,17 @@ export function HeroCanvas() {
           style={{ left: s.left, top: s.top, "--blink-time": s.time } as React.CSSProperties}
         />
       ))}
+      {/* the sky doodling on itself: constellations, a comet, a laptop */}
+      <Constellation kind="code" className="absolute left-[4%] top-[24%] hidden w-36 sm:block" />
+      <Constellation kind="kite" className="absolute left-[20%] top-[7%] hidden w-24 rotate-6 md:block" />
+      <Comet className="absolute left-[60%] top-[10%] w-44 -rotate-3 md:w-56" />
+      <ChalkLaptop className="absolute left-[26%] top-[62%] hidden w-24 -rotate-6 md:block" />
+      {/* two bricks that drifted off the pile below */}
+      <FloatBrick className="brick-free absolute left-[56%] top-[19%] hidden w-16 md:block" />
+      <FloatBrick
+        color={FLARE}
+        className="absolute right-[23%] top-[22%] hidden w-14 rotate-[9deg] lg:block"
+      />
     </HeroLayerShell>
   );
 }
