@@ -15,7 +15,7 @@ export default function HeroUi() {
       style={{ zIndex: HERO_LAYER.ui }}
     >
       {/* the whole assembly bobs and sways together — gsap on the wrapper */}
-      <div className="hero-sign flex w-[88vw] max-w-[420px] flex-col items-center sm:max-w-[500px] md:w-[min(44vw,560px)] md:max-w-none">
+      <div className="hero-sign flex w-[88vw] max-w-[420px] flex-col items-center sm:max-w-[500px] md:w-[min(52vw,640px)] md:max-w-none">
         {/* the board, drawn — frame, shadow, bolts and name in one */}
         <h1 className="m-0 w-full">
           <span className="sr-only">{EVENT.name}</span>
@@ -25,7 +25,7 @@ export default function HeroUi() {
 
       {/* the facts and the buttons — out of the art, on the sky. no
           data-speed and outside .hero-sign, so they neither bob nor drift */}
-      <div className="hero-actions mt-16 flex flex-col items-center px-4 text-center text-white md:mt-24">
+      <div className="hero-actions mt-4 flex flex-col items-center px-4 text-center text-white md:mt-6">
         <p className="hero-fade m-0 mx-auto max-w-md text-base font-medium leading-snug text-white/90 md:text-lg">
           one big day of building, coding and playing — for {EVENT.spots} young makers
           aged {AGES}.

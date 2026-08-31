@@ -86,10 +86,12 @@ export function ChalkFilter({ id }: { id: string }) {
 /* ————— the sign board ————— */
 
 /* the red-lacquer board itself, drawn instead of boxed: a trapezoid that
-   leans a degree, edges that bow, corners rounded unevenly. the yellow
-   drop shadow is the same path nudged, the bevels are gloss ticks, the
-   bolts are drawn in (one crooked, as ever), and the wordmark sits inside
-   the same viewBox so board and lettering can never drift apart */
+   leans a degree, edges that bow, corners rounded unevenly. it stands on
+   its own stems now — a lotus-crowned bamboo post above, a bamboo post
+   into a stacked lego foot below, a lego collar over the top joint. the
+   yellow drop shadow is the same path nudged, the bevels are gloss ticks,
+   the bolts are drawn in (one crooked, as ever), and the wordmark sits
+   inside the same viewBox so nothing can ever drift apart */
 export function SignBoard({ className = "", width = 780, ...rest }: SpaceArtProps) {
   const outer =
     "M52 38 Q240 30 420 32 Q610 34 734 40 Q750 42 751 58 Q758 200 750 366 Q749 382 732 384 Q540 394 380 392 Q200 390 44 386 Q26 385 27 368 Q20 200 33 55 Q35 40 52 38 Z";
@@ -97,47 +99,105 @@ export function SignBoard({ className = "", width = 780, ...rest }: SpaceArtProp
     <svg
       className={className}
       width={width}
-      height={width * (420 / 780)}
-      viewBox="0 0 780 420"
+      height={width * (640 / 780)}
+      viewBox="0 0 780 640"
       fill="none"
       aria-hidden="true"
       focusable="false"
       {...rest}
     >
-      {/* the shadow the sun throws — the board again, nudged and gold */}
-      <path d={outer} transform="translate(9 10)" fill={SUN} />
-      {/* the lacquer */}
-      <path d={outer} fill={FLARE} stroke={STROKE} strokeWidth={6} strokeLinejoin="round" />
-      {/* the white board, wobbled on its own */}
+      {/* the lotus riding the top stem, breathing */}
+      <g className="lotus-breathe">
+        <path
+          d="M370 36 C 364 48 370 60 390 65 C 388 50 381 41 370 36 Z"
+          fill={FLARE}
+          stroke={STROKE}
+          strokeWidth={3.5}
+          strokeLinejoin="round"
+        />
+        <path
+          d="M422 36 C 428 48 422 60 402 65 C 404 50 411 41 422 36 Z"
+          fill={FLARE}
+          stroke={STROKE}
+          strokeWidth={3.5}
+          strokeLinejoin="round"
+        />
+        <path
+          d="M396 20 C 386 34 383 48 396 62 C 409 48 406 34 396 20 Z"
+          fill={FLARE}
+          stroke={STROKE}
+          strokeWidth={3.5}
+          strokeLinejoin="round"
+        />
+        <ellipse cx={396} cy={64} rx={17} ry={7} fill={SUN} stroke={STROKE} strokeWidth={3} />
+      </g>
+      {/* the top stem: bamboo culms down into the board */}
       <path
-        d="M78 70 Q250 64 420 66 Q580 68 706 72 Q718 73 719 86 Q726 210 718 336 Q717 350 703 351 Q520 358 380 356 Q230 354 80 350 Q66 349 67 336 Q60 210 66 84 Q67 71 78 70 Z"
-        fill={PAPER}
+        d="M381 72 Q377 112 380 156 L412 156 Q415 112 411 72 Q396 67 381 72 Z"
+        fill={SUN}
         stroke={STROKE}
-        strokeWidth={5}
+        strokeWidth={4}
         strokeLinejoin="round"
       />
-      {/* bevels as brush ticks: light where the sun grazes, dark below */}
-      <g strokeLinecap="round" fill="none">
-        <path d="M92 50 Q240 44 378 46" stroke={PAPER} strokeWidth={6} opacity={0.35} />
-        <path d="M41 92 Q37 180 40 258" stroke={PAPER} strokeWidth={6} opacity={0.35} />
-        <path d="M124 376 Q320 382 560 378" stroke={SPACE_DARK} strokeWidth={6} opacity={0.4} />
-        <path d="M743 122 Q748 220 742 318" stroke={SPACE_DARK} strokeWidth={6} opacity={0.4} />
-      </g>
-      {/* the corner bolts, one a little crooked, as ever */}
-      <g stroke={STROKE} strokeLinecap="round">
-        <circle cx={57} cy={55} r={9} fill={SUN} strokeWidth={4} />
-        <path d="M52 55 L62 55" strokeWidth={3} />
-        <g transform="rotate(12 727 57)">
-          <circle cx={727} cy={57} r={9} fill={SUN} strokeWidth={4} />
-          <path d="M722 57 L732 57" strokeWidth={3} />
+      <path d="M379 114 L413 113" stroke={STROKE} strokeWidth={3} strokeLinecap="round" />
+      {/* the bottom stem, drawn first so the board overlaps its joint */}
+      <path
+        d="M382 500 Q379 545 381 588 L407 588 Q410 545 406 500 Z"
+        fill={SUN}
+        stroke={STROKE}
+        strokeWidth={4}
+        strokeLinejoin="round"
+      />
+      {/* the board assembly, shifted down to sit between the stems */}
+      <g transform="translate(0 118)">
+        {/* the shadow the sun throws — the board again, nudged and gold */}
+        <path d={outer} transform="translate(12 13)" fill={SUN} />
+        {/* the lacquer */}
+        <path d={outer} fill={FLARE} stroke={STROKE} strokeWidth={6} strokeLinejoin="round" />
+        {/* the white board, wobbled on its own */}
+        <path
+          d="M78 70 Q250 64 420 66 Q580 68 706 72 Q718 73 719 86 Q726 210 718 336 Q717 350 703 351 Q520 358 380 356 Q230 354 80 350 Q66 349 67 336 Q60 210 66 84 Q67 71 78 70 Z"
+          fill={PAPER}
+          stroke={STROKE}
+          strokeWidth={5}
+          strokeLinejoin="round"
+        />
+        {/* bevels as brush ticks: light where the sun grazes, dark below */}
+        <g strokeLinecap="round" fill="none">
+          <path d="M92 50 Q240 44 378 46" stroke={PAPER} strokeWidth={6} opacity={0.35} />
+          <path d="M41 92 Q37 180 40 258" stroke={PAPER} strokeWidth={6} opacity={0.35} />
+          <path d="M124 376 Q320 382 560 378" stroke={SPACE_DARK} strokeWidth={6} opacity={0.4} />
+          <path d="M743 122 Q748 220 742 318" stroke={SPACE_DARK} strokeWidth={6} opacity={0.4} />
         </g>
-        <circle cx={55} cy={367} r={9} fill={SUN} strokeWidth={4} />
-        <path d="M50 367 L60 367" strokeWidth={3} />
-        <circle cx={728} cy={366} r={9} fill={SUN} strokeWidth={4} />
-        <path d="M723 366 L733 366" strokeWidth={3} />
+        {/* the corner bolts, one a little crooked, as ever */}
+        <g stroke={STROKE} strokeLinecap="round">
+          <circle cx={57} cy={55} r={9} fill={SUN} strokeWidth={4} />
+          <path d="M52 55 L62 55" strokeWidth={3} />
+          <g transform="rotate(12 727 57)">
+            <circle cx={727} cy={57} r={9} fill={SUN} strokeWidth={4} />
+            <path d="M722 57 L732 57" strokeWidth={3} />
+          </g>
+          <circle cx={55} cy={367} r={9} fill={SUN} strokeWidth={4} />
+          <path d="M50 367 L60 367" strokeWidth={3} />
+          <circle cx={728} cy={366} r={9} fill={SUN} strokeWidth={4} />
+          <path d="M723 366 L733 366" strokeWidth={3} />
+        </g>
+        {/* the name, painted on the board */}
+        <WordmarkArt transform="translate(64 70) scale(0.93)" />
       </g>
-      {/* the name, painted on the board */}
-      <WordmarkArt transform="translate(64 70) scale(0.93)" />
+      {/* the lego collar clipped over the top joint, studs up */}
+      <g strokeLinejoin="round">
+        <rect x={362} y={132} width={24} height={13} rx={2} fill={SUN} stroke={STROKE} strokeWidth={3} />
+        <rect x={406} y={132} width={24} height={13} rx={2} fill={SUN} stroke={STROKE} strokeWidth={3} />
+        <rect x={348} y={143} width={96} height={28} rx={3} fill={YELLOW} stroke={STROKE} strokeWidth={4} />
+      </g>
+      {/* the lego foot the bottom stem plugs into */}
+      <g strokeLinejoin="round">
+        <rect x={358} y={574} width={24} height={13} rx={2} fill={SUN} stroke={STROKE} strokeWidth={3} />
+        <rect x={406} y={574} width={24} height={13} rx={2} fill={SUN} stroke={STROKE} strokeWidth={3} />
+        <rect x={346} y={585} width={96} height={28} rx={3} fill={YELLOW} stroke={STROKE} strokeWidth={4} />
+        <rect x={370} y={613} width={48} height={24} rx={3} fill={FLARE} stroke={STROKE} strokeWidth={4} />
+      </g>
     </svg>
   );
 }
