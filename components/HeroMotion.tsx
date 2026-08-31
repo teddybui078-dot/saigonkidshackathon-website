@@ -80,7 +80,7 @@ export default function HeroMotion({ children }: { children: ReactNode }) {
     <section
       ref={sectionRef}
       id="top"
-      className="relative isolate flex min-h-svh flex-col items-center justify-start overflow-hidden px-4 pb-44 pt-[7.5rem] md:pb-52 md:pt-[8.75rem]"
+      className="relative isolate flex min-h-svh flex-col items-center justify-start overflow-hidden px-4 pb-44 pt-[7.5rem] md:pb-44 md:pt-[8.75rem]"
     >
       {children}
     </section>

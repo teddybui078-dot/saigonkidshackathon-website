@@ -15,7 +15,7 @@ export default function HeroUi() {
       style={{ zIndex: HERO_LAYER.ui }}
     >
       {/* the whole assembly bobs and sways together — gsap on the wrapper */}
-      <div className="hero-sign flex w-[88vw] max-w-[420px] flex-col items-center sm:max-w-[500px] md:w-[min(52vw,640px)] md:max-w-none">
+      <div className="hero-sign flex w-[94vw] max-w-[480px] flex-col items-center sm:max-w-[580px] md:w-[min(58vw,760px)] md:max-w-none">
         {/* the board, drawn — frame, shadow, bolts and name in one */}
         <h1 className="m-0 w-full">
           <span className="sr-only">{EVENT.name}</span>

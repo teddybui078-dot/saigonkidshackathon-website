@@ -188,7 +188,7 @@ export function HeroMascots() {
   return (
     <HeroLayerShell layer="mascots">
       <div
-        className="hero-float hero-mascot-wrap absolute -right-2 bottom-[24%] w-36 sm:right-[2%] sm:w-44 md:right-[5%] md:top-[34%] md:bottom-auto md:w-[19vw] lg:right-[7%] lg:w-[17vw] max-w-[360px]"
+        className="hero-float hero-mascot-wrap absolute right-[20%] bottom-[10%] w-28 sm:right-[16%] sm:bottom-[12%] sm:w-40 md:right-[3%] md:top-[36%] md:bottom-auto md:w-[18vw] lg:right-[4%] lg:w-[16vw] max-w-[360px]"
         data-speed={PARALLAX.near}
       >
         <KidAstronaut className="float-slow space-glow h-auto w-full" />
