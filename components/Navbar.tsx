@@ -13,22 +13,22 @@ const LINKS = [
   { href: "/#faq", label: "FAQ" },
 ];
 
-/* the nav is a white sticker pill at every scroll position, so the logo
-   always sits on a clean white surface (GUIDELINES.md §4) whether it is
-   over the midnight hero or the light page below */
+/* the nav is a white sticker pill at every scroll position, so the
+   original circular logo always sits on a clean white surface
+   (GUIDELINES.md §4) at every scroll position */
 export default function Navbar() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-4">
       <nav className="sticker-pill flex w-full max-w-5xl items-center justify-between gap-4 px-3 py-1.5 sm:px-4">
         <SiteLink href="/" className="flex items-center gap-2" aria-label={`${EVENT.name} — home`}>
           <Image
-            src="/logo-v2.png"
+            src="/logo.png"
             alt=""
-            width={66}
+            width={44}
             height={44}
             loading="eager"
-            sizes="66px"
-            className="h-11 w-auto"
+            sizes="44px"
+            className="h-11 w-11"
           />
           <span className="hidden text-sm font-semibold text-saigon lg:block">{EVENT.name}</span>
         </SiteLink>

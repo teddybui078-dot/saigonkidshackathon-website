@@ -182,7 +182,7 @@ export default function About() {
               <div className="relative z-10 px-8 py-10 md:px-12 md:py-14">
               {/* a marquee arrow: blue sign, chasing bulbs, pointing at the story */}
               <p
-                className="about-line relative mb-5 inline-block [filter:drop-shadow(0_4px_0_#0d1b2a)]"
+                className="about-line relative mb-5 inline-block [filter:drop-shadow(0_4px_0_#01337f)]"
                 style={{ "--head": "22px" } as React.CSSProperties}
               >
                 <span className="clip-arrow block bg-saigon-deep">
@@ -237,7 +237,7 @@ export default function About() {
         </div>
 
         {/* a riveted control panel: brushed metal, screws, domed push-buttons */}
-        <div className="about-panel metal-brushed relative mt-12 rounded-3xl border-[3px] border-ink-deep px-6 pb-9 pt-10 text-ink shadow-[0_7px_0_#ffd166] md:px-10">
+        <div className="about-panel metal-brushed relative mt-12 rounded-3xl border-[3px] border-ink-deep px-6 pb-9 pt-10 text-ink shadow-[0_7px_0_#f8ac1a] md:px-10">
           <Screws />
           {/* the panel has been carried around a bit */}
           <Scuffs seed={0} className="absolute left-12 top-4 hidden md:block" />

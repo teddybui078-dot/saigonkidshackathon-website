@@ -1,7 +1,7 @@
 /* lightweight vector accents echoing the logo: pixel clusters, sparkles,
    orbit swooshes, and code marks. colors are fixed to the brand palette. */
 
-import { BLUE, YELLOW, SKY_LIGHT, PAPER } from "./palette";
+import { BLUE, YELLOW, SKY_LIGHT, CHALK } from "./palette";
 
 export function SparkleCross({
   className = "",
@@ -24,10 +24,10 @@ export function SparkleCross({
     >
       <path
         d="M12 3 L12 21 M4 13 L20 11"
-        stroke={PAPER}
+        stroke={CHALK}
         strokeWidth={2.5}
         strokeLinecap="round"
-        opacity={0.7}
+        opacity={0.9}
       />
     </svg>
   );
@@ -260,7 +260,7 @@ export function PixelStack({
       {/* face hints */}
       <rect x="54" y="46" width="10" height="10" rx="2.5" fill="#f1f5f9" opacity="0.5" />
       <rect x="96" y="88" width="10" height="10" rx="2.5" fill="#f1f5f9" opacity="0.5" />
-      <rect x="18" y="88" width="10" height="10" rx="2.5" fill="#191970" opacity="0.35" />
+      <rect x="18" y="88" width="10" height="10" rx="2.5" fill="#0145b4" opacity="0.35" />
     </svg>
   );
 }

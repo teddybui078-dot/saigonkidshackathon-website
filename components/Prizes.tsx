@@ -200,11 +200,11 @@ export default function Prizes() {
       {/* the pinned block: heading, the stage, and the captions under it */}
       <div className="prizes-pin mx-auto max-w-5xl">
         <div className="text-center">
-          <p className="prizes-line mb-3 text-sm font-semibold tracking-wide text-sun">Podium &amp; prizes ✦</p>
+          <p className="prizes-line mb-3 text-sm font-semibold tracking-wide text-energy-deep">Podium &amp; prizes ✦</p>
           <h2 className="prizes-line text-4xl font-bold leading-tight md:text-5xl">
-            Three teams take the <span className="text-sun">podium</span>
+            Three teams take the <span className="text-energy-deep">podium</span>
           </h2>
-          <p className="prizes-line mt-4 font-medium text-white/70">
+          <p className="prizes-line mt-4 font-medium text-ink/70">
             Every placing team goes home with medals and a prize for each member — and three solo
             awards go to individual builders.
           </p>
@@ -273,7 +273,7 @@ export default function Prizes() {
           {PODIUM.map((award) => (
             <div key={award.place} className={CAPTION[award.place]}>
               <h3 className="font-bold">{award.name}</h3>
-              <ul className="mt-1 space-y-0.5 text-sm font-medium text-white/75">
+              <ul className="mt-1 space-y-0.5 text-sm font-medium text-ink/75">
                 {award.wins.map((win) => (
                   <li key={win} className="flex items-start justify-center gap-1.5">
                     <span className="mt-1.5 h-2 w-2 shrink-0 rounded-[2px] bg-energy" aria-hidden="true" />
@@ -281,7 +281,7 @@ export default function Prizes() {
                   </li>
                 ))}
               </ul>
-              <p className="mt-2 text-xs font-semibold text-white/75">{PRIZE_TBA}</p>
+              <p className="mt-2 text-xs font-semibold text-ink/75">{PRIZE_TBA}</p>
             </div>
           ))}
         </div>
@@ -290,11 +290,11 @@ export default function Prizes() {
       {/* the solo awards: three rosettes hanging off one sagging string */}
       <div className="mx-auto max-w-5xl">
         <div className="text-center">
-          <p className="mt-24 text-sm font-semibold tracking-wide text-sun">Solo awards ✦</p>
+          <p className="mt-24 text-sm font-semibold tracking-wide text-energy-deep">Solo awards ✦</p>
           <h3 className="mt-3 text-2xl font-bold md:text-3xl">
             Three awards for <span className="text-energy">builders of one</span>
           </h3>
-          <p className="mt-3 font-medium text-white/70">
+          <p className="mt-3 font-medium text-ink/70">
             No medals or trophies here — just a prize, for the individual builders who stood out.
           </p>
         </div>
@@ -309,7 +309,7 @@ export default function Prizes() {
             fill="none"
             aria-hidden="true"
           >
-            <path d="M0 8 Q300 40 600 8" stroke="#ffd166" strokeWidth="3" vectorEffect="non-scaling-stroke" />
+            <path d="M0 8 Q300 40 600 8" stroke="#f8ac1a" strokeWidth="3" vectorEffect="non-scaling-stroke" />
           </svg>
           <div className="solo-grid grid grid-cols-1 gap-8 md:-mt-6 md:grid-cols-3">
             {SOLO_AWARDS.map((award) => (

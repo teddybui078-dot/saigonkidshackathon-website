@@ -26,9 +26,9 @@ export const metadata: Metadata = {
   },
 };
 
-/* the browser chrome on phones matches the midnight sky */
+/* the browser chrome on phones wears the brand blue */
 export const viewport: Viewport = {
-  themeColor: "#191970",
+  themeColor: "#0145b4",
 };
 
 export default function RootLayout({

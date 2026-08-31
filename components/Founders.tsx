@@ -51,9 +51,9 @@ export default function Founders() {
         <ChalkScribble kind="zigzag" width={80} />
       </div>
       <div className="mx-auto max-w-4xl text-center">
-        <p className="mb-3 text-sm font-semibold tracking-wide text-sun">The founders ✦</p>
+        <p className="mb-3 text-sm font-semibold tracking-wide text-energy-deep">The founders ✦</p>
         <h2 className="text-4xl font-bold leading-tight md:text-5xl">
-          Meet the <span className="text-sun">people behind the day</span>
+          Meet the <span className="text-energy-deep">people behind the day</span>
         </h2>
 
         {/* staff badges on lanyards */}
@@ -92,7 +92,7 @@ export default function Founders() {
                       className="grid h-20 w-20 place-items-center rounded-full border-[3px] border-dashed border-mist bg-white"
                       aria-hidden="true"
                     >
-                      <Sparkle className="ambient-twinkle" size={16} color={i % 2 === 0 ? "#ffb703" : "#191970"} />
+                      <Sparkle className="ambient-twinkle" size={16} color={i % 2 === 0 ? "#f8ac1a" : "#0145b4"} />
                     </div>
                     <p className="mt-4 text-lg font-bold">{person.name}</p>
                     <p className="text-sm font-medium text-ink/60">{person.role}</p>
@@ -103,7 +103,7 @@ export default function Founders() {
           ))}
         </div>
 
-        <p className="mt-10 font-medium text-white/75">
+        <p className="mt-10 font-medium text-ink/75">
           Want to help run the day? Mentor and volunteer sign-ups open soon.
         </p>
       </div>

@@ -148,13 +148,13 @@ export default function Tracks() {
 
       {/* pinned: the heading and the notebook that opens beneath it */}
       <div className="track-pin mx-auto max-w-4xl text-center">
-        <p className="track-line mb-3 text-sm font-semibold tracking-wide text-sun">
+        <p className="track-line mb-3 text-sm font-semibold tracking-wide text-energy-deep">
           The theme ✦
         </p>
         <h2 className="track-line text-5xl font-bold leading-tight md:text-6xl">
-          To be <span className="text-sun">revealed</span>
+          To be <span className="text-energy-deep">revealed</span>
         </h2>
-        <p className="track-line mt-4 font-medium text-white/70">
+        <p className="track-line mt-4 font-medium text-ink/70">
           One theme. Two tracks. Announced closer to the day.
         </p>
 
@@ -164,7 +164,7 @@ export default function Tracks() {
             cover, and rounding/overflow only on the two faces */}
         <div className="track-book relative mx-auto mt-10 grid w-full max-w-[60rem] gap-6 text-left motion-safe:md:block motion-safe:md:h-[34rem] motion-safe:md:perspective-[2200px]">
           {/* right page: track 2, the base page under the cover */}
-          <div className="track-page paper-ruled relative order-2 text-ink min-h-[22rem] overflow-hidden rounded-2xl border-[3px] border-ink-deep shadow-[4px_4px_0_#ffd166] motion-safe:md:absolute motion-safe:md:inset-y-0 motion-safe:md:left-1/2 motion-safe:md:min-h-0 motion-safe:md:w-1/2 motion-safe:md:rounded-l-none motion-safe:md:border-l-0">
+          <div className="track-page paper-ruled relative order-2 text-ink min-h-[22rem] overflow-hidden rounded-2xl border-[3px] border-ink-deep shadow-[4px_4px_0_#f8ac1a] motion-safe:md:absolute motion-safe:md:inset-y-0 motion-safe:md:left-1/2 motion-safe:md:min-h-0 motion-safe:md:w-1/2 motion-safe:md:rounded-l-none motion-safe:md:border-l-0">
             <span aria-hidden="true" className="absolute inset-y-0 left-6 w-0.5 bg-energy/50" />
             <PageContent track={TRACKS[1]} />
           </div>
@@ -179,16 +179,16 @@ export default function Tracks() {
               <DrawnBg aspect="tall" seed={4} tone="spaceLight" />
               <span className="absolute inset-y-4 left-2 w-1 rounded-full bg-ink-deep/30" />
               <span className="absolute inset-y-4 right-9 w-2.5 rounded-full border-2 border-ink-deep bg-energy" />
-              <div className="absolute left-14 right-20 top-16 rounded-lg bg-white px-6 py-6 text-ink shadow-[0_3px_0_#0d1b2a]">
+              <div className="absolute left-14 right-20 top-16 rounded-lg bg-white px-6 py-6 text-ink shadow-[0_3px_0_#01337f]">
                 <PixelGrid size={24} />
                 <p className="mt-4 text-sm font-bold tracking-widest text-saigon/70">Theme notebook</p>
                 <p className="mt-1 text-3xl font-bold leading-tight text-ink">{EVENT.name}</p>
                 <p className="mt-3 text-base font-semibold text-ink/60">{EVENT.date}</p>
               </div>
-              <span className="absolute bottom-10 left-14 text-sm font-semibold text-white/80">scroll to open ↓</span>
+              <span className="absolute bottom-10 left-14 text-sm font-semibold text-saigon/80">scroll to open ↓</span>
             </div>
             {/* left page: track 1 */}
-            <div className="track-page paper-ruled text-ink relative min-h-[22rem] overflow-hidden rounded-2xl border-[3px] border-ink-deep shadow-[4px_4px_0_#ffd166] motion-safe:md:absolute motion-safe:md:inset-0 motion-safe:md:min-h-0 motion-safe:md:rounded-r-none motion-safe:md:border-r-0 motion-safe:md:shadow-none motion-safe:md:backface-hidden motion-safe:md:rotate-y-180">
+            <div className="track-page paper-ruled text-ink relative min-h-[22rem] overflow-hidden rounded-2xl border-[3px] border-ink-deep shadow-[4px_4px_0_#f8ac1a] motion-safe:md:absolute motion-safe:md:inset-0 motion-safe:md:min-h-0 motion-safe:md:rounded-r-none motion-safe:md:border-r-0 motion-safe:md:shadow-none motion-safe:md:backface-hidden motion-safe:md:rotate-y-180">
               <span aria-hidden="true" className="absolute inset-y-0 left-6 w-0.5 bg-energy/50" />
               <PageContent track={TRACKS[0]} />
             </div>

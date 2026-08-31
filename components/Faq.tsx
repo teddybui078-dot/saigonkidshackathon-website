@@ -64,7 +64,7 @@ export default function Faq() {
     <section ref={sectionRef} id="faq" className="relative px-4 py-28 md:py-32">
       {/* big hook: a giant question mark leaning in from the right */}
       <span
-        className="anchor-wiggle pointer-events-none absolute right-12 top-1/4 -z-[1] hidden rotate-12 text-outline-white select-none text-[14rem] font-bold leading-none opacity-40 lg:block"
+        className="anchor-wiggle pointer-events-none absolute right-12 top-1/4 -z-[1] hidden rotate-12 text-outline-blue select-none text-[14rem] font-bold leading-none opacity-40 lg:block"
         aria-hidden="true"
       >
         ?
@@ -76,7 +76,7 @@ export default function Faq() {
       <div className="mx-auto max-w-3xl">
         <div className="relative text-center">
           <PixelGrid className="ambient-float absolute -top-8 right-0 hidden md:block" size={24} />
-          <p className="mb-3 text-sm font-semibold tracking-wide text-sun">
+          <p className="mb-3 text-sm font-semibold tracking-wide text-energy-deep">
             Good questions ✦
           </p>
           <h2 className="text-4xl font-bold leading-tight md:text-5xl">
@@ -112,8 +112,8 @@ export default function Faq() {
                   <span
                     className={`grid h-9 w-9 shrink-0 place-items-center rounded-full border-2 border-saigon text-xl font-bold transition-transform duration-300 ${
                       isOpen
-                        ? "rotate-45 bg-saigon text-white shadow-[0_2px_0_#0d1b2a]"
-                        : "bg-energy text-ink shadow-[0_2px_0_#d99a00]"
+                        ? "rotate-45 bg-saigon text-white shadow-[0_2px_0_#01337f]"
+                        : "bg-energy text-ink shadow-[0_2px_0_#d18e07]"
                     }`}
                     aria-hidden="true"
                   >

@@ -8,7 +8,7 @@
    tilt; the circular mark never does */
 
 import type { SVGProps } from "react";
-import { SPACE, SUN, STROKE, PAPER } from "./palette";
+import { BLUE, SUN, STROKE, PAPER } from "./palette";
 
 /* one d string per letter; multi-M strings carry a letter's extra limbs
    (stems, dots, crossbars) so both passes stay in step */
@@ -78,7 +78,7 @@ export function WordmarkArt(props: SVGProps<SVGGElement>) {
       <Pass paths={SMALL} stroke={STROKE} width={20} />
       <Pass paths={SMALL} stroke={SUN} width={11} />
       <Pass paths={BIG} stroke={STROKE} width={37} />
-      <Pass paths={BIG} stroke={SPACE} width={23} />
+      <Pass paths={BIG} stroke={BLUE} width={23} />
       {/* the hand shows here: a chalk double-pass down the first h, and
           the o wearing its orbit ring, front sweep then back tick */}
       <g fill="none" strokeLinecap="round">

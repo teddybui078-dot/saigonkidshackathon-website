@@ -17,6 +17,7 @@ import {
   CANVAS,
   MIST,
   SKY_LIGHT,
+  CHALK,
 } from "./palette";
 import { HERO_LAYER, type HeroLayer } from "./hero-layers";
 import { WordmarkArt } from "./Wordmark";
@@ -224,11 +225,11 @@ export function Constellation({
         focusable="false"
         {...rest}
       >
-        <g stroke={PAPER} strokeWidth={2} opacity={0.4} strokeLinecap="round">
+        <g stroke={CHALK} strokeWidth={2} opacity={0.8} strokeLinecap="round">
           <path d="M60 14 L96 52 L60 92 L26 54 Z" />
           <path d="M60 92 Q52 108 58 126" />
         </g>
-        <g fill={PAPER}>
+        <g fill={CHALK}>
           <circle cx={60} cy={14} r={3.5} />
           <circle cx={96} cy={52} r={2.5} />
           <circle cx={60} cy={92} r={3} />
@@ -249,12 +250,12 @@ export function Constellation({
       focusable="false"
       {...rest}
     >
-      <g stroke={PAPER} strokeWidth={2} opacity={0.4} strokeLinecap="round">
+      <g stroke={CHALK} strokeWidth={2} opacity={0.8} strokeLinecap="round">
         <path d="M44 24 L16 50 L44 78" />
         <path d="M92 18 L68 84" />
         <path d="M116 24 L144 50 L116 78" />
       </g>
-      <g fill={PAPER}>
+      <g fill={CHALK}>
         <circle cx={44} cy={24} r={3} />
         <circle cx={16} cy={50} r={3.5} />
         <circle cx={44} cy={78} r={2.5} />
@@ -291,8 +292,8 @@ export function Comet({ className = "", width = 320, ...rest }: SpaceArtProps) {
       />
       <path
         d="M64 44 C 132 48 200 64 258 82 C 214 76 168 70 132 62 C 106 56 82 50 64 44 Z"
-        fill={PAPER}
-        opacity={0.4}
+        fill={CHALK}
+        opacity={0.5}
       />
       <circle cx={276} cy={88} r={14} fill={SUN} stroke={STROKE} strokeWidth={3} />
       <path d="M268 80 Q272 76 278 77" stroke={PAPER} strokeWidth={3} strokeLinecap="round" opacity={0.8} />
@@ -316,7 +317,7 @@ export function ChalkLaptop({ className = "", width = 120, ...rest }: SpaceArtPr
       focusable="false"
       {...rest}
     >
-      <g stroke={PAPER} strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round" opacity={0.75}>
+      <g stroke={CHALK} strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round" opacity={0.85}>
         <path d="M30 14 Q58 10 90 14 Q94 40 91 62 Q59 66 29 62 Q26 38 30 14 Z" />
         <path d="M20 78 Q60 84 100 78 L91 63 Q59 67 29 63 Z" />
         <path d="M46 82 Q60 84 74 82" />
@@ -1399,7 +1400,7 @@ export function ChalkStar({ className = "", width = 32, ...rest }: SpaceArtProps
       <path
         d="M23 3 Q26 19 41 25 Q27 28 25 44 Q22 29 7 24 Q20 19 23 3 Z"
         fill="none"
-        stroke={PAPER}
+        stroke={CHALK}
         strokeWidth={2.5}
         strokeLinejoin="round"
         strokeLinecap="round"
@@ -1407,7 +1408,7 @@ export function ChalkStar({ className = "", width = 32, ...rest }: SpaceArtProps
       <path
         d="M29 8 Q32 6 35 5"
         fill="none"
-        stroke={PAPER}
+        stroke={CHALK}
         strokeWidth={2.5}
         strokeLinecap="round"
       />
@@ -1455,11 +1456,11 @@ export function ChalkScribble({
     >
       <path
         d={s.d}
-        stroke={PAPER}
+        stroke={CHALK}
         strokeWidth={2.5}
         strokeLinecap="round"
         strokeLinejoin="round"
-        opacity={0.4}
+        opacity={0.65}
       />
     </svg>
   );

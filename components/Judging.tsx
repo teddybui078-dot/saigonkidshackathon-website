@@ -85,7 +85,7 @@ export default function Judging() {
     <section ref={sectionRef} id="judging" className="relative px-4 py-28 md:py-32">
       {/* big hooks: the score everyone is chasing, an arc, a sparkle */}
       <span
-        className="anchor-wiggle text-outline-white pointer-events-none absolute left-6 top-24 -z-[1] hidden select-none rotate-[-8deg] text-[13rem] font-bold leading-none opacity-50 lg:block"
+        className="anchor-wiggle text-outline-blue pointer-events-none absolute left-6 top-24 -z-[1] hidden select-none rotate-[-8deg] text-[13rem] font-bold leading-none opacity-50 lg:block"
         aria-hidden="true"
       >
         {RUBRIC_TOTAL}
@@ -100,11 +100,11 @@ export default function Judging() {
 
       <div className="mx-auto max-w-5xl">
         <div className="text-center">
-          <p className="judge-line mb-3 text-sm font-semibold tracking-wide text-sun">How judging works ✦</p>
+          <p className="judge-line mb-3 text-sm font-semibold tracking-wide text-energy-deep">How judging works ✦</p>
           <h2 className="judge-line text-4xl font-bold leading-tight md:text-5xl">
-            {RUBRIC_TOTAL} points, <span className="text-sun">{RUBRIC_COUNT_WORD} questions</span>
+            {RUBRIC_TOTAL} points, <span className="text-energy-deep">{RUBRIC_COUNT_WORD} questions</span>
           </h2>
-          <p className="judge-line mt-4 font-medium text-white/70">{JUDGING_LAB}</p>
+          <p className="judge-line mt-4 font-medium text-ink/70">{JUDGING_LAB}</p>
         </div>
 
         {/* the judges' table: seven score paddles held up in a row, each
@@ -138,7 +138,7 @@ export default function Judging() {
                     <span className={`${STICK_LENGTH[i]} w-2.5 rounded-b-md bg-energy border border-ink-deep`} aria-hidden="true" />
                   </div>
                   {/* on phones the note sits right under its paddle */}
-                  <p className="mt-3 max-w-[11rem] text-center text-sm font-medium leading-5 text-white/70 md:hidden">
+                  <p className="mt-3 max-w-[11rem] text-center text-sm font-medium leading-5 text-ink/70 md:hidden">
                     {c.note}
                   </p>
                 </li>
@@ -147,7 +147,7 @@ export default function Judging() {
           </ol>
 
           {/* the table the sticks are planted in */}
-          <div className="h-4 rounded-full bg-space-light shadow-[0_4px_0_#ffd166]" aria-hidden="true" />
+          <div className="h-4 rounded-full bg-space-light shadow-[0_4px_0_#f8ac1a]" aria-hidden="true" />
           <div className="mx-16 flex justify-between" aria-hidden="true">
             <span className="h-8 w-3 rounded-b-sm bg-space-light" />
             <span className="h-8 w-3 rounded-b-sm bg-space-light" />
@@ -156,7 +156,7 @@ export default function Judging() {
           {/* from md the notes line up under their paddles, below the table */}
           <ul className="mt-6 hidden grid-cols-7 gap-x-3 md:grid">
             {RUBRIC.map((c) => (
-              <li key={c.id} className="text-center text-sm font-medium leading-5 text-white/70">
+              <li key={c.id} className="text-center text-sm font-medium leading-5 text-ink/70">
                 {c.note}
               </li>
             ))}
@@ -168,7 +168,7 @@ export default function Judging() {
           <div className="flex items-end gap-4">
             {/* the total rides a springy staked aerial, like it bounced up there */}
             <div className="judge-badge flex flex-col items-center">
-              <span className="relative z-10 grid h-24 w-24 place-items-center rounded-full border-[3px] border-ink-deep bg-energy text-center shadow-[0_4px_0_#d99a00]">
+              <span className="relative z-10 grid h-24 w-24 place-items-center rounded-full border-[3px] border-ink-deep bg-energy text-center shadow-[0_4px_0_#d18e07]">
                 <span className="block text-3xl font-bold leading-none">
                   {RUBRIC_TOTAL}
                   <span className="mt-1 block text-[10px] font-bold uppercase tracking-widest text-ink/60">points</span>
@@ -177,17 +177,17 @@ export default function Judging() {
               <CoilStake className="-mt-2" />
             </div>
             <span
-              className="stamp -rotate-6 text-sun [mix-blend-mode:normal]"
-              style={{ "--stamp-gap": "#0d1b2a" } as React.CSSProperties}
+              className="stamp -rotate-6 text-saigon [mix-blend-mode:normal]"
+              style={{ "--stamp-gap": "#f1f5f9" } as React.CSSProperties}
               aria-hidden="true"
             >
               Tested in the lab
             </span>
           </div>
-          <p className="text-sm font-semibold text-white/75">Ties: {TIE_BREAKERS.join(" → ")}</p>
+          <p className="text-sm font-semibold text-ink/75">Ties: {TIE_BREAKERS.join(" → ")}</p>
           <SiteLink
             href="/rules#judging-and-prizes"
-            className="rounded-full border-2 border-ink-deep bg-white px-4 py-1.5 text-sm font-semibold text-saigon transition-colors hover:bg-space-light hover:text-white"
+            className="rounded-full border-2 border-ink-deep bg-white px-4 py-1.5 text-sm font-semibold text-saigon transition-colors hover:bg-saigon hover:text-white"
           >
             {RULE_LABEL} in the rulebook →
           </SiteLink>

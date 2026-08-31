@@ -34,7 +34,7 @@ const TAB_CLASS = {
 };
 
 const PILL =
-  "mt-5 inline-flex rounded-full bg-energy px-5 py-2.5 text-sm font-semibold text-ink shadow-[0_3px_0_#d99a00]";
+  "mt-5 inline-flex rounded-full bg-energy px-5 py-2.5 text-sm font-semibold text-ink shadow-[0_3px_0_#d18e07]";
 
 const REQUIREMENTS = [
   `Ages ${AGES} (${GRADES})`,
@@ -242,11 +242,11 @@ export default function ImportantInfo() {
 
       <div className="mx-auto max-w-4xl">
         <div className="text-center">
-          <p className="info-line mb-3 text-sm font-semibold tracking-wide text-sun">Before you sign up ✦</p>
+          <p className="info-line mb-3 text-sm font-semibold tracking-wide text-energy-deep">Before you sign up ✦</p>
           <h2 className="info-line text-4xl font-bold leading-tight md:text-5xl">
-            The <span className="text-sun">important</span> information
+            The <span className="text-energy-deep">important</span> information
           </h2>
-          <p className="info-line mt-4 font-medium text-white/70">
+          <p className="info-line mt-4 font-medium text-ink/70">
             Fees, requirements, what parents need to know, and the rules — all in one box.
           </p>
         </div>
@@ -325,7 +325,7 @@ export default function ImportantInfo() {
                     className="absolute left-[18px] top-0 h-5 w-[3px] rounded-full bg-saigon"
                     aria-hidden="true"
                   />
-                  <PrizeTag className="-rotate-1 [filter:drop-shadow(0_4px_0_#0d1b2a)]">
+                  <PrizeTag className="-rotate-1 [filter:drop-shadow(0_4px_0_#01337f)]">
                     <span className="text-lg font-bold">{EVENT.fee.display} per builder</span>
                   </PrizeTag>
                 </div>
@@ -367,7 +367,7 @@ export default function ImportantInfo() {
                   Here&apos;s what the day looks like from the family side.
                 </p>
                 {/* the one rule every family plans around, stamped on a notice */}
-                <div className="mt-4 rounded-xl border-[3px] border-ink-deep bg-white p-4 shadow-[0_3px_0_#ffd166]">
+                <div className="mt-4 rounded-xl border-[3px] border-ink-deep bg-white p-4 shadow-[0_3px_0_#f8ac1a]">
                   <span className="stamp -rotate-3 text-saigon" aria-hidden="true">
                     Stays on site — all day
                   </span>

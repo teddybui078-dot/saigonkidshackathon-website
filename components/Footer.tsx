@@ -52,7 +52,7 @@ export default function Footer() {
   return (
     <footer
       ref={footerRef}
-      className="relative mt-24 overflow-hidden bg-space-dark px-4 pb-10 pt-28 text-white"
+      className="relative mt-24 overflow-hidden bg-space-dark px-4 pb-10 pt-28 text-ink"
     >
       {/* the moon's surface crests the footer — the page lands where the
           hero's street stood */}
@@ -85,7 +85,7 @@ export default function Footer() {
                   key={d}
                   className="footer-underline"
                   d={d}
-                  stroke="#ffb703"
+                  stroke="#f8ac1a"
                   strokeWidth="3"
                   strokeLinecap="round"
                   vectorEffect="non-scaling-stroke"
@@ -96,12 +96,12 @@ export default function Footer() {
             </svg>
           </span>
         </h2>
-        <p className="footer-pop mt-6 text-lg font-medium text-white/80">
+        <p className="footer-pop mt-6 text-lg font-medium text-ink/80">
           {EVENT.city} · {EVENT.spots} young makers · one unforgettable day
         </p>
 
         <div className="footer-pop mt-8 flex justify-center">
-          <span className="rounded-full bg-energy px-7 py-3.5 text-base font-semibold text-ink shadow-[0_4px_0_#d99a00]">
+          <span className="rounded-full bg-energy px-7 py-3.5 text-base font-semibold text-ink shadow-[0_4px_0_#d18e07]">
             Registration opens soon
           </span>
         </div>
@@ -115,14 +115,14 @@ export default function Footer() {
                   ×
                 </span>
               )}
-              <span className="text-base font-bold text-white md:text-lg">{partner.name}</span>
+              <span className="text-base font-bold text-saigon md:text-lg">{partner.name}</span>
             </span>
           ))}
         </div>
 
         {/* the practical pages, one row of plain links */}
         <nav aria-label="More about the day" className="footer-pop mt-8">
-          <ul className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm font-semibold text-white/70">
+          <ul className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm font-semibold text-ink/70">
             {LINKS.map((link) => (
               <li key={link.href}>
                 <SiteLink href={link.href} className="transition-colors hover:text-energy">
@@ -133,7 +133,7 @@ export default function Footer() {
           </ul>
         </nav>
 
-        <div className="footer-pop mt-10 flex flex-col items-center gap-4 border-t border-white/15 pt-8 text-sm font-medium text-white/70 md:flex-row md:justify-between">
+        <div className="footer-pop mt-10 flex flex-col items-center gap-4 border-t border-ink/15 pt-8 text-sm font-medium text-ink/70 md:flex-row md:justify-between">
           <p>© 2027 Saigon Kids Hackathon</p>
           <CodeMark size={40} chevronColor="#ffffff" className="ambient-float opacity-80" data-amp="s" />
           <p>

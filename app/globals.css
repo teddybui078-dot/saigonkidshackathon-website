@@ -1,32 +1,34 @@
 @import "tailwindcss";
 
 :root {
-  /* the modern space colourway — GUIDELINES.md §2. these six are the
-     source of truth; the tailwind tokens below point at them */
-  --bg-space: #191970;
-  --bg-space-dark: #0d1b2a;
-  --accent-yellow: #ffd166;
-  --accent-red: #ff2b2b;
+  /* the original daylight brand — the drawn world stays, the colours go
+     back to before the midnight change. these six are the source of
+     truth; the tailwind tokens below point at them. --bg-space is the
+     day sky now, --accent-red carries the brand blue (the action colour),
+     and the drawn ink is the deep brand blue. */
+  --bg-space: #f1f5f9;
+  --bg-space-dark: #e2e8f0;
+  --accent-yellow: #f8ac1a;
+  --accent-red: #0145b4;
   --text-white: #ffffff;
-  --stroke-ink: #0a0e1a;
+  --stroke-ink: #01337f;
 }
 
 @theme inline {
-  /* saigon kids hackathon brand palette — see GUIDELINES.md */
+  /* saigon kids hackathon brand palette — the original blue/yellow */
   --color-canvas: #f1f5f9;
-  /* the brand blue is midnight now, so every ink outline and hard shadow
-     on the paper cards follows the sky */
-  --color-saigon: var(--bg-space);
-  --color-saigon-deep: var(--bg-space-dark);
-  --color-energy: #ffb703;
-  --color-energy-deep: #d99a00;
+  --color-saigon: #0145b4;
+  --color-saigon-deep: #01337f;
+  --color-energy: #f8ac1a;
+  --color-energy-deep: #d18e07;
   --color-ink: #1e293b;
   --color-mist: #e2e8f0;
-  /* in-space palette: the hero canvas, its sun-yellow accents, the red
-     action colour and the ink that outlines every sticker */
+  /* the day-sky palette: the same names the drawn world was built on,
+     re-lit — space is the pale sky, sun is the warm brand yellow, flare
+     is the brand blue action colour */
   --color-space: var(--bg-space);
   --color-space-dark: var(--bg-space-dark);
-  --color-space-light: #2f2f9e;
+  --color-space-light: #a8bfe2;
   --color-sun: var(--accent-yellow);
   --color-flare: var(--accent-red);
   --color-ink-deep: var(--stroke-ink);
@@ -39,13 +41,13 @@ html {
   overflow-x: clip;
   /* native hash jumps (reduced motion, no lenis) clear the fixed navbar */
   scroll-padding-top: 6rem;
-  color-scheme: dark;
+  color-scheme: light;
 }
 
-/* the whole site lives in the hero's sky now */
+/* the whole site lives under the day sky */
 body {
   background-color: var(--bg-space-dark);
-  color: var(--text-white);
+  color: var(--color-ink);
   font-family: var(--font-sans);
   overflow-x: clip;
 }
@@ -55,13 +57,14 @@ body {
   color: var(--color-ink);
 }
 
-/* two rings so focus reads on every surface: ink hugging the element
-   (visible on white paper faces), sun outside it (visible on midnight) */
+/* two rings so focus reads on every surface: white hugging the element
+   (visible on blue chrome), brand blue outside it (visible on the light
+   page and white paper) */
 :focus-visible {
-  outline: 3px solid var(--accent-yellow);
+  outline: 3px solid var(--color-saigon);
   outline-offset: 3px;
   border-radius: 6px;
-  box-shadow: 0 0 0 3px var(--stroke-ink);
+  box-shadow: 0 0 0 3px var(--text-white);
 }
 
 /* hollow display text used by the scroll ticker (and, in white, on the podium) */
@@ -154,7 +157,7 @@ body {
 /* an index card: one blue header rule, then faint rules under it */
 .paper-index {
   background:
-    linear-gradient(#191970 2.5px, #0000 2.5px) 0 2.5rem / 100% 100% no-repeat,
+    linear-gradient(#0145b4 2.5px, #0000 2.5px) 0 2.5rem / 100% 100% no-repeat,
     linear-gradient(#dbe4f2 2px, #0000 2px) 0 3.25rem / 100% 28px,
     #fff;
 }
@@ -309,13 +312,13 @@ body {
   .cta-secondary:hover,
   .cta-secondary:focus-visible {
     background: var(--text-white);
-    color: var(--bg-space);
+    color: var(--color-saigon);
   }
 
-  /* a faint sun-coloured halo for the things floating in space —
+  /* a faint sun-coloured halo for the things floating in the sky —
      never the logo (GUIDELINES.md §4) */
   .space-glow {
-    filter: drop-shadow(0 0 12px rgba(255, 209, 102, 0.3));
+    filter: drop-shadow(0 0 12px rgba(248, 172, 26, 0.3));
   }
 }
 

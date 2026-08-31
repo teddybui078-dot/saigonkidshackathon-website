@@ -120,7 +120,7 @@ export default function Schedule() {
       </div>
       <div className="mx-auto max-w-5xl">
         <div className="text-center">
-          <p className="mb-3 text-sm font-semibold tracking-wide text-sun">
+          <p className="mb-3 text-sm font-semibold tracking-wide text-energy-deep">
             March 6, 2027 ✦
           </p>
           <h2 className="text-5xl font-bold leading-tight md:text-6xl">
@@ -167,7 +167,7 @@ export default function Schedule() {
                 <div className="schedule-lantern">
                 <div className="ambient-hang mx-auto flex max-w-md flex-col items-center md:max-w-none">
                   <Hook />
-                  <div className="w-2/3 rounded-t-xl bg-space-light px-3 py-1.5 text-center text-base font-bold text-sun">
+                  <div className="w-2/3 rounded-t-xl bg-space-light px-3 py-1.5 text-center text-base font-bold text-saigon-deep">
                     {slot.time}
                   </div>
                   <div className="lantern-body w-full px-12 py-7 text-center text-ink">

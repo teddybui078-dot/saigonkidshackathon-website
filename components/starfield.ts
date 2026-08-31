@@ -27,7 +27,7 @@ function scatter(seed: number, count: number): Star[] {
 
 /* one "Xvw Yvh 0 0 #fff" per star; the element's own size sets the dot */
 function toShadow(stars: Star[]): string {
-  return stars.map((s) => `${s.x}vw ${s.y}vh 0 0 #fff`).join(", ");
+  return stars.map((s) => `${s.x}vw ${s.y}vh 0 0 #a8bfe2`).join(", ");
 }
 
 export type StarDepth = "far" | "mid" | "near";

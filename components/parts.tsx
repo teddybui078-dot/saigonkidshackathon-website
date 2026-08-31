@@ -124,13 +124,13 @@ export function Scuffs({
 const TONES = {
   yellow: {
     face: "bg-energy text-ink",
-    rest: "shadow-[0_5px_0_#d99a00,inset_0_-5px_0_rgba(0,0,0,0.08)]",
-    pressed: "hover:shadow-[0_2px_0_#d99a00,inset_0_-5px_0_rgba(0,0,0,0.08)]",
+    rest: "shadow-[0_5px_0_#d18e07,inset_0_-5px_0_rgba(0,0,0,0.08)]",
+    pressed: "hover:shadow-[0_2px_0_#d18e07,inset_0_-5px_0_rgba(0,0,0,0.08)]",
   },
   blue: {
     face: "bg-saigon text-white",
-    rest: "shadow-[0_5px_0_#0d1b2a,inset_0_-5px_0_rgba(0,0,0,0.12)]",
-    pressed: "hover:shadow-[0_2px_0_#0d1b2a,inset_0_-5px_0_rgba(0,0,0,0.12)]",
+    rest: "shadow-[0_5px_0_#01337f,inset_0_-5px_0_rgba(0,0,0,0.12)]",
+    pressed: "hover:shadow-[0_2px_0_#01337f,inset_0_-5px_0_rgba(0,0,0,0.12)]",
   },
 } as const;
 

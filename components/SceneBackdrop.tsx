@@ -11,7 +11,7 @@ import {
   Comet,
   FloatBrick,
 } from "./space";
-import { SUN, PAPER } from "./palette";
+import { SUN, SKY_DEEP } from "./palette";
 
 /* the fixed midnight sky behind the whole site — the hero's weather,
    carried under every section and every route. it stays put while the
@@ -54,8 +54,8 @@ export default function SceneBackdrop() {
       <ChalkStar className="chalk-blink absolute right-[14%] top-[58%] hidden md:block" width={26} style={{ "--blink-time": "2.6s" } as React.CSSProperties} />
       <Sparkle className="ambient-twinkle absolute left-[6%] bottom-[10%] opacity-80" size={22} color={SUN} />
       <Sparkle className="ambient-twinkle absolute right-[9%] bottom-[22%] opacity-80" size={28} color={SUN} />
-      <Sparkle className="ambient-twinkle absolute left-[18%] top-[30%] opacity-60 hidden md:block" size={14} color={PAPER} />
-      <Sparkle className="ambient-twinkle absolute right-[24%] top-[14%] opacity-60 hidden lg:block" size={16} color={PAPER} />
+      <Sparkle className="ambient-twinkle absolute left-[18%] top-[30%] opacity-60 hidden md:block" size={14} color={SKY_DEEP} />
+      <Sparkle className="ambient-twinkle absolute right-[24%] top-[14%] opacity-60 hidden lg:block" size={16} color={SKY_DEEP} />
 
       {/* two bricks that never came down */}
       <FloatBrick className="brick-free absolute right-[4%] bottom-[8%] hidden w-14 md:block" />

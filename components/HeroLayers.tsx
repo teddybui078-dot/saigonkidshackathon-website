@@ -6,7 +6,7 @@
 import { GRAIN_ID, PARALLAX } from "./hero-layers";
 import { STARFIELD, STAR_DEPTHS, type StarDepth } from "./starfield";
 import { Sparkle } from "./decorations";
-import { SUN, PAPER, FLARE } from "./palette";
+import { SUN, SKY_DEEP, FLARE } from "./palette";
 import {
   HeroLayerShell,
   GrainFilter,
@@ -85,7 +85,7 @@ export function HeroCanvas() {
         return (
           <span
             key={depth}
-            className={`${STAR_CLASS[depth]} absolute left-0 top-0 rounded-full bg-white`}
+            className={`${STAR_CLASS[depth]} absolute left-0 top-0 rounded-full bg-[#a8bfe2]`}
             style={
               {
                 width: layer.size,
@@ -112,7 +112,7 @@ export function HeroCanvas() {
         <Sparkle
           key={i}
           size={s.size}
-          color={s.tone === "sun" ? SUN : PAPER}
+          color={s.tone === "sun" ? SUN : SKY_DEEP}
           className={`chalk-blink absolute ${s.hide ? "hidden md:block" : ""}`}
           style={{ left: s.left, top: s.top, "--blink-time": s.time } as React.CSSProperties}
         />
