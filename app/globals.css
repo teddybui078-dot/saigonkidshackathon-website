@@ -370,15 +370,6 @@ body {
     }
   }
 
-  @keyframes flame-flicker {
-    from {
-      scale: 1 1;
-    }
-    to {
-      scale: 0.92 0.78;
-    }
-  }
-
   .stars-far {
     animation:
       star-twinkle 4.4s ease-in-out infinite,
@@ -401,21 +392,6 @@ body {
     animation: space-float 6s ease-in-out infinite;
   }
 
-  .float-fast {
-    animation: space-float 4.2s ease-in-out infinite reverse;
-  }
-
-  /* the rocket's flame group and the satellite's signal arcs, by the
-     class hooks the art carries */
-  .hero-flame {
-    animation: flame-flicker 0.35s ease-in-out infinite alternate;
-    transform-box: fill-box;
-    transform-origin: 50% 0;
-  }
-
-  .hero-signal {
-    animation: star-twinkle 1.6s ease-in-out infinite;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -425,102 +401,17 @@ body {
   }
 }
 
-/* ————— the shop sign (bảng hiệu) the hero hangs its name on ————— */
-
-@layer components {
-  /* the bamboo pole across the sign's top: sun-yellow with an ink node
-     band every so often, capped round */
-  .sign-pole {
-    height: 24px;
-    border: 3px solid var(--stroke-ink);
-    border-radius: 9999px;
-    background: var(--accent-yellow)
-      repeating-linear-gradient(90deg, #0000 0 78px, var(--stroke-ink) 78px 82px);
-  }
-
-  /* the cords the sign hangs by, and their knots on the string */
-  .sign-cord {
-    width: 4px;
-    border-radius: 2px;
-    background: var(--stroke-ink);
-  }
-
-  .sign-knot {
-    width: 10px;
-    height: 10px;
-    border-radius: 9999px;
-    background: var(--stroke-ink);
-  }
-
-  /* the wooden tag swinging under the sign */
-  .sign-tag {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    padding: 0.5rem 1.1rem;
-    border: 3px solid var(--stroke-ink);
-    border-radius: 10px;
-    background: var(--accent-yellow);
-    color: var(--stroke-ink);
-    font-weight: 600;
-  }
-
-  /* the small red status light on the badge and the tag */
-  .sign-led {
-    display: inline-block;
-    width: 0.6rem;
-    height: 0.6rem;
-    border: 2px solid var(--stroke-ink);
-    border-radius: 9999px;
-    background: var(--accent-red);
-  }
-
-  .sign-tag::after {
-    content: "";
-    position: absolute;
-    inset: 4px;
-    border: 2px dashed var(--stroke-ink);
-    border-radius: 6px;
-    opacity: 0.35;
-    pointer-events: none;
-  }
-}
-
 /* ————— the street's constant motion — swings, spins, sways, blinks.
    every loop animates the separate translate/rotate/scale properties or
    opacity, so gsap's transform on the wrappers never collides. per-item
    timing comes in through the --*-time custom properties ————— */
 
 @media (prefers-reduced-motion: no-preference) {
-  /* hanging things: lanterns from their hooks, the tag from its rings,
-     the astronaut from the rope. --swing sets the reach */
-  @keyframes swing {
-    from {
-      rotate: calc(var(--swing, 7deg) * -1);
-    }
-    to {
-      rotate: var(--swing, 7deg);
-    }
-  }
-
-  .swing-hang {
-    animation: swing var(--swing-time, 3s) ease-in-out infinite alternate;
-    transform-box: fill-box;
-    transform-origin: var(--swing-origin, 50% 0);
-  }
-
-  /* wheels and the runaway brick */
+  /* the runaway brick's spin */
   @keyframes turn {
     to {
       rotate: 360deg;
     }
-  }
-
-  .cyclo-wheel {
-    animation: turn var(--turn-time, 4s) linear infinite;
-    transform-box: fill-box;
-    transform-origin: center;
   }
 
   @keyframes hover-drift {
@@ -566,21 +457,7 @@ body {
     --sway-time: 6.1s;
   }
 
-  /* the lanterns' warm insides breathe; the lotus does too */
-  @keyframes glow-pulse {
-    0%,
-    100% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0.55;
-    }
-  }
-
-  .lantern-glow {
-    animation: glow-pulse var(--glow-time, 2s) ease-in-out infinite;
-  }
-
+  /* the lotus breathes on its stem */
   @keyframes breathe {
     from {
       scale: 1;
@@ -594,21 +471,6 @@ body {
     animation: breathe 2.5s ease-in-out infinite alternate;
     transform-box: fill-box;
     transform-origin: 50% 100%;
-  }
-
-  /* the cords give a little as the sign bobs */
-  @keyframes stretch-y {
-    from {
-      scale: 1 0.98;
-    }
-    to {
-      scale: 1 1.02;
-    }
-  }
-
-  .cord-stretch {
-    animation: stretch-y 2.75s ease-in-out infinite alternate;
-    transform-origin: 50% 0;
   }
 
   /* chalk stars wink; tower windows flicker awake; leds blink on one
@@ -658,42 +520,11 @@ body {
     }
   }
 
-  .tower-beacon,
-  .cyclo-led,
   .board-led {
     animation: led-wink 1.6s steps(1, end) infinite;
   }
 
-  @keyframes cursor-wink {
-    0%,
-    49% {
-      opacity: 1;
-    }
-    50%,
-    100% {
-      opacity: 0;
-    }
-  }
-
-  .laptop-cursor {
-    animation: cursor-wink 1s steps(1, end) infinite;
-  }
-
-  /* the dotted orbit crawls; the cloud band slides across the tower */
-  @keyframes dash-crawl {
-    to {
-      stroke-dashoffset: -30;
-    }
-  }
-
-  .orbit-arc {
-    animation: dash-crawl 6s linear infinite;
-  }
-
-  .string-path {
-    /* drawn in by gsap on load; no loop of its own */
-  }
-
+  /* the cloud band slides across the tower */
   @keyframes drift-x {
     from {
       translate: -18px 0;
