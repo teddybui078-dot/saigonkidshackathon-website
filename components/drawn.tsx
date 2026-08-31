@@ -144,18 +144,18 @@ export function DrawnBg({
       fill="none"
     >
       {shadow !== "none" && (
-        <path d={d} transform="translate(9 10)" fill={shadow === "sun" ? SUN : FLARE} />
+        <path d={d} transform="translate(6 7)" fill={shadow === "sun" ? SUN : FLARE} />
       )}
       <path
         d={d}
         fill={TONE[tone]}
         stroke={STROKE}
-        strokeWidth={5}
+        strokeWidth={3.5}
         strokeLinejoin="round"
         vectorEffect="non-scaling-stroke"
       />
-      <path d={tick.light} stroke={PAPER} strokeWidth={4} strokeLinecap="round" opacity={0.35} vectorEffect="non-scaling-stroke" />
-      <path d={tick.dark} stroke={SPACE_DARK} strokeWidth={4} strokeLinecap="round" opacity={0.35} vectorEffect="non-scaling-stroke" />
+      <path d={tick.light} stroke={PAPER} strokeWidth={3} strokeLinecap="round" opacity={0.35} vectorEffect="non-scaling-stroke" />
+      <path d={tick.dark} stroke={SPACE_DARK} strokeWidth={3} strokeLinecap="round" opacity={0.35} vectorEffect="non-scaling-stroke" />
       {bolts && (
         <g stroke={STROKE} strokeLinecap="round">
           {BOLTS[aspect].map(([bx, by], i) => {
@@ -163,8 +163,8 @@ export function DrawnBg({
             const y = by + jitter[i][1];
             return (
               <g key={i} transform={i === crooked ? `rotate(${twist} ${x} ${y})` : undefined}>
-                <circle cx={x} cy={y} r={7} fill={SUN} strokeWidth={3} />
-                <path d={`M${x - 4} ${y} L${x + 4} ${y}`} strokeWidth={2.5} />
+                <circle cx={x} cy={y} r={7} fill={SUN} strokeWidth={2.5} />
+                <path d={`M${x - 4} ${y} L${x + 4} ${y}`} strokeWidth={2} />
               </g>
             );
           })}
@@ -203,17 +203,17 @@ export function DrawnDiscBg({
       fill="none"
     >
       {shadow !== "none" && (
-        <path d={d} transform="translate(7 8)" fill={shadow === "sun" ? SUN : FLARE} />
+        <path d={d} transform="translate(5 6)" fill={shadow === "sun" ? SUN : FLARE} />
       )}
       <path
         d={d}
         fill={TONE[tone]}
         stroke={STROKE}
-        strokeWidth={5}
+        strokeWidth={3.5}
         strokeLinejoin="round"
         vectorEffect="non-scaling-stroke"
       />
-      <path d="M52 40 Q84 20 124 26" stroke={PAPER} strokeWidth={4} strokeLinecap="round" opacity={0.5} vectorEffect="non-scaling-stroke" />
+      <path d="M52 40 Q84 20 124 26" stroke={PAPER} strokeWidth={3} strokeLinecap="round" opacity={0.5} vectorEffect="non-scaling-stroke" />
     </svg>
   );
 }
@@ -282,18 +282,18 @@ export function DrawnPaddleBg({
       fill="none"
     >
       {shadow !== "none" && (
-        <path d={s.d} transform="translate(9 10)" fill={shadow === "sun" ? SUN : FLARE} />
+        <path d={s.d} transform="translate(6 7)" fill={shadow === "sun" ? SUN : FLARE} />
       )}
       <path
         d={s.d}
         fill={TONE[tone]}
         stroke={STROKE}
-        strokeWidth={5}
+        strokeWidth={3.5}
         strokeLinejoin="round"
         vectorEffect="non-scaling-stroke"
       />
-      <path d={s.light} stroke={PAPER} strokeWidth={4} strokeLinecap="round" opacity={0.35} vectorEffect="non-scaling-stroke" />
-      <path d={s.dark} stroke={SPACE_DARK} strokeWidth={4} strokeLinecap="round" opacity={0.35} vectorEffect="non-scaling-stroke" />
+      <path d={s.light} stroke={PAPER} strokeWidth={3} strokeLinecap="round" opacity={0.35} vectorEffect="non-scaling-stroke" />
+      <path d={s.dark} stroke={SPACE_DARK} strokeWidth={3} strokeLinecap="round" opacity={0.35} vectorEffect="non-scaling-stroke" />
     </svg>
   );
 }
@@ -340,18 +340,18 @@ export function DrawnBadgeBg({
       fill="none"
     >
       {shadow !== "none" && (
-        <path d={s.d} transform="translate(9 10)" fill={shadow === "sun" ? SUN : FLARE} />
+        <path d={s.d} transform="translate(6 7)" fill={shadow === "sun" ? SUN : FLARE} />
       )}
       <path
         d={s.d}
         fill={TONE[tone]}
         stroke={STROKE}
-        strokeWidth={5}
+        strokeWidth={3.5}
         strokeLinejoin="round"
         vectorEffect="non-scaling-stroke"
       />
-      <path d={s.light} stroke={PAPER} strokeWidth={4} strokeLinecap="round" opacity={0.35} vectorEffect="non-scaling-stroke" />
-      <path d={s.dark} stroke={SPACE_DARK} strokeWidth={4} strokeLinecap="round" opacity={0.35} vectorEffect="non-scaling-stroke" />
+      <path d={s.light} stroke={PAPER} strokeWidth={3} strokeLinecap="round" opacity={0.35} vectorEffect="non-scaling-stroke" />
+      <path d={s.dark} stroke={SPACE_DARK} strokeWidth={3} strokeLinecap="round" opacity={0.35} vectorEffect="non-scaling-stroke" />
     </svg>
   );
 }
@@ -411,33 +411,33 @@ export function LegoStep({
       preserveAspectRatio="none"
       fill="none"
     >
-      <path d={body} transform="translate(11 12)" fill={t.shadow} />
+      <path d={body} transform="translate(8 9)" fill={t.shadow} />
       {STUD_X.map((cx, i) => (
         <g key={i} transform={i === crooked.stud ? `rotate(${crooked.deg} ${cx} 28)` : undefined}>
           <path
             d={`M${cx - 29} 16 Q${cx - 29} 11 ${cx - 24} 11 L${cx + 24} 11 Q${cx + 29} 11 ${cx + 29} 16 L${cx + 29} 46 L${cx - 29} 46 Z`}
             fill={t.stud}
             stroke={STROKE}
-            strokeWidth={5}
+            strokeWidth={3.5}
             strokeLinejoin="round"
             vectorEffect="non-scaling-stroke"
           />
-          <ellipse cx={cx} cy={15} rx={29} ry={9} fill={t.stud} stroke={STROKE} strokeWidth={4} vectorEffect="non-scaling-stroke" />
+          <ellipse cx={cx} cy={15} rx={29} ry={9} fill={t.stud} stroke={STROKE} strokeWidth={3} vectorEffect="non-scaling-stroke" />
           <path
             d={`M${cx - 16} 11 Q${cx} 5 ${cx + 16} 11`}
             stroke={PAPER}
-            strokeWidth={3.5}
+            strokeWidth={2.5}
             strokeLinecap="round"
             opacity={0.45}
             vectorEffect="non-scaling-stroke"
           />
         </g>
       ))}
-      <path d={body} fill={t.body} stroke={STROKE} strokeWidth={6} strokeLinejoin="round" vectorEffect="non-scaling-stroke" />
-      <path d={tick.light} stroke={PAPER} strokeWidth={4} strokeLinecap="round" opacity={0.35} vectorEffect="non-scaling-stroke" />
-      <path d={tick.dark} stroke={SPACE_DARK} strokeWidth={4} strokeLinecap="round" opacity={0.35} vectorEffect="non-scaling-stroke" />
+      <path d={body} fill={t.body} stroke={STROKE} strokeWidth={4} strokeLinejoin="round" vectorEffect="non-scaling-stroke" />
+      <path d={tick.light} stroke={PAPER} strokeWidth={3} strokeLinecap="round" opacity={0.35} vectorEffect="non-scaling-stroke" />
+      <path d={tick.dark} stroke={SPACE_DARK} strokeWidth={3} strokeLinecap="round" opacity={0.35} vectorEffect="non-scaling-stroke" />
       {scuffs.map((d) => (
-        <path key={d} d={d} stroke={PAPER} strokeWidth={3.5} strokeLinecap="round" opacity={0.5} vectorEffect="non-scaling-stroke" />
+        <path key={d} d={d} stroke={PAPER} strokeWidth={2.5} strokeLinecap="round" opacity={0.5} vectorEffect="non-scaling-stroke" />
       ))}
     </svg>
   );
@@ -501,18 +501,18 @@ export function DrawnBubbleBg({
       fill="none"
     >
       {shadow !== "none" && (
-        <path d={s.d} transform="translate(9 10)" fill={shadow === "sun" ? SUN : FLARE} />
+        <path d={s.d} transform="translate(6 7)" fill={shadow === "sun" ? SUN : FLARE} />
       )}
       <path
         d={s.d}
         fill={TONE[tone]}
         stroke={STROKE}
-        strokeWidth={5}
+        strokeWidth={3.5}
         strokeLinejoin="round"
         vectorEffect="non-scaling-stroke"
       />
-      <path d={s.light} stroke={PAPER} strokeWidth={4} strokeLinecap="round" opacity={0.35} vectorEffect="non-scaling-stroke" />
-      <path d={s.dark} stroke={SPACE_DARK} strokeWidth={4} strokeLinecap="round" opacity={0.35} vectorEffect="non-scaling-stroke" />
+      <path d={s.light} stroke={PAPER} strokeWidth={3} strokeLinecap="round" opacity={0.35} vectorEffect="non-scaling-stroke" />
+      <path d={s.dark} stroke={SPACE_DARK} strokeWidth={3} strokeLinecap="round" opacity={0.35} vectorEffect="non-scaling-stroke" />
     </svg>
   );
 }
@@ -555,7 +555,7 @@ export function DrawnTail({
       fill="none"
     >
       {kind === "dots" ? (
-        <g fill={TONE[tone]} stroke={STROKE} strokeWidth={3}>
+        <g fill={TONE[tone]} stroke={STROKE} strokeWidth={2.5}>
           <circle cx={side === "left" ? 10 : 24} cy={6} r={6} />
           <circle cx={side === "left" ? 19 : 15} cy={16} r={4} />
           <circle cx={side === "left" ? 26 : 8} cy={25} r={2.5} />
@@ -565,7 +565,7 @@ export function DrawnTail({
           d={TAIL_PATHS[kind][side]}
           fill={TONE[tone]}
           stroke={STROKE}
-          strokeWidth={4}
+          strokeWidth={3}
           strokeLinejoin="round"
         />
       )}
