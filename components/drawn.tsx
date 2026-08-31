@@ -298,6 +298,64 @@ export function DrawnPaddleBg({
   );
 }
 
+/* three staff badges that stopped matching — an arch top, a tag with
+   clipped corners, a rounded card. tall aspect, drawn twice. */
+const BADGE_SHAPES: { d: string; light: string; dark: string }[] = [
+  {
+    d: "M130 8 Q206 10 232 62 Q244 88 242 120 Q246 250 240 368 Q239 382 224 384 Q132 392 40 386 Q23 384 22 370 Q16 246 20 118 Q18 86 32 60 Q58 8 130 8 Z",
+    light: "M62 52 Q130 24 198 50",
+    dark: "M52 372 Q130 380 208 374",
+  },
+  {
+    d: "M76 18 L188 16 Q196 16 202 22 L236 58 Q242 64 242 74 Q248 240 240 368 Q239 382 224 384 Q130 392 42 386 Q24 384 23 370 Q14 238 20 76 Q20 66 26 60 L62 24 Q68 18 76 18 Z",
+    light: "M78 34 Q140 24 196 34",
+    dark: "M50 372 Q130 380 210 374",
+  },
+  {
+    d: "M34 22 Q130 12 224 18 Q240 20 241 36 Q248 200 242 366 Q241 382 225 384 Q128 392 38 385 Q22 383 21 368 Q13 198 19 38 Q20 25 34 22 Z",
+    light: "M44 34 Q130 24 216 32",
+    dark: "M54 374 Q134 380 208 376",
+  },
+];
+
+export function DrawnBadgeBg({
+  shape = 0,
+  tone = "paper",
+  shadow = "sun",
+  className = "",
+}: {
+  shape?: number;
+  tone?: DrawnTone;
+  shadow?: DrawnShadow;
+  className?: string;
+}) {
+  const s = BADGE_SHAPES[shape % BADGE_SHAPES.length];
+  return (
+    <svg
+      aria-hidden="true"
+      focusable="false"
+      className={`absolute inset-0 h-full w-full ${className}`}
+      viewBox="0 0 260 400"
+      preserveAspectRatio="none"
+      fill="none"
+    >
+      {shadow !== "none" && (
+        <path d={s.d} transform="translate(9 10)" fill={shadow === "sun" ? SUN : FLARE} />
+      )}
+      <path
+        d={s.d}
+        fill={TONE[tone]}
+        stroke={STROKE}
+        strokeWidth={5}
+        strokeLinejoin="round"
+        vectorEffect="non-scaling-stroke"
+      />
+      <path d={s.light} stroke={PAPER} strokeWidth={4} strokeLinecap="round" opacity={0.35} vectorEffect="non-scaling-stroke" />
+      <path d={s.dark} stroke={SPACE_DARK} strokeWidth={4} strokeLinecap="round" opacity={0.35} vectorEffect="non-scaling-stroke" />
+    </svg>
+  );
+}
+
 /* a giant lego brick for the podium: three drawn studs on top, a wobbly
    body, the usual thrown shadow. the winner gets the lacquer. */
 const LEGO_TONE = {

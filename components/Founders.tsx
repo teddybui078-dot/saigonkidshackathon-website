@@ -6,7 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Sparkle, PixelHeart, SparkleCross } from "./decorations";
 import { ChalkScribble } from "./space";
 import { Lanyard } from "./parts";
-import { DrawnBg } from "./drawn";
+import { DrawnBadgeBg } from "./drawn";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -61,16 +61,33 @@ export default function Founders() {
         <div className="mx-auto mt-12 grid max-w-3xl gap-6 sm:grid-cols-3">
           {FOUNDERS.map((person, i) => (
             <div key={i} className="founder-tile">
-              {/* swings from the clip on hover — kept off the tile gsap tweens */}
+              {/* swings from the clip on hover — kept off the tile gsap tweens.
+                  the middle clip was hung a little crooked */}
               <div className="flex origin-top flex-col items-center transition-transform duration-300 hover:rotate-2">
-                <Lanyard className="-mb-1" />
+                <Lanyard className={i === 1 ? "-mb-1 rotate-[3deg]" : "-mb-1"} />
                 <div className="relative w-full text-ink">
-                  <DrawnBg aspect="tall" seed={i} tone="paper" />
-                  {/* header band with the punched slot the clip goes through */}
-                  <div className="relative mx-3 mt-3 flex h-8 items-center justify-center gap-3 rounded-md bg-saigon text-[11px] font-bold tracking-widest text-white">
-                    <span className="h-1.5 w-10 rounded-full bg-white/80" aria-hidden="true" />
-                    founder
-                  </div>
+                  <DrawnBadgeBg shape={i} />
+                  {/* each badge wears its header its own way: a bare punched
+                      slot on the arch, a stitched patch on the tag, the solid
+                      band on the rounded card */}
+                  {i === 0 && (
+                    <div className="relative mx-3 mt-4 flex flex-col items-center">
+                      <span className="h-2 w-12 rounded-full border-2 border-saigon bg-white" aria-hidden="true" />
+                      <span className="mt-1 text-[11px] font-bold tracking-widest text-saigon">founder</span>
+                    </div>
+                  )}
+                  {i === 1 && (
+                    <div className="relative mx-9 mt-5 flex h-8 -rotate-1 items-center justify-center gap-3 rounded-md border-2 border-dashed border-saigon bg-energy text-[11px] font-bold tracking-widest text-ink">
+                      <span className="h-1.5 w-10 rounded-full bg-white/80" aria-hidden="true" />
+                      founder
+                    </div>
+                  )}
+                  {i === 2 && (
+                    <div className="relative mx-3 mt-3 flex h-8 items-center justify-center gap-3 rounded-md bg-saigon text-[11px] font-bold tracking-widest text-white">
+                      <span className="h-1.5 w-10 rounded-full bg-white/80" aria-hidden="true" />
+                      founder
+                    </div>
+                  )}
                   <div className="relative flex flex-col items-center p-5">
                     <div
                       className="grid h-20 w-20 place-items-center rounded-full border-[3px] border-dashed border-mist bg-white"
