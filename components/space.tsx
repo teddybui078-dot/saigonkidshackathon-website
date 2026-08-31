@@ -142,6 +142,55 @@ export function SignBoard({ className = "", width = 780, ...rest }: SpaceArtProp
   );
 }
 
+/* ————— the orbit rings ————— */
+
+/* two gold tracks circling the lotus finial, the way treehacks rings its
+   spire — dashed, tilted against each other, crawling on the shared
+   orbit clock */
+export function OrbitRings({ className = "", width = 160, ...rest }: SpaceArtProps) {
+  return (
+    <svg
+      className={className}
+      width={width}
+      height={width * (90 / 160)}
+      viewBox="0 0 160 90"
+      fill="none"
+      aria-hidden="true"
+      focusable="false"
+      {...rest}
+    >
+      <g strokeLinecap="round">
+        <ellipse
+          className="orbit-arc"
+          cx={80}
+          cy={45}
+          rx={70}
+          ry={20}
+          transform="rotate(-12 80 45)"
+          stroke={SUN}
+          strokeWidth={3}
+          strokeDasharray="3 12"
+          opacity={0.8}
+        />
+        <ellipse
+          className="orbit-arc"
+          cx={80}
+          cy={45}
+          rx={58}
+          ry={15}
+          transform="rotate(11 80 45)"
+          stroke={SUN}
+          strokeWidth={2.5}
+          strokeDasharray="3 12"
+          opacity={0.55}
+        />
+      </g>
+      <circle cx={12} cy={38} r={2.5} fill={SUN} opacity={0.9} />
+      <circle cx={146} cy={56} r={2} fill={PAPER} opacity={0.7} />
+    </svg>
+  );
+}
+
 /* ————— the swirl planet ————— */
 
 /* a dark quiet planet, brushed with wind-bands like the sky behind it.

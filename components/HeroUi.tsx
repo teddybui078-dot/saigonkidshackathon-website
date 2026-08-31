@@ -7,7 +7,7 @@
 
 import SiteLink from "./SiteLink";
 import { HERO_LAYER } from "./hero-layers";
-import { KidAstronaut, LotusFinial, SignBoard } from "./space";
+import { KidAstronaut, LotusFinial, OrbitRings, SignBoard } from "./space";
 import { EVENT, AGES } from "./event";
 
 export default function HeroUi() {
@@ -30,8 +30,9 @@ export default function HeroUi() {
           </span>
         </div>
 
-        {/* the bamboo pole with its lotus riding on top */}
+        {/* the bamboo pole with its lotus riding on top, ringed in gold */}
         <div className="relative w-[106%]" aria-hidden="true">
+          <OrbitRings className="absolute -top-14 left-1/2 w-36 -translate-x-1/2 md:-top-16 md:w-40" />
           <LotusFinial className="lotus-breathe absolute -top-9 left-1/2 w-12 -translate-x-1/2 md:-top-11 md:w-14" />
           <div className="sign-pole" />
         </div>

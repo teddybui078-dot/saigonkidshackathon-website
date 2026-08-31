@@ -5,6 +5,8 @@
 
 import { CHALK_ID, GRAIN_ID, PARALLAX } from "./hero-layers";
 import { STARFIELD, STAR_DEPTHS, type StarDepth } from "./starfield";
+import { Sparkle } from "./decorations";
+import { SUN, PAPER } from "./palette";
 import {
   HeroLayerShell,
   GrainFilter,
@@ -32,6 +34,26 @@ const STAR_CLASS: Record<StarDepth, string> = {
   mid: "stars-mid",
   near: "stars-near",
 };
+
+/* the sparkles between the stars and the chalk stars — the sky's middle
+   scale, some sun, some paper */
+const SPARKLES: {
+  left: string;
+  top: string;
+  size: number;
+  tone: "sun" | "paper";
+  time: string;
+  hide?: boolean;
+}[] = [
+  { left: "16%", top: "14%", size: 14, tone: "sun", time: "2.8s" },
+  { left: "38%", top: "20%", size: 8, tone: "paper", time: "3.3s", hide: true },
+  { left: "62%", top: "16%", size: 20, tone: "sun", time: "2.2s", hide: true },
+  { left: "83%", top: "20%", size: 10, tone: "paper", time: "3.9s" },
+  { left: "8%", top: "48%", size: 18, tone: "sun", time: "3.1s" },
+  { left: "30%", top: "60%", size: 9, tone: "paper", time: "2.5s", hide: true },
+  { left: "88%", top: "55%", size: 14, tone: "sun", time: "3.6s", hide: true },
+  { left: "48%", top: "8%", size: 10, tone: "paper", time: "2.9s" },
+];
 
 /* the chalk stars scattered across the top of the sky */
 const CHALK_STARS: { left: string; top: string; size: number; time: string; hide?: boolean }[] = [
@@ -93,6 +115,16 @@ export function HeroCanvas() {
         <ChalkStar
           key={i}
           width={s.size}
+          className={`chalk-blink absolute ${s.hide ? "hidden md:block" : ""}`}
+          style={{ left: s.left, top: s.top, "--blink-time": s.time } as React.CSSProperties}
+        />
+      ))}
+      {/* sparkles at the scale between — the sky reads at three sizes */}
+      {SPARKLES.map((s, i) => (
+        <Sparkle
+          key={i}
+          size={s.size}
+          color={s.tone === "sun" ? SUN : PAPER}
           className={`chalk-blink absolute ${s.hide ? "hidden md:block" : ""}`}
           style={{ left: s.left, top: s.top, "--blink-time": s.time } as React.CSSProperties}
         />
