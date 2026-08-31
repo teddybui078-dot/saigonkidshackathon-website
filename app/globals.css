@@ -107,15 +107,10 @@ body {
    callers apply them as motion-safe:animate-* so reduced motion opts out */
 @theme {
   --animate-led-blink: led-blink 1.6s steps(1, end) infinite;
-  --animate-cursor-blink: cursor-blink 1s steps(1, end) infinite;
 
   @keyframes led-blink {
     0%, 60% { opacity: 1; }
     61%, 100% { opacity: 0.25; }
-  }
-  @keyframes cursor-blink {
-    0%, 49% { opacity: 1; }
-    50%, 100% { opacity: 0; }
   }
 }
 

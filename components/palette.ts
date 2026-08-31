@@ -3,6 +3,9 @@
 
 export const BLUE = "#191970";
 export const BLUE_DEEP = "#0d1b2a";
+/* two yellows, two jobs: YELLOW/energy is an OBJECT colour (lego plastic,
+   cta fills, bulbs); SUN is LIGHT (drawn shadows, glows, kickers, focus).
+   the signboard's lego collar is YELLOW under a SUN shadow — that's the rule */
 export const YELLOW = "#ffb703";
 export const YELLOW_DEEP = "#d99a00";
 export const CANVAS = "#f1f5f9";
@@ -12,7 +15,6 @@ export const SKY_LIGHT = "#c9d7ee";
 export const SKY_DEEP = "#a8bfe2";
 /* brushed-metal plates (control panel, button plates) */
 export const METAL = "#dbe4f2";
-export const METAL_DEEP = "#9fb0c8";
 /* in space: the hero canvas and the sticker palette (the :root vars in
    app/globals.css, mirrored here for inline svg) */
 export const SPACE = "#191970";

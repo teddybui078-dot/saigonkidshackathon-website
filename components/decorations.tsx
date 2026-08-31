@@ -1,7 +1,7 @@
 /* lightweight vector accents echoing the logo: pixel clusters, sparkles,
    orbit swooshes, and code marks. colors are fixed to the brand palette. */
 
-import { BLUE, YELLOW, SKY_LIGHT, SKY_DEEP } from "./palette";
+import { BLUE, YELLOW, SKY_LIGHT } from "./palette";
 
 export function PixelGrid({
   className = "",
@@ -103,116 +103,7 @@ export function CodeMark({
   );
 }
 
-/* ————— hero scene elements (treehacks-style, brand-tinted) ————— */
 
-export function SaigonSkyline({
-  className = "",
-  width = 470,
-  ...rest
-}: {
-  className?: string;
-  width?: number;
-} & React.SVGProps<SVGSVGElement>) {
-  // textural landmark 81 — stepped shaft cluster with window grids (the
-  // hoover-tower analog) — plus bitexco with its helipad and low blocks
-  const shafts = [
-    { x: 205, w: 44, top: 42, fill: SKY_DEEP },
-    { x: 165, w: 40, top: 86, fill: SKY_LIGHT },
-    { x: 249, w: 40, top: 104, fill: SKY_LIGHT },
-    { x: 127, w: 38, top: 150, fill: SKY_DEEP },
-    { x: 289, w: 38, top: 182, fill: SKY_DEEP },
-    { x: 93, w: 34, top: 228, fill: SKY_LIGHT },
-    { x: 327, w: 34, top: 252, fill: SKY_LIGHT },
-  ];
-  return (
-    <svg
-      className={className}
-      width={width}
-      height={width * 0.851}
-      viewBox="0 0 470 400"
-      fill="none"
-      aria-hidden="true"
-      {...rest}
-    >
-      {/* spire with pixel beacon */}
-      <path d="M227 44 L227 8" stroke={SKY_DEEP} strokeWidth="5" strokeLinecap="round" />
-      <rect x="224" y="0" width="7" height="7" rx="1.5" fill={YELLOW} />
-      {shafts.map((sh) => (
-        <g key={sh.x}>
-          <rect x={sh.x} y={sh.top} width={sh.w} height={400 - sh.top} fill={sh.fill} />
-          {/* setback ledge */}
-          <rect x={sh.x - 2} y={sh.top} width={sh.w + 4} height={5} rx={2} fill="#8fa9d4" />
-          {/* window grid */}
-          {Array.from({ length: Math.floor((392 - sh.top - 16) / 26) }).flatMap(
-            (_, row) =>
-              [0, 1].map((col) => (
-                <rect
-                  key={`${row}-${col}`}
-                  x={sh.x + 7 + col * (sh.w / 2)}
-                  y={sh.top + 16 + row * 26}
-                  width={5.5}
-                  height={10}
-                  rx={1.5}
-                  fill="#f1f5f9"
-                  opacity={0.55}
-                />
-              ))
-          )}
-        </g>
-      ))}
-      {/* bitexco with helipad */}
-      <path
-        d="M370 400 L372 232 C372 200 384 182 400 182 C416 182 428 200 428 232 L430 400 Z"
-        fill={SKY_LIGHT}
-      />
-      <rect x="344" y="220" width="40" height="9" rx="4.5" fill={SKY_LIGHT} />
-      <rect x="394" y="200" width="7" height="13" rx="2" fill="#f1f5f9" opacity="0.6" />
-      <rect x="394" y="240" width="7" height="13" rx="2" fill="#f1f5f9" opacity="0.6" />
-      {/* low blocks */}
-      <rect x="30" y="320" width="52" height="80" rx="4" fill={SKY_DEEP} />
-      <rect x="440" y="330" width="30" height="70" rx="4" fill={SKY_DEEP} />
-      <rect x="0" y="352" width="26" height="48" rx="4" fill={SKY_LIGHT} />
-      <rect x="42" y="334" width="8" height="9" rx="1.5" fill="#f1f5f9" opacity="0.6" />
-      <rect x="62" y="348" width="8" height="9" rx="1.5" fill="#f1f5f9" opacity="0.6" />
-    </svg>
-  );
-}
-
-export function PalmSilhouette({
-  className = "",
-  width = 200,
-  ...rest
-}: {
-  className?: string;
-  width?: number;
-} & React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      className={className}
-      width={width}
-      height={width * 0.9}
-      viewBox="0 0 200 180"
-      fill="none"
-      aria-hidden="true"
-      {...rest}
-    >
-      <path
-        d="M120 180 C122 130 124 100 130 78 L138 80 C132 104 130 134 129 180 Z"
-        fill={SKY_DEEP}
-      />
-      <path d="M134 80 C110 62 88 60 66 70 C92 48 118 52 136 72 Z" fill={SKY_DEEP} />
-      <path d="M134 78 C118 52 100 40 76 36 C106 28 128 44 140 70 Z" fill={SKY_LIGHT} />
-      <path d="M136 74 C140 46 152 30 174 22 C156 44 148 60 144 78 Z" fill={SKY_DEEP} />
-      <path d="M138 78 C160 62 180 60 198 68 C176 48 152 54 136 72 Z" fill={SKY_LIGHT} />
-      <path
-        d="M40 180 C42 148 44 128 48 112 L55 114 C50 132 48 152 47 180 Z"
-        fill={SKY_LIGHT}
-      />
-      <path d="M50 114 C34 102 20 100 4 106 C22 90 40 94 53 108 Z" fill={SKY_LIGHT} />
-      <path d="M52 112 C54 92 62 80 78 74 C64 90 58 100 56 114 Z" fill={SKY_DEEP} />
-    </svg>
-  );
-}
 
 export function PixelPlanet({
   className = "",
