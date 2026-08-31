@@ -112,91 +112,91 @@ export function SignBoard({ className = "", width = 780, ...rest }: SpaceArtProp
           d="M370 36 C 364 48 370 60 390 65 C 388 50 381 41 370 36 Z"
           fill={FLARE}
           stroke={STROKE}
-          strokeWidth={3.5}
+          strokeWidth={3}
           strokeLinejoin="round"
         />
         <path
           d="M422 36 C 428 48 422 60 402 65 C 404 50 411 41 422 36 Z"
           fill={FLARE}
           stroke={STROKE}
-          strokeWidth={3.5}
+          strokeWidth={3}
           strokeLinejoin="round"
         />
         <path
           d="M396 20 C 386 34 383 48 396 62 C 409 48 406 34 396 20 Z"
           fill={FLARE}
           stroke={STROKE}
-          strokeWidth={3.5}
+          strokeWidth={3}
           strokeLinejoin="round"
         />
-        <ellipse cx={396} cy={64} rx={17} ry={7} fill={SUN} stroke={STROKE} strokeWidth={3} />
+        <ellipse cx={396} cy={64} rx={17} ry={7} fill={SUN} stroke={STROKE} strokeWidth={2.5} />
       </g>
       {/* the top stem: bamboo culms down into the board */}
       <path
         d="M381 72 Q377 112 380 156 L412 156 Q415 112 411 72 Q396 67 381 72 Z"
         fill={SUN}
         stroke={STROKE}
-        strokeWidth={4}
+        strokeWidth={3}
         strokeLinejoin="round"
       />
-      <path d="M379 114 L413 113" stroke={STROKE} strokeWidth={3} strokeLinecap="round" />
+      <path d="M379 114 L413 113" stroke={STROKE} strokeWidth={2.5} strokeLinecap="round" />
       {/* the bottom stem, drawn first so the board overlaps its joint */}
       <path
         d="M382 500 Q379 545 381 588 L407 588 Q410 545 406 500 Z"
         fill={SUN}
         stroke={STROKE}
-        strokeWidth={4}
+        strokeWidth={3}
         strokeLinejoin="round"
       />
       {/* the board assembly, shifted down to sit between the stems */}
       <g transform="translate(0 118)">
         {/* the shadow the sun throws — the board again, nudged and gold */}
-        <path d={outer} transform="translate(12 13)" fill={SUN} />
+        <path d={outer} transform="translate(8 9)" fill={SUN} />
         {/* the lacquer */}
-        <path d={outer} fill={FLARE} stroke={STROKE} strokeWidth={6} strokeLinejoin="round" />
+        <path d={outer} fill={FLARE} stroke={STROKE} strokeWidth={4} strokeLinejoin="round" />
         {/* the white board, wobbled on its own */}
         <path
           d="M78 70 Q250 64 420 66 Q580 68 706 72 Q718 73 719 86 Q726 210 718 336 Q717 350 703 351 Q520 358 380 356 Q230 354 80 350 Q66 349 67 336 Q60 210 66 84 Q67 71 78 70 Z"
           fill={PAPER}
           stroke={STROKE}
-          strokeWidth={5}
+          strokeWidth={3.5}
           strokeLinejoin="round"
         />
         {/* bevels as brush ticks: light where the sun grazes, dark below */}
         <g strokeLinecap="round" fill="none">
-          <path d="M92 50 Q240 44 378 46" stroke={PAPER} strokeWidth={6} opacity={0.35} />
-          <path d="M41 92 Q37 180 40 258" stroke={PAPER} strokeWidth={6} opacity={0.35} />
-          <path d="M124 376 Q320 382 560 378" stroke={SPACE_DARK} strokeWidth={6} opacity={0.4} />
-          <path d="M743 122 Q748 220 742 318" stroke={SPACE_DARK} strokeWidth={6} opacity={0.4} />
+          <path d="M92 50 Q240 44 378 46" stroke={PAPER} strokeWidth={4.5} opacity={0.35} />
+          <path d="M41 92 Q37 180 40 258" stroke={PAPER} strokeWidth={4.5} opacity={0.35} />
+          <path d="M124 376 Q320 382 560 378" stroke={SPACE_DARK} strokeWidth={4.5} opacity={0.4} />
+          <path d="M743 122 Q748 220 742 318" stroke={SPACE_DARK} strokeWidth={4.5} opacity={0.4} />
         </g>
         {/* the corner bolts, one a little crooked, as ever */}
         <g stroke={STROKE} strokeLinecap="round">
-          <circle cx={57} cy={55} r={9} fill={SUN} strokeWidth={4} />
-          <path d="M52 55 L62 55" strokeWidth={3} />
+          <circle cx={57} cy={55} r={9} fill={SUN} strokeWidth={3} />
+          <path d="M52 55 L62 55" strokeWidth={2.5} />
           <g transform="rotate(12 727 57)">
-            <circle cx={727} cy={57} r={9} fill={SUN} strokeWidth={4} />
-            <path d="M722 57 L732 57" strokeWidth={3} />
+            <circle cx={727} cy={57} r={9} fill={SUN} strokeWidth={3} />
+            <path d="M722 57 L732 57" strokeWidth={2.5} />
           </g>
-          <circle cx={55} cy={367} r={9} fill={SUN} strokeWidth={4} />
-          <path d="M50 367 L60 367" strokeWidth={3} />
-          <circle cx={728} cy={366} r={9} fill={SUN} strokeWidth={4} />
-          <path d="M723 366 L733 366" strokeWidth={3} />
+          <circle cx={55} cy={367} r={9} fill={SUN} strokeWidth={3} />
+          <path d="M50 367 L60 367" strokeWidth={2.5} />
+          <circle cx={728} cy={366} r={9} fill={SUN} strokeWidth={3} />
+          <path d="M723 366 L733 366" strokeWidth={2.5} />
         </g>
         {/* the name, painted on the board */}
         <WordmarkArt transform="translate(64 70) scale(0.93)" />
       </g>
       {/* the lego collar clipped over the top joint, studs up */}
       <g strokeLinejoin="round">
-        <rect x={362} y={132} width={24} height={13} rx={2} fill={SUN} stroke={STROKE} strokeWidth={3} />
-        <rect x={406} y={132} width={24} height={13} rx={2} fill={SUN} stroke={STROKE} strokeWidth={3} />
-        <rect x={348} y={143} width={96} height={28} rx={3} fill={YELLOW} stroke={STROKE} strokeWidth={4} />
+        <rect x={362} y={132} width={24} height={13} rx={2} fill={SUN} stroke={STROKE} strokeWidth={2.5} />
+        <rect x={406} y={132} width={24} height={13} rx={2} fill={SUN} stroke={STROKE} strokeWidth={2.5} />
+        <rect x={348} y={143} width={96} height={28} rx={3} fill={YELLOW} stroke={STROKE} strokeWidth={3} />
       </g>
       {/* the lego foot the bottom stem plugs into */}
       <g strokeLinejoin="round">
-        <rect x={358} y={574} width={24} height={13} rx={2} fill={SUN} stroke={STROKE} strokeWidth={3} />
-        <rect x={406} y={574} width={24} height={13} rx={2} fill={SUN} stroke={STROKE} strokeWidth={3} />
-        <rect x={346} y={585} width={96} height={28} rx={3} fill={YELLOW} stroke={STROKE} strokeWidth={4} />
-        <rect x={370} y={613} width={48} height={24} rx={3} fill={FLARE} stroke={STROKE} strokeWidth={4} />
+        <rect x={358} y={574} width={24} height={13} rx={2} fill={SUN} stroke={STROKE} strokeWidth={2.5} />
+        <rect x={406} y={574} width={24} height={13} rx={2} fill={SUN} stroke={STROKE} strokeWidth={2.5} />
+        <rect x={346} y={585} width={96} height={28} rx={3} fill={YELLOW} stroke={STROKE} strokeWidth={3} />
+        <rect x={370} y={613} width={48} height={24} rx={3} fill={FLARE} stroke={STROKE} strokeWidth={3} />
       </g>
     </svg>
   );
@@ -294,7 +294,7 @@ export function Comet({ className = "", width = 320, ...rest }: SpaceArtProps) {
         fill={PAPER}
         opacity={0.4}
       />
-      <circle cx={276} cy={88} r={14} fill={SUN} stroke={STROKE} strokeWidth={4} />
+      <circle cx={276} cy={88} r={14} fill={SUN} stroke={STROKE} strokeWidth={3} />
       <path d="M268 80 Q272 76 278 77" stroke={PAPER} strokeWidth={3} strokeLinecap="round" opacity={0.8} />
     </svg>
   );
@@ -351,9 +351,9 @@ export function FloatBrick({
       {...rest}
     >
       <g strokeLinejoin="round">
-        <rect x={16} y={10} width={18} height={12} rx={2} fill={color} stroke={STROKE} strokeWidth={3.5} />
-        <rect x={46} y={10} width={18} height={12} rx={2} fill={color} stroke={STROKE} strokeWidth={3.5} />
-        <rect x={8} y={20} width={64} height={28} rx={3} fill={color} stroke={STROKE} strokeWidth={4} />
+        <rect x={16} y={10} width={18} height={12} rx={2} fill={color} stroke={STROKE} strokeWidth={3} />
+        <rect x={46} y={10} width={18} height={12} rx={2} fill={color} stroke={STROKE} strokeWidth={3} />
+        <rect x={8} y={20} width={64} height={28} rx={3} fill={color} stroke={STROKE} strokeWidth={3} />
         <path d="M14 26 Q40 24 66 26" stroke={PAPER} strokeWidth={3} strokeLinecap="round" opacity={0.5} />
       </g>
     </svg>
@@ -376,10 +376,10 @@ export function CraterMoon({ className = "", width = 160, ...rest }: SpaceArtPro
       focusable="false"
       {...rest}
     >
-      <circle cx={80} cy={80} r={64} fill={CANVAS} stroke={STROKE} strokeWidth={5} />
-      <ellipse cx={58} cy={62} rx={16} ry={13} fill={MIST} stroke={STROKE} strokeWidth={3} strokeOpacity={0.5} />
-      <ellipse cx={102} cy={96} rx={12} ry={10} fill={MIST} stroke={STROKE} strokeWidth={3} strokeOpacity={0.5} />
-      <ellipse cx={76} cy={118} rx={8} ry={6} fill={MIST} stroke={STROKE} strokeWidth={2.5} strokeOpacity={0.5} />
+      <circle cx={80} cy={80} r={64} fill={CANVAS} stroke={STROKE} strokeWidth={3.5} />
+      <ellipse cx={58} cy={62} rx={16} ry={13} fill={MIST} stroke={STROKE} strokeWidth={2.5} strokeOpacity={0.5} />
+      <ellipse cx={102} cy={96} rx={12} ry={10} fill={MIST} stroke={STROKE} strokeWidth={2.5} strokeOpacity={0.5} />
+      <ellipse cx={76} cy={118} rx={8} ry={6} fill={MIST} stroke={STROKE} strokeWidth={2} strokeOpacity={0.5} />
       <circle cx={112} cy={52} r={6} fill={MIST} />
       <path d="M40 40 Q56 26 78 24" stroke={PAPER} strokeWidth={4} strokeLinecap="round" opacity={0.7} />
     </svg>
@@ -661,7 +661,7 @@ export function KidAstronaut({ className = "", width = 200, ...rest }: SpaceArtP
       <path
         d="M66 150 C44 142 34 112 12 120 C-2 126 6 146 -6 160"
         stroke={STROKE}
-        strokeWidth={4}
+        strokeWidth={3}
         strokeDasharray="6 8"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -670,7 +670,7 @@ export function KidAstronaut({ className = "", width = 200, ...rest }: SpaceArtP
         d="M64 124 C60 142 60 166 66 182 C88 186 112 186 136 182 C140 166 140 142 136 124 C112 118 88 118 64 124 Z"
         fill={FLARE}
         stroke={STROKE}
-        strokeWidth={6}
+        strokeWidth={4}
         strokeLinejoin="round"
       />
       <path
@@ -684,35 +684,35 @@ export function KidAstronaut({ className = "", width = 200, ...rest }: SpaceArtP
         d="M84 186 C80 196 82 204 86 208 C90 210 94 210 98 208 C100 200 98 192 96 186 Z"
         fill={PAPER}
         stroke={STROKE}
-        strokeWidth={5}
+        strokeWidth={3.5}
         strokeLinejoin="round"
       />
       <path
         d="M104 186 C102 196 102 204 106 208 C110 210 114 210 118 208 C120 200 118 192 116 186 Z"
         fill={PAPER}
         stroke={STROKE}
-        strokeWidth={5}
+        strokeWidth={3.5}
         strokeLinejoin="round"
       />
       <path
         d="M76 206 C74 214 76 222 82 224 C90 226 96 226 102 224 C104 216 102 208 98 204 C92 202 84 202 76 206 Z"
         fill={SUN}
         stroke={STROKE}
-        strokeWidth={5}
+        strokeWidth={3.5}
         strokeLinejoin="round"
       />
       <path
         d="M102 204 C100 210 100 218 104 224 C110 226 118 226 124 224 C128 220 128 212 126 206 C118 202 108 202 102 204 Z"
         fill={SUN}
         stroke={STROKE}
-        strokeWidth={5}
+        strokeWidth={3.5}
         strokeLinejoin="round"
       />
       <path
         d="M74 124 C70 150 70 174 78 186 C92 190 108 190 122 186 C130 174 130 150 126 124 C110 120 90 120 74 124 Z"
         fill={PAPER}
         stroke={STROKE}
-        strokeWidth={6}
+        strokeWidth={4}
         strokeLinejoin="round"
       />
       <path
@@ -727,8 +727,8 @@ export function KidAstronaut({ className = "", width = 200, ...rest }: SpaceArtP
         strokeWidth={8}
         strokeLinecap="round"
       />
-      <circle cx={163} cy={82} r={12} fill={SUN} stroke={STROKE} strokeWidth={5} />
-      <circle cx={174} cy={91} r={5.5} fill={SUN} stroke={STROKE} strokeWidth={4} />
+      <circle cx={163} cy={82} r={12} fill={SUN} stroke={STROKE} strokeWidth={3.5} />
+      <circle cx={174} cy={91} r={5.5} fill={SUN} stroke={STROKE} strokeWidth={3} />
       <path
         d="M158 76 C156 77 155 79 155 81"
         stroke={PAPER}
@@ -752,7 +752,7 @@ export function KidAstronaut({ className = "", width = 200, ...rest }: SpaceArtP
         d="M16 154 C16 150 20 148 24 148 C34 147 46 147 56 148 C60 148 62 152 62 156 C63 164 63 174 62 182 C62 186 58 188 54 188 C44 189 32 189 22 188 C18 188 16 184 16 180 C15 172 15 162 16 154 Z"
         fill={SPACE}
         stroke={STROKE}
-        strokeWidth={5}
+        strokeWidth={3.5}
         strokeLinejoin="round"
       />
       <path
@@ -770,9 +770,9 @@ export function KidAstronaut({ className = "", width = 200, ...rest }: SpaceArtP
         strokeLinejoin="round"
       />
       <path d="M42 158 L36 178" stroke={SUN} strokeWidth={3} strokeLinecap="round" />
-      <circle cx={46} cy={174} r={11} fill={SUN} stroke={STROKE} strokeWidth={5} />
-      <circle cx={36} cy={168} r={5} fill={SUN} stroke={STROKE} strokeWidth={4} />
-      <circle cx={100} cy={154} r={16} fill={SUN} stroke={STROKE} strokeWidth={4} />
+      <circle cx={46} cy={174} r={11} fill={SUN} stroke={STROKE} strokeWidth={3.5} />
+      <circle cx={36} cy={168} r={5} fill={SUN} stroke={STROKE} strokeWidth={3} />
+      <circle cx={100} cy={154} r={16} fill={SUN} stroke={STROKE} strokeWidth={3} />
       <rect x={91} y={145} width={7} height={7} rx={1.5} fill={SPACE} stroke={STROKE} strokeWidth={1.5} />
       <rect x={100} y={145} width={7} height={7} rx={1.5} fill={SPACE} stroke={STROKE} strokeWidth={1.5} />
       <rect x={91} y={154} width={7} height={7} rx={1.5} fill={SPACE} stroke={STROKE} strokeWidth={1.5} />
@@ -781,24 +781,24 @@ export function KidAstronaut({ className = "", width = 200, ...rest }: SpaceArtP
         d="M72 124 C80 120 120 120 128 124 C126 132 74 132 72 124 Z"
         fill={MIST}
         stroke={STROKE}
-        strokeWidth={5}
+        strokeWidth={3.5}
         strokeLinejoin="round"
       />
-      <circle cx={100} cy={70} r={58} fill={PAPER} stroke={STROKE} strokeWidth={6} />
+      <circle cx={100} cy={70} r={58} fill={PAPER} stroke={STROKE} strokeWidth={4} />
       <path
         d="M62 42 C62 36 66 34 72 34 C90 33 110 33 128 34 C134 34 138 38 138 44 C139 60 139 80 138 96 C138 102 134 106 128 106 C110 107 90 107 72 106 C66 106 62 102 62 96 C61 80 61 60 62 42 Z"
         fill={SPACE}
         stroke={STROKE}
-        strokeWidth={5}
+        strokeWidth={3.5}
         strokeLinejoin="round"
       />
-      <ellipse cx={100} cy={74} rx={28} ry={25} fill={PAPER} stroke={STROKE} strokeWidth={4} />
+      <ellipse cx={100} cy={74} rx={28} ry={25} fill={PAPER} stroke={STROKE} strokeWidth={3} />
       <circle cx={89} cy={69} r={4} fill={STROKE} />
       <circle cx={111} cy={69} r={4} fill={STROKE} />
       <path
         d="M88 80 Q100 92 112 80"
         stroke={STROKE}
-        strokeWidth={4}
+        strokeWidth={3}
         strokeLinecap="round"
       />
       <circle cx={80} cy={80} r={5} fill={SUN} opacity={0.8} />
@@ -856,30 +856,30 @@ export function MoonTerrain({ className = "", width = 1440, ...rest }: SpaceArtP
       <path
         d="M0 110 C 120 98, 220 96, 340 108 C 450 118, 540 122, 640 110 C 720 100, 800 100, 900 112 C 1020 126, 1140 124, 1260 112 C 1340 104, 1400 112, 1440 120"
         stroke={STROKE}
-        strokeWidth={6}
+        strokeWidth={4}
         strokeLinecap="round"
         strokeLinejoin="round"
         vectorEffect="non-scaling-stroke"
       />
-      <ellipse cx={180} cy={128} rx={52} ry={16} fill={MIST} stroke={STROKE} strokeWidth={5} vectorEffect="non-scaling-stroke" />
-      <path d="M136 132 C 146 141, 168 145, 190 142" stroke={STROKE} strokeWidth={4} strokeLinecap="round" opacity={0.5} vectorEffect="non-scaling-stroke" />
+      <ellipse cx={180} cy={128} rx={52} ry={16} fill={MIST} stroke={STROKE} strokeWidth={3.5} vectorEffect="non-scaling-stroke" />
+      <path d="M136 132 C 146 141, 168 145, 190 142" stroke={STROKE} strokeWidth={3} strokeLinecap="round" opacity={0.5} vectorEffect="non-scaling-stroke" />
       <path d="M150 121 C 158 118, 166 118, 174 120" stroke={PAPER} strokeWidth={4} strokeLinecap="round" opacity={0.7} vectorEffect="non-scaling-stroke" />
-      <ellipse cx={560} cy={142} rx={44} ry={13} fill={MIST} stroke={STROKE} strokeWidth={5} vectorEffect="non-scaling-stroke" />
-      <path d="M522 146 C 532 153, 550 156, 568 154" stroke={STROKE} strokeWidth={4} strokeLinecap="round" opacity={0.5} vectorEffect="non-scaling-stroke" />
-      <ellipse cx={720} cy={140} rx={120} ry={22} fill={MIST} stroke={STROKE} strokeWidth={5} vectorEffect="non-scaling-stroke" />
-      <path d="M612 146 C 632 160, 690 166, 750 160" stroke={STROKE} strokeWidth={4} strokeLinecap="round" opacity={0.5} vectorEffect="non-scaling-stroke" />
+      <ellipse cx={560} cy={142} rx={44} ry={13} fill={MIST} stroke={STROKE} strokeWidth={3.5} vectorEffect="non-scaling-stroke" />
+      <path d="M522 146 C 532 153, 550 156, 568 154" stroke={STROKE} strokeWidth={3} strokeLinecap="round" opacity={0.5} vectorEffect="non-scaling-stroke" />
+      <ellipse cx={720} cy={140} rx={120} ry={22} fill={MIST} stroke={STROKE} strokeWidth={3.5} vectorEffect="non-scaling-stroke" />
+      <path d="M612 146 C 632 160, 690 166, 750 160" stroke={STROKE} strokeWidth={3} strokeLinecap="round" opacity={0.5} vectorEffect="non-scaling-stroke" />
       <path d="M660 126 C 680 122, 700 121, 720 122" stroke={PAPER} strokeWidth={4} strokeLinecap="round" opacity={0.7} vectorEffect="non-scaling-stroke" />
-      <ellipse cx={900} cy={134} rx={40} ry={12} fill={MIST} stroke={STROKE} strokeWidth={5} vectorEffect="non-scaling-stroke" />
-      <path d="M866 138 C 874 145, 890 148, 906 146" stroke={STROKE} strokeWidth={4} strokeLinecap="round" opacity={0.5} vectorEffect="non-scaling-stroke" />
-      <ellipse cx={1250} cy={130} rx={56} ry={17} fill={MIST} stroke={STROKE} strokeWidth={5} vectorEffect="non-scaling-stroke" />
-      <path d="M1202 134 C 1214 144, 1236 148, 1262 145" stroke={STROKE} strokeWidth={4} strokeLinecap="round" opacity={0.5} vectorEffect="non-scaling-stroke" />
+      <ellipse cx={900} cy={134} rx={40} ry={12} fill={MIST} stroke={STROKE} strokeWidth={3.5} vectorEffect="non-scaling-stroke" />
+      <path d="M866 138 C 874 145, 890 148, 906 146" stroke={STROKE} strokeWidth={3} strokeLinecap="round" opacity={0.5} vectorEffect="non-scaling-stroke" />
+      <ellipse cx={1250} cy={130} rx={56} ry={17} fill={MIST} stroke={STROKE} strokeWidth={3.5} vectorEffect="non-scaling-stroke" />
+      <path d="M1202 134 C 1214 144, 1236 148, 1262 145" stroke={STROKE} strokeWidth={3} strokeLinecap="round" opacity={0.5} vectorEffect="non-scaling-stroke" />
       <path d="M1222 123 C 1232 120, 1242 119, 1252 121" stroke={PAPER} strokeWidth={4} strokeLinecap="round" opacity={0.7} vectorEffect="non-scaling-stroke" />
-      <circle cx={80} cy={160} r={9} fill={PAPER} stroke={STROKE} strokeWidth={4} vectorEffect="non-scaling-stroke" />
-      <ellipse cx={400} cy={172} rx={12} ry={8} fill={PAPER} stroke={STROKE} strokeWidth={4} vectorEffect="non-scaling-stroke" />
-      <circle cx={470} cy={156} r={6} fill={PAPER} stroke={STROKE} strokeWidth={4} vectorEffect="non-scaling-stroke" />
-      <ellipse cx={1010} cy={176} rx={13} ry={8} fill={PAPER} stroke={STROKE} strokeWidth={4} vectorEffect="non-scaling-stroke" />
-      <circle cx={1090} cy={150} r={7} fill={PAPER} stroke={STROKE} strokeWidth={4} vectorEffect="non-scaling-stroke" />
-      <circle cx={1370} cy={168} r={9} fill={PAPER} stroke={STROKE} strokeWidth={4} vectorEffect="non-scaling-stroke" />
+      <circle cx={80} cy={160} r={9} fill={PAPER} stroke={STROKE} strokeWidth={3} vectorEffect="non-scaling-stroke" />
+      <ellipse cx={400} cy={172} rx={12} ry={8} fill={PAPER} stroke={STROKE} strokeWidth={3} vectorEffect="non-scaling-stroke" />
+      <circle cx={470} cy={156} r={6} fill={PAPER} stroke={STROKE} strokeWidth={3} vectorEffect="non-scaling-stroke" />
+      <ellipse cx={1010} cy={176} rx={13} ry={8} fill={PAPER} stroke={STROKE} strokeWidth={3} vectorEffect="non-scaling-stroke" />
+      <circle cx={1090} cy={150} r={7} fill={PAPER} stroke={STROKE} strokeWidth={3} vectorEffect="non-scaling-stroke" />
+      <circle cx={1370} cy={168} r={9} fill={PAPER} stroke={STROKE} strokeWidth={3} vectorEffect="non-scaling-stroke" />
       <path d="M270 190 C 282 188, 294 188, 306 190" stroke={SKY_LIGHT} strokeWidth={5} strokeLinecap="round" vectorEffect="non-scaling-stroke" />
       <path d="M820 200 C 834 198, 848 198, 862 200" stroke={SKY_LIGHT} strokeWidth={5} strokeLinecap="round" vectorEffect="non-scaling-stroke" />
       <path d="M1160 196 C 1172 194, 1184 194, 1196 196" stroke={SKY_LIGHT} strokeWidth={5} strokeLinecap="round" vectorEffect="non-scaling-stroke" />
@@ -1238,7 +1238,7 @@ export function BrickPile({ className = "", width = 260, ...rest }: SpaceArtProp
       focusable="false"
       {...rest}
     >
-      <g stroke={STROKE} strokeWidth="3.5" strokeLinejoin="round" strokeLinecap="round">
+      <g stroke={STROKE} strokeWidth="3" strokeLinejoin="round" strokeLinecap="round">
         <path d="M 4 152 Q 120 156 252 151" />
         <path
           fill={YELLOW}

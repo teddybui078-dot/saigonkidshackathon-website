@@ -64,8 +64,8 @@ export function Pushpin({ className = "", size = 26 }: { className?: string; siz
       fill="none"
       aria-hidden="true"
     >
-      <path d="M14 20 L14 34" stroke={BLUE} strokeWidth="3" strokeLinecap="round" />
-      <circle cx="14" cy="12" r="10" fill={YELLOW} stroke={BLUE} strokeWidth="3" />
+      <path d="M14 20 L14 34" stroke={BLUE} strokeWidth="2.5" strokeLinecap="round" />
+      <circle cx="14" cy="12" r="10" fill={YELLOW} stroke={BLUE} strokeWidth="2.5" />
       <circle cx="10.5" cy="8.5" r="2.5" fill="#fff" opacity="0.7" />
     </svg>
   );
@@ -109,10 +109,10 @@ export function Scuffs({
           key={d}
           d={d}
           stroke={color}
-          strokeWidth={3.5}
+          strokeWidth={2.5}
           strokeLinecap="round"
           strokeLinejoin="round"
-          opacity={0.55}
+          opacity={0.45}
         />
       ))}
     </svg>
@@ -124,13 +124,13 @@ export function Scuffs({
 const TONES = {
   yellow: {
     face: "bg-energy text-ink",
-    rest: "shadow-[0_8px_0_#d99a00,inset_0_-5px_0_rgba(0,0,0,0.08)]",
-    pressed: "hover:shadow-[0_3px_0_#d99a00,inset_0_-5px_0_rgba(0,0,0,0.08)]",
+    rest: "shadow-[0_5px_0_#d99a00,inset_0_-5px_0_rgba(0,0,0,0.08)]",
+    pressed: "hover:shadow-[0_2px_0_#d99a00,inset_0_-5px_0_rgba(0,0,0,0.08)]",
   },
   blue: {
     face: "bg-saigon text-white",
-    rest: "shadow-[0_8px_0_#0d1b2a,inset_0_-5px_0_rgba(0,0,0,0.12)]",
-    pressed: "hover:shadow-[0_3px_0_#0d1b2a,inset_0_-5px_0_rgba(0,0,0,0.12)]",
+    rest: "shadow-[0_5px_0_#0d1b2a,inset_0_-5px_0_rgba(0,0,0,0.12)]",
+    pressed: "hover:shadow-[0_2px_0_#0d1b2a,inset_0_-5px_0_rgba(0,0,0,0.12)]",
   },
 } as const;
 
@@ -151,8 +151,8 @@ export function DomeButton({
   const t = TONES[tone];
   return (
     <span
-      className={`relative inline-grid h-full w-full place-items-center rounded-full border-4 border-saigon ${t.face} ${t.rest} ${
-        pressable ? `transition-[translate,box-shadow] duration-150 hover:translate-y-1.5 ${t.pressed}` : ""
+      className={`relative inline-grid h-full w-full place-items-center rounded-full border-[3px] border-saigon ${t.face} ${t.rest} ${
+        pressable ? `transition-[translate,box-shadow] duration-150 hover:translate-y-1 ${t.pressed}` : ""
       } ${className}`}
     >
       <span aria-hidden="true" className="pointer-events-none absolute left-[15%] top-[10%] h-[10%] w-[30%] rounded-full bg-white/60" />
@@ -188,19 +188,19 @@ export function CoilStake({ className = "" }: { className?: string }) {
       <path
         d="M10 14 C 42 6 46 24 24 28 C 2 32 2 48 24 51 C 46 54 44 68 24 70"
         stroke={BLUE}
-        strokeWidth={9}
+        strokeWidth={7}
         strokeLinecap="round"
         fill="none"
       />
       <path
         d="M10 14 C 42 6 46 24 24 28 C 2 32 2 48 24 51 C 46 54 44 68 24 70"
         stroke={YELLOW}
-        strokeWidth={4.5}
+        strokeWidth={3.5}
         strokeLinecap="round"
         fill="none"
       />
-      <path d="M24 70 L24 92" stroke={BLUE} strokeWidth={9} strokeLinecap="round" />
-      <path d="M24 71 L24 90" stroke={SPACE_LIGHT} strokeWidth={4.5} strokeLinecap="round" />
+      <path d="M24 70 L24 92" stroke={BLUE} strokeWidth={7} strokeLinecap="round" />
+      <path d="M24 71 L24 90" stroke={SPACE_LIGHT} strokeWidth={3.5} strokeLinecap="round" />
     </svg>
   );
 }
