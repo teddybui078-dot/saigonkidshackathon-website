@@ -7,10 +7,11 @@ import type { ReactNode } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-/* the moving part of the hero: the section, the entrance, the logo's
-   idle drift and the parallax on the art. the layers themselves arrive
-   as children from Hero.tsx, so their svg stays server-rendered and
-   never ships as client code. the readable layer never scrubs. */
+/* the moving part of the hero: the section, the entrance and the parallax.
+   the layers arrive as children from Hero.tsx so their svg stays
+   server-rendered. gsap only ever writes transforms on wrappers — the
+   css loops animate the separate translate/rotate/scale properties on
+   the elements inside, so the two never fight. */
 export default function HeroMotion({ children }: { children: ReactNode }) {
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -21,53 +22,56 @@ export default function HeroMotion({ children }: { children: ReactNode }) {
       const section = sectionRef.current;
       if (!section) return;
 
-      // the entrance: logo pops, the card lands, the words arrive, the
-      // rocket rises into place, the mascots pop in. all .from(), so with
+      // the entrance: the string settles, the sign drops onto its cords,
+      // the words arrive, the lanterns light left to right, the tag
+      // overswings, the city rises, the cyclo pops. all .from(), so with
       // no js (or no motion) the final state is what you get
       const intro = gsap.timeline({ defaults: { ease: "back.out(1.6)" } });
       intro
-        .from(".hero-logo", {
-          scale: 0,
-          opacity: 0,
-          duration: 0.8,
-          ease: "back.out(2)",
-          transformOrigin: "50% 50%",
-        })
+        .from(".hero-string", { y: -60, opacity: 0, duration: 0.6, ease: "power2.out" })
         .from(
-          ".hero-sticker",
-          { y: 40, scale: 0.94, opacity: 0, duration: 0.7, ease: "back.out(1.4)" },
-          "-=0.35"
+          ".hero-sign",
+          { y: -90, opacity: 0, duration: 0.9, ease: "back.out(1.4)" },
+          "-=0.25"
         )
         .from(
           ".hero-fade",
           { y: 24, opacity: 0, duration: 0.6, stagger: 0.12, ease: "power3.out" },
-          "-=0.3"
+          "-=0.4"
         )
-        .from(".hero-rocket", { y: 80, opacity: 0, duration: 0.8, ease: "power3.out" }, "-=0.9")
         .from(
-          ".hero-mascot",
-          {
-            scale: 0,
-            opacity: 0,
-            duration: 0.7,
-            stagger: 0.15,
-            ease: "back.out(2)",
-            transformOrigin: "50% 50%",
-          },
+          ".hero-lantern",
+          { scale: 0, duration: 0.5, stagger: 0.08, ease: "back.out(2)", transformOrigin: "50% 0" },
+          "-=0.7"
+        )
+        .from(
+          ".hero-tag-wrap",
+          { rotation: -14, duration: 1.2, ease: "elastic.out(1, 0.4)" },
           "-=0.6"
+        )
+        .from(
+          ".hero-landmark",
+          { y: 90, opacity: 0, duration: 0.8, ease: "power3.out" },
+          "-=1.1"
+        )
+        .from(
+          ".hero-mascot-wrap",
+          { scale: 0, opacity: 0, duration: 0.7, ease: "back.out(2)", transformOrigin: "50% 50%" },
+          "-=0.7"
         );
 
-      // the logo drifts — translate only, it never tilts
-      gsap.to(".hero-logo", {
-        y: -8,
-        duration: 2.8,
+      // the sign bobs on its cords — translate only, the logo never tilts
+      gsap.to(".hero-sign", {
+        y: -10,
+        duration: 5.5,
         yoyo: true,
         repeat: -1,
         ease: "sine.inOut",
-        delay: 1.6,
+        delay: 1.8,
       });
 
-      // the art parallaxes at its own depth as you scroll on; the words don't
+      // the art parallaxes at its own depth as you scroll on; the sign
+      // and its string stay put so the cords never detach
       gsap.utils.toArray<HTMLElement>(".hero-float", section).forEach((el) => {
         const speed = Number(el.dataset.speed ?? 1);
         gsap.to(el, {
@@ -90,7 +94,7 @@ export default function HeroMotion({ children }: { children: ReactNode }) {
     <section
       ref={sectionRef}
       id="top"
-      className="on-space relative isolate flex min-h-svh flex-col items-center justify-center overflow-hidden px-4 pb-48 pt-28 md:pb-64 md:pt-32"
+      className="on-space relative isolate flex min-h-svh flex-col items-center justify-start overflow-hidden px-4 pb-44 pt-[7.5rem] md:pb-52 md:pt-[8.75rem]"
     >
       {children}
     </section>
