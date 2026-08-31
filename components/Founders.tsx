@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Sparkle, PixelHeart } from "./decorations";
 import { Lanyard } from "./parts";
+import { DrawnBg } from "./drawn";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -57,13 +58,14 @@ export default function Founders() {
               {/* swings from the clip on hover — kept off the tile gsap tweens */}
               <div className="flex origin-top flex-col items-center transition-transform duration-300 hover:rotate-2">
                 <Lanyard className="-mb-1" />
-                <div className="w-full rounded-xl border-[3px] border-ink-deep bg-white text-ink shadow-[0_6px_0_#ffd166]">
+                <div className="relative w-full text-ink">
+                  <DrawnBg aspect="tall" seed={i} tone="paper" />
                   {/* header band with the punched slot the clip goes through */}
-                  <div className="flex h-8 items-center justify-center gap-3 rounded-t-[9px] bg-saigon text-[11px] font-bold tracking-widest text-white">
+                  <div className="relative mx-3 mt-3 flex h-8 items-center justify-center gap-3 rounded-md bg-saigon text-[11px] font-bold tracking-widest text-white">
                     <span className="h-1.5 w-10 rounded-full bg-white/80" aria-hidden="true" />
                     founder
                   </div>
-                  <div className="flex flex-col items-center p-5">
+                  <div className="relative flex flex-col items-center p-5">
                     <div
                       className="grid h-20 w-20 place-items-center rounded-full border-[3px] border-dashed border-mist bg-white"
                       aria-hidden="true"
