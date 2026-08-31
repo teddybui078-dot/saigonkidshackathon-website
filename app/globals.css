@@ -204,17 +204,6 @@ body {
   );
 }
 
-/* a stage curtain: blue velvet with darker pleats, gathered by scaling it
-   sideways from its edge */
-.curtain-pleats {
-  background: repeating-linear-gradient(90deg, #191970 0 28px, #0d1b2a 28px 36px);
-}
-
-/* stage boards: pale planks with a seam every so often */
-.stage-floor {
-  background: #dbe4f2 repeating-linear-gradient(90deg, #0000 0 60px, rgba(1, 69, 180, 0.15) 60px 63px);
-}
-
 /* a ticket: a round notch bitten out of each side, halfway down */
 .ticket-notched {
   mask:
