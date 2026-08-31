@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { PixelGrid, Sparkle, PixelPlanet, FlightArc } from "./decorations";
+import { PixelGrid } from "./decorations";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -133,23 +133,6 @@ export default function Tracks() {
 
   return (
     <section ref={sectionRef} id="tracks" className="relative overflow-hidden px-4 py-28">
-      {/* big hooks around the notebook */}
-      <div className="anchor-drift pointer-events-none absolute right-10 top-16 -z-[1] hidden lg:block">
-        <PixelPlanet className="anchor-wobble" size={290} />
-      </div>
-      <div className="pointer-events-none absolute bottom-14 left-10 -z-[1] hidden lg:block">
-        <Sparkle className="ambient-twinkle" size={64} />
-      </div>
-      <div className="anchor-drift pointer-events-none absolute bottom-6 left-28 -z-[1] hidden lg:block">
-        <PixelGrid size={92} />
-      </div>
-      <div className="anchor-drift pointer-events-none absolute bottom-10 right-16 -z-[1] hidden lg:block">
-        <FlightArc width={300} />
-      </div>
-      <div className="pointer-events-none absolute bottom-32 right-12 -z-[1] hidden lg:block">
-        <Sparkle className="ambient-twinkle" size={40} />
-      </div>
-
       {/* pinned: the heading and the notebook that opens beneath it */}
       <div className="track-pin mx-auto max-w-4xl text-center">
         <p className="track-line mb-3 text-sm font-semibold text-saigon">

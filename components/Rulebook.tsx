@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { PixelGrid, Sparkle, CodeMark, PixelPlanet } from "./decorations";
 import { BinderRing } from "./parts";
 import RichText from "./RichText";
 import { scrollToHash, NAV_OFFSET } from "./SiteLink";
@@ -120,23 +119,6 @@ export default function Rulebook() {
 
   return (
     <section ref={sectionRef} id="rules" className="relative">
-      {/* big hooks: a planet over the title, code marks and sparks down the side */}
-      <div className="anchor-drift pointer-events-none absolute right-[7%] top-24 -z-[1] hidden lg:block">
-        <PixelPlanet className="anchor-wobble" size={230} />
-      </div>
-      <div className="pointer-events-none absolute left-[12%] top-52 -z-[1] hidden lg:block">
-        <Sparkle className="ambient-twinkle" size={46} />
-      </div>
-      <div className="pointer-events-none absolute right-[5%] top-[46%] -z-[1] hidden lg:block">
-        <CodeMark className="ambient-float" size={150} />
-      </div>
-      <div className="pointer-events-none absolute left-[6%] top-[62%] -z-[1] hidden lg:block">
-        <Sparkle className="ambient-twinkle" size={30} color="#0145b4" />
-      </div>
-      <div className="anchor-drift pointer-events-none absolute bottom-40 right-[9%] -z-[1] hidden lg:block">
-        <PixelGrid size={90} />
-      </div>
-
       <header className="mx-auto max-w-5xl px-4 pb-10 pt-32 text-center md:pt-40">
         <p className="rule-line mb-3 text-sm font-semibold text-saigon">The rules ✦</p>
         <h1 className="rule-line text-5xl font-bold leading-tight md:text-7xl">

@@ -3,7 +3,6 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Sparkle, PixelGrid, CodeMark } from "./decorations";
 import { ToteBag, KitBadge } from "./illustrations";
 import { KIT, type KitItem } from "./kit";
 
@@ -137,16 +136,6 @@ export default function BuildersKit() {
 
   return (
     <section ref={sectionRef} id="kit" className="relative px-4 py-24">
-      {/* big hooks in the corners: a sparkle, a pixel cluster, the code mark */}
-      <div className="pointer-events-none absolute left-12 top-12 -z-[1] hidden lg:block">
-        <Sparkle className="ambient-twinkle" size={56} />
-      </div>
-      <div className="pointer-events-none absolute right-12 top-10 -z-[1] hidden lg:block">
-        <PixelGrid className="ambient-float" size={96} />
-      </div>
-      <div className="pointer-events-none absolute bottom-20 right-16 -z-[1] hidden lg:block">
-        <CodeMark className="ambient-float" size={150} />
-      </div>
       <div className="mx-auto max-w-5xl">
         <div className="text-center">
           <p className="kit-line mb-3 text-sm font-semibold text-saigon">In your bag ✦</p>

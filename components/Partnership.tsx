@@ -3,7 +3,6 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { FlightArc, PixelGrid, Sparkle } from "./decorations";
 import { LogoSlot } from "./parts";
 import { PARTNERS } from "./partners";
 
@@ -94,17 +93,6 @@ export default function Partnership() {
 
   return (
     <section ref={sectionRef} id="partners" className="relative overflow-hidden px-4 py-24">
-      {/* big hooks either side — the words themselves stay bare */}
-      <div className="anchor-drift pointer-events-none absolute left-6 top-16 -z-[1] hidden lg:block">
-        <FlightArc width={260} />
-      </div>
-      <div className="anchor-drift pointer-events-none absolute bottom-12 right-10 -z-[1] hidden lg:block">
-        <PixelGrid size={88} />
-      </div>
-      <div className="pointer-events-none absolute right-24 top-20 -z-[1] hidden lg:block">
-        <Sparkle className="ambient-twinkle" size={44} />
-      </div>
-
       {/* pinned: the heading and the three lockups beneath it */}
       <div className="partners-pin mx-auto max-w-5xl text-center">
         <p className="partners-line mb-3 text-sm font-semibold text-saigon">The partnership ✦</p>

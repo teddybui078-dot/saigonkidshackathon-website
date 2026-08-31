@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { PixelGrid, Sparkle, FloatingLaptop, PixelBulb, PixelStack, FlightArc, PixelTrophy } from "./decorations";
+import { PixelGrid, Sparkle, FloatingLaptop, PixelBulb, PixelTrophy } from "./decorations";
 import { Screws, DomeButton, Led, Pushpin } from "./parts";
 import { PartyPopper } from "./illustrations";
 import { EVENT } from "./event";
@@ -153,22 +153,6 @@ export default function About() {
 
   return (
     <section ref={sectionRef} id="about" className="relative px-4 py-24">
-      {/* big hooks alternating around the content */}
-      <div className="anchor-drift pointer-events-none absolute left-4 top-10 -z-[1] hidden lg:block">
-        <PixelBulb size={112} />
-      </div>
-      <div className="anchor-drift pointer-events-none absolute right-10 top-6 -z-[1] hidden lg:block">
-        <FloatingLaptop className="anchor-wobble" width={300} />
-      </div>
-      <div className="anchor-drift pointer-events-none absolute bottom-28 left-8 -z-[1] hidden lg:block">
-        <PixelStack width={170} />
-      </div>
-      <div className="anchor-drift pointer-events-none absolute bottom-24 right-24 -z-[1] hidden lg:block">
-        <FlightArc width={220} color="#f8ac1a" />
-      </div>
-      <div className="pointer-events-none absolute bottom-40 right-14 -z-[1] hidden lg:block">
-        <Sparkle className="ambient-twinkle" size={44} />
-      </div>
       <div className="mx-auto max-w-6xl">
         {/* the pinned pair: a billboard on the left, a stack of notes on the
             right that deal out one at a time as you scroll (md+) */}

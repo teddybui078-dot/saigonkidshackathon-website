@@ -3,7 +3,6 @@
 import { useEffect, useLayoutEffect, useRef, useState, type KeyboardEvent } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { FloatingLaptop, PixelStack, Sparkle } from "./decorations";
 import { Screws, SubjectIcon, type SubjectKind } from "./parts";
 import SiteLink from "./SiteLink";
 import { AGES, GRADES, TEAM_SIZE } from "./event";
@@ -220,17 +219,6 @@ export default function ImportantInfo() {
 
   return (
     <section ref={sectionRef} id="info" className="relative px-4 py-24">
-      {/* big hooks: a laptop rocking top-right, a pixel stack bottom-left */}
-      <div className="anchor-drift pointer-events-none absolute right-8 top-10 -z-[1] hidden lg:block">
-        <FloatingLaptop className="anchor-wobble" width={260} />
-      </div>
-      <div className="anchor-drift pointer-events-none absolute bottom-24 left-8 -z-[1] hidden lg:block">
-        <PixelStack width={180} />
-      </div>
-      <div className="pointer-events-none absolute left-[14%] top-28 -z-[1] hidden lg:block">
-        <Sparkle className="ambient-twinkle" size={48} />
-      </div>
-
       <div className="mx-auto max-w-4xl">
         <div className="text-center">
           <p className="info-line mb-3 text-sm font-semibold text-saigon">Before you sign up ✦</p>

@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Sparkle, CodeMark, PixelStack, PixelPlanet } from "./decorations";
+import { Sparkle, CodeMark } from "./decorations";
 import { PARTNERS } from "./partners";
 import { EVENT } from "./event";
 import SiteLink from "./SiteLink";
@@ -54,13 +54,6 @@ export default function Footer() {
       ref={footerRef}
       className="relative mt-12 overflow-hidden rounded-t-[3rem] bg-saigon px-4 pb-10 pt-20 text-white"
     >
-      {/* big hooks: brick pile and a ghost planet in the corners */}
-      <div className="anchor-drift pointer-events-none absolute bottom-6 left-6 hidden lg:block">
-        <PixelStack width={230} />
-      </div>
-      <div className="anchor-drift pointer-events-none absolute right-8 top-10 opacity-25 hidden lg:block">
-        <PixelPlanet className="anchor-wobble" size={320} />
-      </div>
       <div className="relative z-10 mx-auto max-w-4xl text-center">
         <Sparkle className="footer-pop ambient-twinkle mx-auto mb-6" size={30} />
         <h2 className="footer-pop text-4xl font-bold leading-tight md:text-6xl">

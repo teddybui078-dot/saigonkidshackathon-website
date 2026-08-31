@@ -3,7 +3,6 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Sparkle, PixelGrid, PixelStack } from "./decorations";
 import { Screws, Hook } from "./parts";
 import { Trophy, Medal, Rosette, PrizeTag } from "./illustrations";
 import { TEAM_AWARDS, SOLO_AWARDS, PRIZE_TBA, type TeamAward } from "./awards";
@@ -134,17 +133,6 @@ export default function Prizes() {
 
   return (
     <section ref={sectionRef} id="prizes" className="relative px-4 py-24">
-      {/* big hooks: a brick pile in the corner, a sparkle, a pixel cluster by the heading */}
-      <div className="anchor-drift pointer-events-none absolute bottom-24 left-6 -z-[1] hidden lg:block">
-        <PixelStack width={190} />
-      </div>
-      <div className="pointer-events-none absolute right-16 top-[30%] -z-[1] hidden lg:block">
-        <Sparkle className="ambient-twinkle" size={56} />
-      </div>
-      <div className="pointer-events-none absolute left-[12%] top-28 -z-[1] hidden lg:block">
-        <PixelGrid className="ambient-float" size={72} />
-      </div>
-
       {/* heading, the stage, and the captions under it */}
       <div className="prizes-block mx-auto max-w-5xl">
         <div className="text-center">

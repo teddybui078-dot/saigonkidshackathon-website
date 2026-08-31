@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { PixelHeart, Sparkle, PixelGrid, FloatingLaptop } from "./decorations";
+import { PixelGrid } from "./decorations";
 import { Screws, Pushpin, Lanyard, SubjectIcon } from "./parts";
 import { PrizeTag } from "./illustrations";
 import SiteLink from "./SiteLink";
@@ -348,26 +348,6 @@ export default function ParentsGuide() {
 
   return (
     <section ref={sectionRef} id="parents" className="relative px-4 pb-24">
-      {/* big hooks: a beating heart behind the title, a laptop rocking on the right */}
-      <div className="anchor-drift pointer-events-none absolute left-6 top-28 -z-[1] hidden lg:block">
-        <PixelHeart className="anchor-beat" size={260} />
-      </div>
-      <div className="anchor-drift pointer-events-none absolute right-10 top-40 -z-[1] hidden lg:block">
-        <FloatingLaptop className="anchor-wobble" width={260} />
-      </div>
-      <div className="anchor-drift pointer-events-none absolute left-14 top-[58%] -z-[1] hidden lg:block">
-        <PixelGrid size={72} />
-      </div>
-      <div className="pointer-events-none absolute left-[22%] top-56 -z-[1] hidden lg:block">
-        <Sparkle className="ambient-twinkle" size={40} />
-      </div>
-      <div className="pointer-events-none absolute right-[14%] top-[62%] -z-[1] hidden lg:block">
-        <Sparkle className="ambient-twinkle" size={56} />
-      </div>
-      <div className="pointer-events-none absolute right-24 top-[88%] -z-[1] hidden lg:block">
-        <Sparkle className="ambient-twinkle" size={30} color="#0145b4" />
-      </div>
-
       <header className="mx-auto max-w-5xl px-4 pt-32 pb-10 text-center md:pt-40">
         <p className="guide-line mb-3 text-sm font-semibold text-saigon">For parents ✦</p>
         <h1 className="guide-line text-5xl font-bold leading-tight md:text-7xl">
