@@ -438,48 +438,6 @@ body {
       repeating-linear-gradient(90deg, #0000 0 78px, var(--stroke-ink) 78px 82px);
   }
 
-  /* the red-lacquer frame: ink outline, a lacquer rail all round (the
-     padding), a bevel caught in the inset shadows, the sticker offset */
-  .sign-frame {
-    position: relative;
-    padding: 14px;
-    border: 3px solid var(--stroke-ink);
-    border-radius: 16px;
-    background: var(--accent-red);
-    box-shadow:
-      6px 6px 0 var(--accent-yellow),
-      inset 2px 2px 0 rgba(255, 255, 255, 0.35),
-      inset -2px -2px 0 rgba(13, 27, 42, 0.4);
-  }
-
-  /* the boards inside the frame: white above the rail, sky below */
-  .sign-inner {
-    overflow: hidden;
-    border: 3px solid var(--stroke-ink);
-    border-radius: 10px;
-    background: var(--text-white);
-  }
-
-  /* a brass corner bolt with its slot */
-  .sign-bolt {
-    position: absolute;
-    display: grid;
-    place-items: center;
-    width: 18px;
-    height: 18px;
-    border: 2px solid var(--stroke-ink);
-    border-radius: 9999px;
-    background: var(--accent-yellow);
-  }
-
-  .sign-bolt::after {
-    content: "";
-    width: 8px;
-    height: 2px;
-    border-radius: 1px;
-    background: var(--stroke-ink);
-  }
-
   /* the cords the sign hangs by, and their knots on the string */
   .sign-cord {
     width: 4px;

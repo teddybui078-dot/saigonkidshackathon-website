@@ -60,9 +60,12 @@ export default function HeroMotion({ children }: { children: ReactNode }) {
           "-=0.7"
         );
 
-      // the sign bobs on its cords — translate only, the logo never tilts
+      // the sign bobs and sways on its cords — the drawn board may tilt,
+      // pinned at the knots so they never leave the string
       gsap.to(".hero-sign", {
         y: -10,
+        rotation: 0.7,
+        transformOrigin: "50% 0",
         duration: 5.5,
         yoyo: true,
         repeat: -1,

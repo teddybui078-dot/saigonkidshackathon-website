@@ -19,6 +19,7 @@ import {
   SKY_LIGHT,
 } from "./palette";
 import { HERO_LAYER, type HeroLayer } from "./hero-layers";
+import { WordmarkArt } from "./Wordmark";
 
 type SpaceArtProps = { className?: string; width?: number } & SVGProps<SVGSVGElement>;
 
@@ -78,6 +79,65 @@ export function ChalkFilter({ id }: { id: string }) {
           <feFuncA type="table" tableValues="0 0.15 0.6 1" />
         </feComponentTransfer>
       </filter>
+    </svg>
+  );
+}
+
+/* ————— the sign board ————— */
+
+/* the red-lacquer board itself, drawn instead of boxed: a trapezoid that
+   leans a degree, edges that bow, corners rounded unevenly. the yellow
+   drop shadow is the same path nudged, the bevels are gloss ticks, the
+   bolts are drawn in (one crooked, as ever), and the wordmark sits inside
+   the same viewBox so board and lettering can never drift apart */
+export function SignBoard({ className = "", width = 780, ...rest }: SpaceArtProps) {
+  const outer =
+    "M52 38 Q240 30 420 32 Q610 34 734 40 Q750 42 751 58 Q758 200 750 366 Q749 382 732 384 Q540 394 380 392 Q200 390 44 386 Q26 385 27 368 Q20 200 33 55 Q35 40 52 38 Z";
+  return (
+    <svg
+      className={className}
+      width={width}
+      height={width * (420 / 780)}
+      viewBox="0 0 780 420"
+      fill="none"
+      aria-hidden="true"
+      focusable="false"
+      {...rest}
+    >
+      {/* the shadow the sun throws — the board again, nudged and gold */}
+      <path d={outer} transform="translate(9 10)" fill={SUN} />
+      {/* the lacquer */}
+      <path d={outer} fill={FLARE} stroke={STROKE} strokeWidth={6} strokeLinejoin="round" />
+      {/* the white board, wobbled on its own */}
+      <path
+        d="M78 70 Q250 64 420 66 Q580 68 706 72 Q718 73 719 86 Q726 210 718 336 Q717 350 703 351 Q520 358 380 356 Q230 354 80 350 Q66 349 67 336 Q60 210 66 84 Q67 71 78 70 Z"
+        fill={PAPER}
+        stroke={STROKE}
+        strokeWidth={5}
+        strokeLinejoin="round"
+      />
+      {/* bevels as brush ticks: light where the sun grazes, dark below */}
+      <g strokeLinecap="round" fill="none">
+        <path d="M92 50 Q240 44 378 46" stroke={PAPER} strokeWidth={6} opacity={0.35} />
+        <path d="M41 92 Q37 180 40 258" stroke={PAPER} strokeWidth={6} opacity={0.35} />
+        <path d="M124 376 Q320 382 560 378" stroke={SPACE_DARK} strokeWidth={6} opacity={0.4} />
+        <path d="M743 122 Q748 220 742 318" stroke={SPACE_DARK} strokeWidth={6} opacity={0.4} />
+      </g>
+      {/* the corner bolts, one a little crooked, as ever */}
+      <g stroke={STROKE} strokeLinecap="round">
+        <circle cx={57} cy={55} r={9} fill={SUN} strokeWidth={4} />
+        <path d="M52 55 L62 55" strokeWidth={3} />
+        <g transform="rotate(12 727 57)">
+          <circle cx={727} cy={57} r={9} fill={SUN} strokeWidth={4} />
+          <path d="M722 57 L732 57" strokeWidth={3} />
+        </g>
+        <circle cx={55} cy={367} r={9} fill={SUN} strokeWidth={4} />
+        <path d="M50 367 L60 367" strokeWidth={3} />
+        <circle cx={728} cy={366} r={9} fill={SUN} strokeWidth={4} />
+        <path d="M723 366 L733 366" strokeWidth={3} />
+      </g>
+      {/* the name, painted on the board */}
+      <WordmarkArt transform="translate(64 70) scale(0.93)" />
     </svg>
   );
 }

@@ -7,8 +7,7 @@
 
 import SiteLink from "./SiteLink";
 import { HERO_LAYER } from "./hero-layers";
-import { KidAstronaut, LotusFinial } from "./space";
-import { Wordmark } from "./Wordmark";
+import { KidAstronaut, LotusFinial, SignBoard } from "./space";
 import { EVENT, AGES } from "./event";
 
 export default function HeroUi() {
@@ -37,22 +36,13 @@ export default function HeroUi() {
           <div className="sign-pole" />
         </div>
 
-        {/* the red-lacquer frame */}
-        <div className="sign-frame mt-2 w-full">
-          {/* brass corner bolts on the lacquer rail, one a little crooked */}
-          <span className="sign-bolt left-1.5 top-1.5" aria-hidden="true" />
-          <span className="sign-bolt right-1.5 top-1.5 rotate-12" aria-hidden="true" />
-          <span className="sign-bolt bottom-1.5 left-1.5" aria-hidden="true" />
-          <span className="sign-bolt bottom-1.5 right-1.5" aria-hidden="true" />
-
-          <div className="sign-inner">
-            {/* the white board: the name, painted by hand — never typeset */}
-            <h1 className="m-0 bg-white px-4 py-3 sm:px-6 sm:py-4">
-              <span className="sr-only">{EVENT.name}</span>
-              <Wordmark className="mx-auto h-auto w-full max-w-[440px]" />
-            </h1>
-          </div>
-        </div>
+        {/* the red-lacquer board, drawn — frame, shadow, bolts and name in
+            one. the negative margin swallows the svg's blank crown so the
+            board tucks up under the pole */}
+        <h1 className="m-0 -mt-4 w-full">
+          <span className="sr-only">{EVENT.name}</span>
+          <SignBoard className="h-auto w-full" />
+        </h1>
 
         {/* the tag on its rings, and the astronaut hanging off it */}
         <div className="hero-tag-wrap relative -mt-1 flex flex-col items-center [transform-origin:50%_0]">
