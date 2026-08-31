@@ -331,7 +331,7 @@ body {
       opacity: var(--star-alpha, 1);
     }
     50% {
-      opacity: calc(var(--star-alpha, 1) * 0.35);
+      opacity: calc(var(--star-alpha, 1) * 0.5);
     }
   }
 
@@ -340,7 +340,7 @@ body {
       translate: 0 0;
     }
     to {
-      translate: 6px -18px;
+      translate: 4px -12px;
     }
   }
 
@@ -348,11 +348,11 @@ body {
     0%,
     100% {
       translate: 0 0;
-      rotate: -2deg;
+      rotate: -1.5deg;
     }
     50% {
-      translate: 0 -14px;
-      rotate: 2deg;
+      translate: 0 -10px;
+      rotate: 1.5deg;
     }
   }
 
@@ -375,7 +375,7 @@ body {
   }
 
   .float-slow {
-    animation: space-float 6s ease-in-out infinite;
+    animation: space-float 7s ease-in-out infinite;
   }
 
 }
@@ -405,14 +405,14 @@ body {
       translate: 0 0;
     }
     to {
-      translate: 0 -10px;
+      translate: 0 -7px;
     }
   }
 
   .brick-free {
     animation:
       hover-drift 3.4s ease-in-out infinite alternate,
-      turn 14s linear infinite;
+      turn 18s linear infinite;
     transform-box: fill-box;
     transform-origin: center;
   }
@@ -420,27 +420,27 @@ body {
   /* foliage rocking from the clump's base */
   @keyframes sway {
     from {
-      rotate: -2.5deg;
+      rotate: -1.75deg;
     }
     to {
-      rotate: 2.5deg;
+      rotate: 1.75deg;
     }
   }
 
   .leaf-a,
   .leaf-b,
   .frond {
-    animation: sway var(--sway-time, 4.8s) ease-in-out infinite alternate;
+    animation: sway var(--sway-time, 5.5s) ease-in-out infinite alternate;
     transform-box: fill-box;
     transform-origin: 100% 100%;
   }
 
   .leaf-b {
-    --sway-time: 5.6s;
+    --sway-time: 6.3s;
   }
 
   .frond {
-    --sway-time: 6.1s;
+    --sway-time: 7s;
   }
 
   /* the lotus breathes on its stem */
@@ -449,12 +449,12 @@ body {
       scale: 1;
     }
     to {
-      scale: 1.06;
+      scale: 1.04;
     }
   }
 
   .lotus-breathe {
-    animation: breathe 2.5s ease-in-out infinite alternate;
+    animation: breathe 3s ease-in-out infinite alternate;
     transform-box: fill-box;
     transform-origin: 50% 100%;
   }
@@ -468,13 +468,13 @@ body {
       scale: 1;
     }
     50% {
-      opacity: 0.3;
-      scale: 0.85;
+      opacity: 0.45;
+      scale: 0.9;
     }
   }
 
   .chalk-blink {
-    animation: chalk-blink var(--blink-time, 2.7s) ease-in-out infinite;
+    animation: chalk-blink var(--blink-time, 3.2s) ease-in-out infinite;
     transform-box: fill-box;
     transform-origin: center;
   }
@@ -513,10 +513,10 @@ body {
   /* the cloud band slides across the tower */
   @keyframes drift-x {
     from {
-      translate: -18px 0;
+      translate: -12px 0;
     }
     to {
-      translate: 18px 0;
+      translate: 12px 0;
     }
   }
 
