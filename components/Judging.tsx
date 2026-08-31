@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Sparkle, FlightArc } from "./decorations";
+import { DrawnBg } from "./drawn";
 import SiteLink from "./SiteLink";
 import { RUBRIC, RUBRIC_TOTAL, RUBRIC_COUNT_WORD, TIE_BREAKERS, JUDGING_LAB, type Criterion } from "./rubric";
 import { RULES } from "./rules";
@@ -101,20 +102,19 @@ export default function Judging() {
                 <li key={c.id} className="judge-paddle flex flex-col items-center">
                   {/* outer li is the raise, this one sways from the stick's base */}
                   <div className="ambient-sway flex flex-col items-center">
-                    <div
-                      className={`${p.card} rounded-2xl border-[3px] border-ink-deep bg-white px-2 pb-3 pt-4 text-center text-ink shadow-[0_6px_0_#ffd166]`}
-                    >
-                      <span className={`${p.number} block font-bold leading-none text-saigon`} aria-hidden="true">
+                    <div className={`${p.card} relative px-2 pb-3 pt-4 text-center text-ink`}>
+                      <DrawnBg aspect="square" seed={RUBRIC.indexOf(c)} tone="paper" />
+                      <span className={`${p.number} relative block font-bold leading-none text-saigon`} aria-hidden="true">
                         {c.pts}
                       </span>
                       <span
-                        className="mt-1 block text-[10px] font-bold uppercase tracking-widest text-ink/50"
+                        className="relative mt-1 block text-[10px] font-bold uppercase tracking-widest text-ink/50"
                         aria-hidden="true"
                       >
                         pts
                       </span>
                       <span className="sr-only">{c.pts} points —</span>
-                      <span className="mt-2 block rounded-md border-2 border-ink-deep bg-energy px-1 py-1 text-xs font-bold leading-tight">
+                      <span className="relative mt-2 block rounded-md border-2 border-ink-deep bg-energy px-1 py-1 text-xs font-bold leading-tight">
                         {c.title}
                       </span>
                     </div>
@@ -155,7 +155,11 @@ export default function Judging() {
                 <span className="mt-1 block text-[10px] font-bold uppercase tracking-widest text-ink/60">points</span>
               </span>
             </span>
-            <span className="stamp -rotate-6 text-saigon" aria-hidden="true">
+            <span
+              className="stamp -rotate-6 text-sun [mix-blend-mode:normal]"
+              style={{ "--stamp-gap": "#0d1b2a" } as React.CSSProperties}
+              aria-hidden="true"
+            >
               Tested in the lab
             </span>
           </div>
