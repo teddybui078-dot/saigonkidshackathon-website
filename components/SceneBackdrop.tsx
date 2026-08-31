@@ -27,11 +27,14 @@ export default function SceneBackdrop() {
       {/* the fine grain, rasterised once, under everything else */}
       <GrainFilter id="scene-grain" />
       <div
-        className="absolute inset-0 opacity-[0.12] mix-blend-soft-light [transform:translateZ(0)]"
+        className="absolute inset-0 opacity-[0.14] mix-blend-soft-light [transform:translateZ(0)]"
         style={{ filter: "url(#scene-grain)" }}
       />
-      {/* the wind-bands brushed into the sky */}
+      {/* the wind-bands brushed into the sky — twice, the second pass
+          flipped and dropped low, so the modelling reaches the whole
+          viewport instead of pooling in the upper sky */}
       <SkySwirls className="absolute inset-0 h-full w-full mix-blend-soft-light" />
+      <SkySwirls className="absolute inset-0 top-[30%] h-full w-full -scale-y-100 mix-blend-soft-light opacity-70" />
 
       {/* the far crowd, faded so content always wins */}
       <CraterMoon className="absolute left-[4%] top-[16%] w-20 opacity-50 hidden md:block" />
@@ -61,7 +64,7 @@ export default function SceneBackdrop() {
       {/* the coarse chalk tooth over the whole sky */}
       <ChalkFilter id="scene-chalk" />
       <div
-        className="absolute inset-0 opacity-[0.08] mix-blend-soft-light [transform:translateZ(0)]"
+        className="absolute inset-0 opacity-[0.10] mix-blend-soft-light [transform:translateZ(0)]"
         style={{ filter: "url(#scene-chalk)" }}
       />
     </div>

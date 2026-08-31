@@ -3,6 +3,7 @@ import { DynaPuff } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import SceneBackdrop from "@/components/SceneBackdrop";
+import SceneVeil from "@/components/SceneVeil";
 import ScrollProgress from "@/components/ScrollProgress";
 import Navbar from "@/components/Navbar";
 import RouteScroll from "@/components/RouteScroll";
@@ -44,6 +45,8 @@ export default function RootLayout({
         <ScrollProgress />
         <Navbar />
         {children}
+        {/* the chalk tooth over every page, under the nav */}
+        <SceneVeil />
         {/* last, so it runs after every section has set up its triggers */}
         <RouteScroll />
       </body>

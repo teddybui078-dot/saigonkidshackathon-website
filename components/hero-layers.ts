@@ -1,6 +1,7 @@
-/* the hero's depth stack, front to back: seven layers, one z-index each.
+/* the hero's depth stack, front to back: six layers, one z-index each.
    every layer component reads its z from here, so this is the only place
-   the order is written down */
+   the order is written down. the chalk tooth that used to sit on top is
+   SceneVeil now — site chrome, not a hero layer */
 
 export const HERO_LAYER = {
   canvas: 1, // the midnight gradient, the grain and the stars
@@ -9,7 +10,6 @@ export const HERO_LAYER = {
   mascots: 4, // the astronaut and the satellite drifting
   terrain: 5, // the moon surface along the bottom edge
   ui: 6, // the logo, the sticker card, the buttons
-  texture: 7, // the chalk tooth laid over the whole scene
 } as const;
 
 export type HeroLayer = keyof typeof HERO_LAYER;
@@ -28,6 +28,3 @@ export type ParallaxSpeed = keyof typeof PARALLAX;
 /* the grain filter is rendered once, in the canvas layer; anything that
    references it uses this id */
 export const GRAIN_ID = "hero-grain";
-
-/* the coarse chalk filter lives in the texture layer, over everything */
-export const CHALK_ID = "hero-chalk";

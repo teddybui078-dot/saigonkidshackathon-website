@@ -5,14 +5,15 @@ import {
   HeroLandmark,
   HeroMascots,
   HeroTerrain,
-  HeroTexture,
 } from "./HeroLayers";
 import HeroUi from "./HeroUi";
 
-/* the hero: seven layers deep, composed here in z order (the constant in
+/* the hero: six layers deep, composed here in z order (the constant in
    hero-layers.ts is what actually stacks them). a server component, so
    every layer's art is rendered once on the server; HeroMotion is the
-   one client boundary and only ever moves what is already there */
+   one client boundary and only ever moves what is already there. the
+   chalk tooth that used to cap the stack now lives in SceneVeil, laid
+   over every page from the layout */
 export default function Hero() {
   return (
     <HeroMotion>
@@ -22,7 +23,6 @@ export default function Hero() {
       <HeroMascots />
       <HeroTerrain />
       <HeroUi />
-      <HeroTexture />
     </HeroMotion>
   );
 }
