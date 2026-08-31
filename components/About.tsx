@@ -153,7 +153,7 @@ export default function About() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="about" className="relative px-4 py-24">
+    <section ref={sectionRef} id="about" className="relative px-4 py-28 md:py-32">
       {/* the curated few: a laptop, a brick stack, one sparkle */}
       <div className="anchor-drift pointer-events-none absolute right-10 top-6 -z-[1] hidden opacity-70 lg:block">
         <FloatingLaptop className="anchor-wobble" width={240} />
@@ -237,7 +237,7 @@ export default function About() {
         </div>
 
         {/* a riveted control panel: brushed metal, screws, domed push-buttons */}
-        <div className="about-panel metal-brushed relative mt-14 rounded-3xl border-[3px] border-ink-deep px-6 pb-9 pt-10 text-ink shadow-[0_7px_0_#ffd166] md:px-10">
+        <div className="about-panel metal-brushed relative mt-12 rounded-3xl border-[3px] border-ink-deep px-6 pb-9 pt-10 text-ink shadow-[0_7px_0_#ffd166] md:px-10">
           <Screws />
           {/* the panel has been carried around a bit */}
           <Scuffs seed={0} className="absolute left-12 top-4 hidden md:block" />

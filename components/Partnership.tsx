@@ -94,7 +94,7 @@ export default function Partnership() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="partners" className="relative overflow-hidden px-4 py-24">
+    <section ref={sectionRef} id="partners" className="relative overflow-hidden px-4 py-28 md:py-32">
       {/* big hooks either side — the words themselves stay bare */}
       <div className="anchor-drift pointer-events-none absolute left-6 top-16 -z-[1] hidden lg:block">
         <FlightArc width={200} />
@@ -105,7 +105,7 @@ export default function Partnership() {
 
       {/* pinned: the heading and the three lockups beneath it */}
       <div className="partners-pin mx-auto max-w-5xl text-center">
-        <p className="partners-line mb-3 text-sm font-semibold text-sun">The partnership ✦</p>
+        <p className="partners-line mb-3 text-sm font-semibold tracking-wide text-sun">The partnership ✦</p>
         <h2 className="partners-line text-4xl font-bold leading-tight md:text-5xl">
           Three teams, <span className="text-sun">one big day</span>
         </h2>

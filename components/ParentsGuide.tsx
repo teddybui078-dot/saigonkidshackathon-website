@@ -348,7 +348,7 @@ export default function ParentsGuide() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="parents" className="relative px-4 pb-24">
+    <section ref={sectionRef} id="parents" className="relative px-4 pb-28">
       {/* big hooks: a beating heart behind the title, a laptop rocking on the right */}
       <div className="anchor-drift pointer-events-none absolute left-6 top-28 -z-[1] hidden lg:block">
         <PixelHeart className="anchor-beat" size={260} />
@@ -370,7 +370,7 @@ export default function ParentsGuide() {
       </div>
 
       <header className="mx-auto max-w-5xl px-4 pt-32 pb-10 text-center md:pt-40">
-        <p className="guide-line mb-3 text-sm font-semibold text-sun">For parents ✦</p>
+        <p className="guide-line mb-3 text-sm font-semibold tracking-wide text-sun">For parents ✦</p>
         <h1 className="guide-line text-5xl font-bold leading-tight md:text-7xl">
           The <span className="text-sun">parents&apos;</span> guide
         </h1>

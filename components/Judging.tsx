@@ -82,7 +82,7 @@ export default function Judging() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="judging" className="relative px-4 py-24">
+    <section ref={sectionRef} id="judging" className="relative px-4 py-28 md:py-32">
       {/* big hooks: the score everyone is chasing, an arc, a sparkle */}
       <span
         className="anchor-wiggle text-outline-white pointer-events-none absolute left-6 top-24 -z-[1] hidden select-none rotate-[-8deg] text-[13rem] font-bold leading-none opacity-50 lg:block"
@@ -100,7 +100,7 @@ export default function Judging() {
 
       <div className="mx-auto max-w-5xl">
         <div className="text-center">
-          <p className="judge-line mb-3 text-sm font-semibold text-sun">How judging works ✦</p>
+          <p className="judge-line mb-3 text-sm font-semibold tracking-wide text-sun">How judging works ✦</p>
           <h2 className="judge-line text-4xl font-bold leading-tight md:text-5xl">
             {RUBRIC_TOTAL} points, <span className="text-sun">{RUBRIC_COUNT_WORD} questions</span>
           </h2>

@@ -231,7 +231,7 @@ export default function ImportantInfo() {
   };
 
   return (
-    <section ref={sectionRef} id="info" className="relative px-4 py-24">
+    <section ref={sectionRef} id="info" className="relative px-4 py-28 md:py-32">
       {/* big hooks: a laptop rocking top-right, a pixel stack bottom-left */}
       <div className="anchor-drift pointer-events-none absolute bottom-24 left-8 -z-[1] hidden opacity-70 lg:block">
         <PixelStack width={140} />
@@ -242,7 +242,7 @@ export default function ImportantInfo() {
 
       <div className="mx-auto max-w-4xl">
         <div className="text-center">
-          <p className="info-line mb-3 text-sm font-semibold text-sun">Before you sign up ✦</p>
+          <p className="info-line mb-3 text-sm font-semibold tracking-wide text-sun">Before you sign up ✦</p>
           <h2 className="info-line text-4xl font-bold leading-tight md:text-5xl">
             The <span className="text-sun">important</span> information
           </h2>

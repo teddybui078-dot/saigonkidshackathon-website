@@ -61,7 +61,7 @@ export default function Faq() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="faq" className="relative px-4 py-24">
+    <section ref={sectionRef} id="faq" className="relative px-4 py-28 md:py-32">
       {/* big hook: a giant question mark leaning in from the right */}
       <span
         className="anchor-wiggle pointer-events-none absolute right-12 top-1/4 -z-[1] hidden rotate-12 text-outline-white select-none text-[14rem] font-bold leading-none opacity-40 lg:block"
@@ -76,7 +76,7 @@ export default function Faq() {
       <div className="mx-auto max-w-3xl">
         <div className="relative text-center">
           <PixelGrid className="ambient-float absolute -top-8 right-0 hidden md:block" size={24} />
-          <p className="mb-3 text-sm font-semibold text-sun">
+          <p className="mb-3 text-sm font-semibold tracking-wide text-sun">
             Good questions ✦
           </p>
           <h2 className="text-4xl font-bold leading-tight md:text-5xl">

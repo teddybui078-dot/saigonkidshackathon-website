@@ -110,7 +110,7 @@ export default function Schedule() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="schedule" className="relative px-4 py-24">
+    <section ref={sectionRef} id="schedule" className="relative px-4 py-28 md:py-32">
       {/* big hooks alternating down both sides of the day */}
       <div className="anchor-drift pointer-events-none absolute left-8 top-[22%] -z-[1] hidden opacity-70 lg:block">
         <PixelClock size={280} />
@@ -120,10 +120,10 @@ export default function Schedule() {
       </div>
       <div className="mx-auto max-w-5xl">
         <div className="text-center">
-          <p className="mb-3 text-sm font-semibold text-sun">
+          <p className="mb-3 text-sm font-semibold tracking-wide text-sun">
             March 6, 2027 ✦
           </p>
-          <h2 className="text-5xl font-bold leading-tight md:text-7xl">
+          <h2 className="text-5xl font-bold leading-tight md:text-6xl">
             Schedule
           </h2>
         </div>

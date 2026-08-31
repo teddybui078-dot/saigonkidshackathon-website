@@ -10,7 +10,7 @@ import { PARTNERS } from "./partners";
 export default function PartnerStrip() {
   return (
     <section aria-label="Who is behind the day" className="px-4 pb-4 pt-12">
-      <p className="mb-5 text-center text-sm font-semibold text-sun">backed by ✦</p>
+      <p className="mb-5 text-center text-sm font-semibold tracking-wide text-sun">backed by ✦</p>
       <ul className="mx-auto flex max-w-5xl flex-wrap items-center justify-center gap-x-8 gap-y-4">
         {PARTNERS.map((partner, i) => (
           <li key={partner.name} className="inline-flex items-center gap-3">

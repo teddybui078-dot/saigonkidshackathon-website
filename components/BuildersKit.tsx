@@ -138,7 +138,7 @@ export default function BuildersKit() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="kit" className="relative px-4 py-24">
+    <section ref={sectionRef} id="kit" className="relative px-4 py-28 md:py-32">
       {/* big hooks in the corners: a sparkle, a pixel cluster, the code mark */}
       <div className="pointer-events-none absolute left-12 top-12 -z-[1] hidden lg:block">
         <Sparkle className="ambient-twinkle" size={36} />
@@ -152,7 +152,7 @@ export default function BuildersKit() {
       </div>
       <div className="mx-auto max-w-5xl">
         <div className="text-center">
-          <p className="kit-line mb-3 text-sm font-semibold text-sun">In your bag ✦</p>
+          <p className="kit-line mb-3 text-sm font-semibold tracking-wide text-sun">In your bag ✦</p>
           <h2 className="kit-line text-4xl font-bold leading-tight md:text-5xl">
             Every builder gets a <span className="text-sun">builders kit</span>
           </h2>

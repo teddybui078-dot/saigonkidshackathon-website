@@ -133,7 +133,7 @@ export default function Footer() {
           </ul>
         </nav>
 
-        <div className="footer-pop mt-10 flex flex-col items-center gap-4 border-t border-white/20 pt-8 text-sm font-medium text-white/70 md:flex-row md:justify-between">
+        <div className="footer-pop mt-10 flex flex-col items-center gap-4 border-t border-white/15 pt-8 text-sm font-medium text-white/70 md:flex-row md:justify-between">
           <p>© 2027 Saigon Kids Hackathon</p>
           <CodeMark size={40} chevronColor="#ffffff" className="ambient-float opacity-80" data-amp="s" />
           <p>

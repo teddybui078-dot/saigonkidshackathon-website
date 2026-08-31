@@ -184,7 +184,7 @@ export default function Prizes() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="prizes" className="relative px-4 py-24">
+    <section ref={sectionRef} id="prizes" className="relative px-4 py-28 md:py-32">
       {/* big hooks: a brick pile in the corner, a sparkle, a pixel cluster by the heading */}
       <div className="anchor-drift pointer-events-none absolute bottom-24 left-6 -z-[1] hidden opacity-70 lg:block">
         <PixelStack width={150} />
@@ -200,7 +200,7 @@ export default function Prizes() {
       {/* the pinned block: heading, the stage, and the captions under it */}
       <div className="prizes-pin mx-auto max-w-5xl">
         <div className="text-center">
-          <p className="prizes-line mb-3 text-sm font-semibold text-sun">Podium &amp; prizes ✦</p>
+          <p className="prizes-line mb-3 text-sm font-semibold tracking-wide text-sun">Podium &amp; prizes ✦</p>
           <h2 className="prizes-line text-4xl font-bold leading-tight md:text-5xl">
             Three teams take the <span className="text-sun">podium</span>
           </h2>
@@ -290,7 +290,7 @@ export default function Prizes() {
       {/* the solo awards: three rosettes hanging off one sagging string */}
       <div className="mx-auto max-w-5xl">
         <div className="text-center">
-          <p className="mt-24 text-sm font-semibold text-sun">Solo awards ✦</p>
+          <p className="mt-24 text-sm font-semibold tracking-wide text-sun">Solo awards ✦</p>
           <h3 className="mt-3 text-2xl font-bold md:text-3xl">
             Three awards for <span className="text-energy">builders of one</span>
           </h3>

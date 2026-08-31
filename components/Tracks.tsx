@@ -134,7 +134,7 @@ export default function Tracks() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="tracks" className="relative overflow-hidden px-4 py-28">
+    <section ref={sectionRef} id="tracks" className="relative overflow-hidden px-4 py-28 md:py-32">
       {/* the curated few: the planet, an arc, one sparkle */}
       <div className="anchor-drift pointer-events-none absolute right-10 top-16 -z-[1] hidden opacity-70 lg:block">
         <PixelPlanet className="anchor-wobble" size={230} />
@@ -148,10 +148,10 @@ export default function Tracks() {
 
       {/* pinned: the heading and the notebook that opens beneath it */}
       <div className="track-pin mx-auto max-w-4xl text-center">
-        <p className="track-line mb-3 text-sm font-semibold text-sun">
+        <p className="track-line mb-3 text-sm font-semibold tracking-wide text-sun">
           The theme ✦
         </p>
-        <h2 className="track-line text-5xl font-bold leading-tight md:text-6xl lg:text-7xl">
+        <h2 className="track-line text-5xl font-bold leading-tight md:text-6xl">
           To be <span className="text-sun">revealed</span>
         </h2>
         <p className="track-line mt-4 font-medium text-white/70">

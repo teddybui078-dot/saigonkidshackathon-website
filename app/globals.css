@@ -229,7 +229,7 @@ body {
     background: var(--text-white);
     border: 2px solid var(--stroke-ink);
     border-radius: 9999px;
-    box-shadow: 3px 3px 0 var(--accent-yellow);
+    box-shadow: 2px 2px 0 var(--accent-yellow);
     color: var(--color-ink);
   }
 
@@ -283,7 +283,7 @@ body {
 
   .cta-primary:hover,
   .cta-primary:focus-visible {
-    box-shadow: 5px 5px 0 var(--accent-yellow);
+    box-shadow: 4px 4px 0 var(--accent-yellow);
     translate: -2px -2px;
   }
 

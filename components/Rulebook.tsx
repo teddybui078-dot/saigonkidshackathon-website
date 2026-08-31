@@ -138,7 +138,7 @@ export default function Rulebook() {
       </div>
 
       <header className="mx-auto max-w-5xl px-4 pb-10 pt-32 text-center md:pt-40">
-        <p className="rule-line mb-3 text-sm font-semibold text-sun">The rules ✦</p>
+        <p className="rule-line mb-3 text-sm font-semibold tracking-wide text-sun">The rules ✦</p>
         <h1 className="rule-line text-5xl font-bold leading-tight md:text-7xl">
           The whole rulebook, <span className="text-sun">up front</span>
         </h1>

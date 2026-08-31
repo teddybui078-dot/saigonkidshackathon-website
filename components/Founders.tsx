@@ -41,7 +41,7 @@ export default function Founders() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="founders" className="relative px-4 py-24">
+    <section ref={sectionRef} id="founders" className="relative px-4 py-28 md:py-32">
       {/* big hook: a giant pixel heart from the people who make it happen */}
       <div className="anchor-drift pointer-events-none absolute left-8 top-1/4 -z-[1] hidden opacity-60 lg:block">
         <PixelHeart className="anchor-beat" size={180} />
@@ -51,7 +51,7 @@ export default function Founders() {
         <ChalkScribble kind="zigzag" width={80} />
       </div>
       <div className="mx-auto max-w-4xl text-center">
-        <p className="mb-3 text-sm font-semibold text-sun">The founders ✦</p>
+        <p className="mb-3 text-sm font-semibold tracking-wide text-sun">The founders ✦</p>
         <h2 className="text-4xl font-bold leading-tight md:text-5xl">
           Meet the <span className="text-sun">people behind the day</span>
         </h2>
