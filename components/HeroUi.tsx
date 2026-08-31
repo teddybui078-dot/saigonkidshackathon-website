@@ -30,8 +30,9 @@ export default function HeroUi() {
           </span>
         </div>
 
-        {/* the bamboo pole with its lotus riding on top, ringed in gold */}
-        <div className="relative w-[106%]" aria-hidden="true">
+        {/* the bamboo pole with its lotus riding on top, ringed in gold —
+            hung a shade off level, like it was tied up by hand */}
+        <div className="relative w-[106%] -rotate-[0.6deg]" aria-hidden="true">
           <OrbitRings className="absolute -top-14 left-1/2 w-36 -translate-x-1/2 md:-top-16 md:w-40" />
           <LotusFinial className="lotus-breathe absolute -top-9 left-1/2 w-12 -translate-x-1/2 md:-top-11 md:w-14" />
           <div className="sign-pole" />
@@ -51,7 +52,7 @@ export default function HeroUi() {
             <span className="sign-cord h-5" />
             <span className="sign-cord h-5" />
           </div>
-          <div className="relative">
+          <div className="relative rotate-[1deg]">
             <span
               className="sign-tag swing-hang text-sm sm:text-base"
               style={{ "--swing": "5deg", "--swing-time": "3.2s" } as React.CSSProperties}
@@ -76,7 +77,7 @@ export default function HeroUi() {
           data-speed and outside .hero-sign, so they neither bob nor drift */}
       <div className="hero-actions mt-16 flex flex-col items-center px-4 text-center text-white md:mt-24">
         <p className="hero-fade m-0">
-          <span className="badge-date text-xs sm:text-base">
+          <span className="badge-date -rotate-[1.2deg] text-xs sm:text-base">
             <span className="sign-led motion-safe:animate-led-blink" aria-hidden="true" />
             <span className="sm:hidden">{EVENT.date.toLowerCase()}</span>
             <span className="hidden sm:inline">{EVENT.dateLong.toLowerCase()}</span>
@@ -88,10 +89,10 @@ export default function HeroUi() {
           aged {AGES}.
         </p>
         <div className="hero-fade mt-4 flex flex-wrap items-center justify-center gap-3">
-          <SiteLink href="/#about" className="cta-primary">
+          <SiteLink href="/#about" className="cta-primary rotate-[0.75deg]">
             what is it?
           </SiteLink>
-          <SiteLink href="/rules" className="cta-secondary">
+          <SiteLink href="/rules" className="cta-secondary -rotate-[0.5deg]">
             the rules
           </SiteLink>
         </div>

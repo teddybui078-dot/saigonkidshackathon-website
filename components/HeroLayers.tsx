@@ -68,13 +68,21 @@ const CHALK_STARS: { left: string; top: string; size: number; time: string; hide
 ];
 
 /* the lanterns hung along the string: x across the sky, y down the sag,
-   size and swing clock of their own */
-const LANTERNS: { left: string; top: string; width: string; time: string; hide?: boolean }[] = [
-  { left: "10%", top: "34%", width: "2.6rem", time: "2.4s" },
+   size and swing clock of their own. tilt goes on the wrapper span so the
+   swing loop inside keeps the rotate property to itself */
+const LANTERNS: {
+  left: string;
+  top: string;
+  width: string;
+  time: string;
+  hide?: boolean;
+  tilt?: string;
+}[] = [
+  { left: "10%", top: "34%", width: "2.6rem", time: "2.4s", tilt: "rotate-2" },
   { left: "19%", top: "52%", width: "3.2rem", time: "2.8s", hide: true },
-  { left: "28%", top: "66%", width: "2.8rem", time: "3.2s", hide: true },
+  { left: "28%", top: "66%", width: "2.8rem", time: "3.2s", hide: true, tilt: "-rotate-1" },
   { left: "69%", top: "66%", width: "3.2rem", time: "2.6s", hide: true },
-  { left: "84%", top: "42%", width: "2.6rem", time: "3s" },
+  { left: "84%", top: "42%", width: "2.6rem", time: "3s", tilt: "-rotate-2" },
 ];
 
 /* layer 0 — the midnight gradient, the grain, the stars, the orbit */
@@ -144,7 +152,7 @@ export function HeroCelestial() {
         {LANTERNS.map((l, i) => (
           <span
             key={i}
-            className={`hero-lantern absolute ${l.hide ? "hidden md:inline-block" : "inline-block"}`}
+            className={`hero-lantern absolute ${l.tilt ?? ""} ${l.hide ? "hidden md:inline-block" : "inline-block"}`}
             style={{ left: l.left, top: l.top, width: l.width }}
           >
             <Lantern
