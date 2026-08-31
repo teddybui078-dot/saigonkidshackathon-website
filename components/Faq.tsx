@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { PixelGrid } from "./decorations";
+import { DrawnBg, DrawnTail } from "./drawn";
 import { EVENT, AGES, GRADES, TEAM_SIZE } from "./event";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -81,20 +82,19 @@ export default function Faq() {
               <div
                 key={faq.q}
                 data-open={isOpen}
-                className="faq-item relative rounded-2xl border-[3px] border-ink-deep bg-white text-ink shadow-[0_6px_0_#ffd166]"
+                className="faq-item relative text-ink"
               >
+                <DrawnBg aspect="wide" seed={i} tone="paper" />
                 {/* speech-bubble tail, alternating sides */}
-                <span
-                  aria-hidden="true"
-                  className={`absolute -bottom-[13px] h-5 w-5 rotate-45 border-b-[3px] border-r-[3px] border-ink-deep bg-white ${
-                    i % 2 === 0 ? "left-10" : "right-10"
-                  }`}
+                <DrawnTail
+                  side={i % 2 === 0 ? "left" : "right"}
+                  className={`absolute -bottom-[22px] ${i % 2 === 0 ? "left-10" : "right-10"}`}
                 />
                 <button
                   type="button"
                   onClick={() => setOpen(isOpen ? null : i)}
                   aria-expanded={isOpen}
-                  className="flex w-full items-center justify-between gap-4 rounded-2xl px-6 py-5 text-left"
+                  className="relative flex w-full items-center justify-between gap-4 rounded-2xl px-6 py-5 text-left"
                 >
                   <span className="text-lg font-semibold">
                     {faq.q}
@@ -110,7 +110,7 @@ export default function Faq() {
                     +
                   </span>
                 </button>
-                <div className="faq-answer">
+                <div className="faq-answer relative">
                   <div>
                     <p className="px-6 pb-5 font-medium text-ink/70">{faq.a}</p>
                   </div>
