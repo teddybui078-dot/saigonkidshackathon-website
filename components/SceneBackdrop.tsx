@@ -11,7 +11,7 @@ import {
   Comet,
   FloatBrick,
 } from "./space";
-import { SUN, PAPER, FLARE } from "./palette";
+import { SUN, PAPER } from "./palette";
 
 /* the fixed midnight sky behind the whole site — the hero's weather,
    carried under every section and every route. it stays put while the
@@ -59,7 +59,7 @@ export default function SceneBackdrop() {
 
       {/* two bricks that never came down */}
       <FloatBrick className="brick-free absolute right-[4%] bottom-[8%] hidden w-14 md:block" />
-      <FloatBrick color={FLARE} className="ambient-float absolute left-[3%] top-[44%] hidden w-12 -rotate-6 lg:block" />
+      <FloatBrick className="ambient-float absolute left-[3%] top-[44%] hidden w-12 -rotate-6 lg:block" />
 
       {/* the coarse chalk tooth over the whole sky */}
       <ChalkFilter id="scene-chalk" />

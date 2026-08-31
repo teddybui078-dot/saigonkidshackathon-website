@@ -6,7 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Sparkle, CodeMark } from "./decorations";
 import { ToteBag, KitBadge } from "./illustrations";
 import { FloatBrick, ChalkScribble } from "./space";
-import { FLARE } from "./palette";
+import { SKY_LIGHT } from "./palette";
 import { KIT, type KitItem } from "./kit";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -190,7 +190,7 @@ export default function BuildersKit() {
 
           {/* a brick that spilled out with the goods */}
           <FloatBrick
-            color={FLARE}
+            color={SKY_LIGHT}
             className="ambient-float absolute -bottom-2 left-1/2 hidden w-12 -translate-x-[190px] rotate-[-8deg] md:block"
           />
 

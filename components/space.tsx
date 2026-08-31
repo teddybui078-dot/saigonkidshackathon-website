@@ -1276,12 +1276,12 @@ export function BrickPile({ className = "", width = 260, ...rest }: SpaceArtProp
         <rect x="60" y="90" width="8" height="6" rx="2" fill={SUN} />
         <rect x="76" y="90" width="8" height="6" rx="2" fill={SUN} />
         <path
-          fill={FLARE}
+          fill={SKY_LIGHT}
           d="M 99 94 Q 122 92 145 95 Q 150 95 150 100 L 150 115 Q 150 120 145 120 Q 122 122 99 120 Q 94 120 94 115 L 94 99 Q 94 94 99 94 Z"
         />
-        <rect x="102" y="88" width="8" height="6" rx="2" fill={FLARE} />
-        <rect x="118" y="88" width="8" height="6" rx="2" fill={FLARE} />
-        <rect x="134" y="88" width="8" height="6" rx="2" fill={FLARE} />
+        <rect x="102" y="88" width="8" height="6" rx="2" fill={SKY_LIGHT} />
+        <rect x="118" y="88" width="8" height="6" rx="2" fill={SKY_LIGHT} />
+        <rect x="134" y="88" width="8" height="6" rx="2" fill={SKY_LIGHT} />
         <path d="M 103 101 Q 110 100 117 101" stroke={PAPER} strokeOpacity="0.7" />
         <path
           fill={YELLOW}
