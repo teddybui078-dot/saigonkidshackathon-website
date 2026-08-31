@@ -160,8 +160,12 @@ export default function Prizes() {
             {PODIUM.map((award) => (
               <div key={award.place} className={COLUMN[award.place]}>
                 {/* what stands on the step — above the clip box, so it is never cut off */}
+                {/* the wrapper is the reveal, the span inside it floats — so
+                    the two transforms never fight over the same node */}
                 <div className="podium-topper relative z-10 -mb-3 flex items-end justify-center">
-                  {TOPPER[award.place]}
+                  <span className="ambient-float inline-flex items-end" data-amp="s">
+                    {TOPPER[award.place]}
+                  </span>
                 </div>
                 {/* the clip box: the step rises up out of this */}
                 <div className={CLIP[award.place]}>

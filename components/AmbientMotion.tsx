@@ -18,10 +18,10 @@ export default function AmbientMotion() {
         .forEach((el) => {
           const k = el.dataset.amp === "s" ? 0.5 : 1;
           gsap.to(el, {
-            y: `+=${gsap.utils.random(10, 22) * k}`,
-            x: `+=${gsap.utils.random(-14, 14) * k}`,
-            rotation: gsap.utils.random(-5, 5) * k,
-            duration: gsap.utils.random(2.8, 5.5),
+            y: `+=${gsap.utils.random(12, 26) * k}`,
+            x: `+=${gsap.utils.random(-18, 18) * k}`,
+            rotation: gsap.utils.random(-6, 6) * k,
+            duration: gsap.utils.random(3.2, 6),
             yoyo: true,
             repeat: -1,
             ease: "sine.inOut",

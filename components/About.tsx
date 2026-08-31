@@ -216,7 +216,13 @@ export default function About() {
                 <Pushpin className="absolute -top-3 left-5" />
                 <PixelGrid className="absolute bottom-7 right-4 opacity-60" size={16} />
                 <div className="about-card-body relative px-8 pb-12 pt-12">
-                  <div className="flex h-28 items-end">{card.art}</div>
+                  <div className="flex h-28 items-end">
+                    {/* a level below the card body, so the pinned scrub and
+                        the idle drift never share a node */}
+                    <span className="ambient-float inline-block" data-amp="s">
+                      {card.art}
+                    </span>
+                  </div>
                   <h3 className="mt-5 text-2xl font-semibold leading-7">{card.title}</h3>
                   <p className="mt-3 text-lg font-medium leading-7 text-ink/70">{card.body}</p>
                 </div>
