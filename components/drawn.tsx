@@ -341,13 +341,104 @@ export function LegoStep({
   );
 }
 
-/* a speech-bubble tail, drawn separately and tucked under a panel's edge */
+/* six speech bubbles, one per question — roundish, a jagged burst for
+   the scary one, a cloud, a boxy one, a dog-eared squircle, a lean.
+   same drawn-twice recipe; the conversation clearly has moods. */
+const BUBBLE_SHAPES: { d: string; light: string; dark: string }[] = [
+  {
+    d: "M60 12 Q200 4 340 12 Q382 16 388 46 Q396 130 388 214 Q382 244 340 248 Q200 256 60 248 Q18 244 12 214 Q4 130 12 46 Q18 16 60 12 Z",
+    light: "M70 30 Q200 18 330 28",
+    dark: "M84 234 Q200 244 316 234",
+  },
+  {
+    d: "M26 24 L58 10 L90 22 L122 8 L154 20 L188 6 L222 20 L254 8 L286 22 L318 10 L348 24 L374 14 Q388 16 388 32 Q392 130 388 228 Q388 244 372 246 L342 236 L308 248 L274 236 L240 250 L206 238 L172 250 L138 238 L104 250 L70 238 L40 246 Q14 244 13 228 Q7 130 12 30 Q13 20 26 24 Z",
+    light: "M80 34 Q200 24 320 32",
+    dark: "M88 228 Q200 238 312 228",
+  },
+  {
+    d: "M32 22 Q60 6 96 16 Q130 4 166 14 Q200 2 234 14 Q270 4 304 16 Q340 6 368 22 Q388 28 386 48 Q394 130 386 212 Q388 234 368 240 Q336 254 302 244 Q268 256 232 246 Q198 258 164 246 Q130 256 96 246 Q62 252 34 238 Q14 232 14 210 Q6 128 14 50 Q16 28 32 22 Z",
+    light: "M90 26 Q200 16 310 24",
+    dark: "M96 232 Q200 242 306 232",
+  },
+  {
+    d: "M22 16 Q200 10 380 16 Q390 17 390 28 Q394 130 390 232 Q390 243 378 244 Q198 250 24 244 Q12 243 12 232 Q6 128 12 28 Q12 17 22 16 Z",
+    light: "M46 28 Q200 20 356 26",
+    dark: "M52 236 Q200 244 350 236",
+  },
+  {
+    d: "M26 18 Q190 10 330 14 L378 54 Q390 58 390 74 Q396 140 390 228 Q389 242 374 244 Q210 252 28 246 Q14 244 14 230 Q6 132 13 34 Q14 20 26 18 Z",
+    light: "M60 30 Q180 20 300 26",
+    dark: "M66 236 Q200 244 340 236",
+  },
+  {
+    d: "M30 24 Q200 6 372 18 Q388 20 388 36 Q392 132 386 224 Q385 240 370 242 Q198 254 30 240 Q15 238 14 222 Q8 128 16 38 Q17 26 30 24 Z",
+    light: "M56 32 Q200 16 348 26",
+    dark: "M62 232 Q200 246 344 234",
+  },
+];
+
+export function DrawnBubbleBg({
+  shape = 0,
+  tone = "paper",
+  shadow = "sun",
+  className = "",
+}: {
+  shape?: number;
+  tone?: DrawnTone;
+  shadow?: DrawnShadow;
+  className?: string;
+}) {
+  const s = BUBBLE_SHAPES[shape % BUBBLE_SHAPES.length];
+  return (
+    <svg
+      aria-hidden="true"
+      focusable="false"
+      className={`absolute inset-0 h-full w-full ${className}`}
+      viewBox="0 0 400 260"
+      preserveAspectRatio="none"
+      fill="none"
+    >
+      {shadow !== "none" && (
+        <path d={s.d} transform="translate(9 10)" fill={shadow === "sun" ? SUN : FLARE} />
+      )}
+      <path
+        d={s.d}
+        fill={TONE[tone]}
+        stroke={STROKE}
+        strokeWidth={5}
+        strokeLinejoin="round"
+        vectorEffect="non-scaling-stroke"
+      />
+      <path d={s.light} stroke={PAPER} strokeWidth={4} strokeLinecap="round" opacity={0.35} vectorEffect="non-scaling-stroke" />
+      <path d={s.dark} stroke={SPACE_DARK} strokeWidth={4} strokeLinecap="round" opacity={0.35} vectorEffect="non-scaling-stroke" />
+    </svg>
+  );
+}
+
+/* a speech-bubble tail, drawn separately and tucked under a panel's
+   edge — a plain wedge, a curling flick, or a trail of thought dots */
+export type TailKind = "wedge" | "curl" | "dots";
+
+const TAIL_PATHS: Record<TailKind, { left: string; right: string }> = {
+  wedge: {
+    left: "M6 2 Q10 16 4 27 Q18 22 30 4 Z",
+    right: "M28 2 Q24 16 30 27 Q16 22 4 4 Z",
+  },
+  curl: {
+    left: "M8 2 C 12 12 6 20 2 27 C 10 26 22 18 30 3 Z",
+    right: "M26 2 C 22 12 28 20 32 27 C 24 26 12 18 4 3 Z",
+  },
+  dots: { left: "", right: "" },
+};
+
 export function DrawnTail({
   side = "left",
+  kind = "wedge",
   tone = "paper",
   className = "",
 }: {
   side?: "left" | "right";
+  kind?: TailKind;
   tone?: DrawnTone;
   className?: string;
 }) {
@@ -361,17 +452,21 @@ export function DrawnTail({
       viewBox="0 0 34 30"
       fill="none"
     >
-      <path
-        d={
-          side === "left"
-            ? "M6 2 Q10 16 4 27 Q18 22 30 4 Z"
-            : "M28 2 Q24 16 30 27 Q16 22 4 4 Z"
-        }
-        fill={TONE[tone]}
-        stroke={STROKE}
-        strokeWidth={4}
-        strokeLinejoin="round"
-      />
+      {kind === "dots" ? (
+        <g fill={TONE[tone]} stroke={STROKE} strokeWidth={3}>
+          <circle cx={side === "left" ? 10 : 24} cy={6} r={6} />
+          <circle cx={side === "left" ? 19 : 15} cy={16} r={4} />
+          <circle cx={side === "left" ? 26 : 8} cy={25} r={2.5} />
+        </g>
+      ) : (
+        <path
+          d={TAIL_PATHS[kind][side]}
+          fill={TONE[tone]}
+          stroke={STROKE}
+          strokeWidth={4}
+          strokeLinejoin="round"
+        />
+      )}
     </svg>
   );
 }

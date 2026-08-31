@@ -5,7 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { PixelGrid, SparkleCross } from "./decorations";
 import { ChalkScribble } from "./space";
-import { DrawnBg, DrawnTail } from "./drawn";
+import { DrawnBubbleBg, DrawnTail, type TailKind } from "./drawn";
 import { EVENT, AGES, GRADES, TEAM_SIZE } from "./event";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -36,6 +36,10 @@ const FAQS = [
     a: `Teams of ${TEAM_SIZE} — three is the sweet spot. Come with friends, join team matching on the morning, or go solo if you'd rather build alone.`,
   },
 ];
+
+/* which tail each bubble trails — the nervous coding question thinks in
+   dots, the money question gets the curl */
+const TAIL_KINDS: TailKind[] = ["wedge", "dots", "curl", "curl", "wedge", "dots"];
 
 export default function Faq() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -90,10 +94,11 @@ export default function Faq() {
                 data-open={isOpen}
                 className="faq-item relative text-ink"
               >
-                <DrawnBg aspect="wide" seed={i} tone="paper" />
-                {/* speech-bubble tail, alternating sides */}
+                <DrawnBubbleBg shape={i} tone="paper" />
+                {/* each bubble trails its own tail, alternating sides */}
                 <DrawnTail
                   side={i % 2 === 0 ? "left" : "right"}
+                  kind={TAIL_KINDS[i]}
                   className={`absolute -bottom-[22px] ${i % 2 === 0 ? "left-10" : "right-10"}`}
                 />
                 <button
