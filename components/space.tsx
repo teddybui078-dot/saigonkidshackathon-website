@@ -65,6 +65,58 @@ export function GrainFilter({ id }: { id: string }) {
   );
 }
 
+/* ————— the sky swirls ————— */
+
+/* broad wind-bands brushed across the sky, cresting with the orbit track
+   so the whole sky turns around one centre. filled ribbons of uneven
+   thickness, like brush pressure; the caller blends them soft-light into
+   the gradient so the stars stay on top */
+export function SkySwirls({ className = "", width = 1440, ...rest }: SpaceArtProps) {
+  return (
+    <svg
+      className={className}
+      width={width}
+      height={width * (900 / 1440)}
+      viewBox="0 0 1440 900"
+      fill="none"
+      preserveAspectRatio="xMidYMid slice"
+      aria-hidden="true"
+      focusable="false"
+      {...rest}
+    >
+      {/* the high band, widest sweep */}
+      <path
+        d="M-60 306 C 168 224 440 156 728 158 C 1014 160 1272 226 1500 318 L 1500 434 C 1268 338 1016 272 736 268 C 452 264 196 330 -60 428 Z"
+        fill={SPACE_LIGHT}
+        opacity={0.5}
+      />
+      {/* a thin chalk streak riding just under it */}
+      <path
+        d="M-60 470 C 220 386 470 330 742 326 C 1020 322 1250 372 1500 452 L 1500 474 C 1246 396 1018 348 744 352 C 474 356 228 410 -60 494 Z"
+        fill={PAPER}
+        opacity={0.08}
+      />
+      {/* the low band, dimmer, dipping behind the skyline */}
+      <path
+        d="M-60 640 C 240 552 500 502 748 500 C 1000 498 1240 546 1500 628 L 1500 742 C 1236 656 998 610 746 612 C 498 614 252 664 -60 756 Z"
+        fill={SPACE_LIGHT}
+        opacity={0.32}
+      />
+      {/* two short brush flicks where the wind broke */}
+      <path
+        d="M150 512 C 250 484 350 466 470 462 L 468 486 C 352 490 256 508 158 534 Z"
+        fill={SPACE_LIGHT}
+        opacity={0.4}
+      />
+      <path
+        d="M1010 574 C 1120 570 1230 586 1330 616 L 1322 640 C 1226 610 1122 594 1014 598 Z"
+        fill={SPACE_LIGHT}
+        opacity={0.36}
+      />
+    </svg>
+  );
+}
+
 /* ————— the props ————— */
 
 /* a saturn: a tilted ring passes behind the body, then in front of it */

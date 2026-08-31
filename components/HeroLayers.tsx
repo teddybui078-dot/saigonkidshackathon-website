@@ -13,6 +13,7 @@ import {
   MoonTerrain,
   ChalkStar,
   OrbitArc,
+  SkySwirls,
   LanternString,
   Lantern,
   Landmark81,
@@ -62,6 +63,8 @@ export function HeroCanvas() {
         className="absolute inset-0 opacity-[0.14] mix-blend-soft-light [transform:translateZ(0)]"
         style={{ filter: `url(#${GRAIN_ID})` }}
       />
+      {/* the wind-bands brushed into the sky, under the stars */}
+      <SkySwirls className="absolute inset-0 h-full w-full mix-blend-soft-light" />
       {STAR_DEPTHS.map((depth) => {
         const layer = STARFIELD[depth];
         return (
