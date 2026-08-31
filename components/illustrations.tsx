@@ -4,6 +4,7 @@
    aria-hidden. */
 
 import { BLUE, BLUE_DEEP, YELLOW, YELLOW_DEEP, SKY_LIGHT, SKY_DEEP, METAL } from "./palette";
+import { DrawnDiscBg } from "./drawn";
 
 type SvgProps = { className?: string; size?: number } & React.SVGProps<SVGSVGElement>;
 
@@ -339,17 +340,28 @@ export function KitIcon({ kind, className = "", size = 40 }: { kind: KitKind; cl
   );
 }
 
-export function KitBadge({ kind, className = "", size = 120 }: { kind: KitKind; className?: string; size?: number }) {
-  // a round patch: white face, blue ring, a dashed yellow stitch, the mark
-  // in the middle — the "logo" of each thing in the kit
+export function KitBadge({
+  kind,
+  className = "",
+  size = 120,
+  seed = 0,
+}: {
+  kind: KitKind;
+  className?: string;
+  size?: number;
+  seed?: number;
+}) {
+  // a drawn round patch: wobbly white face, thrown sun shadow, a dashed
+  // yellow stitch, the mark in the middle — the "logo" of each kit thing
   return (
     <span
-      className={`relative grid shrink-0 place-items-center rounded-full border-4 border-ink-deep bg-white shadow-[0_6px_0_#ffd166] ${className}`}
+      className={`relative grid shrink-0 place-items-center ${className}`}
       style={{ width: size, height: size }}
       aria-hidden="true"
     >
-      <span className="absolute inset-[7px] rounded-full border-2 border-dashed border-energy" />
-      <KitIcon kind={kind} size={Math.round(size * 0.55)} />
+      <DrawnDiscBg seed={seed} tone="paper" />
+      <span className="absolute inset-[10px] rounded-full border-2 border-dashed border-energy" />
+      <KitIcon kind={kind} size={Math.round(size * 0.55)} className="relative" />
     </span>
   );
 }

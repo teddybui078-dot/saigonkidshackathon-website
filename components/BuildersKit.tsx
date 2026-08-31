@@ -5,16 +5,18 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Sparkle, PixelGrid, CodeMark } from "./decorations";
 import { ToteBag, KitBadge } from "./illustrations";
+import { FloatBrick } from "./space";
+import { FLARE } from "./palette";
 import { KIT, type KitItem } from "./kit";
 
 gsap.registerPlugin(ScrollTrigger);
 
 /* the goods: one round badge logo per kit item */
 const ART: Record<KitItem["id"], React.ReactNode> = {
-  snacks: <KitBadge kind="snacks" size={118} />,
-  stickers: <KitBadge kind="stickers" size={118} />,
-  hat: <KitBadge kind="hat" size={118} />,
-  wristbands: <KitBadge kind="wristbands" size={118} />,
+  snacks: <KitBadge kind="snacks" size={118} seed={0} />,
+  stickers: <KitBadge kind="stickers" size={118} seed={1} />,
+  hat: <KitBadge kind="hat" size={118} seed={2} />,
+  wristbands: <KitBadge kind="wristbands" size={118} seed={1} />,
 };
 
 /* where each item comes to rest around the bag on md+ (full strings so
@@ -184,6 +186,12 @@ export default function BuildersKit() {
               </div>
             </div>
           ))}
+
+          {/* a brick that spilled out with the goods */}
+          <FloatBrick
+            color={FLARE}
+            className="ambient-float absolute -bottom-2 left-1/2 hidden w-12 -translate-x-[190px] rotate-[-8deg] md:block"
+          />
 
           {/* front layer: the body with its band and label. first row of the
               grid below md, over the back layer on md+ */}
